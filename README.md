@@ -100,28 +100,3 @@ Before your first deployment, make sure all the environment variables and
 bindings are set properly on the
 [Cloudlfare Dashboard](https://dash.cloudflare.com/login).
 
-### Creating a new application
-
-To create a new application on the Cloudflare Dashboard, select **Workers and
-Pages** from the menu and click on **Create Application**. You can then follow
-the instructions based on your needs.
-
-### Setting up environment variables
-
-To set up environment variables, select **Workers and Pages** from the menu and
-look for the application details. You will find the **environment variables**
-section under the **Settings** tab.
-
-### Setting up KV namespaces
-
-To set up a new KV namespaces, you need to create a new namespace first through
-the **KV** menu under **Workers and Pages** and click **Create a namespace**.
-
-After creating the namespace, you can bind the namespace to the application from
-the application details page. You can find the setting from the **Functions**
-section under the **Settings** tab.
-
-### Debugging
-
-If your application is not working properly, you can find the real-time logs in
-the **Functions** tab from the deployment details page.

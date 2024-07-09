@@ -156,6 +156,14 @@ export default function Index() {
 				<h1>You are being rate limited.</h1>
 			)}
 
+			<p>
+				Hey, I am Nischal Dahal, a software engineer. Working at AITC, as a Full
+				Stack Developer. I am content creator, i love creating the open source
+				projects. I love learning new technologies. You can find me on twitter
+				@broisnees, I love working on devops and dba, I am exploring AI. I 😘
+				arc btw.
+			</p>
+
 			{/* <Markdown content={data.content} /> */}
 		</>
 	);

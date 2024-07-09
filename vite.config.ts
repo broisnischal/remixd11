@@ -10,7 +10,9 @@ import mdx from '@mdx-js/rollup';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypePrettyCode from 'rehype-pretty-code';
+import svgr from 'vite-plugin-svgr';
 import { Mode, plugin as markdown } from 'vite-plugin-markdown';
+import rehypeMeta from 'rehype-meta';
 
 export default defineConfig({
 	plugins: [
@@ -22,6 +24,7 @@ export default defineConfig({
 		// markdown({
 		// 	mode: [Mode.MARKDOWN, Mode.REACT, Mode.TOC],
 		// }),
+		svgr(),
 		remix({
 			future: {
 				unstable_singleFetch: true,

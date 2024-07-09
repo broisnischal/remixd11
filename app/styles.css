@@ -15,3 +15,7 @@ summary.marker\:content-none::-webkit-details-marker {
 html:has(details#breadcrumbs[open]) {
 	overflow: hidden;
 }
+
+* {
+	line-height: 30px;
+}

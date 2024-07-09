@@ -1,7 +1,7 @@
-import { Outlet } from '@remix-run/react';
-
-export default function Page() {
-	<div>
-		<h1>Concert in city</h1>
-	</div>;
+export default function Test() {
+	return (
+		<div>
+			<h1>TEsting in the routing </h1>
+		</div>
+	);
 }

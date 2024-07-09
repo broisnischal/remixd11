@@ -1,7 +1,7 @@
 export default function Page() {
 	return (
-		<div>
-			<h2>Projects for YEAR</h2>
+		<div className="m-auto my-[20vh] flex max-w-[80vw] flex-col items-start gap-[1rem]  ">
+			<h2>Learning Project for 2024</h2>
 			<div>
 				<h1>RUST</h1>
 				<ul>
@@ -50,6 +50,13 @@ export default function Page() {
 			<div>
 				<h1>GO</h1>
 				<ul>
+					<li>
+						Distributed Task Queue with Database Pooling, Race Condition
+						Handling, and Monitoring
+					</li>
+					<li>
+						TunnelHub: A Lightweight Tunneling Service kinda similar like ngrok
+					</li>
 					<li>
 						Create a command-line utility to search for files based on various
 						criteria.

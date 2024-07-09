@@ -37,7 +37,8 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
 	const ratelimit = new Ratelimit({
 		redis: Redis.fromEnv(args.context.env),
-		limiter: Ratelimit.fixedWindow(10, '60 s'),
+		limiter: Ratelimit.fixedWindow(10, '60 m'),
+		enableProtection: true,
 		analytics: true,
 	});
 
@@ -127,7 +128,7 @@ export default function Index() {
 
 		// </div>
 		<>
-			<Link to={'/image'} unstable_viewTransition>
+			{/* <Link to={'/image'} unstable_viewTransition>
 				<img
 					src={
 						'https://oyster.ignimgs.com/mediawiki/apis.ign.com/the-legend-of-zelda-breath-of-the-wild-2/3/38/Link2.png'
@@ -138,8 +139,8 @@ export default function Index() {
 						width: '10%',
 					}}
 				/>
-			</Link>
-			<Link to="/test">Test</Link>
+			</Link> */}
+			<Link to="/signup">signup</Link>
 
 			{data.success ? (
 				<div>

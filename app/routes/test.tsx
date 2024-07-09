@@ -1,3 +1,4 @@
+import { Outlet } from '@remix-run/react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Motion from '~/components/motion';
@@ -7,6 +8,7 @@ export default function Page() {
 
 	return (
 		<div>
+			<Outlet />
 			<h1>Learning Framer Motion</h1>
 			<motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
 				Hover Me

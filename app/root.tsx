@@ -5,6 +5,7 @@ import type {
 } from '@remix-run/cloudflare';
 import * as React from 'react';
 import {
+	Link,
 	Links,
 	Meta,
 	Outlet,
@@ -94,22 +95,26 @@ function Document({
 				<Links />
 			</head>
 			<body>
-				{/* <AnimatePresence>
+				<div>
+					<Link to={'/cat/tesitn'}>Cat</Link>
+					<Link to={'/cat/sandes'}>Cat</Link>
+					<Link to={'/cat/sandesdsf'}>Cat</Link>
+				</div>
+				<AnimatePresence mode="popLayout">
 					<motion.div
 						key={useLocation().pathname}
 						variants={{
-							initial: { opacity: 0, y: -100 },
+							initial: { opacity: 0, y: -30 },
 							animate: { opacity: 1, y: 0 },
-							exit: { opacity: 1, y: 100 },
+							exit: { opacity: 1, y: 30 },
 						}}
-						transition={{ duration: 0.2 }}
+						transition={{ duration: 0.1 }}
 						initial="initial"
 						animate="animate"
-					> */}
-				{/* <Outlet /> */}
-				{children}
-				{/* </motion.div>
-				</AnimatePresence> */}
+					>
+						{children}
+					</motion.div>
+				</AnimatePresence>
 
 				<ScrollRestoration />
 				<Scripts />

@@ -17,11 +17,12 @@ import {
 	useLocation,
 	useRouteError,
 } from '@remix-run/react';
-import stylesUrl from '~/styles.css?url';
+import styles from './tailwind.css?url';
+
 import { AnimatePresence, motion } from 'framer-motion';
 
 export const links: LinksFunction = () => {
-	return [{ rel: 'stylesheet', href: stylesUrl }];
+	return [{ rel: 'stylesheet', href: styles }];
 };
 
 export const meta: MetaFunction = () => {
@@ -94,28 +95,27 @@ function Document({
 				<Meta />
 				<Links />
 			</head>
-			<body>
+			<body style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}>
 				<div>
 					<Link to={'/cat/tesitn'}>Cat</Link>
-					<Link to={'/cat/sandes'}>Cat</Link>
-					<Link to={'/cat/sandesdsf'}>Cat</Link>
+					<Link to={'/cat/sandes'}>Tes</Link>
+					<Link to={'/cat/sandesdsf'}>Learnign</Link>
 				</div>
 				<AnimatePresence mode="popLayout">
 					<motion.div
 						key={useLocation().pathname}
 						variants={{
-							initial: { opacity: 0, y: -30 },
+							initial: { opacity: 0, y: -10 },
 							animate: { opacity: 1, y: 0 },
-							exit: { opacity: 1, y: 30 },
+							exit: { opacity: 1, y: 10 },
 						}}
-						transition={{ duration: 0.1 }}
+						transition={{ duration: 0.2 }}
 						initial="initial"
 						animate="animate"
 					>
 						{children}
 					</motion.div>
 				</AnimatePresence>
-
 				<ScrollRestoration />
 				<Scripts />
 			</body>

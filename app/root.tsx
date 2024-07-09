@@ -1,12 +1,5 @@
-import type {
-	ActionFunctionArgs,
-	LinksFunction,
-	LoaderFunctionArgs,
-	MetaFunction,
-} from '@remix-run/cloudflare';
-import * as React from 'react';
+import type { LinksFunction, MetaFunction } from '@remix-run/cloudflare';
 import {
-	Link,
 	Links,
 	Meta,
 	NavLink,
@@ -14,17 +7,13 @@ import {
 	Scripts,
 	ScrollRestoration,
 	isRouteErrorResponse,
-	json,
-	useLoaderData,
 	useLocation,
 	useRouteError,
 } from '@remix-run/react';
-import styles from './tailwind.css?url';
 import { AnimatePresence, motion } from 'framer-motion';
+import * as React from 'react';
 import ProgessBar from './components/global-progess';
-import { NewsLetter } from './components/newsletter';
-import { drizzle } from 'drizzle-orm/d1';
-import { newsletter } from './drizzle/schema.server';
+import styles from './tailwind.css?url';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -38,13 +27,6 @@ export const meta: MetaFunction = () => {
 		{ name: 'description', content: 'Nischal Dahal Homepage' },
 	];
 };
-export async function action({ request, context }: ActionFunctionArgs) {
-	const formData = await request.formData();
-	const email = formData.get('email') as string;
-	const db = drizzle(context.env.DB);
-	await db.insert(newsletter).values({ email }).execute();
-	return json({ message: 'Subscribed Successfully!' }, { status: 201 });
-}
 
 const RouteLink = ({
 	to,
@@ -71,6 +53,7 @@ const NavBar = () => {
 			<RouteLink to={'/thought'}>thoughts</RouteLink>
 			<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 			<RouteLink to={'/career'}>career</RouteLink>
+			<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 			{/* <RouteLink to={'/subscribe'}>subscribe</RouteLink> */}
 			{/* <RouteLink to={'/contact'}>contact</RouteLink> */}
 		</nav>
@@ -80,8 +63,8 @@ const NavBar = () => {
 const Footer = () => {
 	return (
 		<div>
-			<NewsLetter />
-			{/* <h2>Copyright © 2022 Nischal Dahal</h2> */}
+			{/* <NewsLetter /> */}
+			<h2>Copyright © 2022 Nischal Dahal</h2>
 		</div>
 	);
 };

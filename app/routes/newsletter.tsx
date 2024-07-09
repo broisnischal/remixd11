@@ -1,8 +1,12 @@
 import { Form, Link, useFetcher } from '@remix-run/react';
-import { Button } from './ui/button';
+import { Button } from '../components/ui/button';
 import { z } from 'zod';
 import { useForm } from '@conform-to/react';
-import { Input } from './ui/input';
+import { Input } from '../components/ui/input';
+import { ActionFunctionArgs, json } from '@remix-run/cloudflare';
+import { drizzle } from 'drizzle-orm/d1';
+import { newsletter } from '~/drizzle/schema.server';
+import { eq } from 'drizzle-orm';
 
 const subscribeSchema = z.object({
 	email: z
@@ -13,8 +17,28 @@ const subscribeSchema = z.object({
 			message: 'Please enter a valid email address.',
 		}),
 });
+export async function action({ request, context }: ActionFunctionArgs) {
+	const formData = await request.formData();
+	const email = formData.get('email') as string;
 
-export function NewsLetter() {
+	console.log(email);
+	const db = drizzle(context.env.DB);
+
+	const existing = await db
+		.select()
+		.from(newsletter)
+		.where(eq(newsletter.email, email))
+		.execute();
+
+	if (existing.length > 0) {
+		return json({ message: 'Already Subscribed!' }, { status: 409 });
+	}
+
+	await db.insert(newsletter).values({ email }).execute();
+	return json({ message: 'Subscribed Successfully!' }, { status: 201 });
+}
+
+export default function NewsLetter() {
 	const newsletter = useFetcher();
 
 	const isSubmitting = newsletter.formData?.get('_intent') === 'subscribe';
@@ -36,7 +60,7 @@ export function NewsLetter() {
 					Tuned for the latest releases and features.
 				</p>
 			</div> */}
-			<div className="flex w-full max-w-full flex-col gap-3 lg:max-w-fit ">
+			<div className="mt-10 flex w-full max-w-full flex-col gap-6 lg:max-w-fit ">
 				<h3 className="text-4xl font-bold">Newsletter</h3>
 
 				<div className="flex flex-col gap-3">
@@ -46,6 +70,7 @@ export function NewsLetter() {
 					>
 						<Input
 							type="email"
+							name="email"
 							className="min-w-[30vw]"
 							placeholder="Suscribe to our newsletter"
 						/>

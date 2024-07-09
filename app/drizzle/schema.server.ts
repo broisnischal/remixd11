@@ -12,6 +12,11 @@ const user = sqliteTable('users', {
 	password: text('password').notNull(),
 });
 
+export const newsletter = sqliteTable('newsletter', {
+	id: integer('id').primaryKey(),
+	email: text('email').notNull(),
+});
+
 export const posts = sqliteTable('posts', {
 	id: integer('id').primaryKey(),
 	title: text('title').notNull(),

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
+@layer base {
 	:root {
 		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;
@@ -57,19 +57,19 @@
 		--chart-4: 280 65% 60%;
 		--chart-5: 340 75% 55%;
 	}
-} */
+}
 
 @layer base {
 	.active {
 		color: rgb(43, 0, 255);
 		@apply underline decoration-cyan-700 hover:decoration-cyan-900;
 	}
-	/* * {
+	* {
 		@apply border-border;
 	}
 	body {
 		@apply bg-background text-foreground;
-	} */
+	}
 }
 
 body {

@@ -19,9 +19,12 @@
     "generate": "npx drizzle-kit generate",
     "up": "drizzle-kit up:sqlite --schema=./app/drizzle/schema.server.ts",
     "migrate": "npx wrangler d1 migrations create dbs new",
-    "migrate:apply": "npx wrangler d1 migrations apply dbs --remote"
+    "migrate:apply": "npx wrangler d1 migrations apply dbs --remote",
+    "migrate:local": "npx wrangler d1 migrations apply dbs"
   },
   "dependencies": {
+    "@conform-to/react": "^1.1.5",
+    "@conform-to/zod": "^1.1.5",
     "@markdoc/markdoc": "^0.4.0",
     "@mdx-js/rollup": "^3.0.1",
     "@radix-ui/react-slot": "^1.1.0",

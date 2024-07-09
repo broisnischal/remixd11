@@ -12,6 +12,7 @@ export async function action({ request, context }: ActionFunctionArgs) {
 	await db.insert(resources).values({ title, href }).execute();
 	return json({ message: 'Resource added' }, { status: 201 });
 }
+
 export async function loader({ context }: LoaderFunctionArgs) {
 	const db = drizzle(context.env.DB);
 	const resourceList = await db

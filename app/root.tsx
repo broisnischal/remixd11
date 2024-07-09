@@ -1,4 +1,5 @@
 import type {
+	ActionFunctionArgs,
 	LinksFunction,
 	LoaderFunctionArgs,
 	MetaFunction,
@@ -21,6 +22,9 @@ import {
 import styles from './tailwind.css?url';
 import { AnimatePresence, motion } from 'framer-motion';
 import ProgessBar from './components/global-progess';
+import { NewsLetter } from './components/newsletter';
+import { drizzle } from 'drizzle-orm/d1';
+import { newsletter } from './drizzle/schema.server';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -34,6 +38,13 @@ export const meta: MetaFunction = () => {
 		{ name: 'description', content: 'Nischal Dahal Homepage' },
 	];
 };
+export async function action({ request, context }: ActionFunctionArgs) {
+	const formData = await request.formData();
+	const email = formData.get('email') as string;
+	const db = drizzle(context.env.DB);
+	await db.insert(newsletter).values({ email }).execute();
+	return json({ message: 'Subscribed Successfully!' }, { status: 201 });
+}
 
 const RouteLink = ({
 	to,
@@ -60,20 +71,26 @@ const NavBar = () => {
 			<RouteLink to={'/thought'}>thoughts</RouteLink>
 			<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 			<RouteLink to={'/career'}>career</RouteLink>
+			{/* <RouteLink to={'/subscribe'}>subscribe</RouteLink> */}
 			{/* <RouteLink to={'/contact'}>contact</RouteLink> */}
 		</nav>
 	);
 };
 
 const Footer = () => {
-	return <div>Footer</div>;
+	return (
+		<div>
+			<NewsLetter />
+			{/* <h2>Copyright © 2022 Nischal Dahal</h2> */}
+		</div>
+	);
 };
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div>
 			<ProgessBar />
-			<div className="m-auto my-10 flex min-h-[80vh] max-w-[80vw] flex-col items-start justify-between">
+			<div className="m-auto my-10 flex min-h-[80vh] max-w-[70vw] flex-col items-start justify-between">
 				<div className="main">
 					<NavBar />
 					<AnimatePresence mode="popLayout">

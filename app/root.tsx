@@ -20,6 +20,7 @@ import {
 } from '@remix-run/react';
 import styles from './tailwind.css?url';
 import { AnimatePresence, motion } from 'framer-motion';
+import ProgessBar from './components/global-progess';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -70,26 +71,29 @@ const Footer = () => {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div className="m-auto my-10 flex min-h-[80vh] max-w-[80vw] flex-col items-start justify-between">
-			<div className="main">
-				<NavBar />
-				<AnimatePresence mode="popLayout">
-					<motion.div
-						key={useLocation().pathname}
-						variants={{
-							initial: { opacity: 0, y: -10 },
-							animate: { opacity: 1, y: 0 },
-							exit: { opacity: 1, y: 10 },
-						}}
-						transition={{ duration: 0.2 }}
-						initial="initial"
-						animate="animate"
-					>
-						<div className="my-[2rem]">{children}</div>
-					</motion.div>
-				</AnimatePresence>
+		<div>
+			<ProgessBar />
+			<div className="m-auto my-10 flex min-h-[80vh] max-w-[80vw] flex-col items-start justify-between">
+				<div className="main">
+					<NavBar />
+					<AnimatePresence mode="popLayout">
+						<motion.div
+							key={useLocation().pathname}
+							variants={{
+								initial: { opacity: 0, y: -10 },
+								animate: { opacity: 1, y: 0 },
+								exit: { opacity: 1, y: 10 },
+							}}
+							transition={{ duration: 0.2 }}
+							initial="initial"
+							animate="animate"
+						>
+							<div className="my-[2rem]">{children}</div>
+						</motion.div>
+					</AnimatePresence>
+				</div>
+				<Footer />
 			</div>
-			<Footer />
 		</div>
 	);
 };

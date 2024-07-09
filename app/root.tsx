@@ -54,7 +54,7 @@ const NavBar = () => {
 		<nav className="flex gap-5">
 			<RouteLink to={'/'}>home</RouteLink>
 			<RouteLink to={'/cat/guides'}>guides</RouteLink>
-			<RouteLink to={'/project'}>learning</RouteLink>
+			<RouteLink to={'/learning/year'}>learning</RouteLink>
 			<RouteLink to={'/projects'}>projects</RouteLink>
 			<RouteLink to={'/blog'}>blogs</RouteLink>
 			<RouteLink to={'/thought'}>thoughts</RouteLink>

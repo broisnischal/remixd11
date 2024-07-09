@@ -1,6 +1,6 @@
 export default function Page() {
 	return (
-		<div className="m-auto  flex max-w-[80vw] flex-col items-start gap-[1rem]  ">
+		<div className="m-auto flex  flex-col items-start gap-[1rem]  ">
 			<h2>Learning Project for 2024</h2>
 			<div>
 				<h1>RUST</h1>

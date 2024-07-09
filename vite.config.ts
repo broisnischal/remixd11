@@ -4,15 +4,13 @@ import {
 } from '@remix-run/dev';
 import { defineConfig } from 'vite';
 
-import tsconfigPaths from 'vite-tsconfig-paths';
-import { getLoadContext } from './load-context';
 import mdx from '@mdx-js/rollup';
+import rehypePrettyCode from 'rehype-pretty-code';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-import rehypePrettyCode from 'rehype-pretty-code';
 import svgr from 'vite-plugin-svgr';
-import { Mode, plugin as markdown } from 'vite-plugin-markdown';
-import rehypeMeta from 'rehype-meta';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { getLoadContext } from './load-context';
 
 export default defineConfig({
 	plugins: [

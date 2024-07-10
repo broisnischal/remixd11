@@ -38,7 +38,7 @@ export default function ProgessBar() {
 			<div
 				ref={ref}
 				className={cn(
-					'h-full w-0 bg-black duration-500 ease-in-out',
+					'h-full w-0 bg-black duration-500 ease-in-out dark:bg-white',
 					navigation.state === 'idle' &&
 						(animationComplete
 							? 'transition-none'

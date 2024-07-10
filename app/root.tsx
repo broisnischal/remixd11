@@ -1,4 +1,14 @@
-import type { LinksFunction, MetaFunction } from '@remix-run/cloudflare';
+import type {
+	LinksFunction,
+	LoaderFunctionArgs,
+	MetaFunction,
+} from '@remix-run/cloudflare';
+import clsx from 'clsx';
+import {
+	PreventFlashOnWrongTheme,
+	ThemeProvider,
+	useTheme,
+} from 'remix-themes';
 import {
 	Links,
 	Meta,
@@ -7,6 +17,7 @@ import {
 	Scripts,
 	ScrollRestoration,
 	isRouteErrorResponse,
+	useLoaderData,
 	useLocation,
 	useRouteError,
 } from '@remix-run/react';
@@ -14,6 +25,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
 import ProgessBar from './components/global-progess';
 import styles from './tailwind.css?url';
+import { themeSessionResolver } from './session.server';
+import { ModeToggle } from './components/toggle-mode';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -44,7 +57,7 @@ const RouteLink = ({
 
 const NavBar = () => {
 	return (
-		<nav className="flex gap-5">
+		<nav className="flex items-center gap-5">
 			<RouteLink to={'/'}>home</RouteLink>
 			<RouteLink to={'/cat/guides'}>guides</RouteLink>
 			<RouteLink to={'/learning/year'}>learning</RouteLink>
@@ -56,6 +69,7 @@ const NavBar = () => {
 			<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 			{/* <RouteLink to={'/subscribe'}>subscribe</RouteLink> */}
 			{/* <RouteLink to={'/contact'}>contact</RouteLink> */}
+			<ModeToggle />
 		</nav>
 	);
 };
@@ -64,14 +78,17 @@ const Footer = () => {
 	return (
 		<div>
 			{/* <NewsLetter /> */}
-			<h2>Copyright © 2022 Nischal Dahal</h2>
+			{/* <h2>Copyright © 2022 Nischal Dahal</h2> */}
+			<h1>
+				Developed by <a href="https://nischaldahal.com">Nischal</a>
+			</h1>
 		</div>
 	);
 };
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div>
+		<div id="main">
 			<ProgessBar />
 			<div className="m-auto my-10 flex min-h-[80vh] max-w-[70vw] flex-col items-start justify-between">
 				<div className="main">
@@ -98,39 +115,90 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 	);
 };
 
-export default function App() {
-	// const { menus } = useLoaderData<typeof loader>();
+// Return the theme from the session storage using the loader
+export async function loader({ request }: LoaderFunctionArgs) {
+	const { getTheme } = await themeSessionResolver(request);
+	return {
+		theme: getTheme(),
+	};
+}
+
+// export default function App() {
+// 	// const { menus } = useLoaderData<typeof loader>();
+
+// 	return (
+// 		<Document>
+// 			<Layout children={<Outlet />} />
+// 		</Document>
+// 	);
+// }
+
+export default function AppWithProviders() {
+	const data = useLoaderData<typeof loader>();
 
 	return (
-		<Document>
-			<Layout children={<Outlet />} />
-		</Document>
+		<ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
+			<App />
+		</ThemeProvider>
 	);
 }
 
-function Document({
-	children,
-	title,
-}: {
-	children: React.ReactNode;
-	title?: string;
-}) {
+export function App({}) {
+	const data = useLoaderData<typeof loader>();
+	const [theme] = useTheme();
+
 	return (
-		<html lang="en">
-			<head>
-				<meta charSet="utf-8" />
-				{title ? <title>{title}</title> : null}
-				<Meta />
-				<Links />
-			</head>
-			<body style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}>
-				{children}
-				<ScrollRestoration />
-				<Scripts />
-			</body>
-		</html>
+		<ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
+			<html lang="en" className={clsx(theme)}>
+				<head>
+					<meta charSet="utf-8" />
+					{/* {title ? <title>{title}</title> : null} */}
+					<Meta />
+					<Links />
+					<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
+				</head>
+				<body
+					style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}
+				>
+					<Layout children={<Outlet />} />
+					<ScrollRestoration />
+					<Scripts />
+				</body>
+			</html>
+		</ThemeProvider>
 	);
 }
+
+// function Document({
+// 	children,
+// 	title,
+// }: {
+// 	children: React.ReactNode;
+// 	title?: string;
+// }) {
+// 	const [theme] = useTheme();
+// 	const data = useLoaderData<typeof loader>();
+
+// 	return (
+// 		<html lang="en" className={clsx(theme)}>
+// 			<head>
+// 				<meta charSet="utf-8" />
+// 				{title ? <title>{title}</title> : null}
+// 				<Meta />
+// 				<Links />
+// 				<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
+// 			</head>
+// 			<body
+// 				className="dark:bg-black dark:text-white"
+// 				style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}
+// 			>
+// 				{children}
+// 				<ScrollRestoration />
+// 				<Scripts />
+// 			</body>
+// 		</html>
+// 	);
+// }
 
 export function ErrorLayout({
 	title,
@@ -140,7 +208,11 @@ export function ErrorLayout({
 	description: string;
 }) {
 	return (
-		<div className="m-auto my-10 flex max-w-[80vw] flex-col items-start justify-between">
+		<div
+			className="m-auto my-10 flex max-w-[80vw] flex-col items-start justify-between dark:bg-black dark:text-white"
+			style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}
+			// className=""
+		>
 			<div className="main">
 				<NavBar />
 				<AnimatePresence mode="popLayout">
@@ -192,18 +264,18 @@ export function ErrorBoundary() {
 		}
 
 		return (
-			<Document title={title}>
-				<ErrorLayout title={title} description={message} />
-			</Document>
+			// <Document title={title}>
+			<ErrorLayout title={title} description={message} />
+			// </Document>
 		);
 	}
 
 	return (
-		<Document title="Error!">
-			<div>
-				{/* @ts-expect-error */}
-				<h1>Unexpected error</h1> <p>{error.message}</p>
-			</div>{' '}
-		</Document>
+		// <Document title="Error!">
+		<div>
+			{/* @ts-expect-error */}
+			<h1>Unexpected error</h1> <p>{error.message}</p>
+		</div>
+		// </Document>
 	);
 }

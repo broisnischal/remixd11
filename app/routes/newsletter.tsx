@@ -60,7 +60,7 @@ export default function NewsLetter() {
 					Tuned for the latest releases and features.
 				</p>
 			</div> */}
-			<div className="mt-10 flex w-full max-w-full flex-col gap-6 lg:max-w-fit ">
+			<div className="mt-10 flex w-full max-w-full flex-col gap-6 ">
 				<h3 className="text-4xl font-bold">Newsletter</h3>
 
 				<div className="flex flex-col gap-3">

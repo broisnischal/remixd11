@@ -15,6 +15,9 @@ import fs from 'fs';
 import Motion from '~/components/motion';
 import { Kafka } from '@upstash/kafka';
 import { Button } from '~/components/ui/button';
+import { getPosts } from '~/.server/posts';
+import { Badge } from '~/components/ui/badge';
+import { TextHighlight } from '~/components/ui/highlight';
 
 export const loader = async (args: LoaderFunctionArgs) => {
 	// const kafka = new Kafka({
@@ -36,6 +39,8 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
 	// getting the ip can be different depending on your hosting provider
 
+	const posts = await getPosts();
+
 	const ratelimit = new Ratelimit({
 		redis: Redis.fromEnv(args.context.env),
 		limiter: Ratelimit.fixedWindow(10, '60 m'),
@@ -55,6 +60,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
 	return json(
 		{
 			success,
+			posts,
 			limit,
 			remaining,
 			reset,
@@ -111,24 +117,7 @@ export default function Index() {
 	const data = useLoaderData<typeof loader>();
 
 	return (
-		// <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
-		// 	<h1>Welcome to @upstash/ratelimit in Remix app</h1>
-
-		// 	{ratelimitResponse.success ? (
-		// 		<div>
-		// 			<p style={{ color: 'green' }}>
-		// 				success {ratelimitResponse.url + ' ' + ratelimitResponse.token}{' '}
-		// 			</p>
-		// 			<code>
-		// 				<pre>{JSON.stringify(ratelimitResponse, null, 2)}</pre>
-		// 			</code>
-		// 		</div>
-		// 	) : (
-		// 		<h1>You are being rate limited.</h1>
-		// 	)}
-
-		// </div>
-		<>
+		<div className="flex w-[60%] flex-col items-start justify-normal gap-3">
 			{/* <Link to={'/image'} unstable_viewTransition>
 				<img
 					src={
@@ -141,31 +130,46 @@ export default function Index() {
 					}}
 				/>
 			</Link> */}
-			<Link to="/signup">signup</Link>
 
-			{data.success ? (
+			{/* <Link to="/signup">signup</Link> */}
+
+			{/* {data.success ? (
 				<div>
-					<p style={{ color: 'green' }}>
-						success {data.url + ' ' + data.token}{' '}
-					</p>
-					<code>
-						<pre>{JSON.stringify(data, null, 2)}</pre>
-					</code>
+					<p style={{ color: 'green' }}>success</p>
 				</div>
 			) : (
 				<h1>You are being rate limited.</h1>
-			)}
+			)} */}
+
+			{/* <h2>Featured Blogs</h2>
+			{data.posts.map(post => (
+				<p key={post.slug}>
+					<Link to={'/blog/' + post.slug + ''}>{post.frontmatter.title}</Link>
+				</p>
+			))} */}
+
+			<h1 className="text-3xl font-bold dark:text-zinc-100">
+				hey, I'm Nischal 👋
+			</h1>
+
+			<Badge>Software Engineer</Badge>
 
 			<p>
-				Hey, I am Nischal Dahal, a software engineer. Working at AITC, as a Full
-				Stack Developer. I am content creator, i love creating the open source
-				projects. I love learning new technologies. You can find me on twitter
-				@broisnees, I love working on devops and dba, I am exploring AI. I 😘
-				arc btw.
+				I'm Nischal Dahal! I've got over 5 years of experiences in development.
+				I'm all about embracing new challenges and learning opportunities. Let's
+				build something awesome together! I continue to improve myself every
+				day.
 			</p>
 
+			<ul>
+				<li>I ❤️ Remix.</li>
+				<li>
+					<TextHighlight>Code</TextHighlight>
+				</li>
+			</ul>
+
 			{/* <Markdown content={data.content} /> */}
-		</>
+		</div>
 	);
 }
 

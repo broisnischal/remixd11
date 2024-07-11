@@ -49,7 +49,11 @@ const RouteLink = ({
 	children: React.ReactNode;
 }) => {
 	return (
-		<NavLink className={({ isActive }) => (isActive ? 'active' : '')} to={to}>
+		<NavLink
+			prefetch="intent"
+			className={({ isActive }) => (isActive ? 'active' : '')}
+			to={to}
+		>
 			{children}
 		</NavLink>
 	);
@@ -59,13 +63,14 @@ const NavBar = () => {
 	return (
 		<nav className="flex items-center gap-5">
 			<RouteLink to={'/'}>home</RouteLink>
-			<RouteLink to={'/cat/guides'}>guides</RouteLink>
+			{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 			<RouteLink to={'/learning/year'}>learning</RouteLink>
-			<RouteLink to={'/projects'}>projects</RouteLink>
+			{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
 			<RouteLink to={'/blog'}>blogs</RouteLink>
 			<RouteLink to={'/thought'}>thoughts</RouteLink>
 			<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-			<RouteLink to={'/career'}>career</RouteLink>
+			<RouteLink to={'/career'}>projects</RouteLink>
+			<RouteLink to={'/hire'}>hire me</RouteLink>
 			<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 			{/* <RouteLink to={'/subscribe'}>subscribe</RouteLink> */}
 			{/* <RouteLink to={'/contact'}>contact</RouteLink> */}

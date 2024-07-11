@@ -119,6 +119,8 @@
 	}
 
 	a:not(nav a) {
+		/* @apply from-primary to-secondary bg-clip-text 	text-primary hover:bg-gradient-to-r hover:text-transparent; */
+		@apply font-bold;
 		/* @apply underline decoration-cyan-700 hover:decoration-cyan-900; */
 	}
 }

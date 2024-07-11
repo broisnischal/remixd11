@@ -117,74 +117,131 @@ export default function Index() {
 	const data = useLoaderData<typeof loader>();
 
 	return (
-		<div className="flex w-[60%] flex-col items-start justify-normal gap-3">
-			{/* <Link to={'/image'} unstable_viewTransition>
+		<div>
+			<div className="flex w-[60%] flex-col items-start justify-normal gap-5">
+				{/* <Link to={'/image'} unstable_viewTransition>
 				<img
-					src={
-						'https://oyster.ignimgs.com/mediawiki/apis.ign.com/the-legend-of-zelda-breath-of-the-wild-2/3/38/Link2.png'
+				src={
+					'https://oyster.ignimgs.com/mediawiki/apis.ign.com/the-legend-of-zelda-breath-of-the-wild-2/3/38/Link2.png'
 					}
 					// alt={alt}
 					style={{
 						viewTransitionName: 'revert-layer',
 						width: '10%',
-					}}
-				/>
-			</Link> */}
+						}}
+						/>
+						</Link> */}
 
-			{/* <Link to="/signup">signup</Link> */}
+				{/* <Link to="/signup">signup</Link> */}
 
-			{/* {data.success ? (
+				{/* {data.success ? (
 				<div>
-					<p style={{ color: 'green' }}>success</p>
+				<p style={{ color: 'green' }}>success</p>
 				</div>
-			) : (
-				<h1>You are being rate limited.</h1>
-			)} */}
+				) : (
+					<h1>You are being rate limited.</h1>
+					)} */}
 
-			{/* <h2>Featured Blogs</h2>
-			{data.posts.map(post => (
-				<p key={post.slug}>
-					<Link to={'/blog/' + post.slug + ''}>{post.frontmatter.title}</Link>
+				<h1 className="text-3xl font-bold dark:text-zinc-100">
+					hey, I'm Nischal 👋
+				</h1>
+
+				<Badge>Software Engineer</Badge>
+
+				<p>
+					I'm Nischal Dahal! I've got over 5 years of experiences in
+					development. I'm all about embracing new challenges and learning
+					opportunities. Let's build something awesome together! I continue to
+					improve myself every day.
 				</p>
-			))} */}
 
-			<h1 className="text-3xl font-bold dark:text-zinc-100">
-				hey, I'm Nischal 👋
-			</h1>
+				<div className="flex gap-3">
+					Currently :{' '}
+					{['typescript', 'fltuter', 'zig', 'rust', 'go'].map((item, index) => (
+						<TextHighlight key={index}>{item}</TextHighlight>
+					))}
+				</div>
 
-			<Badge>Software Engineer</Badge>
+				<ul className="font-semibold">
+					<li>I ❤️ Remix.</li>
+					<li>I am a Typescript Mini Wizard 🚀</li>
+					<li>I am Android Developer 📱</li>
+					<li>I love IOT 👾</li>
+				</ul>
 
-			<p>
-				I'm Nischal Dahal! I've got over 5 years of experiences in development.
-				I'm all about embracing new challenges and learning opportunities. Let's
-				build something awesome together! I continue to improve myself every
-				day.
-			</p>
-
-			<ul>
-				<li>I ❤️ Remix.</li>
-				<li>
-					<TextHighlight>Code</TextHighlight>
-				</li>
-			</ul>
-
-			{/* <Markdown content={data.content} /> */}
+				{/* <Markdown content={data.content} /> */}
+			</div>
+			<br />
+			<hr />
+			<br />
+			<div className="mr-auto flex w-full flex-col items-end gap-3">
+				<h2 className="text-2xl font-semibold">Contents</h2>
+				<div>
+					{data.posts.map(post => (
+						<p className="text-right text-sm" key={post.slug}>
+							<Link to={'/blog/' + post.slug + ''}>
+								{post.frontmatter.title}
+							</Link>
+						</p>
+					))}
+				</div>
+			</div>
+			<br />
+			<hr />
+			<br />
+			<Gallery
+				images={[
+					'https://images.pexels.com/photos/9551192/pexels-photo-9551192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+					'https://images.pexels.com/photos/25568965/pexels-photo-25568965/free-photo-of-a-woman-in-a-leopard-print-dress-and-cowboy-hat.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+					'https://images.pexels.com/photos/26926216/pexels-photo-26926216/free-photo-of-a-hand-holding-a-flower-with-the-words-how-to-grow-frangipani.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+					'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+				]}
+			/>
 		</div>
 	);
 }
 
-// function NavImage({ src, alt, id }: { src: string; alt: string; id: number }) {
-// 	const to = `/images/${idx}`;
-// 	const vt = unstable_useViewTransitionState(href);
-// 	return (
-// 		<Link to={to} unstable_viewTransition>
-// 			<img
-// 				src={src}
-// 				alt={alt}
-// 				style={{
-// 					viewTransitionName: vt ? 'image-expand' : '',
-// 				}}
-// 			/>
-// 		</Link>
-// 	);
-// }
+const Gallery = ({ images }: { images: string[] }) => {
+	return (
+		<div className="grid  grid-cols-10 grid-rows-1 gap-4">
+			<div className="border-1 col-span-6 row-span-1 overflow-hidden rounded-md bg-slate-400">
+				<img
+					src={images[0]}
+					alt="image"
+					className=" h-full w-full object-cover object-center"
+				/>
+			</div>
+			<div className="border-1 col-span-4 row-span-1 overflow-hidden rounded-md bg-slate-400">
+				<img
+					src={images[1]}
+					alt="image"
+					className=" h-full w-full object-cover object-center"
+				/>
+			</div>
+
+			{/* <div className="border-1 col-span-5 row-span-1 overflow-hidden rounded-md bg-slate-400">
+				<img
+					src={images[1]}
+					alt="image"
+					className=" h-full w-full object-cover object-center"
+				/>
+			</div>
+			<div className="border-1 col-span-5 row-span-1 overflow-hidden rounded-md bg-slate-400">
+				<img
+					src={images[3]}
+					alt="image"
+					className=" h-full w-full object-cover object-center"
+				/>
+			</div> */}
+
+			{/* {images.map((image, index) => (
+				<img
+					src={image}
+					className={`col-span-2 row-span-${(index % 4) + 1}`}
+					alt="image" className='object-cove h-full w-full object-center"'
+					key={image}
+				/>
+			))} */}
+		</div>
+	);
+}; // [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] [grid-template-rows:masonry]

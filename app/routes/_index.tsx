@@ -43,7 +43,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
 	const ratelimit = new Ratelimit({
 		redis: Redis.fromEnv(args.context.env),
-		limiter: Ratelimit.fixedWindow(10, '60 m'),
+		limiter: Ratelimit.fixedWindow(10, '60 s'),
 		enableProtection: true,
 		analytics: true,
 	});
@@ -118,7 +118,7 @@ export default function Index() {
 
 	return (
 		<div>
-			<div className="flex w-[60%] flex-col items-start justify-normal gap-5">
+			<div className="flex w-[60%] flex-col items-start justify-normal gap-8">
 				{/* <Link to={'/image'} unstable_viewTransition>
 				<img
 				src={

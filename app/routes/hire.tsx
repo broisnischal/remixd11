@@ -1,3 +1,5 @@
+import { Link } from '@remix-run/react';
+
 export default function Page() {
 	return (
 		<div className="flex flex-col items-start gap-4">
@@ -5,7 +7,15 @@ export default function Page() {
 
 			<p>
 				I'm actively looking for a new role as a Full Stack Developer. Please
-				check out my resume and contact me!
+				check out my{' '}
+				<Link
+					target="_blank"
+					rel="noopener"
+					to={'https://myresume.fly.dev/r/testingg'}
+				>
+					resume
+				</Link>{' '}
+				and contact me!
 			</p>
 
 			<h2 className=" text-2xl font-bold tracking-wide">Featuring</h2>

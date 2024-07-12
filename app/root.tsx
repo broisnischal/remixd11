@@ -140,7 +140,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 		<div id="main">
 			<ProgessBar />
 			<NavBar />
-			<div className="m-auto flex min-h-[80vh] max-w-[70vw] flex-col items-start justify-between">
+			<div className="m-auto flex min-h-[70vh] max-w-[70vw] flex-col items-start justify-between">
 				<div className="main">
 					<AnimatePresence mode="popLayout">
 						<motion.div

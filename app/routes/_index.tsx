@@ -141,7 +141,7 @@ export default function Index() {
 				) : (
 					<h1>You are being rate limited.</h1>
 					)} */}
-				<div className="flex flex-col items-start gap-4">
+				<div className="flex items-end gap-4">
 					<img
 						className="aspect-square w-12 rounded-full"
 						src="/profile.jpg"
@@ -180,7 +180,6 @@ export default function Index() {
 			</div>
 			<br />
 			<hr />
-			<br />
 			{/* <div className="mr-auto flex w-full flex-col items-end gap-3">
 				<h2 className="text-2xl font-semibold">Contents</h2>
 				<div>

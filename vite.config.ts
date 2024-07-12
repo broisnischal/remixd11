@@ -20,11 +20,13 @@ export default defineConfig({
 			rehypePlugins: [rehypePrettyCode],
 		}),
 		svgr(),
+
 		remix({
 			future: {
 				unstable_singleFetch: true,
 			},
 		}),
+
 		tsconfigPaths(),
 	],
 	server: {},

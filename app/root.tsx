@@ -3,30 +3,38 @@ import type {
 	LoaderFunctionArgs,
 	MetaFunction,
 } from '@remix-run/cloudflare';
-import clsx from 'clsx';
+import X from '~/assets/x.svg?react';
+
 import {
-	PreventFlashOnWrongTheme,
-	ThemeProvider,
-	useTheme,
-} from 'remix-themes';
-import {
+	Link,
 	Links,
 	Meta,
 	NavLink,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
-	isRouteErrorResponse,
 	useLoaderData,
 	useLocation,
-	useRouteError,
 } from '@remix-run/react';
+import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
+import {
+	GitHubLogoIcon,
+	TwitterLogoIcon,
+	DiscordLogoIcon,
+	InstagramLogoIcon,
+} from '@radix-ui/react-icons';
+
+import {
+	PreventFlashOnWrongTheme,
+	ThemeProvider,
+	useTheme,
+} from 'remix-themes';
 import ProgessBar from './components/global-progess';
-import styles from './tailwind.css?url';
-import { themeSessionResolver } from './session.server';
 import { ModeToggle } from './components/toggle-mode';
+import { themeSessionResolver } from './session.server';
+import styles from './tailwind.css?url';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -61,17 +69,19 @@ const RouteLink = ({
 
 const NavBar = () => {
 	return (
-		<nav className="flex items-center gap-5">
-			<RouteLink to={'/'}>home</RouteLink>
-			{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
-			<RouteLink to={'/learning/year'}>learning</RouteLink>
-			{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
-			<RouteLink to={'/blog'}>blogs</RouteLink>
-			<RouteLink to={'/thought'}>thoughts</RouteLink>
-			<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-			<RouteLink to={'/career'}>projects</RouteLink>
-			<RouteLink to={'/hire'}>hire me</RouteLink>
-			<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+		<nav className="m-auto mt-8 flex max-w-[70vw] flex-row">
+			<div className="mr-auto flex items-center gap-5">
+				<RouteLink to={'/'}>home</RouteLink>
+				{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
+				<RouteLink to={'/learning/year'}>learning</RouteLink>
+				{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
+				<RouteLink to={'/blog'}>blogs</RouteLink>
+				<RouteLink to={'/thought'}>thoughts</RouteLink>
+				<RouteLink to={'/guestbook'}>guestbook</RouteLink>
+				<RouteLink to={'/career'}>projects</RouteLink>
+				<RouteLink to={'/hire'}>hire me</RouteLink>
+				<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+			</div>
 			{/* <RouteLink to={'/subscribe'}>subscribe</RouteLink> */}
 			{/* <RouteLink to={'/contact'}>contact</RouteLink> */}
 			<ModeToggle />
@@ -81,12 +91,46 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div>
+		<div className="m-auto mb-8 flex max-w-[70vw] flex-col items-start justify-center gap-2">
 			{/* <NewsLetter /> */}
 			{/* <h2>Copyright © 2022 Nischal Dahal</h2> */}
-			<h1>
-				Developed by <a href="https://nischaldahal.com">Nischal</a>
-			</h1>
+			<div className="flex w-full">
+				<h2 className="w-full self-center">
+					Developed by <a href="https://x.com/broisnees">Nischal</a>
+				</h2>
+				<h3 className="w-full text-right text-gray-200">
+					© {new Date().getFullYear()} Nischal Dahal. All rights reserved.
+				</h3>
+			</div>
+			<div className="mt-3 flex gap-4">
+				<Link to="https://github.com/broisnees">
+					<GitHubLogoIcon />
+				</Link>
+
+				<Link to="https://discord.gg/broisnees">
+					<DiscordLogoIcon />
+				</Link>
+
+				<Link to="https://instagram.com/broisnees">
+					<InstagramLogoIcon />
+				</Link>
+				<Link to="https://twitter.com/broisnees">
+					<svg
+						className="h-[15px] w-[15px]"
+						xmlns="http://www.w3.org/2000/svg"
+						width="1200"
+						height="1227"
+						fill="none"
+						viewBox="0 0 1200 1227"
+					>
+						<path
+							// fill="#000 dark:#fff"
+							className="fill-black dark:fill-white"
+							d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
+						/>
+					</svg>
+				</Link>
+			</div>
 		</div>
 	);
 };
@@ -95,9 +139,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div id="main">
 			<ProgessBar />
-			<div className="m-auto my-10 flex min-h-[80vh] max-w-[70vw] flex-col items-start justify-between">
+			<NavBar />
+			<div className="m-auto flex min-h-[80vh] max-w-[70vw] flex-col items-start justify-between">
 				<div className="main">
-					<NavBar />
 					<AnimatePresence mode="popLayout">
 						<motion.div
 							key={useLocation().pathname}
@@ -114,8 +158,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 						</motion.div>
 					</AnimatePresence>
 				</div>
-				<Footer />
 			</div>
+			<Footer />
 		</div>
 	);
 };
@@ -205,82 +249,84 @@ export function App({}) {
 // 	);
 // }
 
-export function ErrorLayout({
-	title,
-	description,
-}: {
-	title: string;
-	description: string;
-}) {
-	return (
-		<div
-			className="m-auto my-10 flex max-w-[80vw] flex-col items-start justify-between dark:bg-black dark:text-white"
-			style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}
-			// className=""
-		>
-			<div className="main">
-				<NavBar />
-				<AnimatePresence mode="popLayout">
-					<motion.div
-						key={useLocation().pathname}
-						variants={{
-							initial: { opacity: 0, y: -10 },
-							animate: { opacity: 1, y: 0 },
-							exit: { opacity: 1, y: 10 },
-						}}
-						transition={{ duration: 0.2 }}
-						initial="initial"
-						animate="animate"
-					>
-						<div className="my-[2rem]">
-							<h1>{title}</h1>
-							<p>{description}</p>
-						</div>
-					</motion.div>
-				</AnimatePresence>
-			</div>
-			<Footer />
-		</div>
-	);
-}
+// export function ErrorLayout({
+// 	title,
+// 	description,
+// }: {
+// 	title: string;
+// 	description: string;
+// }) {
+// 	return (
+// 		<div
+// 			className="m-auto my-10 flex max-w-[80vw] flex-col items-start justify-between dark:bg-black dark:text-white"
+// 			style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}
+// 			// className=""
+// 		>
+// 			<div className="main">
+// 				<NavBar />
+// 				<AnimatePresence mode="popLayout">
+// 					<motion.div
+// 						key={useLocation().pathname}
+// 						variants={{
+// 							initial: { opacity: 0, y: -10 },
+// 							animate: { opacity: 1, y: 0 },
+// 							exit: { opacity: 1, y: 10 },
+// 						}}
+// 						transition={{ duration: 0.2 }}
+// 						initial="initial"
+// 						animate="animate"
+// 					>
+// 						<div className="my-[2rem]">
+// 							<h1>{title}</h1>
+// 							<p>{description}</p>
+// 						</div>
+// 					</motion.div>
+// 				</AnimatePresence>
+// 			</div>
+// 			<Footer />
+// 		</div>
+// 	);
+// }
 
-export function ErrorBoundary() {
-	const error = useRouteError();
+// export function ErrorBoundary() {
+// 	const error = useRouteError();
 
-	// Log the error to the console
-	console.error(error);
+// 	const [theme] = useTheme();
+// 	// Log the error to the console
+// 	console.error(error);
 
-	if (isRouteErrorResponse(error)) {
-		const title = `${error.status} ${error.statusText}`;
+// 	if (isRouteErrorResponse(error)) {
+// 		const title = `${error.status} ${error.statusText}`;
 
-		let message;
-		switch (error.status) {
-			case 401:
-				message =
-					'Oops! Looks like you tried to visit a page that you do not have access to.';
-				break;
-			case 404:
-				message =
-					'Oops! Looks like you tried to visit a page that does not exist.';
-				break;
-			default:
-				message = JSON.stringify(error.data, null, 2);
-				break;
-		}
+// 		let message;
+// 		switch (error.status) {
+// 			case 401:
+// 				message =
+// 					'Oops! Looks like you tried to visit a page that you do not have access to.';
+// 				break;
+// 			case 404:
+// 				message =
+// 					'Oops! Looks like you tried to visit a page that does not exist.';
+// 				break;
+// 			default:
+// 				message = JSON.stringify(error.data, null, 2);
+// 				break;
+// 		}
 
-		return (
-			// <Document title={title}>
-			<ErrorLayout title={title} description={message} />
-			// </Document>
-		);
-	}
+// 		return (
+// 			// <Document title={title}>
+// 			<ErrorLayout title={title} description={message} />
+// 			// </Document>
+// 		);
+// 	}
 
-	return (
-		// <Document title="Error!">
-		<div>
-			{/* @ts-expect-error */}
-			<h1>Unexpected error</h1> <p>{error.message}</p>
-		</div>
-		// </Document>
-	);
-}
+// 	return (
+// 		// <Document title="Error!">
+// 		<ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
+// 			<div>
+// 				{/* @ts-expect-error */}
+// 				<h1>Unexpected error</h1> <p>{error.message}</p>
+// 			</div>
+// 		</ThemeProvider>
+// 	);
+// }

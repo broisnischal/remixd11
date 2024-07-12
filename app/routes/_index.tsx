@@ -141,10 +141,17 @@ export default function Index() {
 				) : (
 					<h1>You are being rate limited.</h1>
 					)} */}
+				<div className="flex flex-col items-start gap-4">
+					<img
+						className="aspect-square w-12 rounded-full"
+						src="/profile.jpg"
+						alt=""
+					/>
 
-				<h1 className="text-3xl font-bold dark:text-zinc-100">
-					hey, I'm Nischal 👋
-				</h1>
+					<h1 className="text-3xl font-bold dark:text-zinc-100">
+						hey, I'm Nischal 👋
+					</h1>
+				</div>
 
 				<Badge>Software Engineer</Badge>
 
@@ -155,9 +162,9 @@ export default function Index() {
 					improve myself every day.
 				</p>
 
-				<div className="flex gap-3">
-					Currently :{' '}
-					{['typescript', 'fltuter', 'zig', 'rust', 'go'].map((item, index) => (
+				<div className="flex items-center justify-center gap-2 text-sm">
+					Currently :
+					{['typescript', 'flutter', 'zig', 'rust', 'go'].map((item, index) => (
 						<TextHighlight key={index}>{item}</TextHighlight>
 					))}
 				</div>
@@ -174,7 +181,7 @@ export default function Index() {
 			<br />
 			<hr />
 			<br />
-			<div className="mr-auto flex w-full flex-col items-end gap-3">
+			{/* <div className="mr-auto flex w-full flex-col items-end gap-3">
 				<h2 className="text-2xl font-semibold">Contents</h2>
 				<div>
 					{data.posts.map(post => (
@@ -188,15 +195,15 @@ export default function Index() {
 			</div>
 			<br />
 			<hr />
-			<br />
-			<Gallery
+			<br /> */}
+			{/* <Gallery
 				images={[
 					'https://images.pexels.com/photos/9551192/pexels-photo-9551192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
 					'https://images.pexels.com/photos/25568965/pexels-photo-25568965/free-photo-of-a-woman-in-a-leopard-print-dress-and-cowboy-hat.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
 					'https://images.pexels.com/photos/26926216/pexels-photo-26926216/free-photo-of-a-hand-holding-a-flower-with-the-words-how-to-grow-frangipani.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
 					'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
 				]}
-			/>
+			/> */}
 		</div>
 	);
 }

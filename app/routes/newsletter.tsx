@@ -52,7 +52,7 @@ export default function NewsLetter() {
 	// });
 
 	return (
-		<div className="m-auto flex flex-col items-start justify-evenly lg:flex-row lg:items-center">
+		<div className="">
 			{/* <div className="flex  flex-col gap-3 ">
 				<h2 className="text-4xl font-bold">Newsletter</h2>
 				<p className="max-w-[350px] text-balance">
@@ -60,8 +60,8 @@ export default function NewsLetter() {
 					Tuned for the latest releases and features.
 				</p>
 			</div> */}
-			<div className="mt-10 flex w-full max-w-full flex-col gap-6 ">
-				<h3 className="text-4xl font-bold">Newsletter</h3>
+			<div className="mt-10 flex   w-full max-w-full flex-col gap-6 ">
+				<h3 className="text-4xl font-bold"> Subscribe to Newsletter</h3>
 
 				<div className="flex flex-col gap-3">
 					<newsletter.Form
@@ -83,7 +83,7 @@ export default function NewsLetter() {
 					{/* <div className="text-[14px] text-red-400">{fields.email.errors}</div> */}
 				</div>
 				<p className="w-full text-left text-xs text-gray-500 dark:text-gray-400">
-					Sign up to get notified when we launch.
+					Get notified when I publish something new and unsubscribe at any time.{' '}
 					<Link className="underline underline-offset-2" to="/terms">
 						Terms & Conditions
 					</Link>

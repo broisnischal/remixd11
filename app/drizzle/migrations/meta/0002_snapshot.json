@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "14bc017b-9152-4fb5-9f6e-e799877534e4",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "6c7068a5-7e37-4514-966b-efbbe52d59e2",
+  "prevId": "f8cd9eb1-d108-4334-864a-3349ac3fba36",
   "tables": {
     "bookmarks": {
       "name": "bookmarks",
@@ -23,6 +23,13 @@
         },
         "href": {
           "name": "href",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "featured": {
+          "name": "featured",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -143,6 +150,13 @@
         },
         "password": {
           "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "type": {
+          "name": "type",
           "type": "text",
           "primaryKey": false,
           "notNull": true,

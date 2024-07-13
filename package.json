@@ -20,7 +20,8 @@
     "up": "drizzle-kit up:sqlite --schema=./app/drizzle/schema.server.ts",
     "migrate": "npx wrangler d1 migrations create dbs new",
     "migrate:apply": "npx wrangler d1 migrations apply dbs --remote",
-    "migrate:local": "npx wrangler d1 migrations apply dbs"
+    "migrate:local": "npx wrangler d1 migrations apply dbs --local",
+    "studio": "npx drizzle-kit studio"
   },
   "dependencies": {
     "@conform-to/react": "^1.1.5",
@@ -54,6 +55,7 @@
     "rehype-highlight": "^7.0.0",
     "rehype-meta": "^4.0.0",
     "rehype-pretty-code": "^0.12.3",
+    "remix-auth": "^3.7.0",
     "remix-i18next": "^6.1.0",
     "remix-themes": "^1.4.0",
     "spin-delay": "^2.0.0",

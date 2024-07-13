@@ -1,3 +1,9 @@
+CREATE TABLE `bookmarks` (
+	`id` integer PRIMARY KEY NOT NULL,
+	`title` text NOT NULL,
+	`href` text NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE `newsletter` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`email` text NOT NULL
@@ -18,5 +24,6 @@ CREATE TABLE `resources` (
 CREATE TABLE `users` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`username` text NOT NULL,
+	`email` text NOT NULL,
 	`password` text NOT NULL
 );

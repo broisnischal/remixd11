@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "14bc017b-9152-4fb5-9f6e-e799877534e4",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "f8cd9eb1-d108-4334-864a-3349ac3fba36",
+  "prevId": "14bc017b-9152-4fb5-9f6e-e799877534e4",
   "tables": {
     "bookmarks": {
       "name": "bookmarks",
@@ -143,6 +143,13 @@
         },
         "password": {
           "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "type": {
+          "name": "type",
           "type": "text",
           "primaryKey": false,
           "notNull": true,

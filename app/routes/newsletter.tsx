@@ -5,7 +5,7 @@ import { useForm } from '@conform-to/react';
 import { Input } from '../components/ui/input';
 import { ActionFunctionArgs, json } from '@remix-run/cloudflare';
 import { drizzle } from 'drizzle-orm/d1';
-import { newsletter } from '~/drizzle/schema.server';
+import { newsletters } from '~/drizzle/schema.server';
 import { eq } from 'drizzle-orm';
 
 const subscribeSchema = z.object({
@@ -26,15 +26,15 @@ export async function action({ request, context }: ActionFunctionArgs) {
 
 	const existing = await db
 		.select()
-		.from(newsletter)
-		.where(eq(newsletter.email, email))
+		.from(newsletters)
+		.where(eq(newsletters.email, email))
 		.execute();
 
 	if (existing.length > 0) {
 		return json({ message: 'Already Subscribed!' }, { status: 409 });
 	}
 
-	await db.insert(newsletter).values({ email }).execute();
+	await db.insert(newsletters).values({ email, verified: 1 }).execute();
 	return json({ message: 'Subscribed Successfully!' }, { status: 201 });
 }
 

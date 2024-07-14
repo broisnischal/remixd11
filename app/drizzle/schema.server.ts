@@ -1,22 +1,36 @@
-import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+import {
+	integer,
+	sqliteTable,
+	text,
+	uniqueIndex,
+} from 'drizzle-orm/sqlite-core';
 
-export const resources = sqliteTable('resources', {
-	id: integer('id').primaryKey(),
-	title: text('title').notNull(),
-	href: text('href').notNull(),
-});
+export const users = sqliteTable(
+	'users',
+	{
+		id: integer('id').primaryKey(),
+		email: text('email').notNull().unique(),
+		type: text('type', {
+			enum: ['user', 'admin', 'nees'],
+		})
+			.notNull()
+			.default('user'),
+		provider: text('provider').notNull(),
+		providerId: text('providerId').notNull(),
+	},
+	table => {
+		return {
+			emailIndex: uniqueIndex('emailIndex').on(table.email),
+			// provider_providerId: uniqueIndex('provider_providerId').on(table.provider, table.providerId),
+		};
+	},
+);
 
-const user = sqliteTable('users', {
+export const newsletters = sqliteTable('newsletter', {
 	id: integer('id').primaryKey(),
-	username: text('username').notNull(),
 	email: text('email').notNull(),
-	password: text('password').notNull(),
-	type: text('type').notNull(),
-});
-
-export const newsletter = sqliteTable('newsletter', {
-	id: integer('id').primaryKey(),
-	email: text('email').notNull(),
+	verified: integer('verified').notNull(),
+	// createdAt: real('createdAt').notNull(),
 });
 
 export const bookmarks = sqliteTable('bookmarks', {
@@ -24,6 +38,7 @@ export const bookmarks = sqliteTable('bookmarks', {
 	title: text('title').notNull(),
 	href: text('href').notNull(),
 	featured: text('featured').notNull(),
+	author: text('author').notNull(),
 });
 
 export const posts = sqliteTable('posts', {
@@ -31,5 +46,3 @@ export const posts = sqliteTable('posts', {
 	title: text('title').notNull(),
 	body: text('body').notNull(),
 });
-
-export const users = user;

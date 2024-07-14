@@ -99,7 +99,7 @@ const Footer = () => {
 				<h2 className="w-full self-center">
 					Developed by <a href="https://x.com/broisnees">Nischal</a>
 				</h2>
-				<h3 className="w-full text-right text-gray-200">
+				<h3 className="w-full text-right text-[12px] ">
 					© {new Date().getFullYear()} Nischal Dahal. All rights reserved.
 				</h3>
 			</div>

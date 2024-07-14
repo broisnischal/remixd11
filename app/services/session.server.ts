@@ -38,6 +38,11 @@ export class SessionStorage {
 	static async readUser(context: AppLoadContext, request: Request) {
 		let sessionStorage = new SessionStorage(context);
 		let session = await sessionStorage.read(request.headers.get('cookie'));
+
+		if (!session.has('user')) return null;
+
+		console.log(session.get('user'));
+
 		return session.get('user');
 	}
 

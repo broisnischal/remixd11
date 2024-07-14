@@ -1,74 +1,102 @@
 // import { Authenticator } from 'remix-auth';
-// import { GitHubStrategy } from 'remix-auth-github';
-// import {
-// 	AppLoadContext,
-// 	createCookieSessionStorage,
-// 	SessionStorage,
-// } from '@remix-run/cloudflare';
+// import gitHubStrategy from './providers/github.server';
+// import { sessionStorage } from '~/utils/auth.session.server';
 
-// export class Auth {
-// 	protected authenticator: Authenticator<User>;
-// 	protected sessionStorage: SessionStorage;
+// const authenticator = new Authenticator(sessionStorage);
 
-// 	public authenticate: Authenticator['authenticate'];
-// 	public isAuthenticated: Authenticator['isAuthenticated'];
+// authenticator.use(gitHubStrategy, 'github');
+// // authenticator.use(linkedInStratedy, 'linkedin');
 
-// 	constructor(context: AppLoadContext) {
-// 		this.sessionStorage = createCookieSessionStorage({
-// 			cookie: {
-// 				name: 'sdx:auth',
-// 				path: '/',
-// 				maxAge: 60 * 60 * 24 * 365, // 1 year
-// 				httpOnly: true,
-// 				sameSite: 'lax',
-// 				secure: process.env.NODE_ENV === 'production',
-// 				secrets: [context.cloudflare.env.COOKIE_SESSION_SECRET],
-// 			},
-// 		});
-// 		this.authenticator = new Authenticator(this.sessionStorage);
+// export default authenticator;
 
-// 		this.authenticator.use(
-// 			new GitHubStrategy(
-// 				{
-// 					clientID: context.cloudflare.env.GITHUB_CLIENT_ID,
-// 					clientSecret: context.cloudflare.env.GITHUB_CLIENT_SECRET,
-// 					callbackURL: '/auth/github/callback',
-// 				},
-// 				async ({ profile }) => {
-// 					const db = await connection(context.cloudflare.env.DB);
+import { Authenticator } from 'remix-auth';
+import { GitHubStrategy } from 'remix-auth-github';
+import {
+	AppLoadContext,
+	createCookieSessionStorage,
+	SessionStorage,
+} from '@remix-run/cloudflare';
+import { users } from '~/drizzle/schema.server';
+import { drizzle } from 'drizzle-orm/d1';
+import { eq, InferModelFromColumns } from 'drizzle-orm';
+import * as schema from '../drizzle/schema.server';
 
-// 					const { provider, emails, _json } = profile;
-// 					const { login, avatar_url, name } = _json;
-// 					let u = await db.user.findUnique({
-// 						where: { email: emails[0].value },
-// 					});
-// 					if (!u) {
-// 						u = await db.user.create({
-// 							data: {
-// 								email: emails[0].value,
-// 								provider: provider,
-// 								avatar: avatar_url,
-// 								name: name,
-// 								providerUserId: login,
-// 							},
-// 						});
-// 					}
-// 					return u;
-// 				},
-// 			),
-// 		);
-// 		this.authenticate = this.authenticator.authenticate.bind(
-// 			this.authenticator,
-// 		);
-// 		this.isAuthenticated = this.authenticator.isAuthenticated.bind(
-// 			this.authenticator,
-// 		);
-// 	}
+type User = typeof users.$inferSelect;
 
-// 	public async clear(request: Request) {
-// 		let session = await this.sessionStorage.getSession(
-// 			request.headers.get('cookie'),
-// 		);
-// 		return this.sessionStorage.destroySession(session);
-// 	}
-// }
+export class Auth {
+	protected authenticator: Authenticator;
+	protected sessionStorage: SessionStorage;
+
+	public authenticate: Authenticator['authenticate'];
+	public isAuthenticated: Authenticator['isAuthenticated'];
+
+	constructor(context: AppLoadContext) {
+		this.sessionStorage = createCookieSessionStorage({
+			cookie: {
+				name: 'sdx:auth',
+				path: '/',
+				maxAge: 60 * 60 * 24 * 365, // 1 year
+				httpOnly: true,
+				sameSite: 'lax',
+				secure: process.env.NODE_ENV === 'production',
+				secrets: [context.env.COOKIE_SESSION_SECRET],
+			},
+		});
+		this.authenticator = new Authenticator(this.sessionStorage);
+
+		this.authenticator.use(
+			new GitHubStrategy(
+				{
+					clientID: context.env.GITHUB_CLIENT_ID,
+					clientSecret: context.env.GITHUB_CLIENT_SECRET,
+					callbackURL: '/auth/github/callback',
+				},
+				async ({ accessToken, profile }) => {
+					const db = drizzle(context.env.DB, {
+						schema: schema,
+					});
+
+					const { provider, id, emails, _json } = profile;
+
+					console.log(provider, id, emails, _json);
+
+					const { login, avatar_url, name } = _json;
+
+					let u = await db
+						.select()
+						.from(users)
+						.where(eq(schema.users.email, emails[0].value))
+						.execute();
+
+					if (u) {
+						return u;
+					} else {
+						return await db
+							.insert(users)
+							.values({
+								email: emails[0].value,
+								type: 'user',
+								provider,
+								providerId: id,
+							})
+							.execute();
+					}
+				},
+			),
+			'github',
+		);
+		this.authenticate = this.authenticator.authenticate.bind(
+			this.authenticator,
+		);
+		this.isAuthenticated = this.authenticator.isAuthenticated.bind(
+			this.authenticator,
+		);
+	}
+
+	public async clear(request: Request) {
+		let session = await this.sessionStorage.getSession(
+			request.headers.get('cookie'),
+		);
+		return this.sessionStorage.destroySession(session);
+	}
+}

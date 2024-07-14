@@ -1,6 +1,9 @@
 import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
+	introspect: {
+		casing: 'camel',
+	},
 	schema: './app/drizzle/schema.server.ts',
 	dialect: 'sqlite',
 	verbose: true,

@@ -7,6 +7,8 @@ import { Link, useLoaderData } from '@remix-run/react';
 import { drizzle } from 'drizzle-orm/d1';
 import { SessionStorage } from '~/services/session.server';
 import * as schema from '../../drizzle/schema.server';
+import { Auth } from '~/services/auth.server';
+import { requireUser } from '~/services/auth.utils.server';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -19,32 +21,33 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader({ request, context }: LoaderFunctionArgs) {
-	let user = await SessionStorage.requireUser(context, request);
+	await SessionStorage.requireUser(context, request);
+	let data = await SessionStorage.readUser(context, request);
 
-	// const db = drizzle(context.env.DB, {
-	// 	schema: schema,
-	// });
+	console.log(data);
 
-	// await db
-	// 	.insert(schema.bookmarks)
-	// 	.values({
-	// 		title: 'Hello World',
-	// 		href: 'https://testing',
-	// 		author: 'asdf',
-	// 		featured: 'true',
-	// 	})
-	// 	.execute();
+	if (data?.type != 'nees') {
+		throw new Response('Unauthorized', {
+			status: 401,
+			statusText: 'Unauthorized',
+			cf: { cacheTtl: 0 },
+		});
+	}
 
-	return json(user);
+	return json({ data });
 }
 
 export default function Dashboard() {
 	const user = useLoaderData<typeof loader>();
+	console.log(user);
+
 	return (
 		<main>
 			<h1>Dashboard</h1>
-			<h2>Welcome {user.name}</h2>
-			<img src={user.avatar} alt={`Avatar of ${user.name}`} />
+			<h2>Welcome {user.data?.email}</h2>
+
+			{user.data?.type}
+			{/* <img src={user.avatar} alt={`Avatar of ${user.name}`} /> */}
 			<Link to="/auth/logout">Logout</Link>
 		</main>
 	);

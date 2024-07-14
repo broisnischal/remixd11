@@ -20,6 +20,7 @@ import { users } from '~/drizzle/schema.server';
 import { drizzle } from 'drizzle-orm/d1';
 import { eq, InferModelFromColumns } from 'drizzle-orm';
 import * as schema from '../drizzle/schema.server';
+import { getLoadContext } from 'load-context';
 
 type User = typeof users.$inferSelect;
 
@@ -42,6 +43,7 @@ export class Auth {
 				secrets: [context.env.COOKIE_SESSION_SECRET],
 			},
 		});
+
 		this.authenticator = new Authenticator(this.sessionStorage);
 
 		this.authenticator.use(
@@ -57,21 +59,23 @@ export class Auth {
 					});
 
 					const { provider, id, emails, _json } = profile;
+					// getLoadContext(context.);
 
 					console.log(provider, id, emails, _json);
 
 					const { login, avatar_url, name } = _json;
 
-					let u = await db
+					let [u] = await db
 						.select()
 						.from(users)
 						.where(eq(schema.users.email, emails[0].value))
 						.execute();
 
 					if (u) {
+						console.log('alredy a user');
 						return u;
 					} else {
-						return await db
+						let user = await db
 							.insert(users)
 							.values({
 								email: emails[0].value,
@@ -80,14 +84,26 @@ export class Auth {
 								providerId: id,
 							})
 							.execute();
+
+						let [single] = await db
+							.select()
+							.from(users)
+							.where(eq(schema.users.email, emails[0].value))
+							.execute();
+
+						console.log('new a user');
+
+						return single;
 					}
 				},
 			),
 			'github',
 		);
+
 		this.authenticate = this.authenticator.authenticate.bind(
 			this.authenticator,
 		);
+
 		this.isAuthenticated = this.authenticator.isAuthenticated.bind(
 			this.authenticator,
 		);

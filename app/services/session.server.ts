@@ -1,5 +1,6 @@
 import type { AppLoadContext } from '@remix-run/cloudflare';
 import { createCookieSessionStorage, redirect } from '@remix-run/cloudflare';
+import { users } from '~/drizzle/schema.server';
 
 export class SessionStorage {
 	protected sessionStorage;
@@ -35,13 +36,12 @@ export class SessionStorage {
 		});
 	}
 
-	static async readUser(context: AppLoadContext, request: Request) {
+	static async readUser(
+		context: AppLoadContext,
+		request: Request,
+	): Promise<typeof users.$inferSelect | null> {
 		let sessionStorage = new SessionStorage(context);
 		let session = await sessionStorage.read(request.headers.get('cookie'));
-
-		if (!session.has('user')) return null;
-
-		console.log(session.get('user'));
 
 		return session.get('user');
 	}

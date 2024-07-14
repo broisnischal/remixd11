@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import {
 	integer,
 	sqliteTable,
@@ -26,6 +27,28 @@ export const users = sqliteTable(
 	},
 );
 
+export const userRelations = relations(users, ({ many, one }) => ({
+	guestBook: many(guestBook),
+}));
+
+export const guestBook = sqliteTable('guestbook', {
+	id: integer('id').primaryKey(),
+	name: text('name').notNull(),
+	email: text('email').notNull(),
+	message: text('message').notNull(),
+	authorId: integer('authorId')
+		.notNull()
+		.references(() => users.id),
+});
+
+export const guestBookRelations = relations(guestBook, ({ many, one }) => ({
+	author: one(users, {
+		fields: [guestBook.authorId],
+		references: [users.id],
+		// relationName: 'author',
+	}),
+}));
+
 export const newsletters = sqliteTable('newsletter', {
 	id: integer('id').primaryKey(),
 	email: text('email').notNull(),
@@ -46,3 +69,9 @@ export const posts = sqliteTable('posts', {
 	title: text('title').notNull(),
 	body: text('body').notNull(),
 });
+
+// export const sessions = sqliteTable('sessions', {
+// 	id: integer('id').primaryKey(),
+// 	userId: integer('userId').notNull(),
+// 	session: text('session').notNull(),
+// });

@@ -82,6 +82,8 @@ const NavBar = () => {
 				<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
 				<RouteLink to={'/hire'}>hire me</RouteLink>
 				<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+				<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
+				<Link to="/auth/logout">Logout</Link>
 			</div>
 			{/* <RouteLink to={'/subscribe'}>subscribe</RouteLink> */}
 			{/* <RouteLink to={'/contact'}>contact</RouteLink> */}

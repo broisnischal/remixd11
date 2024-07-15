@@ -83,7 +83,7 @@ const NavBar = () => {
 				<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 				{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 				<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
-				<RouteLink to={'/canvas'}>canvas</RouteLink>
+				{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
 				<RouteLink to={'/hire'}>hire me</RouteLink>
 				<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 				{data.user?.type == 'nees' && (

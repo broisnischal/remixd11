@@ -204,6 +204,10 @@ export function App({}) {
 			<html lang="en" className={clsx(theme)}>
 				<head>
 					<meta charSet="utf-8" />
+					<meta
+						name="google-site-verification"
+						content="edGz_5Jr5VsLbGpxvQ3AZBAKtuEyNBgc_qtdthOPJKU"
+					/>
 					{/* {title ? <title>{title}</title> : null} */}
 					<Meta />
 					<Links />

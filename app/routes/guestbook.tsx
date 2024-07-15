@@ -20,7 +20,7 @@ import * as schema from '../drizzle/schema.server';
 import { z } from 'zod';
 import { useForm } from '@conform-to/react';
 
-import { getFieldsetConstraint, parse } from '@conform-to/zod';
+// import { getFieldsetConstraint, parse } from '@conform-to/zod';
 
 interface Point {
 	x: number;
@@ -249,21 +249,21 @@ export default function Page() {
 
 	const actionData = useActionData<typeof action>();
 
-	const [form, fields] = useForm({
-		id: 'form',
-		onValidate({ formData }) {
-			return parse(formData, validationSchema);
-		},
-		lastResult: actionData,
-		shouldRevalidate: 'onBlur',
-	});
+	// const [form, fields] = useForm({
+	// 	id: 'form',
+	// 	onValidate({ formData }) {
+	// 		return parse(formData, validationSchema);
+	// 	},
+	// 	lastResult: actionData,
+	// 	shouldRevalidate: 'onBlur',
+	// });
 
 	return (
 		<div>
 			<h1 className="text-3xl font-bold">Sign My Guestbook</h1>
 			<br />
 			{data?.id ? (
-				<fetcher.Form method="POST" {...form}>
+				<fetcher.Form method="POST">
 					<div className="flex gap-4">
 						<Input
 							type="text"

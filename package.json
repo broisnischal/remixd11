@@ -22,7 +22,8 @@
     "migrate:apply": "npx wrangler d1 migrations apply dbs --remote",
     "migrate:local": "npx wrangler d1 migrations apply dbs --local",
     "studio": "npx drizzle-kit studio",
-    "build:icons": "tsx ./other/build-icons.ts"
+    "build:icons": "tsx ./other/build-icons.ts",
+    "drop": "npx drizzle-kit drop"
   },
   "dependencies": {
     "@conform-to/react": "^1.1.5",

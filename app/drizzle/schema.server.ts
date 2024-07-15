@@ -1,5 +1,6 @@
 import { relations } from 'drizzle-orm';
 import {
+	blob,
 	integer,
 	sqliteTable,
 	text,
@@ -72,6 +73,16 @@ export const posts = sqliteTable('posts', {
 	id: integer('id').primaryKey(),
 	title: text('title').notNull(),
 	body: text('body').notNull(),
+});
+
+export const canvas = sqliteTable('canvas', {
+	id: integer('id').primaryKey(),
+	data: blob('data', {
+		mode: 'json',
+	}),
+	textBlob: text('textBlob', {
+		mode: 'json',
+	}).default('{}'),
 });
 
 // export const sessions = sqliteTable('sessions', {

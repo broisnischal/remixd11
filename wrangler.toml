@@ -19,7 +19,7 @@ binding = "DB"                                       # i.e. available in your Wo
 database_name = "dbs"
 database_id = "fc26294e-54eb-473c-9b11-9d3eae490452"
 migrations_dir = "./app/drizzle/migrations"
-preview_database_id = "asdf"
+preview_database_id = "asdff"
 # database_internal_env = "DATABASE_URL"
 # migrations_table = "_d1_migrations"
 

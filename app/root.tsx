@@ -83,6 +83,7 @@ const NavBar = () => {
 				<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 				{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 				<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
+				<RouteLink to={'/canvas'}>canvas</RouteLink>
 				<RouteLink to={'/hire'}>hire me</RouteLink>
 				<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 				{data.user?.type == 'nees' && (
@@ -158,7 +159,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 								animate: { opacity: 1, y: 0 },
 								exit: { opacity: 1, y: 10 },
 							}}
-							transition={{ duration: 0.2 }}
+							transition={{ duration: 0.3, ease: 'easeInOut' }}
 							initial="initial"
 							animate="animate"
 						>

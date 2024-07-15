@@ -214,7 +214,7 @@ const GuestBookSchema = z.object({
 		.string({
 			required_error: 'Message is required',
 		})
-		.min(10, "Message can't be too short"),
+		.min(15, "Message can't be too short"),
 	// .refine(async msg => {
 	// 	const data = await useProfanity(msg);
 	// 	console.log('value');
@@ -365,25 +365,18 @@ export default function Page() {
 	const { data, guestbooks } = useLoaderData<typeof loader>();
 	const isPending = useIsPending();
 	const lastResult = useActionData<typeof action>();
-	const formRef = useRef<HTMLFormElement>(null);
 
 	// let isSubmitting = fetcher.state !== 'idle';
 
 	const [form, fields] = useForm({
 		id: 'guestbook',
-		// onSubmit(event, context) {
-		// 	event.preventDefault();
-		// 	formRef.current?.submit();
-		// 	formRef.current?.reset();
-		// 	return context.submission?.status === 'success';
-		// },
 		constraint: getZodConstraint(GuestBookSchema),
 		lastResult: lastResult?.submission,
 		onValidate({ formData }) {
 			return parseWithZod(formData, { schema: GuestBookSchema });
 		},
-		shouldValidate: 'onBlur',
-		shouldRevalidate: 'onInput',
+		shouldValidate: 'onSubmit',
+		// shouldRevalidate: 'onInput',
 	});
 
 	return (
@@ -391,12 +384,7 @@ export default function Page() {
 			<h1 className="text-3xl font-bold">Sign My Guestbook</h1>
 			<br />
 			{data?.id ? (
-				<Form
-					ref={formRef}
-					method="POST"
-					className="w-[50vw]"
-					{...getFormProps(form)}
-				>
+				<Form method="POST" className="w-[50vw]" {...getFormProps(form)}>
 					<HoneypotInputs />
 					<div className="flex gap-4">
 						<Input

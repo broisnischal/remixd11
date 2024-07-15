@@ -1,4 +1,26 @@
+import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import {
+	ActionFunctionArgs,
+	json,
+	LoaderFunctionArgs,
+} from '@remix-run/cloudflare';
+import {
+	ClientActionFunctionArgs,
+	Form,
+	useActionData,
+	useFetcher,
+	useLoaderData,
+} from '@remix-run/react';
+import { drizzle } from 'drizzle-orm/d1';
 import React, { useRef, useState, useEffect } from 'react';
+import { Button } from '~/components/ui/button';
+import { Input } from '~/components/ui/input';
+import { SessionStorage } from '~/services/session.server';
+import * as schema from '../drizzle/schema.server';
+import { z } from 'zod';
+import { useForm } from '@conform-to/react';
+
+import { getFieldsetConstraint, parse } from '@conform-to/zod';
 
 interface Point {
 	x: number;
@@ -176,10 +198,105 @@ type Path = Point[];
 
 // export default DrawableCanvas;
 
+const validationSchema = z.object({
+	message: z.string(),
+});
+
+export async function loader({ request, context }: LoaderFunctionArgs) {
+	// await SessionStorage.requireUser(context, request);
+	let data = await SessionStorage.returnUser(context, request);
+
+	// if (data?.type != 'nees') {
+	// 	throw new Response('Unauthorized', {
+	// 		status: 401,
+	// 		statusText: 'Unauthorized',
+	// 		cf: { cacheTtl: 0 },
+	// 	});
+	// }
+	console.log(data);
+
+	const db = drizzle(context.env.DB, {
+		schema,
+	});
+
+	let guestbooks = await db.query.guestBook.findMany();
+
+	return json({ data, guestbooks });
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+	let formData = await request.formData();
+	console.log(formData);
+	// let body = validateFormData(formData);
+	// await doSomething(body);
+	return { status: 'success' as const };
+}
+
+// export async function clientAction({
+// 	request,
+// 	serverAction,
+// }: ClientActionFunctionArgs) {
+// 	let formData = await request.formData();
+// 	// validateFormData(formData);
+// 	return await serverAction<typeof action>();
+// }
+
 export default function Page() {
+	const { data, guestbooks } = useLoaderData<typeof loader>();
+	const fetcher = useFetcher<typeof action>();
+
+	let isSubmitting = fetcher.state !== 'idle';
+
+	const actionData = useActionData<typeof action>();
+
+	const [form, fields] = useForm({
+		id: 'form',
+		onValidate({ formData }) {
+			return parse(formData, validationSchema);
+		},
+		lastResult: actionData,
+		shouldRevalidate: 'onBlur',
+	});
+
 	return (
 		<div>
-			<h1>Sign In</h1>
+			<h1 className="text-3xl font-bold">Sign My Guestbook</h1>
+			<br />
+			{data?.id ? (
+				<fetcher.Form method="POST" {...form}>
+					<div className="flex gap-4">
+						<Input
+							type="text"
+							name="message"
+							className="min-w-[30vw]"
+							placeholder="Leave your kind message..."
+						/>
+
+						<input type="hidden" name="_intent" value="subscribe" />
+						<Button disabled={isSubmitting} type="submit" variant="outline">
+							{isSubmitting ? 'Loading...' : 'Subscribe'}
+						</Button>
+					</div>
+				</fetcher.Form>
+			) : (
+				<Form action="/auth/github" method="POST">
+					<Button
+						type="submit"
+						className="flex items-center justify-center gap-3"
+						variant="outline"
+					>
+						<GitHubLogoIcon /> Sign in with GitHub
+					</Button>
+				</Form>
+			)}
+
+			<ul className="mt-4 flex flex-col gap-3">
+				{guestbooks.map(i => (
+					<li>
+						<strong>broisnees : </strong> I like turtles and turtles.
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 }

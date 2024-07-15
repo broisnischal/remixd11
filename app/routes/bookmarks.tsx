@@ -1,5 +1,9 @@
-import { json, LoaderFunctionArgs } from '@remix-run/cloudflare';
-import { useLoaderData } from '@remix-run/react';
+import {
+	ActionFunctionArgs,
+	json,
+	LoaderFunctionArgs,
+} from '@remix-run/cloudflare';
+import { ClientActionFunctionArgs, useLoaderData } from '@remix-run/react';
 import { drizzle } from 'drizzle-orm/d1';
 import { bookmarks } from '~/drizzle/schema.server';
 
@@ -21,13 +25,15 @@ export default function Page() {
 			<h1>Bookmarks</h1>
 			<h2>Links that I read and liked.</h2>
 
-			{data.map(data => {
-				return (
-					<div>
-						<a href={data.href}>{data.title}</a>
-					</div>
-				);
-			})}
+			<div className="mt-10 flex flex-col gap-3">
+				{data.map(data => {
+					return (
+						<div>
+							<a href={data.href}>{data.title}</a>
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 }

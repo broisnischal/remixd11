@@ -46,6 +46,19 @@ export class SessionStorage {
 		return session.get('user');
 	}
 
+	static async returnUser(
+		context: AppLoadContext,
+		request: Request,
+	): Promise<typeof users.$inferSelect | null> {
+		let sessionStorage = new SessionStorage(context);
+		let session = await sessionStorage.read(request.headers.get('cookie'));
+
+		return {
+			...session.get('user'),
+			login: session.get('login') ? true : false,
+		};
+	}
+
 	static async requireUser(
 		context: AppLoadContext,
 		request: Request,

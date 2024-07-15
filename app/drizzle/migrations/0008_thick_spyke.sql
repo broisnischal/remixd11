@@ -1,0 +1,2 @@
+ALTER TABLE `users` ADD `name` text DEFAULT '';--> statement-breakpoint
+ALTER TABLE `users` ADD `avatar_url` text DEFAULT 'https://static-00.iconduck.com/assets.00/user-avatar-icon-1820x2048-mp3gzcbn.png';

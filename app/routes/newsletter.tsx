@@ -17,6 +17,7 @@ const subscribeSchema = z.object({
 			message: 'Please enter a valid email address.',
 		}),
 });
+
 export async function action({ request, context }: ActionFunctionArgs) {
 	const formData = await request.formData();
 	const email = formData.get('email') as string;

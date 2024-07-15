@@ -1,3 +1,4 @@
+import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import {
 	json,
 	type MetaFunction,
@@ -5,6 +6,7 @@ import {
 	type LoaderFunctionArgs,
 } from '@remix-run/cloudflare';
 import { Form } from '@remix-run/react';
+import { Button } from '~/components/ui/button';
 import { SessionStorage } from '~/services/session.server';
 
 export const meta: MetaFunction = () => {
@@ -26,7 +28,13 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 export default function Login() {
 	return (
 		<Form action="/auth/github" method="POST">
-			<button type="submit">Login with GitHub</button>
+			<Button
+				type="submit"
+				className="flex items-center justify-center gap-3"
+				variant="outline"
+			>
+				<GitHubLogoIcon /> Sign in with GitHub
+			</Button>
 		</Form>
 	);
 }

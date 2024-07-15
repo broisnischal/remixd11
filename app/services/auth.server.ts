@@ -78,9 +78,11 @@ export class Auth {
 						let user = await db
 							.insert(users)
 							.values({
+								avatar_url: _json.avatar_url,
 								email: emails[0].value,
 								type: 'user',
 								provider,
+								name: _json.name,
 								providerId: id,
 							})
 							.execute();

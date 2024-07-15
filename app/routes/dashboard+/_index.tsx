@@ -26,13 +26,13 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 
 	console.log(data);
 
-	if (data?.type != 'nees') {
-		throw new Response('Unauthorized', {
-			status: 401,
-			statusText: 'Unauthorized',
-			cf: { cacheTtl: 0 },
-		});
-	}
+	// if (data?.type != 'nees') {
+	// 	throw new Response('Unauthorized', {
+	// 		status: 401,
+	// 		statusText: 'Unauthorized',
+	// 		cf: { cacheTtl: 0 },
+	// 	});
+	// }
 
 	return json({ data });
 }
@@ -44,7 +44,9 @@ export default function Dashboard() {
 	return (
 		<main>
 			<h1>Dashboard</h1>
-			<h2>Welcome {user.data?.email}</h2>
+			<h2>
+				Welcome {user.data?.email} {user.data?.name}
+			</h2>
 
 			{user.data?.type}
 			{/* <img src={user.avatar} alt={`Avatar of ${user.name}`} /> */}

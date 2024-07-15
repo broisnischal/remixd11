@@ -179,7 +179,7 @@ export default function Index() {
 				{/* <Markdown content={data.content} /> */}
 			</div>
 			<br />
-			<hr />
+			{/* <hr />	 */}
 			{/* <div className="mr-auto flex w-full flex-col items-end gap-3">
 				<h2 className="text-2xl font-semibold">Contents</h2>
 				<div>

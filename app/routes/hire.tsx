@@ -27,6 +27,8 @@ export default function Page() {
 
 				<li> Learning DevOps and AI </li>
 			</ul>
+
+			<div className="grid"></div>
 		</div>
 	);
 }

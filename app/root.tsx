@@ -35,6 +35,7 @@ import ProgessBar from './components/global-progess';
 import { ModeToggle } from './components/toggle-mode';
 import { themeSessionResolver } from './session.server';
 import styles from './tailwind.css?url';
+import { SessionStorage } from './services/session.server';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -68,6 +69,8 @@ const RouteLink = ({
 };
 
 const NavBar = () => {
+	const data = useLoaderData<typeof loader>();
+
 	return (
 		<nav className="m-auto mt-8 flex max-w-[70vw] flex-row">
 			<div className="mr-auto flex items-center gap-5">
@@ -76,14 +79,16 @@ const NavBar = () => {
 				<RouteLink to={'/learning/year'}>learning</RouteLink>
 				{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
 				<RouteLink to={'/blog'}>blogs</RouteLink>
-				<RouteLink to={'/thought'}>thoughts</RouteLink>
+				{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
 				<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-				<RouteLink to={'/career'}>projects</RouteLink>
+				{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 				<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
 				<RouteLink to={'/hire'}>hire me</RouteLink>
 				<RouteLink to={'/newsletter'}>newsletter</RouteLink>
-				<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
-				<Link to="/auth/logout">Logout</Link>
+				{data.user?.type == 'nees' && (
+					<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
+				)}
+				{data.user?.id && <Link to="/auth/logout">Logout</Link>}
 			</div>
 			{/* <RouteLink to={'/subscribe'}>subscribe</RouteLink> */}
 			{/* <RouteLink to={'/contact'}>contact</RouteLink> */}
@@ -97,14 +102,14 @@ const Footer = () => {
 		<div className="m-auto mb-8 flex max-w-[70vw] flex-col items-start justify-center gap-2">
 			{/* <NewsLetter /> */}
 			{/* <h2>Copyright © 2022 Nischal Dahal</h2> */}
-			<div className="flex w-full">
+			{/* <div className="flex w-full">
 				<h2 className="w-full self-center">
 					Developed by <a href="https://x.com/broisnees">Nischal</a>
 				</h2>
 				<h3 className="w-full text-right text-[12px] ">
 					© {new Date().getFullYear()} Nischal Dahal. All rights reserved.
 				</h3>
-			</div>
+			</div> */}
 			<div className="mt-3 flex gap-4">
 				<Link to="https://github.com/broisnees">
 					<GitHubLogoIcon />
@@ -168,10 +173,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 };
 
 // Return the theme from the session storage using the loader
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request, context }: LoaderFunctionArgs) {
 	const { getTheme } = await themeSessionResolver(request);
+	let data = await SessionStorage.returnUser(context, request);
+
 	return {
 		theme: getTheme(),
+		user: data,
 	};
 }
 

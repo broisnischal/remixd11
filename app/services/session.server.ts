@@ -68,4 +68,11 @@ export class SessionStorage {
 		if (!user) throw redirect(returnTo);
 		return user;
 	}
+
+	static async requireAnonymous(context: AppLoadContext, request: Request) {
+		let user = await this.readUser(context, request);
+		if (user?.id) {
+			throw redirect('/');
+		}
+	}
 }

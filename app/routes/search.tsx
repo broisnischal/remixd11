@@ -3,6 +3,7 @@ import {
 	ClientLoaderFunctionArgs,
 	Link,
 	useFetcher,
+	useLoaderData,
 	useLocation,
 } from '@remix-run/react';
 import localforage from 'localforage';
@@ -23,6 +24,8 @@ export async function loader({
 	q = `"${q.replace(/"/g, '""')}"`;
 
 	let allblogs = await getPosts();
+
+	const featured = allblogs.filter(b => b.frontmatter.featured);
 
 	const fuse = new Fuse(allblogs, {
 		shouldSort: true,
@@ -90,6 +93,7 @@ let replicateMovies = async () => {
 export function Search() {
 	let [show, setShow] = useState(false);
 	let ref = useRef<HTMLInputElement | null>(null);
+	const loaderData = useLoaderData<typeof loader>();
 
 	let location = useLocation();
 	let search = useFetcher<PostMeta[]>();
@@ -130,10 +134,10 @@ export function Search() {
 					setShow(false);
 				}}
 				hidden={!show}
-				className="fixed left-0 top-0 m-auto h-full w-full overflow-hidden bg-white bg-opacity-90 dark:bg-black dark:bg-opacity-50"
+				className="fixed left-0 top-0 m-auto h-full w-full overflow-hidden bg-white bg-opacity-90  dark:bg-black dark:bg-opacity-50"
 			>
 				<div
-					className="absolute left-1/2 top-[40vh] min-h-[50vh]  w-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md bg-white shadow-md dark:bg-black/80"
+					className="absolute left-1/2 top-[40vh] min-h-[50vh]  w-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md border-2 bg-white shadow-md dark:bg-black/80"
 					onClick={event => {
 						event.stopPropagation();
 					}}
@@ -159,6 +163,9 @@ export function Search() {
 									event.stopPropagation();
 								}
 							}}
+							{...{
+								autoComplete: 'off',
+							}}
 							onChange={event => {
 								search.submit(event.currentTarget.form);
 							}}
@@ -172,25 +179,42 @@ export function Search() {
 							// 	borderBottom: 'solid 1px #ccc',
 							// 	outline: 'none',
 							// }}
-							className=" dark:bg-black-500 border-none bg-black "
+							className="border-b-[2px] border-white/40 dark:bg-black/10  "
 						/>
 
 						{search.data ? (
-							<ul className="divide-y divide-gray-200 p-4">
+							// [&>li]:border-b-2
+							<ul className="flex flex-col ">
+								{/* {JSON.stringify(search.data)} */}
+
 								{search.data.length <= 0 ? (
-									<div>No Search result</div>
+									ref.current?.value === '' ||
+									ref.current?.value.trim() === '' ? (
+										<div className="m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
+											Search blogs
+										</div>
+									) : (
+										<div className="m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
+											No results found.
+										</div>
+									)
 								) : (
 									search.data?.map((blog, index) => (
-										<li key={index}>
+										<li key={index} className="border-b-2 px-4 py-2">
 											<Link to={`/blog/${blog.slug}`}>
-												{blog.frontmatter.title}
+												<h1>{blog.frontmatter.title}</h1>
+												<small>
+													{blog.frontmatter.description.slice(0, 100)} ...
+												</small>
 											</Link>
 										</li>
 									))
 								)}
 							</ul>
 						) : (
-							<div>Please Search </div>
+							<div>
+								<div className="py-4 text-center">Loading...</div>
+							</div>
 						)}
 
 						{/* <ul style={{ padding: '0 20px', minHeight: '1rem' }}>

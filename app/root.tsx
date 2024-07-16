@@ -1,4 +1,5 @@
 import type {
+	ActionFunctionArgs,
 	LinksFunction,
 	LoaderFunctionArgs,
 	MetaFunction,
@@ -6,6 +7,7 @@ import type {
 import X from '~/assets/x.svg?react';
 
 import {
+	Form,
 	Link,
 	Links,
 	LiveReload,
@@ -14,8 +16,10 @@ import {
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	useActionData,
 	useLoaderData,
 	useLocation,
+	useSubmit,
 } from '@remix-run/react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -38,6 +42,9 @@ import { themeSessionResolver } from './session.server';
 import styles from './tailwind.css?url';
 import { SessionStorage } from './services/session.server';
 import { Search } from './routes/search';
+import { Redis } from '@upstash/redis/cloudflare';
+import { Badge } from './components/ui/badge';
+import { GoHeart, GoHeartFill } from 'react-icons/go';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -102,7 +109,7 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="m-auto mb-8 flex max-w-[70vw] flex-col items-start justify-center gap-2">
+		<div className="m-auto mb-16 flex max-w-[70vw] flex-col items-start justify-center gap-2">
 			{/* <NewsLetter /> */}
 			{/* <h2>Copyright © 2022 Nischal Dahal</h2> */}
 			{/* <div className="flex w-full">
@@ -113,21 +120,21 @@ const Footer = () => {
 					© {new Date().getFullYear()} Nischal Dahal. All rights reserved.
 				</h3>
 			</div> */}
-			<div className="mt-3 flex gap-4">
-				<Link to="https://github.com/broisnees">
-					<GitHubLogoIcon />
+			<div className=" flex items-center justify-center gap-4">
+				<Link to="https://github.com/broisnischal">
+					<GitHubLogoIcon width={20} height={20} />
 				</Link>
 
-				<Link to="https://discord.gg/broisnees">
-					<DiscordLogoIcon />
+				<Link to="https://discord.gg/@broisnees">
+					<DiscordLogoIcon width={20} height={20} />
 				</Link>
 
 				<Link to="https://instagram.com/broisnees">
-					<InstagramLogoIcon />
+					<InstagramLogoIcon width={20} height={20} />
 				</Link>
-				<Link to="https://twitter.com/broisnees">
+				<Link to="https://twitter.com/broisnees" className="w-[20px] ">
 					<svg
-						className="h-[15px] w-[15px]"
+						className=" h-[16px] w-[16px]"
 						xmlns="http://www.w3.org/2000/svg"
 						width="1200"
 						height="1227"
@@ -180,8 +187,13 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 	const { getTheme } = await themeSessionResolver(request);
 	let data = await SessionStorage.returnUser(context, request);
 
+	const redis = Redis.fromEnv(context.env);
+
+	const count = (await redis.get('counter')) as number;
+
 	return {
 		theme: getTheme(),
+		count: count || 0,
 		user: data,
 	};
 }
@@ -259,9 +271,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				>
 					<Layout children={<Outlet />} />
 					<Search />
+					<Clap count={data.count} />
+
 					<ScrollRestoration />
 					<Scripts />
-					<LiveReload />
+					{/* <LiveReload /> */}
 
 					<noscript>
 						<iframe
@@ -389,3 +403,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 // 		</ThemeProvider>
 // 	);
 // }
+
+export async function action({ context, request }: ActionFunctionArgs) {
+	const redis = Redis.fromEnv(context.env);
+
+	const count = await redis.incr('counter');
+
+	return {
+		count,
+	};
+}
+
+export function Clap({ count }: { count: number }) {
+	const [voted, setVoted] = React.useState(false);
+	const data = useLoaderData<typeof loader>();
+	const actiondata = useActionData<typeof action>();
+	const submit = useSubmit();
+	const animationRef = React.useRef<any>(null);
+
+	const ref = React.useRef<HTMLFormElement>(null);
+
+	return (
+		<div className="fixed inset-x-0 bottom-0 left-5 mb-4">
+			{/* <div className="round flex cursor-pointer items-center justify-center rounded-lg px-3 py-2">
+				
+			</div> */}
+			<Badge variant={'secondary'}>
+				<Form
+					ref={ref}
+					method="POST"
+					className="py-1"
+					onSubmit={e => {
+						e.preventDefault();
+						submit(e.currentTarget, {
+							replace: false,
+						});
+						setVoted(true);
+						ref.current?.reset();
+						animationRef.current.play();
+					}}
+				>
+					<button
+						// type="submit"
+						disabled={voted}
+						// onClick={() => setVoted(true)}
+						className="flex items-center justify-center"
+					>
+						{voted ? (
+							<GoHeartFill size={18} className="" />
+						) : (
+							<GoHeart size={18} className="" />
+						)}
+						<h1 className="ml-1 w-min select-none text-sm">
+							{count ?? actiondata?.count}
+						</h1>
+					</button>
+					{/* <button>
+						<HandIcon className="h-6 w-6" />
+					</button> */}
+				</Form>
+			</Badge>
+		</div>
+	);
+}

@@ -56,10 +56,10 @@ export default function Page() {
 
 	return (
 		<div>
-			<h1>Bookmarks</h1>
-			<h2>Links that I read and liked.</h2>
+			<h1 className="text-3xl font-bold">Bookmarks</h1>
+			<h2 className="text-xl ">Links that I read and liked.</h2>
 
-			<Form method="POST" encType="multipart/form-data">
+			{/* <Form method="POST" encType="multipart/form-data">
 				<input name="bmrk" type="file" accept=".html" />
 				<input type="submit" />
 			</Form>
@@ -71,7 +71,7 @@ export default function Page() {
 						{item.title}{' '}
 					</a>
 				))}
-			</div>
+			</div> */}
 
 			<div className="mt-10 flex flex-col gap-3">
 				{data.map(data => {

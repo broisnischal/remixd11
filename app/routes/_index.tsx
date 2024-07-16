@@ -1,12 +1,22 @@
 import { parse } from '~/services/markdoc.server';
 import { json } from '@remix-run/cloudflare';
-import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
+import type {
+	ActionFunctionArgs,
+	LoaderFunctionArgs,
+	MetaFunction,
+} from '@remix-run/cloudflare';
 import {
+	Form,
 	Link,
 	unstable_useViewTransitionState,
 	useLoaderData,
+	useSubmit,
 } from '@remix-run/react';
+import Lottie from 'lottie-react';
+import HeartAnimation from '../assets/lottie/heart.json';
 import { Ratelimit } from '@upstash/ratelimit';
+import { GoHeart, GoHeartFill } from 'react-icons/go';
+
 // import { Redis } from '@upstash/redis';
 import { Redis } from '@upstash/redis/cloudflare';
 
@@ -18,6 +28,9 @@ import { Button } from '~/components/ui/button';
 import { getPosts } from '~/.server/posts';
 import { Badge } from '~/components/ui/badge';
 import { TextHighlight } from '~/components/ui/highlight';
+import { Check, Heart, HeartPulseIcon } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { HandIcon } from '@radix-ui/react-icons';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -158,6 +171,8 @@ export default function Index() {
 
 	return (
 		<div>
+			{/* <Claps /> */}
+
 			<div className="flex w-[60%] flex-col items-start justify-normal gap-8">
 				{/* <Link to={'/image'} unstable_viewTransition>
 				<img
@@ -193,7 +208,10 @@ export default function Index() {
 					</h1>
 				</div>
 
-				<Badge>Software Engineer</Badge>
+				<div className="flex gap-3">
+					<Badge variant={'outline'}>Software Engineer</Badge>
+					<Badge variant={'secondary'}>18</Badge>
+				</div>
 
 				<p>
 					I'm Nischal Dahal! I've got over 5 years of experiences in

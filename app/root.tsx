@@ -14,11 +14,13 @@ import {
 	Meta,
 	NavLink,
 	Outlet,
+	redirect,
 	Scripts,
 	ScrollRestoration,
 	useActionData,
 	useLoaderData,
 	useLocation,
+	useNavigation,
 	useSubmit,
 } from '@remix-run/react';
 import clsx from 'clsx';
@@ -405,13 +407,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 // }
 
 export async function action({ context, request }: ActionFunctionArgs) {
+	const formData = await request.formData();
+	const redirectTo = (formData.get('redirectTo') as string) || '/';
+
 	const redis = Redis.fromEnv(context.env);
 
 	const count = await redis.incr('counter');
 
-	return {
-		count,
-	};
+	// return {
+	// 	count,
+	// };
+	return redirect(redirectTo, {
+		headers: {
+			'X-Count': count.toString(),
+		},
+	});
 }
 
 export function Clap({ count }: { count: number }) {
@@ -420,6 +430,7 @@ export function Clap({ count }: { count: number }) {
 	const actiondata = useActionData<typeof action>();
 	const submit = useSubmit();
 	const animationRef = React.useRef<any>(null);
+	const location = useLocation();
 
 	const ref = React.useRef<HTMLFormElement>(null);
 
@@ -437,12 +448,14 @@ export function Clap({ count }: { count: number }) {
 						e.preventDefault();
 						submit(e.currentTarget, {
 							replace: false,
+							preventScrollReset: true,
 						});
 						setVoted(true);
 						ref.current?.reset();
 						animationRef.current.play();
 					}}
 				>
+					<input type="hidden" name="redirectTo" value={location.pathname} />
 					<button
 						// type="submit"
 						disabled={voted}
@@ -454,9 +467,7 @@ export function Clap({ count }: { count: number }) {
 						) : (
 							<GoHeart size={18} className="" />
 						)}
-						<h1 className="ml-1 w-min select-none text-sm">
-							{count ?? actiondata?.count}
-						</h1>
+						<h1 className="ml-1 w-min select-none text-sm">{count}</h1>
 					</button>
 					{/* <button>
 						<HandIcon className="h-6 w-6" />

@@ -16,6 +16,12 @@ import Lottie from 'lottie-react';
 import HeartAnimation from '../assets/lottie/heart.json';
 import { Ratelimit } from '@upstash/ratelimit';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
+import {
+	ContextMenu,
+	ContextMenuContent,
+	ContextMenuItem,
+	ContextMenuTrigger,
+} from '~/components/ui/context-menu';
 
 // import { Redis } from '@upstash/redis';
 import { Redis } from '@upstash/redis/cloudflare';
@@ -28,9 +34,9 @@ import { Button } from '~/components/ui/button';
 import { getPosts } from '~/.server/posts';
 import { Badge } from '~/components/ui/badge';
 import { TextHighlight } from '~/components/ui/highlight';
-import { Check, Heart, HeartPulseIcon } from 'lucide-react';
+import { ArrowUp, Check, Heart, HeartPulseIcon } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { HandIcon } from '@radix-ui/react-icons';
+import { ArrowTopRightIcon, HandIcon } from '@radix-ui/react-icons';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -198,7 +204,7 @@ export default function Index() {
 					)} */}
 				<div className="flex items-end gap-4">
 					<img
-						className="aspect-square w-12 rounded-full"
+						className="aspect-square w-10 rounded-full"
 						src="/profile.jpg"
 						alt=""
 					/>
@@ -208,31 +214,53 @@ export default function Index() {
 					</h1>
 				</div>
 
-				<div className="flex gap-3">
+				<div className="flex gap-1">
 					<Badge variant={'outline'}>Software Engineer</Badge>
 					<Badge variant={'secondary'}>18</Badge>
 				</div>
 
 				<p>
-					I'm Nischal Dahal! I've got over 5 years of experiences in
-					development. I'm all about embracing new challenges and learning
-					opportunities. Let's build something awesome together! I continue to
-					improve myself every day.
+					an 18-year-old prodigy from Nepal, Crafting enchanting web experiences
+					that seamlessly blend form and function. On mission to develop
+					software that not only performs flawlessly but also delights users
+					with its intuitive design and thoughtful details.
 				</p>
 
 				<div className="flex items-center justify-center gap-2 text-sm">
-					Currently :
 					{['typescript', 'flutter', 'zig', 'rust', 'go'].map((item, index) => (
 						<TextHighlight key={index}>{item}</TextHighlight>
 					))}
 				</div>
 
+				<p>
+					Driven by an insatiable curiosity, I constantly refine my craft
+					through hands-on coding and in-depth research. Each project is an
+					opportunity to push boundaries and create something truly remarkable.
+				</p>
+
+				<p>
+					Journey in the tech realm is defined by a relentless pursuit of
+					excellence, crafting sophisticated systems that drive the future.
+				</p>
+
+				<div className="flex items-center justify-center gap-5">
+					<Link
+						to="mailto:info@nischal-dahal.com.np"
+						className="flex items-center  gap-2"
+					>
+						<ArrowTopRightIcon /> Mail
+					</Link>
+					<Link to="/chat" className="flex items-center  gap-2">
+						<ArrowTopRightIcon /> Chat
+					</Link>
+				</div>
+				{/* 
 				<ul className="font-semibold">
 					<li>I ❤️ Remix.</li>
 					<li>I am a Typescript Mini Wizard 🚀</li>
 					<li>I am Android Developer 📱</li>
 					<li>I love IOT 👾</li>
-				</ul>
+				</ul> */}
 
 				{/* <Markdown content={data.content} /> */}
 			</div>
@@ -253,31 +281,103 @@ export default function Index() {
 			<br />
 			<hr />
 			<br /> */}
-			{/* <Gallery
+			<h2 className="mb-4 text-2xl font-semibold">Design Works</h2>
+
+			<Gallery
 				images={[
-					'https://images.pexels.com/photos/9551192/pexels-photo-9551192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-					'https://images.pexels.com/photos/25568965/pexels-photo-25568965/free-photo-of-a-woman-in-a-leopard-print-dress-and-cowboy-hat.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-					'https://images.pexels.com/photos/26926216/pexels-photo-26926216/free-photo-of-a-hand-holding-a-flower-with-the-words-how-to-grow-frangipani.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-					'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd48.png&w=3840&q=75',
+					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd5.png&w=3840&q=75',
+					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd28.png&w=3840&q=75',
+					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fcode.jpg&w=3840&q=75',
+					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd8.jpg&w=3840&q=75',
+					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd30.jpg&w=3840&q=75',
+					'https://res.cloudinary.com/dacp0r5b7/image/upload/v1663755037/works/neeswallpaper_fojhum.png',
+					'https://res.cloudinary.com/dacp0r5b7/image/upload/v1663755016/works/wallpaper1_nceg92.jpg',
 				]}
-			/> */}
+			/>
 		</div>
 	);
 }
 
 const Gallery = ({ images }: { images: string[] }) => {
 	return (
-		<div className="grid  grid-cols-10 grid-rows-1 gap-4">
-			<div className="border-1 col-span-6 row-span-1 overflow-hidden rounded-md bg-slate-400">
+		<div className="[*]:h-full grid h-[100vh] grid-cols-6 gap-4">
+			<ContextMenu>
+				<ContextMenuTrigger className="border-1 col-span-3 overflow-hidden rounded-md bg-slate-400">
+					<div className=" h-full w-full overflow-hidden">
+						<img
+							src={images[1]}
+							alt="image"
+							className=" h-full w-full object-cover object-center"
+						/>
+					</div>
+				</ContextMenuTrigger>
+				<ContextMenuContent>
+					<ContextMenuItem
+						onClick={() => {
+							const imageUrl = images[1];
+							const link = document.createElement('a');
+							link.href = imageUrl;
+							link.target = '_blank';
+							link.download = 'downloaded-image.jpg';
+							document.body.appendChild(link);
+							link.click();
+							document.body.removeChild(link);
+						}}
+					>
+						Download
+					</ContextMenuItem>
+					<ContextMenuItem>Share</ContextMenuItem>
+					{/* <ContextMenuItem>Team</ContextMenuItem> */}
+					{/* <ContextMenuItem>Subscription</ContextMenuItem> */}
+				</ContextMenuContent>
+			</ContextMenu>
+
+			<div className="border-1 col-span-1  overflow-hidden rounded-md bg-slate-400">
+				<img
+					src={images[2]}
+					alt="image"
+					className=" h-full w-full object-cover object-center"
+				/>
+			</div>
+			<div className="border-1 col-span-2 overflow-hidden rounded-md bg-slate-400">
+				<img
+					src={images[3]}
+					alt="image"
+					className=" h-full w-full object-cover object-center"
+				/>
+			</div>
+			<div className="border-1 col-span-2 overflow-hidden rounded-md bg-slate-400">
+				<img
+					src={images[4]}
+					alt="image"
+					className=" h-full w-full object-cover object-center"
+				/>
+			</div>
+			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
 				<img
 					src={images[0]}
 					alt="image"
 					className=" h-full w-full object-cover object-center"
 				/>
 			</div>
-			<div className="border-1 col-span-4 row-span-1 overflow-hidden rounded-md bg-slate-400">
+			<div className="border-1 col-span-1  overflow-hidden rounded-md bg-slate-400">
 				<img
-					src={images[1]}
+					src={images[5]}
+					alt="image"
+					className=" object-fit h-full w-full object-center"
+				/>
+			</div>
+			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
+				<img
+					src={images[6]}
+					alt="image"
+					className=" h-full w-full object-cover object-center"
+				/>
+			</div>
+			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
+				<img
+					src={images[7]}
 					alt="image"
 					className=" h-full w-full object-cover object-center"
 				/>

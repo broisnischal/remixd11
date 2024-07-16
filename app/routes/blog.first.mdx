@@ -11,12 +11,19 @@ meta:
 ---
 
 export const meta = ({ attributes }) => {
-	return [
-		{
-			title: 'testing',
-			description: 'testing is cool stuffs',
-		},
-	];
+  return [
+    {
+      title: 'testing',
+      description: 'testing is cool stuffs',
+    },
+    {
+      tagName: "link",
+      rel: "canonical",
+      href: 'https://nees.pages.dev/blog/first',
+
+      // href: new URL(`/blog/first`, request.url).toString(),
+    },
+  ];
 };
 
 # {frontmatter.title}

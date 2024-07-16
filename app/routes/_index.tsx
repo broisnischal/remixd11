@@ -1,6 +1,6 @@
 import { parse } from '~/services/markdoc.server';
 import { json } from '@remix-run/cloudflare';
-import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
 import {
 	Link,
 	unstable_useViewTransitionState,
@@ -18,6 +18,46 @@ import { Button } from '~/components/ui/button';
 import { getPosts } from '~/.server/posts';
 import { Badge } from '~/components/ui/badge';
 import { TextHighlight } from '~/components/ui/highlight';
+
+export const meta: MetaFunction = () => {
+	return [
+		{ title: 'Very cool app | Remix' },
+		{
+			property: 'og:title',
+			content: 'Very cool app',
+		},
+		{
+			name: 'description',
+			content: 'This app is the best',
+		},
+		{
+			'script:ld+json': {
+				'@context': 'https://schema.org',
+				'@type': 'BreadcrumbList',
+				itemListElement: [
+					{
+						'@type': 'ListItem',
+						position: 1,
+						name: 'Home',
+						item: 'https://www.example.com/',
+					},
+					{
+						'@type': 'ListItem',
+						position: 2,
+						name: 'Category',
+						item: 'https://www.example.com/category',
+					},
+					{
+						'@type': 'ListItem',
+						position: 3,
+						name: 'Subcategory',
+						item: 'https://www.example.com/category/subcategory',
+					},
+				],
+			},
+		},
+	];
+};
 
 export const loader = async (args: LoaderFunctionArgs) => {
 	// const kafka = new Kafka({

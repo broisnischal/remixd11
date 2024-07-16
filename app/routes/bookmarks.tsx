@@ -56,6 +56,8 @@ export default function Page() {
 
 	return (
 		<div>
+			<br />
+
 			<h1 className="text-3xl font-bold">Bookmarks</h1>
 			<h2 className="text-xl ">Links that I read and liked.</h2>
 

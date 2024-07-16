@@ -10,7 +10,6 @@ export default function Page() {
 	return (
 		<div className="flex flex-col items-start gap-4">
 			<br />
-
 			<h1 className="text-3xl font-bold">🤝 let's work together</h1>
 
 			<p>

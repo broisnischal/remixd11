@@ -178,7 +178,8 @@ export default function Index() {
 	return (
 		<div>
 			{/* <Claps /> */}
-
+			<br />
+			<br />
 			<div className="flex w-[60%] flex-col items-start justify-normal gap-8">
 				{/* <Link to={'/image'} unstable_viewTransition>
 				<img

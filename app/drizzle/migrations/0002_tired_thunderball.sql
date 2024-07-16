@@ -1,1 +1,0 @@
-ALTER TABLE `bookmarks` ADD `featured` text NOT NULL;

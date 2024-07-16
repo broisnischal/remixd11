@@ -65,11 +65,13 @@ export default function Page() {
 			</Form>
 
 			<h2>Size {actionData?.filesize}</h2>
-			{actionData?.parsedBookmark.map((item, index) => (
-				<a key={index} {...(item.url ? { href: item.url } : {})}>
-					{item.title}{' '}
-				</a>
-			))}
+			<div className="flex flex-col gap-2">
+				{actionData?.parsedBookmark.map((item, index) => (
+					<a key={index} {...(item.url ? { href: item.url } : {})}>
+						{item.title}{' '}
+					</a>
+				))}
+			</div>
 
 			<div className="mt-10 flex flex-col gap-3">
 				{data.map(data => {

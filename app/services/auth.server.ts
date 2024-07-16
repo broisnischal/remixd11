@@ -71,6 +71,8 @@ export class Auth {
 						.where(eq(schema.users.email, emails[0].value))
 						.execute();
 
+					let updatedName = !_json.name ? 'Anonymous' : _json.name;
+
 					if (u) {
 						console.log('alredy a user');
 						return u;
@@ -82,7 +84,7 @@ export class Auth {
 								email: emails[0].value,
 								type: 'user',
 								provider,
-								name: _json.name,
+								name: updatedName,
 								providerId: id,
 							})
 							.execute();

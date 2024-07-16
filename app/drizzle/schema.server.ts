@@ -11,7 +11,7 @@ export const users = sqliteTable(
 	'users',
 	{
 		id: integer('id').primaryKey(),
-		name: text('name').default(''),
+		name: text('name').default('Anonymous'),
 		email: text('email').notNull().unique(),
 		avatar_url: text('avatar_url').default(
 			'https://static-00.iconduck.com/assets.00/user-avatar-icon-1820x2048-mp3gzcbn.png',
@@ -38,7 +38,7 @@ export const userRelations = relations(users, ({ many, one }) => ({
 
 export const guestBook = sqliteTable('guestbook', {
 	id: integer('id').primaryKey(),
-	name: text('name').notNull(),
+	name: text('name').default('Anonymous'),
 	email: text('email').notNull(),
 	message: text('message').notNull(),
 	authorId: integer('authorId')

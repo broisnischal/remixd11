@@ -36,6 +36,7 @@ import { ModeToggle } from './components/toggle-mode';
 import { themeSessionResolver } from './session.server';
 import styles from './tailwind.css?url';
 import { SessionStorage } from './services/session.server';
+import { Search } from './routes/search';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -226,6 +227,7 @@ export function App({}) {
 					style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}
 				>
 					<Layout children={<Outlet />} />
+					<Search />
 					<ScrollRestoration />
 					<Scripts />
 				</body>

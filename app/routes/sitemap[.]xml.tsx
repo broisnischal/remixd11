@@ -40,7 +40,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 
 	for (let blog of blogs) {
 		sitemap.append(
-			new URL(blog.slug, url),
+			new URL(`/blog/${blog.slug}`, url),
 			new Date(blog.frontmatter.published),
 		);
 	}

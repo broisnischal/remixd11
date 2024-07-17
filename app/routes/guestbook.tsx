@@ -79,7 +79,7 @@ export async function action({ request, context }: ActionFunctionArgs) {
 
 	const ratelimit = new Ratelimit({
 		redis: Redis.fromEnv(context.env),
-		limiter: Ratelimit.fixedWindow(10, '60 m'),
+		limiter: Ratelimit.fixedWindow(3, '1 d'),
 		enableProtection: true,
 		analytics: true,
 	});

@@ -9,6 +9,10 @@ export async function loader() {
 export async function action({ request, params, context }: ActionFunctionArgs) {
 	let provider = params.provider as string;
 
+	// let redirectTo = (formData.get('redirectTo') as string) || '/';
+
+	// console.log(redirectTo);
+
 	console.log(provider);
 
 	let auth = new Auth(context);

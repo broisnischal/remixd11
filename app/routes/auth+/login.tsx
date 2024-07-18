@@ -5,16 +5,16 @@ import {
 	redirect,
 	type LoaderFunctionArgs,
 } from '@remix-run/cloudflare';
-import { Form } from '@remix-run/react';
+import { Form, useLocation } from '@remix-run/react';
 import { Button } from '~/components/ui/button';
 import { SessionStorage } from '~/services/session.server';
 
 export const meta: MetaFunction = () => {
 	return [
-		{ title: 'Login | Remix Cloudflare D1 Auth Demo' },
+		{ title: 'Login | Nischal Portfolio' },
 		{
 			name: 'description',
-			content: 'Welcome to Remix on Cloudflare!',
+			content: 'You are welcome to my site.',
 		},
 	];
 };
@@ -22,12 +22,16 @@ export const meta: MetaFunction = () => {
 export async function loader({ request, context }: LoaderFunctionArgs) {
 	let user = await SessionStorage.readUser(context, request);
 	if (!user) return json(null);
-	throw redirect('/dashboard');
+	throw redirect('/');
 }
 
 export default function Login() {
+	const location = useLocation();
+
 	return (
 		<Form action="/auth/github" method="POST">
+			<input type="hidden" name="redirectTo" value={location.pathname} />
+
 			<Button
 				type="submit"
 				className="flex items-center justify-center gap-3"

@@ -57,7 +57,7 @@ export const meta: MetaFunction = () => {
 		{ charset: 'utf-8' },
 		{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 		{ title: 'Nischal Dahal' },
-		{ name: 'description', content: 'Nischal Dahal Homepage' },
+		{ name: 'description', content: 'Nischal Dahal' },
 	];
 };
 
@@ -269,7 +269,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
 				</head>
 				<body
-					style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}
+					style={{
+						fontFamily: 'system-ui, sans-serif',
+						lineHeight: '1.6',
+						width: 'calc(100vw - 1rem)',
+					}}
 				>
 					<Layout children={<Outlet />} />
 					<Search />

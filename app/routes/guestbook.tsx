@@ -36,7 +36,8 @@ const GuestBookSchema = z.object({
 		.string({
 			required_error: 'Message is required',
 		})
-		.min(15, "Message can't be too short"),
+		.min(15, "Message can't be too short")
+		.max(200, "Message can't be too long"),
 	// .refine(async msg => {
 	// 	const data = await useProfanity(msg);
 	// 	console.log('value');
@@ -183,6 +184,7 @@ export async function action({ request, context }: ActionFunctionArgs) {
 		},
 	);
 }
+
 export default function Page() {
 	const { data, guestbooks } = useLoaderData<typeof loader>();
 	const isPending = useIsPending();

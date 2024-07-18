@@ -1,12 +1,15 @@
-import { Form, Link, useFetcher } from '@remix-run/react';
+import { Form, Link, useActionData, useFetcher } from '@remix-run/react';
 import { Button } from '../components/ui/button';
 import { z } from 'zod';
-import { useForm } from '@conform-to/react';
+import { getFormProps, getInputProps, useForm } from '@conform-to/react';
 import { Input } from '../components/ui/input';
 import { ActionFunctionArgs, json } from '@remix-run/cloudflare';
 import { drizzle } from 'drizzle-orm/d1';
 import { newsletters } from '~/drizzle/schema.server';
 import { eq } from 'drizzle-orm';
+import { getZodConstraint, parseWithZod } from '@conform-to/zod';
+import { SessionStorage } from '~/services/session.server';
+import { useIsPending } from '~/lib/misc';
 
 const subscribeSchema = z.object({
 	email: z
@@ -20,37 +23,90 @@ const subscribeSchema = z.object({
 
 export async function action({ request, context }: ActionFunctionArgs) {
 	const formData = await request.formData();
-	const email = formData.get('email') as string;
 
-	console.log(email);
 	const db = drizzle(context.env.DB);
 
-	const existing = await db
-		.select()
-		.from(newsletters)
-		.where(eq(newsletters.email, email))
-		.execute();
+	const submission = await parseWithZod(formData, {
+		schema: intent =>
+			subscribeSchema.transform(async (data, ctx) => {
+				if (intent !== null) return { ...data, session: null };
 
-	if (existing.length > 0) {
-		return json({ message: 'Already Subscribed!' }, { status: 409 });
+				const session = await SessionStorage.readUser(context, request);
+
+				// if (session?.type != 'nees') {
+				// 	ctx.addIssue({
+				// 		code: z.ZodIssueCode.custom,
+				// 		params: { message: 'You must be logged in to post' },
+				// 		path: ['session'],
+				// 		message: 'You must be logged in to post',
+				// 	});
+				// 	return z.NEVER;
+				// }
+
+				const existing = await db
+					.select()
+					.from(newsletters)
+					.where(eq(newsletters.email, data.email))
+					.execute();
+
+				if (existing.length > 0) {
+					ctx.addIssue({
+						code: z.ZodIssueCode.custom,
+						params: { message: 'Already Subscribed!' },
+						path: ['email'],
+						message: 'User is already subscribed.',
+					});
+					return z.NEVER;
+				}
+
+				return { ...data, session };
+			}),
+		async: true,
+	});
+
+	if (submission.status !== 'success') {
+		return json(
+			{
+				submission: submission.reply({
+					// resetForm: true,
+				}),
+			},
+			{
+				status: 400,
+			},
+		);
 	}
 
-	await db.insert(newsletters).values({ email, verified: 1 }).execute();
-	return json({ message: 'Subscribed Successfully!' }, { status: 201 });
+	// console.log(email);
+
+	await db
+		.insert(newsletters)
+		.values({ email: submission.value.email, verified: 1 })
+		.execute();
+	return json(
+		{ message: 'Subscribed Successfully!', submission },
+		{ status: 201 },
+	);
 }
 
 export default function NewsLetter() {
 	const newsletter = useFetcher();
+	const isPending = useIsPending();
 
 	const isSubmitting = newsletter.formData?.get('_intent') === 'subscribe';
 
-	// const [form, fields] = useForm({
-	// 	id: 'user',
-	// 	// onValidate({ formData }) {
-	// 	// 	// return parse(formData, { schema: subscribeSchema });
-	// 	// },
-	// 	shouldValidate: 'onSubmit',
-	// });
+	let lastResult = useActionData<typeof action>();
+
+	const [form, fields] = useForm({
+		id: 'newsletter',
+		constraint: getZodConstraint(subscribeSchema),
+		lastResult: lastResult?.submission,
+		onValidate({ formData }) {
+			return parseWithZod(formData, { schema: subscribeSchema });
+		},
+		shouldValidate: 'onSubmit',
+		// shouldRevalidate: 'onInput',
+	});
 
 	return (
 		<div className="">
@@ -65,23 +121,25 @@ export default function NewsLetter() {
 				<h3 className="text-4xl font-bold"> Subscribe to Newsletter</h3>
 
 				<div className="flex flex-col gap-3">
-					<newsletter.Form
+					<Form
 						className="flex items-center justify-center gap-2 dark:bg-black dark:text-zinc-100 "
 						method="POST"
+						{...getFormProps(form)}
 					>
 						<Input
-							type="email"
-							name="email"
 							className="min-w-[30vw]"
 							placeholder="Suscribe to our newsletter"
+							{...getInputProps(fields.email, { type: 'email' })}
 						/>
 
 						<input type="hidden" name="_intent" value="subscribe" />
 						<Button disabled={isSubmitting} type="submit" variant="outline">
 							{isSubmitting ? 'Loading...' : 'Subscribe'}
 						</Button>
-					</newsletter.Form>
-					{/* <div className="text-[14px] text-red-400">{fields.email.errors}</div> */}
+					</Form>
+					{fields.email.errors && fields.email.errors.length > 0 && (
+						<p className="text-sm text-red-500">{fields.email.errors[0]}</p>
+					)}
 				</div>
 				<p className="w-full text-left text-xs text-gray-500 dark:text-gray-400">
 					Get notified when I publish something new and unsubscribe at any time.{' '}

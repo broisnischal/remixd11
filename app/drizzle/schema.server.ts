@@ -66,6 +66,7 @@ export const bookmarks = sqliteTable('bookmarks', {
 	title: text('title').notNull(),
 	href: text('href').notNull(),
 	featured: text('featured').notNull(),
+	description: text('description').default(''),
 	author: text('author').notNull(),
 });
 

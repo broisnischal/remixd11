@@ -40,14 +40,15 @@ import { ArrowTopRightIcon, HandIcon } from '@radix-ui/react-icons';
 
 export const meta: MetaFunction = () => {
 	return [
-		{ title: 'Very cool app | Remix' },
+		{ title: 'Nischal Dahal | broisnees' },
 		{
 			property: 'og:title',
-			content: 'Very cool app',
+			content: 'Nischal Dahal | broisnees',
 		},
 		{
 			name: 'description',
-			content: 'This app is the best',
+			content:
+				'Nischal Dahal | broisnees, a blog by Nischal Dahal (https://nees.pages.dev) and the Personal Portfolio of Nischal Dahal',
 		},
 		{
 			'script:ld+json': {
@@ -57,20 +58,14 @@ export const meta: MetaFunction = () => {
 					{
 						'@type': 'ListItem',
 						position: 1,
-						name: 'Home',
-						item: 'https://www.example.com/',
+						name: 'Blog',
+						item: 'https://www.nees.pages.com/blog',
 					},
 					{
 						'@type': 'ListItem',
 						position: 2,
-						name: 'Category',
-						item: 'https://www.example.com/category',
-					},
-					{
-						'@type': 'ListItem',
-						position: 3,
-						name: 'Subcategory',
-						item: 'https://www.example.com/category/subcategory',
+						name: 'Learning',
+						item: 'https://www.nees.pages.com/learning/year',
 					},
 				],
 			},
@@ -254,6 +249,9 @@ export default function Index() {
 					<Link to="/chat" className="flex items-center  gap-2">
 						<ArrowTopRightIcon /> Chat
 					</Link>
+					<Link to="/blogs/rss" className="flex items-center  gap-2">
+						<ArrowTopRightIcon /> RSS
+					</Link>
 				</div>
 				{/* 
 				<ul className="font-semibold">
@@ -282,7 +280,7 @@ export default function Index() {
 			<br />
 			<hr />
 			<br /> */}
-			<h2 className="mb-4 text-2xl font-semibold">Design Works</h2>
+			<h2 className="mb-4 text-xl font-bold">Design Works</h2>
 
 			<Gallery
 				images={[
@@ -302,7 +300,8 @@ export default function Index() {
 
 const Gallery = ({ images }: { images: string[] }) => {
 	return (
-		<div className="[*]:h-full grid h-[100vh] grid-cols-6 gap-4">
+		// [&>div>img]:grayscale
+		<div className="[*]:h-full group:hover:[&>*]:opacity-75 grid h-[100vh] grid-cols-6 gap-4 *:border-[1px]  ">
 			<ContextMenu>
 				<ContextMenuTrigger className="border-1 col-span-3 overflow-hidden rounded-md bg-slate-400">
 					<div className=" h-full w-full overflow-hidden">

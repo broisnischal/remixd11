@@ -1,8 +1,35 @@
 @import '@upstash/claps/style.css';
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+	scrollbar-gutter: stable;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+	width: 8px; /* Adjust scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+	background: var(--background); /* Match the track to the page background */
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--foreground); /* Style the thumb */
+	border-radius: 4px; /* Rounded corners for the thumb */
+}
+
+/* For browsers that support it */
+* {
+	scrollbar-width: thin; /* Make scrollbar less obtrusive */
+	scrollbar-color: var(--foreground) var(--background); /* Thumb and track color */
+}
 
 @layer base {
 	:root {
@@ -123,10 +150,10 @@
 	a:not(nav a) {
 		/* @apply from-primary to-secondary bg-clip-text 	text-primary hover:bg-gradient-to-r hover:text-transparent; */
 		@apply font-bold;
+		font-family: 'poppins', sans-serif;
 		/* @apply underline decoration-cyan-700 hover:decoration-cyan-900; */
 	}
-}
-
-html {
-	scrollbar-gutter: stable;
+	p {
+		font-family: 'inter', sans-serif;
+	}
 }

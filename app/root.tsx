@@ -83,8 +83,8 @@ const NavBar = () => {
 	const data = useLoaderData<typeof loader>();
 
 	return (
-		<nav className="m-auto mt-8 flex max-w-[70vw] flex-row">
-			<div className="mr-auto flex items-center gap-5">
+		<nav className="m-auto flex w-[90vw] flex-row flex-wrap lg:mt-8 lg:flex lg:max-w-[70vw]">
+			<div className="mr-auto flex flex-row flex-wrap items-center gap-5">
 				<RouteLink to={'/'}>home</RouteLink>
 				{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 				<RouteLink to={'/learning/year'}>learning</RouteLink>
@@ -92,6 +92,7 @@ const NavBar = () => {
 				<RouteLink to={'/blog'}>blogs</RouteLink>
 				{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
 				<RouteLink to={'/guestbook'}>guestbook</RouteLink>
+				<RouteLink to={'/overview'}>overview</RouteLink>
 				{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 				<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
 				{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
@@ -102,16 +103,16 @@ const NavBar = () => {
 				)}
 				{data.user?.id && <Link to="/auth/logout">Logout</Link>}
 			</div>
-			{/* <RouteLink to={'/subscribe'}>subscribe</RouteLink> */}
-			{/* <RouteLink to={'/contact'}>contact</RouteLink> */}
-			<ModeToggle />
+			<div>
+				<ModeToggle />
+			</div>
 		</nav>
 	);
 };
 
 const Footer = () => {
 	return (
-		<div className="m-auto mb-16 flex max-w-[70vw] flex-col items-start justify-center gap-2">
+		<div className="m-auto mb-16 flex w-full flex-col items-center justify-center gap-2 lg:max-w-[70vw] lg:items-start">
 			{/* <NewsLetter /> */}
 			{/* <h2>Copyright © 2022 Nischal Dahal</h2> */}
 			{/* <div className="flex w-full">
@@ -157,18 +158,18 @@ const Footer = () => {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div id="main">
+		<div id="main m-auto">
 			<ProgessBar />
 			<NavBar />
-			<div className="m-auto flex min-h-[70vh] max-w-[70vw] flex-col items-start justify-between">
+			<div className="m-auto flex min-h-[70vh] max-w-[90vw] flex-col items-start justify-between lg:max-w-[70vw]">
 				<div className="main">
 					<AnimatePresence mode="popLayout">
 						<motion.div
 							key={useLocation().pathname}
 							variants={{
-								initial: { opacity: 0, y: -20 },
+								initial: { opacity: 0, y: -30 },
 								animate: { opacity: 1, y: 0 },
-								exit: { opacity: 1, y: 20 },
+								exit: { opacity: 1, y: 30 },
 							}}
 							transition={{ duration: 0.5, ease: 'anticipate' }}
 							initial="initial"

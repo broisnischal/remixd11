@@ -55,7 +55,7 @@ export default function Page() {
 	const actionData = useActionData<typeof action>();
 
 	return (
-		<div>
+		<div className="min-w-[60vw]">
 			<br />
 
 			<h1 className="text-3xl font-bold">Bookmarks</h1>
@@ -75,11 +75,19 @@ export default function Page() {
 				))}
 			</div> */}
 
-			<div className="mt-10 flex flex-col gap-3">
+			<div className="mt-10 flex w-full flex-col gap-3 *:border-b-[1px] *:border-zinc-200/5">
 				{data.map(data => {
 					return (
 						<div key={data.id}>
-							<a href={data.href}>{data.title}</a>
+							<a href={data.href}>
+								{data.title}
+								<br />
+								{data.description && (
+									<small className="font-sans font-normal">
+										{data.description}
+									</small>
+								)}
+							</a>
 						</div>
 					);
 				})}

@@ -226,6 +226,7 @@ export async function action({ request, context }: ActionFunctionArgs) {
 	await db.insert(schema.bookmarks).values({
 		title: submission.value.title!,
 		href: submission.value.href!,
+		description: submission.value.description,
 		featured: 'true',
 		author: submission.value.session.email ?? 'anonymous',
 	});

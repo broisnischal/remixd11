@@ -38,6 +38,43 @@ import { ArrowUp, Check, Heart, HeartPulseIcon } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { ArrowTopRightIcon, HandIcon } from '@radix-ui/react-icons';
 
+import IconCloud from '~/components/magicui/icon-cloud';
+import axios from 'axios';
+import { load } from 'cheerio';
+
+const slugs = [
+	'typescript',
+	'javascript',
+	'dart',
+	'java',
+	'react',
+	'flutter',
+	'android',
+	'html5',
+	'css3',
+	'nodedotjs',
+	'express',
+	'nextdotjs',
+	'prisma',
+	'amazonaws',
+	'postgresql',
+	'firebase',
+	'nginx',
+	'vercel',
+	'testinglibrary',
+	'jest',
+	'cypress',
+	'docker',
+	'git',
+	'jira',
+	'github',
+	'gitlab',
+	'visualstudiocode',
+	'androidstudio',
+	'sonarqube',
+	'figma',
+];
+
 export const meta: MetaFunction = () => {
 	return [
 		{ title: 'Nischal Dahal | broisnees' },
@@ -111,9 +148,15 @@ export const loader = async (args: LoaderFunctionArgs) => {
 	const { success, limit, remaining, reset } =
 		await ratelimit.limit(identifier);
 
+	const response = await axios.get('https://codeium.com/profile/broisnischal');
+
+	const $ = load(response.data);
+	const svgContent = $('svg.h-full.w-full').parent().html();
+
 	return json(
 		{
 			success,
+			svgContent,
 			posts,
 			limit,
 			remaining,
@@ -175,7 +218,7 @@ export default function Index() {
 			{/* <Claps /> */}
 			<br />
 			<br />
-			<div className="flex w-[60%] flex-col items-start justify-normal gap-8">
+			<div className="flex flex-col items-start  gap-3">
 				{/* <Link to={'/image'} unstable_viewTransition>
 				<img
 				src={
@@ -198,46 +241,54 @@ export default function Index() {
 				) : (
 					<h1>You are being rate limited.</h1>
 					)} */}
-				<div className="flex items-end gap-4">
-					<img
+				{/* <img
 						className="aspect-square w-10 rounded-full"
 						src="/profile.jpg"
 						alt=""
-					/>
+					/> */}
 
-					<h1 className="text-3xl font-bold dark:text-zinc-100">
-						hey, I'm Nischal 👋
-					</h1>
-				</div>
+				<h1 className="text-3xl font-bold dark:text-zinc-100">
+					hey, I'm Nischal 👋
+				</h1>
 
 				<div className="flex gap-1">
 					<Badge variant={'outline'}>Software Engineer</Badge>
 					<Badge variant={'secondary'}>18</Badge>
 				</div>
 
-				<p>
-					an 18-year-old prodigy from Nepal, Crafting enchanting web experiences
-					that seamlessly blend form and function. On mission to develop
-					software that not only performs flawlessly but also delights users
-					with its intuitive design and thoughtful details.
-				</p>
+				<div className="flex  flex-col items-start gap-4 lg:max-w-[70%]">
+					{/* <div className="desc flex w-[80%] flex-col items-start gap-4"> */}
+					<p>
+						an 18-year-old prodigy from Nepal, Crafting enchanting web
+						experiences that seamlessly blend form and function. On mission to
+						develop software that not only performs flawlessly but also delights
+						users with its intuitive design and thoughtful details.
+					</p>
 
-				<div className="flex items-center justify-center gap-2 text-sm">
-					{['typescript', 'flutter', 'zig', 'rust', 'go'].map((item, index) => (
-						<TextHighlight key={index}>{item}</TextHighlight>
-					))}
+					<div className="flex items-center justify-center gap-2 text-sm">
+						{['typescript', 'flutter', 'zig', 'rust', 'go'].map(
+							(item, index) => (
+								<TextHighlight key={index}>{item}</TextHighlight>
+							),
+						)}
+					</div>
+
+					<p>
+						Driven by an insatiable curiosity, I constantly refine my craft
+						through hands-on coding and in-depth research. Each project is an
+						opportunity to push boundaries and create something truly
+						remarkable.
+					</p>
+
+					<p>
+						Journey in the tech realm is defined by a relentless pursuit of
+						excellence, crafting sophisticated systems that drive the future.
+					</p>
+					{/* </div> */}
+					{/* <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden bg-background px-20  ">
+						<IconCloud iconSlugs={slugs} />
+					</div> */}
 				</div>
-
-				<p>
-					Driven by an insatiable curiosity, I constantly refine my craft
-					through hands-on coding and in-depth research. Each project is an
-					opportunity to push boundaries and create something truly remarkable.
-				</p>
-
-				<p>
-					Journey in the tech realm is defined by a relentless pursuit of
-					excellence, crafting sophisticated systems that drive the future.
-				</p>
 
 				<div className="flex items-center justify-center gap-5">
 					<Link
@@ -249,9 +300,9 @@ export default function Index() {
 					<Link to="/chat" className="flex items-center  gap-2">
 						<ArrowTopRightIcon /> Chat
 					</Link>
-					<Link to="/blogs/rss" className="flex items-center  gap-2">
+					<a href="/blogs/rss" className="flex items-center  gap-2">
 						<ArrowTopRightIcon /> RSS
-					</Link>
+					</a>
 				</div>
 				{/* 
 				<ul className="font-semibold">
@@ -280,7 +331,17 @@ export default function Index() {
 			<br />
 			<hr />
 			<br /> */}
-			<h2 className="mb-4 text-xl font-bold">Design Works</h2>
+
+			<div className=" hidden flex-col dark:flex">
+				<h1 className="mb-4 text-2xl font-bold">Don't code, Just Use AI</h1>
+
+				<div
+					className="min-w-[100%]"
+					dangerouslySetInnerHTML={{ __html: data.svgContent! }}
+				></div>
+			</div>
+
+			{/* <h2 className="mb-4 text-xl font-bold">Design Works</h2>
 
 			<Gallery
 				images={[
@@ -293,7 +354,7 @@ export default function Index() {
 					'https://res.cloudinary.com/dacp0r5b7/image/upload/v1663755037/works/neeswallpaper_fojhum.png',
 					'https://res.cloudinary.com/dacp0r5b7/image/upload/v1663755016/works/wallpaper1_nceg92.jpg',
 				]}
-			/>
+			/> */}
 		</div>
 	);
 }

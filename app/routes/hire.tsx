@@ -36,7 +36,7 @@ export default function Page() {
 			</ul>
 			<br />
 			<h1 className="text-3xl font-bold">What People Say?</h1>
-			<div className="grid grid-cols-3 grid-rows-1 gap-4">
+			<div className="grid  grid-cols-1 grid-rows-1 gap-4 lg:grid-cols-3">
 				<Card>
 					<CardHeader>
 						<h2 className="text-xl font-bold">Sandes Thapa</h2>
@@ -51,7 +51,7 @@ export default function Page() {
 						<h2>CTO at Prisma</h2>
 					</CardFooter>
 				</Card>
-				<Card className="col-span-2">
+				<Card className="lg:col-span-2">
 					<CardHeader>
 						<h2 className="text-xl font-bold">Antfu</h2>
 					</CardHeader>
@@ -66,7 +66,7 @@ export default function Page() {
 						<h2>Maintainer at VITE</h2>
 					</CardFooter>
 				</Card>
-				<Card className="col-span-3">
+				<Card className="lg:col-span-3">
 					<CardHeader>
 						<h2 className="text-xl font-bold">Dave Kelman</h2>
 					</CardHeader>

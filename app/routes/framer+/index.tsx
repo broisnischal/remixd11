@@ -1,7 +1,7 @@
 import { Link, Outlet } from '@remix-run/react';
 import Hr from '~/components/hr';
 
-const donedays = 2;
+const donedays = 3;
 
 export async function loader() {
 	const modules = import.meta.glob('../routes/framer+/*.tsx', { eager: true });

@@ -1,21 +1,6 @@
-import { parse } from '~/services/markdoc.server';
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
-import type {
-	ActionFunctionArgs,
-	LoaderFunctionArgs,
-	MetaFunction,
-} from '@remix-run/cloudflare';
-import {
-	Form,
-	Link,
-	unstable_useViewTransitionState,
-	useLoaderData,
-	useSubmit,
-} from '@remix-run/react';
-import Lottie from 'lottie-react';
-import HeartAnimation from '../assets/lottie/heart.json';
-import { Ratelimit } from '@upstash/ratelimit';
-import { GoHeart, GoHeartFill } from 'react-icons/go';
+import { Link, useLoaderData } from '@remix-run/react';
 import {
 	ContextMenu,
 	ContextMenuContent,
@@ -24,23 +9,11 @@ import {
 } from '~/components/ui/context-menu';
 
 // import { Redis } from '@upstash/redis';
-import { Redis } from '@upstash/redis/cloudflare';
 
-import { Markdown } from '~/components';
-import fs from 'fs';
-import Motion from '~/components/motion';
-import { Kafka } from '@upstash/kafka';
-import { Button } from '~/components/ui/button';
-import { getPosts } from '~/.server/posts';
+import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import { Badge } from '~/components/ui/badge';
 import { TextHighlight } from '~/components/ui/highlight';
-import { ArrowUp, Check, Heart, HeartPulseIcon } from 'lucide-react';
-import { useRef, useState } from 'react';
-import { ArrowTopRightIcon, HandIcon } from '@radix-ui/react-icons';
 
-import IconCloud from '~/components/magicui/icon-cloud';
-import axios from 'axios';
-import { load } from 'cheerio';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 
 const slugs = [
@@ -168,8 +141,8 @@ export const loader = async (args: LoaderFunctionArgs) => {
 			// remaining,
 			// reset,
 			// identifier,
-			url: args.context.env.UPSTASH_REDIS_REST_URL,
-			token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
+			// url: args.context.env.UPSTASH_REDIS_REST_URL,
+			// token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
 		},
 		{
 			headers: {
@@ -220,7 +193,7 @@ export default function Index() {
 	const data = useLoaderData<typeof loader>();
 
 	return (
-		<div>
+		<div className="w-[90vw]">
 			{/* <Claps /> */}
 			<br />
 			<br />
@@ -365,7 +338,7 @@ export default function Index() {
 
 			<div className="flex flex-col">
 				<h1 className="mb-4 font-semibold">Learning</h1>
-				<Link to={'/framer'}>
+				<Link className="flex items-center gap-2" to={'/framer'}>
 					Framer Motion <HiOutlineDotsHorizontal />
 				</Link>
 			</div>

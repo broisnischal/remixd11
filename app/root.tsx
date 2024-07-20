@@ -83,24 +83,24 @@ const NavBar = () => {
 	const data = useLoaderData<typeof loader>();
 
 	return (
-		<nav className="m-auto flex w-[90vw] flex-row flex-wrap lg:mt-8 lg:flex lg:max-w-[70vw]">
+		<nav className="m-auto mt-8 flex max-w-[90vw] flex-row  lg:flex lg:max-w-[70vw]">
 			<div className="mr-auto flex flex-row flex-wrap items-center gap-5">
 				<RouteLink to={'/'}>home</RouteLink>
-				{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 				<RouteLink to={'/learning/year'}>learning</RouteLink>
-				{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
 				<RouteLink to={'/blog'}>blogs</RouteLink>
-				{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
 				<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 				<RouteLink to={'/overview'}>overview</RouteLink>
-				{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 				<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
-				{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
 				<RouteLink to={'/hire'}>hire me</RouteLink>
 				<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 				{data.user?.type == 'nees' && (
 					<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
 				)}
+				{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
+				{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
+				{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
+				{/* <RouteLink to={'/career'}>projects</RouteLink> */}
+				{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
 				{data.user?.id && <Link to="/auth/logout">Logout</Link>}
 			</div>
 			<div>
@@ -112,7 +112,7 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="m-auto mb-16 flex w-full flex-col items-center justify-center gap-2 lg:max-w-[70vw] lg:items-start">
+		<div className="m-auto my-16 flex w-[90vw] flex-col items-center justify-center gap-2 lg:max-w-[70vw] lg:items-start">
 			{/* <NewsLetter /> */}
 			{/* <h2>Copyright © 2022 Nischal Dahal</h2> */}
 			{/* <div className="flex w-full">
@@ -158,27 +158,25 @@ const Footer = () => {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div id="main m-auto">
+		<div id="" className="">
 			<ProgessBar />
 			<NavBar />
-			<div className="m-auto flex min-h-[70vh] max-w-[90vw] flex-col items-start justify-between lg:max-w-[70vw]">
-				<div className="main">
-					<AnimatePresence mode="popLayout">
-						<motion.div
-							key={useLocation().pathname}
-							variants={{
-								initial: { opacity: 0, y: -30 },
-								animate: { opacity: 1, y: 0 },
-								exit: { opacity: 1, y: 30 },
-							}}
-							transition={{ duration: 0.5, ease: 'anticipate' }}
-							initial="initial"
-							animate="animate"
-						>
-							<div className="my-[2rem]">{children}</div>
-						</motion.div>
-					</AnimatePresence>
-				</div>
+			<div className="m-auto flex min-h-[70vh] w-[90vw] flex-col items-start justify-between overflow-hidden lg:max-w-[70vw]">
+				<AnimatePresence mode="popLayout">
+					<motion.div
+						key={useLocation().pathname}
+						variants={{
+							initial: { opacity: 0, y: -30 },
+							animate: { opacity: 1, y: 0 },
+							exit: { opacity: 1, y: 30 },
+						}}
+						transition={{ duration: 0.5, ease: 'anticipate' }}
+						initial="initial"
+						animate="animate"
+					>
+						<div className="my-[2rem] ">{children}</div>
+					</motion.div>
+				</AnimatePresence>
 			</div>
 			<Footer />
 		</div>
@@ -229,36 +227,36 @@ export function App({}) {
 		<ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
 			<html lang="en" className={clsx(theme)}>
 				<head>
-					{/* <React.Suspense> */}
-					<script
-						async
-						src="https://www.googletagmanager.com/gtag/js?id=G-J1R7CN2HWC"
-					></script>
+					<React.Suspense>
+						{/* <script
+							async
+							src="https://www.googletagmanager.com/gtag/js?id=G-J1R7CN2HWC"
+						></script> */}
 
-					<script
-						async
-						dangerouslySetInnerHTML={{
-							__html: `{
+						{/* <script
+							async
+							dangerouslySetInnerHTML={{
+								__html: `{
 								 window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-J1R7CN2HWC');}`,
-						}}
-					></script>
+							}}
+						></script> */}
 
-					<script
-						async
-						dangerouslySetInnerHTML={{
-							__html: `{
+						{/* <script
+							async
+							dangerouslySetInnerHTML={{
+								__html: `{
 								(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MP2DTZJB');}`,
-						}}
-					></script>
-					{/* </React.Suspense> */}
+							}}
+						></script> */}
+					</React.Suspense>
 					<meta charSet="utf-8" />
 					<meta
 						name="google-site-verification"
@@ -273,17 +271,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					style={{
 						fontFamily: 'system-ui, sans-serif',
 						lineHeight: '1.6',
-						width: 'calc(100vw - 1rem)',
+						margin: 0,
+						// width: 'calc(100vw - 1rem)',
 					}}
+					className="m-auto lg:w-[calc(100vw-1rem)]"
 				>
 					<Layout children={<Outlet />} />
 					<Search />
 					<Clap count={data.count} />
-
 					<ScrollRestoration />
 					<Scripts />
-					{/* <LiveReload /> */}
-
 					<noscript>
 						<iframe
 							src="https://www.googletagmanager.com/ns.html?id=GTM-MP2DTZJB"

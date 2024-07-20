@@ -76,7 +76,7 @@ export default function Page() {
 				))}
 			</div> */}
 
-			<div className="mt-10 flex w-full flex-col gap-3 *:border-b-[1px] *:border-zinc-200/5">
+			<div className="mt-10 flex w-full flex-col gap-3 *:border-zinc-200/5 lg:max-w-[60%]">
 				{data.map(data => {
 					return (
 						<div key={data.id}>

@@ -41,6 +41,7 @@ import { ArrowTopRightIcon, HandIcon } from '@radix-ui/react-icons';
 import IconCloud from '~/components/magicui/icon-cloud';
 import axios from 'axios';
 import { load } from 'cheerio';
+import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 
 const slugs = [
 	'typescript',
@@ -348,6 +349,7 @@ export default function Index() {
 
 			{/* <h2 className="mb-4 text-xl font-bold">Design Works</h2>
 
+
 			<Gallery
 				images={[
 					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd48.png&w=3840&q=75',
@@ -360,6 +362,13 @@ export default function Index() {
 					'https://res.cloudinary.com/dacp0r5b7/image/upload/v1663755016/works/wallpaper1_nceg92.jpg',
 				]}
 			/> */}
+
+			<div className="flex flex-col">
+				<h1 className="mb-4 font-semibold">Learning</h1>
+				<Link to={'/framer'}>
+					Framer Motion <HiOutlineDotsHorizontal />
+				</Link>
+			</div>
 		</div>
 	);
 }

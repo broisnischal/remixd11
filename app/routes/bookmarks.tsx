@@ -49,6 +49,7 @@ export async function action({ request }: ActionFunctionArgs) {
 		parsedBookmark,
 	});
 }
+
 export default function Page() {
 	const { data } = useLoaderData<typeof loader>();
 

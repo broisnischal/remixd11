@@ -130,46 +130,51 @@ export const loader = async (args: LoaderFunctionArgs) => {
 
 	// getting the ip can be different depending on your hosting provider
 
-	const posts = await getPosts();
+	// const posts = await getPosts();
 
-	const ratelimit = new Ratelimit({
-		redis: Redis.fromEnv(args.context.env),
-		limiter: Ratelimit.fixedWindow(10, '60 s'),
-		enableProtection: true,
-		analytics: true,
-	});
+	// const ratelimit = new Ratelimit({
+	// 	redis: Redis.fromEnv(args.context.env),
+	// 	limiter: Ratelimit.fixedWindow(10, '60 s'),
+	// 	enableProtection: true,
+	// 	analytics: true,
+	// });
 
-	const ip =
-		args.request.headers.get('X-Forwarded-For') ??
-		args.request.headers.get('x-real-ip');
+	// const ip =
+	// 	args.request.headers.get('X-Forwarded-For') ??
+	// 	args.request.headers.get('x-real-ip');
 
-	const identifier = ip ?? 'global';
+	// const identifier = ip ?? 'global';
 
-	const { success, limit, remaining, reset } =
-		await ratelimit.limit(identifier);
+	// const { success, limit, remaining, reset } =
+	// 	await ratelimit.limit(identifier);
 
-	const response = await axios.get('https://codeium.com/profile/broisnischal');
+	// const response = await axios.get('https://codeium.com/profile/broisnischal', {
+	// 	headers: {
+	// 		'Cache-Control': 'public, max-age=86400, immutable',
+	// 		// 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate',
+	// 	},
+	// });
 
-	const $ = load(response.data);
-	const svgContent = $('svg.h-full.w-full').parent().html();
+	// const $ = load(response.data);
+	// const svgContent = $('svg.h-full.w-full').parent().html();
 
 	return json(
 		{
-			success,
-			svgContent,
-			posts,
-			limit,
-			remaining,
-			reset,
-			identifier,
+			// success,
+			// svgContent,
+			// posts,
+			// limit,
+			// remaining,
+			// reset,
+			// identifier,
 			url: args.context.env.UPSTASH_REDIS_REST_URL,
 			token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
 		},
 		{
 			headers: {
-				'X-RateLimit-Limit': limit.toString(),
-				'X-RateLimit-Remaining': remaining.toString(),
-				'X-RateLimit-Reset': reset.toString(),
+				// 'X-RateLimit-Limit': limit.toString(),
+				// 'X-RateLimit-Remaining': remaining.toString(),
+				// 'X-RateLimit-Reset': reset.toString(),
 			},
 		},
 	);
@@ -332,14 +337,14 @@ export default function Index() {
 			<hr />
 			<br /> */}
 
-			<div className=" hidden flex-col dark:flex">
+			{/* <div className=" hidden flex-col dark:flex">
 				<h1 className="mb-4 text-2xl font-bold">Don't code, Just Use AI</h1>
 
 				<div
 					className="min-w-[100%]"
 					dangerouslySetInnerHTML={{ __html: data.svgContent! }}
 				></div>
-			</div>
+			</div> */}
 
 			{/* <h2 className="mb-4 text-xl font-bold">Design Works</h2>
 

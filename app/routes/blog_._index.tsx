@@ -8,6 +8,7 @@ export const loader = async () => json(await getPosts());
 
 export default function Component() {
 	const posts = useLoaderData<typeof loader>();
+	console.log(posts.length);
 
 	return (
 		<div className="py-10">

@@ -5,7 +5,7 @@ import { format } from 'timeago.js';
 export const Post = ({ slug, frontmatter }: PostMeta) => {
 	return (
 		<article className="space-y-2 ">
-			<Link to={`/blog/${slug}`}>
+			<Link to={`/blog/${slug.split('/').pop()}`}>
 				<h3 className="text-3xl font-bold hover:underline">
 					{frontmatter.title}
 				</h3>

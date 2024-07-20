@@ -17,7 +17,16 @@ export const getPosts = async (): Promise<PostMeta[]> => {
 		'../routes/blog.*.mdx',
 		{ eager: true },
 	);
+
+	// let values = import.meta.glob<{ frontmatter: Frontmatter }>(
+	// 	'../routes/_blog+/blog.*.mdx',
+	// 	{ eager: true },
+	// );
+
+	// console.log(values);
+
 	const build = await import('virtual:remix/server-build');
+
 	const posts = Object.entries(modules).map(([file, post]) => {
 		let id = file.replace('../', '').replace(/\.mdx$/, '');
 		let slug = build.routes[id].path;

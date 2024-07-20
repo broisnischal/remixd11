@@ -7,6 +7,17 @@ import axios from 'axios';
 import { load } from 'cheerio';
 import { ContributionBox } from '~/components/contribution';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
+import { SiNeovim } from 'react-icons/si';
+import { FaGitAlt } from 'react-icons/fa';
+import { SiEslint } from 'react-icons/si';
+import { MdOutlineKeyboardCommandKey } from 'react-icons/md';
+import { MdOutlineTerminal } from 'react-icons/md';
+import { SiTmux } from 'react-icons/si';
+import { FaDocker } from 'react-icons/fa';
+import { SiPrettier } from 'react-icons/si';
+import { SiEditorconfig } from 'react-icons/si';
+import { RiFlutterFill } from 'react-icons/ri';
+
 import AvatarCircles from '~/components/magicui/avatar-circles';
 
 export async function loader() {
@@ -194,14 +205,14 @@ function MyConfig({ icon, title, link, description, subicon }: MyConfig) {
 
 let configData: MyConfig[] = [
 	{
-		icon: VscFolder,
+		icon: SiNeovim,
 		title: 'Neovim',
 		link: 'aksdjlf',
 		description: 'Neovim config i use commonly in daily base.',
 		subicon: null,
 	},
 	{
-		icon: GrDocumentConfig,
+		icon: FaGitAlt,
 		title: 'Git',
 		link: 'git',
 		description: 'Git config i use commonly in daily base.',
@@ -215,59 +226,66 @@ let configData: MyConfig[] = [
 		subicon: GitBranch,
 	},
 	{
-		icon: GrDocumentConfig,
+		icon: SiEslint,
 		title: 'ESlint',
 		link: 'git',
 		description: 'ESlint config i use commonly in daily base.',
 		subicon: GitBranch,
 	},
 	{
-		icon: GrDocumentConfig,
+		icon: MdOutlineKeyboardCommandKey,
 		title: 'Keybinding',
 		link: 'git',
 		description: 'Keybinding where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
-		icon: GrDocumentConfig,
+		icon: MdOutlineTerminal,
 		title: 'Bash RC',
 		link: 'git',
 		description: 'BashRC where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
-		icon: GrDocumentConfig,
+		icon: MdOutlineTerminal,
 		title: 'ZSH RC',
 		link: 'git',
 		description: 'ZSH where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
-		icon: GrDocumentConfig,
+		icon: SiTmux,
 		title: 'TMUX',
 		link: 'git',
 		description: 'Tmux where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
-		icon: GrDocumentConfig,
+		icon: FaDocker,
 		title: 'Docker',
 		link: 'git',
 		description: 'Docker where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
-		icon: GrDocumentConfig,
+		icon: SiPrettier,
 		title: 'Prettier',
 		link: 'git',
 		description: 'prettier where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
-		icon: GrDocumentConfig,
+		icon: SiEditorconfig,
 		title: 'Editorconfig',
 		link: 'editor',
 		description: 'Editorconfig where it helps to be fast.',
+		subicon: GitBranch,
+	},
+	{
+		icon: RiFlutterFill,
+		title: 'Flutter',
+		link: 'editor',
+		description: 'Flutter config where it helps to be fast.',
 		subicon: GitBranch,
 	},
 ];

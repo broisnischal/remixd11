@@ -1,0 +1,101 @@
+---
+title: Testing
+description: learning about the database roadmap, from beginning to advanced and
+published: 2024-05-15
+meta:
+  title: Database Learning Roadmap
+  description: ✨ Learning about the database roadmap
+featured: true
+---
+
+export const meta = ({ attributes }) => {
+	console.log(attributes);
+
+    return [
+    	{
+    		title: frontmatter.title,
+    	},
+    	{
+    		description: frontmatter.description,
+    	},
+    ];
+
+};
+
+import { format } from 'timeago.js';
+
+# {frontmatter.title}
+
+<small>
+	Published {format(frontmatter.published.replace(/-/g, '/'), 'en_US')}
+</small>
+{/* <small> Time to read: {frontmatter.readingTime}</small> */}
+
+Today, we are going to learn about the database, and covering the beginning to
+advanced database concepts and making the roadmap and path what should you
+learn.
+
+First, we will start with Fundamental Concepts
+
+- Data Types: Understanding different data types and their usage.
+- SQL Basics: CRUD operations, joins, indexing, and normalization.
+- ER Diagrams: Designing relational models.
+
+Ok, now let's move on to Intermediate Concepts
+
+- `Advanced SQL` : Window functions, subqueries, CTEs, and performance tuning.
+- `Migrations`: Schema changes, version control, tools like Flyway or Liquibase.
+- `Transactions`: ACID properties, isolation levels, and concurrency control.
+- `Indexes`: Types of indexes, index tuning, and impact on performance.
+
+Advanced Concepts
+
+- <strong>Database Design</strong>: Normalization vs. denormalization, sharding,
+  and partitioning.
+- <strong>Pooling</strong>: Connection pooling, load balancing, and optimizing
+  connections.
+- <strong>Backup and Recovery</strong>: Strategies, tools, and automated backup
+  processes.
+- <strong>Replication</strong>: Master-slave, master-master, and distributed
+  databases.
+
+Good, you're caught up on the advanced, now moving on to become an expert
+
+> Database Security: Encryption, access control, and auditing.
+>
+> Query Optimization: Execution plans, indexing strategies, and optimizing
+> complex queries.
+>
+> NoSQL Databases: Understanding document, key-value, columnar, and graph
+> databases.
+>
+> High Availability: Clustering, failover strategies, and disaster recovery.
+
+Tools and Technologies that you should know, and how to use them 🚀
+
+- ORMs: Mastering ORMs like Drizzle, Prisma, TypeORM, and Sequelize.
+- Monitoring Tools like pgAdmin, Grafana, Prometheus for performance and health
+  monitoring.
+- Cloud Databases: AWS RDS, Google Cloud SQL, Azure SQL Database, and their
+  specific features.
+
+## Real world application
+
+- Microservices: Designing databases for microservices architectures.
+- Event Sourcing and CQRS: Advanced patterns for high-performance systems.
+- Data Warehousing: Building and maintaining data warehouses, ETL processes.
+
+Learning path :-
+
+1. Master basic SQL and data types.
+2. Dive into advanced SQL and transactions.
+3. Learn about schema migrations and version control.
+4. Study indexing and query optimization.
+5. Explore backup, recovery, and replication.
+6. Gain expertise in database security and high availability.
+7. Experiment with different database technologies and architectures.
+8. Implement real-world projects to solidify knowledge.
+
+<br />
+This roadmap should give you a structured path to becoming proficient in
+database management and development.

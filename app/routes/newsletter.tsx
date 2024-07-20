@@ -1,9 +1,19 @@
-import { Form, Link, useActionData, useFetcher } from '@remix-run/react';
+import {
+	Form,
+	Link,
+	useActionData,
+	useFetcher,
+	useLoaderData,
+} from '@remix-run/react';
 import { Button } from '../components/ui/button';
 import { z } from 'zod';
 import { getFormProps, getInputProps, useForm } from '@conform-to/react';
 import { Input } from '../components/ui/input';
-import { ActionFunctionArgs, json } from '@remix-run/cloudflare';
+import {
+	ActionFunctionArgs,
+	json,
+	LoaderFunctionArgs,
+} from '@remix-run/cloudflare';
 import { drizzle } from 'drizzle-orm/d1';
 import { newsletters } from '~/drizzle/schema.server';
 import { eq } from 'drizzle-orm';
@@ -89,8 +99,18 @@ export async function action({ request, context }: ActionFunctionArgs) {
 	);
 }
 
+export async function loader({ context, request }: LoaderFunctionArgs) {
+	let user = await SessionStorage.readUser(context, request);
+	if (!user) return json(null);
+
+	return json({
+		user,
+	});
+}
+
 export default function NewsLetter() {
 	const newsletter = useFetcher();
+	let data = useLoaderData<typeof loader>();
 	const isPending = useIsPending();
 
 	const isSubmitting = newsletter.formData?.get('_intent') === 'subscribe';
@@ -131,11 +151,31 @@ export default function NewsLetter() {
 							placeholder="Suscribe to our newsletter"
 							{...getInputProps(fields.email, { type: 'email' })}
 						/>
-
 						<input type="hidden" name="_intent" value="subscribe" />
 						<Button disabled={isSubmitting} type="submit" variant="outline">
 							{isSubmitting ? 'Loading...' : 'Subscribe'}
 						</Button>
+					</Form>
+
+					<Form
+						className="flex  gap-2 dark:bg-black dark:text-zinc-100 "
+						method="POST"
+						{...getFormProps(form)}
+					>
+						<Input
+							className="[display:none]"
+							readOnly
+							value={data?.user.email}
+							name="email"
+							// {...getInputProps(fields.email, {
+							// 	type: 'email',
+							// })}
+						/>
+						{data?.user.email && (
+							<Button disabled={isSubmitting} type="submit" variant="outline">
+								{isSubmitting ? 'Loading...' : 'Subscribe via Github Email'}
+							</Button>
+						)}
 					</Form>
 					{fields.email.errors && fields.email.errors.length > 0 && (
 						<p className="text-sm text-red-500">{fields.email.errors[0]}</p>

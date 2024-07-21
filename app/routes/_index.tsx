@@ -335,7 +335,6 @@ export default function Index() {
 					'https://res.cloudinary.com/dacp0r5b7/image/upload/v1663755016/works/wallpaper1_nceg92.jpg',
 				]}
 			/> */}
-			<br />
 			<div>
 				<h1 className="mb-4 text-2xl font-bold">Favourite Dev Stack</h1>
 
@@ -884,14 +883,7 @@ export default function Index() {
 				</div>
 			</div>
 			<br />
-			<br />
-			<div className="flex flex-col">
-				<h1 className="mb-2 text-clip font-bold">What am I Learning :</h1>
-				<Link className="flex items-center gap-2" to={'/framer'}>
-					Framer Motion
-				</Link>
-			</div>
-			<br />
+
 			<div className="flex  items-center gap-2">
 				<h1 className="mb-2 text-xl font-bold">Software I use Everyday :</h1>
 				{[
@@ -912,6 +904,10 @@ export default function Index() {
 					</Badge>
 				))}
 			</div>
+			<br />
+			<Link className="flex items-center " to={'/framer'}>
+				50 Day Framer Motion Challange
+			</Link>
 		</div>
 	);
 }

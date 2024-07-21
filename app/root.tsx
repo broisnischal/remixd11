@@ -401,7 +401,7 @@ export function Clap({ count }: { count: number }) {
 			{/* <div className="round flex cursor-pointer items-center justify-center rounded-lg px-3 py-2">
 				
 			</div> */}
-			<Badge variant={'secondary'}>
+			<Badge variant={'outline'}>
 				<Form
 					ref={ref}
 					method="POST"

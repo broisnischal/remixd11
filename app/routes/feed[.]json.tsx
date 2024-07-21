@@ -24,14 +24,13 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 		home_page_url: `https://${url.host}`,
 		feed_url: `https://${url.host}/feed.json`,
 		description:
-			'A running log of announcements, projects and accomplishments.',
+			'Nischal Dahal is a full-stack developer and a founder of nischal-dahal.com.np',
 		next_url: 'https://bret.io/2017.json',
-		icon: 'https://bret.io/icon-512x512.png',
+		icon: 'https://avatars.githubusercontent.com/u/98168009?v=4',
 		author: {
 			name: 'Nischal Dahal',
 			url: `https://x.com/broisnees`,
-			avatar:
-				'https://gravatar.com/avatar/8d8b82740cb7ca994449cccd1dfdef5f?size=512',
+			avatar: 'https://avatars.githubusercontent.com/u/98168009?v=4',
 		},
 		items: [...list],
 	});

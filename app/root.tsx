@@ -57,9 +57,19 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = () => {
 	return [
 		{ charset: 'utf-8' },
+		{ name: 'robots', content: 'follow, index' },
 		{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 		{ title: 'Nischal Dahal' },
 		{ name: 'description', content: 'Nischal Dahal' },
+	];
+};
+
+export const link: LinksFunction = () => {
+	return [
+		{
+			rel: 'icon',
+			href: 'https://avatars.githubusercontent.com/u/98168009?v=4',
+		},
 	];
 };
 

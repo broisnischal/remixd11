@@ -47,6 +47,7 @@ import { Search } from './routes/search';
 import { Redis } from '@upstash/redis/cloudflare';
 import { Badge } from './components/ui/badge';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
+import { RssIcon } from 'lucide-react';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -83,8 +84,8 @@ const NavBar = () => {
 	const data = useLoaderData<typeof loader>();
 
 	return (
-		<nav className="mt-8 flex ">
-			<div className="mr-auto flex flex-row flex-wrap items-center gap-5">
+		<nav className="mt-8 flex items-center justify-center gap-3 px-4 md:px-0">
+			<div className="mr-auto flex flex-row flex-wrap items-center gap-1 md:gap-5">
 				<RouteLink to={'/'}>home</RouteLink>
 				<RouteLink to={'/learning/year'}>learning</RouteLink>
 				<RouteLink to={'/blog'}>blogs</RouteLink>
@@ -96,6 +97,7 @@ const NavBar = () => {
 				{data.user?.type == 'nees' && (
 					<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
 				)}
+
 				{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 				{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
 				{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
@@ -103,7 +105,8 @@ const NavBar = () => {
 				{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
 				{data.user?.id && <Link to="/auth/logout">Logout</Link>}
 			</div>
-			<div>
+			<div className="flex flex-col items-center justify-center gap-3 md:flex-row">
+				<Search />
 				<ModeToggle />
 			</div>
 		</nav>
@@ -139,6 +142,9 @@ const Footer = () => {
 							d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
 						/>
 					</svg>
+				</Link>
+				<Link to="/feed.json">
+					<RssIcon width={30} height={30} />
 				</Link>
 			</div>
 		</div>
@@ -216,13 +222,25 @@ export function App({}) {
 		<ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
 			<html lang="en" className={clsx(theme)}>
 				<head>
+					<link
+						href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900"
+						rel="stylesheet"
+					/>
+					<link
+						href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+						rel="stylesheet"
+					/>
+					<link
+						href="https://fonts.googleapis.com/css?family=Nunito:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
+						rel="stylesheet"
+					/>
 					<React.Suspense>
-						{/* <script
+						<script
 							async
 							src="https://www.googletagmanager.com/gtag/js?id=G-J1R7CN2HWC"
-						></script> */}
+						></script>
 
-						{/* <script
+						<script
 							async
 							dangerouslySetInnerHTML={{
 								__html: `{
@@ -232,9 +250,9 @@ export function App({}) {
 
   gtag('config', 'G-J1R7CN2HWC');}`,
 							}}
-						></script> */}
+						></script>
 
-						{/* <script
+						<script
 							async
 							dangerouslySetInnerHTML={{
 								__html: `{
@@ -244,13 +262,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MP2DTZJB');}`,
 							}}
-						></script> */}
+						></script>
 					</React.Suspense>
 					<meta charSet="utf-8" />
 					<meta
 						name="google-site-verification"
 						content="edGz_5Jr5VsLbGpxvQ3AZBAKtuEyNBgc_qtdthOPJKU"
 					/>
+					<meta
+						name="viewport"
+						content="width=device-width, initial-scale=1.0"
+					/>
+
 					{/* {title ? <title>{title}</title> : null} */}
 					<Meta />
 					<Links />
@@ -268,7 +291,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-lg ">
 						<Layout children={<Outlet />} />
 					</div>
-					<Search />
 					<Clap count={data.count} />
 					<ScrollRestoration />
 					<Scripts />
@@ -285,119 +307,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		</ThemeProvider>
 	);
 }
-
-// function Document({
-// 	children,
-// 	title,
-// }: {
-// 	children: React.ReactNode;
-// 	title?: string;
-// }) {
-// 	const [theme] = useTheme();
-// 	const data = useLoaderData<typeof loader>();
-
-// 	return (
-// 		<html lang="en" className={clsx(theme)}>
-// 			<head>
-// 				<meta charSet="utf-8" />
-// 				{title ? <title>{title}</title> : null}
-// 				<Meta />
-// 				<Links />
-// 				<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
-// 			</head>
-// 			<body
-// 				className="dark:bg-black dark:text-white"
-// 				style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}
-// 			>
-// 				{children}
-// 				<ScrollRestoration />
-// 				<Scripts />
-// 			</body>
-// 		</html>
-// 	);
-// }
-
-// export function ErrorLayout({
-// 	title,
-// 	description,
-// }: {
-// 	title: string;
-// 	description: string;
-// }) {
-// 	return (
-// 		<div
-// 			className="m-auto my-10 flex max-w-[80vw] flex-col items-start justify-between dark:bg-black dark:text-white"
-// 			style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.6' }}
-// 			// className=""
-// 		>
-// 			<div className="main">
-// 				<NavBar />
-// 				<AnimatePresence mode="popLayout">
-// 					<motion.div
-// 						key={useLocation().pathname}
-// 						variants={{
-// 							initial: { opacity: 0, y: -10 },
-// 							animate: { opacity: 1, y: 0 },
-// 							exit: { opacity: 1, y: 10 },
-// 						}}
-// 						transition={{ duration: 0.2 }}
-// 						initial="initial"
-// 						animate="animate"
-// 					>
-// 						<div className="my-[2rem]">
-// 							<h1>{title}</h1>
-// 							<p>{description}</p>
-// 						</div>
-// 					</motion.div>
-// 				</AnimatePresence>
-// 			</div>
-// 			<Footer />
-// 		</div>
-// 	);
-// }
-
-// export function ErrorBoundary() {
-// 	const error = useRouteError();
-
-// 	const [theme] = useTheme();
-// 	// Log the error to the console
-// 	console.error(error);
-
-// 	if (isRouteErrorResponse(error)) {
-// 		const title = `${error.status} ${error.statusText}`;
-
-// 		let message;
-// 		switch (error.status) {
-// 			case 401:
-// 				message =
-// 					'Oops! Looks like you tried to visit a page that you do not have access to.';
-// 				break;
-// 			case 404:
-// 				message =
-// 					'Oops! Looks like you tried to visit a page that does not exist.';
-// 				break;
-// 			default:
-// 				message = JSON.stringify(error.data, null, 2);
-// 				break;
-// 		}
-
-// 		return (
-// 			// <Document title={title}>
-// 			<ErrorLayout title={title} description={message} />
-// 			// </Document>
-// 		);
-// 	}
-
-// 	return (
-// 		// <Document title="Error!">
-// 		<ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
-// 			<div>
-// 				{/* @ts-expect-error */}
-// 				<h1>Unexpected error</h1> <p>{error.message}</p>
-// 			</div>
-// 		</ThemeProvider>
-// 	);
-// }
 
 export async function action({ context, request }: ActionFunctionArgs) {
 	const formData = await request.formData();

@@ -12,6 +12,8 @@ import { Input } from '../components/ui/input';
 import { getPosts, PostMeta } from '~/.server/posts';
 // import { MovieLink } from '../blog-link'
 import Fuse from 'fuse.js';
+import { SearchCheckIcon, Search as SearchIcon } from 'lucide-react';
+import { Button } from '~/components/ui/button';
 
 // Query the database on the server before the data is replicated to indexeddb
 export async function loader({
@@ -122,13 +124,16 @@ export function Search() {
 
 	return (
 		<>
-			{/* <button
+			<Button
 				onClick={() => {
 					setShow(true);
 				}}
+				variant={'outline'}
+				aria-label="Search"
+				size="icon"
 			>
-				Search
-			</button> */}
+				<SearchIcon />
+			</Button>
 			<div
 				onClick={() => {
 					setShow(false);

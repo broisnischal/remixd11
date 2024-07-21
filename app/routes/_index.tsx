@@ -279,9 +279,9 @@ export default function Index() {
 						<ArrowTopRightIcon /> Blog RSS
 					</a>
 
-					<a href="/blogs/rss" className="flex items-center  gap-2">
+					{/* <a href="/blogs/rss" className="flex items-center  gap-2">
 						<ArrowTopRightIcon /> MyBookmarks RSS
-					</a>
+					</a> */}
 				</div>
 				{/* 
 				<ul className="font-semibold">
@@ -338,7 +338,7 @@ export default function Index() {
 			<div>
 				<h1 className="mb-4 text-2xl font-bold">Favourite Dev Stack</h1>
 
-				<div className="flex max-w-[70%] flex-wrap gap-2">
+				<div className="flex flex-wrap gap-2 md:max-w-[70%]">
 					{[
 						{
 							name: 'Remix',
@@ -352,7 +352,7 @@ export default function Index() {
 									<path
 										d="M141.675 0C218.047 0 256 36.35 256 94.414c0 43.43-26.707 71.753-62.785 76.474 30.455 6.137 48.259 23.604 51.54 58.065l.474 6.337.415 5.924.358 5.542.249 4.179.267 4.93.138 2.814.198 4.47.159 4.222.079 2.427.107 3.888.092 4.446.033 2.148.06 6.226.02 6.496v3.885h-78.758l.004-1.62.028-3.147.047-3.065.136-7.424.035-2.489.027-3.902-.004-2.496-.023-2.617-.032-2.054-.064-2.876-.094-3.05-.125-3.242-.16-3.455-.096-1.813-.16-2.833-.186-2.976-.287-4.204-.247-3.342a116.56 116.56 0 0 0-.247-3.02l-.202-1.934c-2.6-22.827-11.655-32.157-27.163-35.269l-1.307-.245a60.184 60.184 0 0 0-2.704-.408l-1.397-.164c-.236-.025-.472-.05-.71-.073l-1.442-.127-1.471-.103-1.502-.081-1.514-.058-1.544-.039-1.574-.018L0 198.74V136.9h127.62c2.086 0 4.108-.04 6.066-.12l1.936-.095 1.893-.122 1.85-.15c.305-.028.608-.056.909-.086l1.785-.193a86.3 86.3 0 0 0 3.442-.475l1.657-.28c20.709-3.755 31.063-14.749 31.063-36.2 0-24.075-16.867-38.666-50.602-38.666H0V0h141.675ZM83.276 250.785c10.333 0 14.657 5.738 16.197 11.23l.203.79.167.782.109.617.046.306.078.603.058.59.023.29.031.569.01.278.008.54v29.507H0v-46.102h83.276Z"
 										fill="#ffff"
-										fill-rule="nonzero"
+										fillRule="nonzero"
 									/>
 								</svg>
 							),
@@ -413,8 +413,8 @@ export default function Index() {
 											y2="67.556%"
 											id="gradient"
 										>
-											<stop stop-color="#2298BD" offset="0%"></stop>
-											<stop stop-color="#0ED7B5" offset="100%"></stop>
+											<stop stopColor="#2298BD" offset="0%"></stop>
+											<stop stopColor="#0ED7B5" offset="100%"></stop>
 										</linearGradient>
 									</defs>
 									<path
@@ -442,8 +442,8 @@ export default function Index() {
 											y1="11.705%"
 											y2="88.303%"
 										>
-											<stop offset="0%" stop-color="#FF00A0" />
-											<stop offset="100%" stop-color="#9600FF" />
+											<stop offset="0%" stopColor="#FF00A0" />
+											<stop offset="100%" stopColor="#9600FF" />
 										</linearGradient>
 									</defs>
 									<path
@@ -628,7 +628,7 @@ export default function Index() {
 									<path
 										d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z"
 										fill="url(#paint1_linear)"
-										fill-opacity="0.2"
+										fillOpacity="0.2"
 									/>
 									<path
 										d="M45.317 2.07103C48.1765 -1.53037 53.9745 0.442937 54.0434 5.041L54.4849 72.2922H9.83113C1.64038 72.2922 -2.92775 62.8321 2.1655 56.4175L45.317 2.07103Z"
@@ -643,8 +643,8 @@ export default function Index() {
 											y2="71.8295"
 											gradientUnits="userSpaceOnUse"
 										>
-											<stop stop-color="#249361" />
-											<stop offset="1" stop-color="#3ECF8E" />
+											<stop stopColor="#249361" />
+											<stop offset="1" stopColor="#3ECF8E" />
 										</linearGradient>
 										<linearGradient
 											id="paint1_linear"
@@ -655,7 +655,7 @@ export default function Index() {
 											gradientUnits="userSpaceOnUse"
 										>
 											<stop />
-											<stop offset="1" stop-opacity="0" />
+											<stop offset="1" stopOpacity="0" />
 										</linearGradient>
 									</defs>
 								</svg>
@@ -681,7 +681,7 @@ export default function Index() {
 									/>
 									<path
 										d="M127.975 233.537a12.356 12.356 0 0 0 8.763-3.63l57.828-57.823a12.385 12.385 0 0 0 3.605-8.754 12.395 12.395 0 0 0-12.375-12.376 12.4 12.4 0 0 0-8.755 3.606l-49.066 49.061L21.082 96.733a12.392 12.392 0 0 0-17.524 17.524l115.656 115.65a12.347 12.347 0 0 0 8.76 3.63Z"
-										fill-opacity=".5"
+										fillOpacity=".5"
 										fill="#729B1B"
 									/>
 								</svg>
@@ -786,54 +786,54 @@ export default function Index() {
 								</svg>
 							),
 						},
-						{
-							name: 'SwiftUI',
-							svg: (
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									preserveAspectRatio="xMidYMid"
-									viewBox="0 0 256 256"
-									width={12}
-									height={12}
-								>
-									<linearGradient
-										id="a"
-										gradientUnits="userSpaceOnUse"
-										x1="-1845.5"
-										y1="1255.6"
-										x2="-1797.1"
-										y2="981.3"
-										gradientTransform="rotate(180 -846.6 623.3)"
-									>
-										<stop offset="0" contentStyleType="stop-color:#faae42" />
-										<stop offset="1" contentStyleType="stop-color:#ef3e31" />
-									</linearGradient>
-									<path
-										fill="url(#a)"
-										d="M56.9 0h141.8a56.5 56.5 0 0 1 57.4 59.1V197.4a56.6 56.6 0 0 1-57.5 58.6l-144.2-.1a57 57 0 0 1-54-56.8V56.9A56.8 56.8 0 0 1 53.7.2c1-.2 2.1-.2 3.2-.2z"
-									/>
-									<linearGradient
-										id="b"
-										gradientUnits="userSpaceOnUse"
-										x1="130.6"
-										y1="4.1"
-										x2="95.2"
-										y2="204.9"
-									>
-										<stop offset="0" contentStyleType="stop-color:#e39f3a" />
-										<stop offset="1" contentStyleType="stop-color:#d33929" />
-									</linearGradient>
-									<path
-										fill="url(#b)"
-										d="M216 209.4a39 39 0 0 0-11.6-11.9c-4-2.7-8.7-4.4-13.5-4.6-3.4-.2-6.8.4-10 1.6a65.2 65.2 0 0 0-9.3 4.3c-3.5 1.8-7 3.6-10.7 5.1-4.4 1.8-9 3.2-13.7 4.2a89 89 0 0 1-17.8 1.4 120.3 120.3 0 0 1-77.2-30 145.4 145.4 0 0 1-22.8-25.1 46.6 46.6 0 0 1-3-4.7L0 121.2V56.7A56.6 56.6 0 0 1 56.6 0h50.5l37.4 38c84.4 57.4 57.1 120.7 57.1 120.7s24 27 14.4 50.7z"
-									/>
-									<path
-										fill="#FFF"
-										d="M144.7 38c84.4 57.4 57.1 120.7 57.1 120.7s24 27.1 14.3 50.8c0 0-9.9-16.6-26.5-16.6-16 0-25.4 16.6-57.6 16.6-71.7 0-105.6-59.9-105.6-59.9C91 192.1 135.1 162 135.1 162c-29.1-16.9-91-97.7-91-97.7 53.9 45.9 77.2 58 77.2 58-13.9-11.5-52.9-67.7-52.9-67.7 31.2 31.6 93.2 75.7 93.2 75.7C179.2 81.5 144.7 38 144.7 38z"
-									/>
-								</svg>
-							),
-						},
+						// {
+						// 	name: 'SwiftUI',
+						// 	svg: (
+						// 		<svg
+						// 			xmlns="http://www.w3.org/2000/svg"
+						// 			preserveAspectRatio="xMidYMid"
+						// 			viewBox="0 0 256 256"
+						// 			width={12}
+						// 			height={12}
+						// 		>
+						// 			<linearGradient
+						// 				id="a"
+						// 				gradientUnits="userSpaceOnUse"
+						// 				x1="-1845.5"
+						// 				y1="1255.6"
+						// 				x2="-1797.1"
+						// 				y2="981.3"
+						// 				gradientTransform="rotate(180 -846.6 623.3)"
+						// 			>
+						// 				<stop offset="0" contentStyleType="stopColor:#faae42" />
+						// 				<stop offset="1" contentStyleType="stopColor:#ef3e31" />
+						// 			</linearGradient>
+						// 			<path
+						// 				fill="url(#a)"
+						// 				d="M56.9 0h141.8a56.5 56.5 0 0 1 57.4 59.1V197.4a56.6 56.6 0 0 1-57.5 58.6l-144.2-.1a57 57 0 0 1-54-56.8V56.9A56.8 56.8 0 0 1 53.7.2c1-.2 2.1-.2 3.2-.2z"
+						// 			/>
+						// 			<linearGradient
+						// 				id="b"
+						// 				gradientUnits="userSpaceOnUse"
+						// 				x1="130.6"
+						// 				y1="4.1"
+						// 				x2="95.2"
+						// 				y2="204.9"
+						// 			>
+						// 				<stop offset="0" contentStyleType="stopColor:#e39f3a" />
+						// 				<stop offset="1" contentStyleType="stopColor:#d33929" />
+						// 			</linearGradient>
+						// 			<path
+						// 				fill="url(#b)"
+						// 				d="M216 209.4a39 39 0 0 0-11.6-11.9c-4-2.7-8.7-4.4-13.5-4.6-3.4-.2-6.8.4-10 1.6a65.2 65.2 0 0 0-9.3 4.3c-3.5 1.8-7 3.6-10.7 5.1-4.4 1.8-9 3.2-13.7 4.2a89 89 0 0 1-17.8 1.4 120.3 120.3 0 0 1-77.2-30 145.4 145.4 0 0 1-22.8-25.1 46.6 46.6 0 0 1-3-4.7L0 121.2V56.7A56.6 56.6 0 0 1 56.6 0h50.5l37.4 38c84.4 57.4 57.1 120.7 57.1 120.7s24 27 14.4 50.7z"
+						// 			/>
+						// 			<path
+						// 				fill="#FFF"
+						// 				d="M144.7 38c84.4 57.4 57.1 120.7 57.1 120.7s24 27.1 14.3 50.8c0 0-9.9-16.6-26.5-16.6-16 0-25.4 16.6-57.6 16.6-71.7 0-105.6-59.9-105.6-59.9C91 192.1 135.1 162 135.1 162c-29.1-16.9-91-97.7-91-97.7 53.9 45.9 77.2 58 77.2 58-13.9-11.5-52.9-67.7-52.9-67.7 31.2 31.6 93.2 75.7 93.2 75.7C179.2 81.5 144.7 38 144.7 38z"
+						// 			/>
+						// 		</svg>
+						// 	),
+						// },
 						{
 							name: 'Flutter',
 							svg: (
@@ -853,7 +853,7 @@ export default function Index() {
 											id="a"
 										>
 											<stop offset="0%" />
-											<stop stop-opacity="0" offset="100%" />
+											<stop stopOpacity="0" offset="100%" />
 										</linearGradient>
 									</defs>
 									<path
@@ -863,7 +863,7 @@ export default function Index() {
 									<path fill="#00569E" d="m121 280 37 37h97l-85-86z" />
 									<path fill="#00B5F8" d="m72 230 48-48 50 49-49 49z" />
 									<path
-										fill-opacity=".8"
+										fillOpacity=".8"
 										fill="url(#a)"
 										d="m121 280 41-14 4-31z"
 									/>
@@ -884,8 +884,8 @@ export default function Index() {
 			</div>
 			<br />
 
-			<div className="flex  items-center gap-2">
-				<h1 className="mb-2 text-xl font-bold">Software I use Everyday :</h1>
+			<div className="flex flex-wrap items-center gap-2">
+				<h1 className="mb-2 font-nunito ">Software I use Everyday :</h1>
 				{[
 					'Raycast',
 					'Figma',

@@ -140,14 +140,14 @@ export default function NewsLetter() {
 			<div className="flex  flex-col ">
 				<h3 className="mb-4 text-4xl font-bold"> Subscribe to Newsletter</h3>
 
-				<div className="flex flex-col items-start gap-3">
+				<div className="flex flex-col items-start">
 					<Form
-						className="flex items-start justify-center gap-2 dark:bg-black dark:text-zinc-100 "
+						className="flex flex-col items-start justify-center gap-2 dark:bg-black dark:text-zinc-100 md:flex-row "
 						method="POST"
 						{...getFormProps(form)}
 					>
 						<Input
-							className="min-w-[300px]"
+							className="min-w-[300px] md:min-w-[500px]"
 							placeholder="Suscribe to our newsletter"
 							{...getInputProps(fields.email, { type: 'email' })}
 						/>
@@ -181,7 +181,7 @@ export default function NewsLetter() {
 						<p className="text-sm text-red-500">{fields.email.errors[0]}</p>
 					)}
 				</div>
-				<p className="w-full text-left text-xs text-gray-500 dark:text-gray-400">
+				<p className="mt-2 w-full text-left text-xs text-gray-500 dark:text-gray-400">
 					Get notified when I publish something new and unsubscribe at any time.{' '}
 					<Link className="underline underline-offset-2" to="/terms">
 						Terms & Conditions

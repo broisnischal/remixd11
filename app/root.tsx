@@ -48,6 +48,7 @@ import { Redis } from '@upstash/redis/cloudflare';
 import { Badge } from './components/ui/badge';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import { RssIcon } from 'lucide-react';
+import { Button } from './components/ui/button';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -83,33 +84,82 @@ const RouteLink = ({
 const NavBar = () => {
 	const data = useLoaderData<typeof loader>();
 
-	return (
-		<nav className="mt-8 flex items-center justify-center gap-3 px-4 md:px-0">
-			<div className="mr-auto flex flex-row flex-wrap items-center gap-1 md:gap-5">
-				<RouteLink to={'/'}>home</RouteLink>
-				<RouteLink to={'/learning/year'}>learning</RouteLink>
-				<RouteLink to={'/blog'}>blogs</RouteLink>
-				<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-				<RouteLink to={'/overview'}>overview</RouteLink>
-				<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
-				<RouteLink to={'/hire'}>hire me</RouteLink>
-				<RouteLink to={'/newsletter'}>newsletter</RouteLink>
-				{data.user?.type == 'nees' && (
-					<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
-				)}
+	const [isOpen, setIsOpen] = React.useState(false);
 
-				{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
-				{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
-				{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
-				{/* <RouteLink to={'/career'}>projects</RouteLink> */}
-				{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
-				{data.user?.id && <Link to="/auth/logout">Logout</Link>}
-			</div>
-			<div className="flex flex-col items-center justify-center gap-3 md:flex-row">
-				<Search />
-				<ModeToggle />
-			</div>
-		</nav>
+	const toggleMenu = () => {
+		setIsOpen(!isOpen);
+	};
+
+	return (
+		<>
+			<nav className=" mt-8 hidden items-center  justify-center gap-3 px-4 md:flex md:px-0">
+				<div className="mr-auto flex flex-row flex-wrap items-center gap-1 md:gap-5">
+					<RouteLink to={'/'}>home</RouteLink>
+					<RouteLink to={'/learning/year'}>learning</RouteLink>
+					<RouteLink to={'/blog'}>blogs</RouteLink>
+					<RouteLink to={'/guestbook'}>guestbook</RouteLink>
+					<RouteLink to={'/overview'}>overview</RouteLink>
+					<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
+					<RouteLink to={'/hire'}>hire me</RouteLink>
+					<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+					{data.user?.type == 'nees' && (
+						<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
+					)}
+
+					{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
+					{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
+					{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
+					{/* <RouteLink to={'/career'}>projects</RouteLink> */}
+					{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
+					{data.user?.id && <Link to="/auth/logout">Logout</Link>}
+				</div>
+				<div className="flex flex-col items-center justify-center gap-3 md:flex-row">
+					<Search />
+					<ModeToggle />
+				</div>
+			</nav>
+			<nav className=" mt-8  items-center  justify-center gap-3 px-4 md:hidden md:px-0">
+				<div className="flex w-full items-center justify-between md:w-auto">
+					<Link to={'/'} className="text-xl font-bold">
+						Broisnees
+					</Link>
+					<div className="flex flex-row items-center justify-center gap-3 md:flex-row">
+						<ModeToggle />
+						<Search />
+						<Button
+							size={'icon'}
+							variant={'outline'}
+							onClick={toggleMenu}
+							className="text-xl md:hidden"
+						>
+							{isOpen ? '✖' : '☰'}
+						</Button>
+					</div>
+				</div>
+				{isOpen && (
+					<div className="mr-auto mt-2 flex flex-row flex-wrap items-center gap-2 py-2 md:gap-5">
+						<RouteLink to={'/'}>home</RouteLink>
+						<RouteLink to={'/learning/year'}>learning</RouteLink>
+						<RouteLink to={'/blog'}>blogs</RouteLink>
+						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
+						<RouteLink to={'/overview'}>overview</RouteLink>
+						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
+						<RouteLink to={'/hire'}>hire me</RouteLink>
+						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+						{data.user?.type == 'nees' && (
+							<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
+						)}
+
+						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
+						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
+						{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
+						{/* <RouteLink to={'/career'}>projects</RouteLink> */}
+						{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
+						{data.user?.id && <Link to="/auth/logout">Logout</Link>}
+					</div>
+				)}
+			</nav>
+		</>
 	);
 };
 
@@ -143,9 +193,9 @@ const Footer = () => {
 						/>
 					</svg>
 				</Link>
-				<Link to="/feed.json">
+				<a href="/feed.json">
 					<RssIcon width={30} height={30} />
-				</Link>
+				</a>
 			</div>
 		</div>
 	);

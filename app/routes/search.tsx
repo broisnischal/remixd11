@@ -139,7 +139,7 @@ export function Search() {
 					setShow(false);
 				}}
 				hidden={!show}
-				className="fixed left-0 top-0 m-auto h-full w-full overflow-hidden bg-white bg-opacity-90  dark:bg-black dark:bg-opacity-50"
+				className="fixed left-0 top-0 z-20 m-auto h-full w-full overflow-hidden bg-white/50 dark:bg-black/50"
 			>
 				<div
 					className="absolute left-1/2 top-[40vh] min-h-[50vh]  w-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md border-2 bg-white shadow-md dark:bg-black/80"

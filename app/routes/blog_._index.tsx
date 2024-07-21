@@ -11,7 +11,7 @@ export default function Component() {
 	console.log(posts.length);
 
 	return (
-		<div className="py-10">
+		<div className="">
 			<ul className="space-y-8">
 				{posts.map(post => (
 					<li key={post.slug}>

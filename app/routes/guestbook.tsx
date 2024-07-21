@@ -209,7 +209,7 @@ export default function Page() {
 			<h1 className="text-3xl font-bold">Sign My Guestbook</h1>
 			<br />
 			{data?.id ? (
-				<Form method="POST" className="w-[50vw]" {...getFormProps(form)}>
+				<Form method="POST" className="" {...getFormProps(form)}>
 					<HoneypotInputs />
 					<div className="flex gap-4">
 						<Input

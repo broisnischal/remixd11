@@ -83,7 +83,7 @@ const NavBar = () => {
 	const data = useLoaderData<typeof loader>();
 
 	return (
-		<nav className="m-auto mt-8 flex max-w-[90vw] flex-row  lg:flex lg:max-w-[70vw]">
+		<nav className="mt-8 flex ">
 			<div className="mr-auto flex flex-row flex-wrap items-center gap-5">
 				<RouteLink to={'/'}>home</RouteLink>
 				<RouteLink to={'/learning/year'}>learning</RouteLink>
@@ -112,35 +112,24 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="m-auto my-16 flex w-[90vw] flex-col items-center justify-center gap-2 lg:max-w-[70vw] lg:items-start">
-			{/* <NewsLetter /> */}
-			{/* <h2>Copyright © 2022 Nischal Dahal</h2> */}
-			{/* <div className="flex w-full">
-				<h2 className="w-full self-center">
-					Developed by <a href="https://x.com/broisnees">Nischal</a>
-				</h2>
-				<h3 className="w-full text-right text-[12px] ">
-					© {new Date().getFullYear()} Nischal Dahal. All rights reserved.
-				</h3>
-			</div> */}
+		<div className="m-auto my-16">
 			<div className=" flex items-center justify-center gap-4">
 				<Link to="https://github.com/broisnischal">
-					<GitHubLogoIcon width={20} height={20} />
+					<GitHubLogoIcon width={30} height={30} />
 				</Link>
 
 				<Link to="https://discord.gg/@broisnees">
-					<DiscordLogoIcon width={20} height={20} />
+					<DiscordLogoIcon width={30} height={30} />
 				</Link>
 
 				<Link to="https://instagram.com/broisnees">
-					<InstagramLogoIcon width={20} height={20} />
+					<InstagramLogoIcon width={30} height={30} />
 				</Link>
-				<Link to="https://twitter.com/broisnees" className="w-[20px] ">
+				<Link to="https://twitter.com/broisnees">
 					<svg
-						className=" h-[16px] w-[16px]"
 						xmlns="http://www.w3.org/2000/svg"
-						width="1200"
-						height="1227"
+						width="25"
+						height="25"
 						fill="none"
 						viewBox="0 0 1200 1227"
 					>
@@ -158,10 +147,10 @@ const Footer = () => {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div id="" className="">
+		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
-			<div className="m-auto flex min-h-[70vh] w-[90vw] flex-col items-start justify-between overflow-hidden lg:max-w-[70vw]">
+			<div className="my-[2rem] min-h-[60vh] px-5 md:px-0">
 				<AnimatePresence mode="popLayout">
 					<motion.div
 						key={useLocation().pathname}
@@ -174,7 +163,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 						initial="initial"
 						animate="animate"
 					>
-						<div className="my-[2rem] ">{children}</div>
+						{children}
 					</motion.div>
 				</AnimatePresence>
 			</div>
@@ -274,9 +263,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						margin: 0,
 						// width: 'calc(100vw - 1rem)',
 					}}
-					className="m-auto lg:w-[calc(100vw-1rem)]"
+					className=""
 				>
-					<Layout children={<Outlet />} />
+					<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-lg ">
+						<Layout children={<Outlet />} />
+					</div>
 					<Search />
 					<Clap count={data.count} />
 					<ScrollRestoration />

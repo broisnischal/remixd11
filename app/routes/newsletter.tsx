@@ -137,17 +137,17 @@ export default function NewsLetter() {
 					Tuned for the latest releases and features.
 				</p>
 			</div> */}
-			<div className="mt-10 flex   w-full max-w-full flex-col gap-6 ">
-				<h3 className="text-4xl font-bold"> Subscribe to Newsletter</h3>
+			<div className="flex  flex-col ">
+				<h3 className="mb-4 text-4xl font-bold"> Subscribe to Newsletter</h3>
 
-				<div className="flex flex-col gap-3">
+				<div className="flex flex-col items-start gap-3">
 					<Form
-						className="flex items-center justify-center gap-2 dark:bg-black dark:text-zinc-100 "
+						className="flex items-start justify-center gap-2 dark:bg-black dark:text-zinc-100 "
 						method="POST"
 						{...getFormProps(form)}
 					>
 						<Input
-							className="min-w-[30vw]"
+							className="min-w-[300px]"
 							placeholder="Suscribe to our newsletter"
 							{...getInputProps(fields.email, { type: 'email' })}
 						/>
@@ -163,7 +163,7 @@ export default function NewsLetter() {
 						{...getFormProps(form)}
 					>
 						<Input
-							className="[display:none]"
+							className="hidden"
 							readOnly
 							value={data?.user.email}
 							name="email"

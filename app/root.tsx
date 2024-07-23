@@ -100,11 +100,6 @@ export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
 				'@type': 'WebPage',
 				name: 'Nischal Dahal | Broisnees ',
 				description: 'Developer, Creator, Editor, and Designer.',
-				jobTitle: 'Full Stack Developer',
-				telephone: '+977 9741844523',
-				genderName: 'male',
-				nationality: 'Nepal',
-				address: 'Kathmandu, Nepal',
 				url: `${url.origin}${location.pathname}`,
 				mainEntity: [
 					{

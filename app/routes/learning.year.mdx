@@ -1,6 +1,29 @@
 ---
-title: Learning
+title: Learning Year 2024
+description:
+  My plan for 2024 to complete the projects and learning about new stuffs.
+meta:
+  title: Learning Year 2024
+  description:
+    My plan for 2024 to complete the projects and learning about new stuffs.
 ---
+
+import { MetaCreator } from '../utils/meta';
+
+export const meta = ({ attributes }) => {
+
+    const metadata = MetaCreator({
+    	title: frontmatter.title,
+    	description: frontmatter.description,
+    });
+
+    console.log(attributes);
+
+    return [
+    	...metadata,
+    ];
+
+};
 
 <div>
 	<h1>RUST</h1>
@@ -197,11 +220,13 @@ title: Learning
 	</ul>
 </div>
 
-
 <div>
 	<h1>Others</h1>
 	<ul>
-		<li>RSS feed : Implement , takes the feed from other site, i collect, then i have a news publisher, consumer, now i will bookmark</li>
+		<li>
+			RSS feed : Implement , takes the feed from other site, i collect, then i
+			have a news publisher, consumer, now i will bookmark
+		</li>
 		<li></li>
 	</ul>
 </div>

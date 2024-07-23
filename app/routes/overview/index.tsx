@@ -21,6 +21,43 @@ import { RiFlutterFill } from 'react-icons/ri';
 import AvatarCircles from '~/components/magicui/avatar-circles';
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 import { useState } from 'react';
+import { MetaFunction } from '@remix-run/cloudflare';
+import { MetaCreator } from '~/utils/meta';
+
+export const meta: MetaFunction = () => {
+	const url = new URL('https://nischal-dahal.com.np');
+
+	const metadata = MetaCreator({
+		title: 'Nischal Dahal | Broisnees ',
+		description:
+			'Nischal Dahal | list of project, configs and my contributions are listed out here.',
+		image: '/ogimg.png',
+		url: `${url.origin}${location.pathname}`,
+		others: [
+			{
+				name: 'author',
+				content: 'Nischal Dahal',
+			},
+			{
+				name: 'keywords',
+				content:
+					'Nischal, Dahal, Nischal Dahal, Nepal Developer, Broisnees, neeswebservices, nees, best developer, best programmer, from nepal',
+			},
+			{
+				tagName: 'link',
+				rel: 'canonical',
+				href: `${url.origin}${location.pathname}`,
+			},
+			{
+				tagName: 'link',
+				rel: 'icon',
+				href: 'https://avatars.githubusercontent.com/u/98168009?v=4',
+			},
+		],
+	});
+
+	return [...metadata];
+};
 
 export async function loader() {
 	type Level = 0 | 1 | 2 | 3 | 4;

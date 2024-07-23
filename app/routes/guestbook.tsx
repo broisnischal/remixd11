@@ -3,6 +3,7 @@ import {
 	ActionFunctionArgs,
 	json,
 	LoaderFunctionArgs,
+	MetaFunction,
 } from '@remix-run/cloudflare';
 import {
 	ClientActionFunctionArgs,
@@ -30,6 +31,7 @@ import { useProfanity } from '~/utils';
 import { desc } from 'drizzle-orm';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis/cloudflare';
+import { MetaCreator } from '~/utils/meta';
 
 const GuestBookSchema = z.object({
 	message: z
@@ -74,6 +76,52 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 
 	return json({ data, guestbooks });
 }
+export const meta: MetaFunction<typeof loader> = ({
+	data,
+	matches,
+	location,
+}) => {
+	const url = new URL('https://nischal-dahal.com.np');
+
+	const metadata = MetaCreator({
+		title: `Nischal Dahal | Guestbook `,
+		description: `${
+			data &&
+			data.data &&
+			data.guestbooks
+				.slice(0, 5)
+				.map(post => post.name)
+				.join(', ')
+		} - Leave a message for me, and I will be happy to read it.`,
+		image: '/ogimg.png',
+		url: `${url.origin}${location.pathname}`,
+		others: [
+			{
+				name: 'author',
+				content: 'Nischal Dahal',
+			},
+			{
+				name: 'keywords',
+				content:
+					data &&
+					data.data &&
+					data.guestbooks.map(post => post.name).join(', '),
+			},
+			{
+				tagName: 'link',
+				rel: 'canonical',
+				href: `${url.origin}${location.pathname}`,
+			},
+			{
+				tagName: 'link',
+				rel: 'icon',
+				href: 'https://avatars.githubusercontent.com/u/98168009?v=4',
+			},
+		],
+	});
+
+	return [...metadata];
+};
 
 export async function action({ request, context }: ActionFunctionArgs) {
 	let formData = await request.formData();

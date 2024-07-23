@@ -2,13 +2,10 @@ import { Outlet } from '@remix-run/react';
 
 export default function Component() {
 	return (
-		<div className="">
-			<div className="prose py-10 dark:prose-invert lg:prose-xl">
+		<div>
+			<div className="prose dark:prose-invert lg:prose-xl prose-h1:text-3xl">
 				<Outlet />
 			</div>
 		</div>
-		// <div className="prose p-10">
-		// 	<Outlet />
-		// </div>
 	);
 }

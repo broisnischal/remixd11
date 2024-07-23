@@ -60,7 +60,8 @@ export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
 
 	const metadata = MetaCreator({
 		title: 'Nischal Dahal | Broisnees ',
-		description: 'Developer, Creator, Editor, and Designer.',
+		description:
+			'an 18-year-old Developer, Creator, and Designer from Nepal, Crafting enchanting web experiences that seamlessly blend form and function. On mission to develop software that not only performs flawlessly but also delights users with its intuitive design and thoughtful details.',
 		image: '/ogimg.png',
 		url: `${url.origin}${location.pathname}`,
 		others: [
@@ -77,6 +78,11 @@ export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
 				tagName: 'link',
 				rel: 'canonical',
 				href: `${url.origin}${location.pathname}`,
+			},
+			{
+				tagName: 'link',
+				rel: 'icon',
+				href: 'https://avatars.githubusercontent.com/u/98168009?v=4',
 			},
 			// {
 			// 	httpEquiv: 'Content-Security-Policy',

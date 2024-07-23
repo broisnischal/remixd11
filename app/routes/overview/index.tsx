@@ -24,7 +24,7 @@ import { useState } from 'react';
 import { MetaFunction } from '@remix-run/cloudflare';
 import { MetaCreator } from '~/utils/meta';
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction = ({ location }) => {
 	const url = new URL('https://nischal-dahal.com.np');
 
 	const metadata = MetaCreator({

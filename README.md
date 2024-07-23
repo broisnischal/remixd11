@@ -2,4 +2,4 @@
 
 --
 
-Created with ❤️ by [Nischal](https://nees.pages.dev)
+Created with ❤️ by [Nischal](https://nischal-dahal.com.np)

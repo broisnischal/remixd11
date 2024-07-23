@@ -1,14 +1,13 @@
 export const loader = () => {
-	const url = new URL('https://nees.pages.dev');
+	const url = new URL('https://nischal-dahal.com.np');
 
 	let host = url.host;
 
-	const robotText = `User-agent: Googlebot
-Disallow: /nogooglebot/
+	const robotText = `
 User-agent: *
 Allow: /
 Disallow: /dashboard
-Disallow: /auth/login$
+Disallow: /auth/signin
 Sitemap: https://${host}/sitemap.xml`;
 
 	return new Response(robotText, {

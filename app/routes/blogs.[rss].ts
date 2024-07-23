@@ -19,13 +19,13 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 	let rss = new RSS({
 		title: 'Blogs by Nischal Dahal',
 		description: 'The complete list of articles wrote by @broisnees.',
-		link: 'https://nees.pages.dev/blogs.rss',
+		link: 'https://nischal-dahal.com.np/blogs.rss',
 	});
 
 	for (let article of posts) {
 		let link = new URL(
 			`/blog/${article.slug}`,
-			'https://nees.pages.dev',
+			'https://nischal-dahal.com.np',
 		).toString();
 		rss.addItem({
 			guid: article.slug,

@@ -63,6 +63,11 @@ export const meta: MetaFunction<typeof loader> = ({
 					],
 				},
 			},
+			{
+				tagName: 'meta',
+				name: 'robots',
+				content: 'index, follow',
+			},
 		],
 	});
 

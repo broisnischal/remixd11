@@ -10,7 +10,7 @@ const sessionStorage = createCookieSessionStorage({
 		httpOnly: true,
 		sameSite: 'lax',
 		secrets: ['s3cr3t'],
-		...(isProduction ? { domain: 'nees.pages.dev', secure: true } : {}),
+		...(isProduction ? { domain: 'nischal-dahal.com.np', secure: true } : {}),
 	},
 });
 

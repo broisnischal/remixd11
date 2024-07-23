@@ -15,6 +15,7 @@ import { Badge } from '~/components/ui/badge';
 import { TextHighlight } from '~/components/ui/highlight';
 
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
+import { MetaCreator } from '~/utils/meta';
 
 const slugs = [
 	'typescript',
@@ -49,36 +50,114 @@ const slugs = [
 	'figma',
 ];
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
+	const url = new URL('https://nischal-dahal.com.np');
+
+	const metadata = MetaCreator({
+		title: 'Nischal Dahal | Broisnees ',
+		description: 'Developer, Creator, Editor, and Designer.',
+		image: '/ogimg.png',
+		url: `${url.origin}${location.pathname}`,
+		others: [
+			{
+				name: 'author',
+				content: 'Nischal Dahal',
+			},
+			{
+				name: 'keywords',
+				content:
+					'Nischal, Dahal, Nischal Dahal, Nepal Developer, Broisnees, neeswebservices, nees, best developer, best programmer, from nepal',
+			},
+			{
+				tagName: 'link',
+				rel: 'canonical',
+				href: `${url.origin}${location.pathname}`,
+			},
+		],
+	});
+
 	return [
-		{ title: 'Nischal Dahal | broisnees' },
-		{
-			property: 'og:title',
-			content: 'Nischal Dahal | broisnees',
-		},
-		{
-			name: 'description',
-			content:
-				'Nischal Dahal | broisnees, a blog by Nischal Dahal (https://nees.pages.dev) and the Personal Portfolio of Nischal Dahal',
-		},
+		...metadata,
 		{
 			'script:ld+json': {
 				'@context': 'https://schema.org',
-				'@type': 'BreadcrumbList',
-				itemListElement: [
+				'@type': 'WebPage',
+				name: 'Nischal Dahal | Broisnees ',
+				description: 'Developer, Creator, Editor, and Designer.',
+				jobTitle: 'Full Stack Developer',
+				telephone: '+977 9741844523',
+				genderName: 'male',
+				nationality: 'Nepal',
+				address: 'Kathmandu, Nepal',
+				mainEntity: [
 					{
-						'@type': 'ListItem',
-						position: 1,
+						'@type': 'Blog',
 						name: 'Blog',
-						item: 'https://www.nees.pages.com/blog',
+						url: `${url.origin}/blog`,
+						description: 'Collection of blog posts',
 					},
 					{
-						'@type': 'ListItem',
-						position: 2,
-						name: 'Learning',
-						item: 'https://www.nees.pages.com/learning/year',
+						'@type': 'Overview',
+						name: 'Developer Experience',
+						url: `${url.origin}/overview`,
+						description: 'Showcase of development skills and experience',
+					},
+					{
+						'@type': 'Bookmarks',
+						name: 'Bookmarks',
+						url: `${url.origin}/bookmarks`,
+						description: 'Detailed narrative of the Heroku experience',
+					},
+					{
+						'@type': 'Guestbook',
+						name: 'Work',
+						url: 'https://nischal-dahal.com.np/guestbook',
+						description: 'Portfolio of completed work and projects',
 					},
 				],
+				publisher: {
+					'@type': 'Organization',
+					name: 'Nischal Dahal',
+					logo: {
+						'@type': 'ImageObject',
+						url: `${url.origin}/images/og.png`,
+					},
+				},
+				breadcrumb: {
+					'@type': 'BreadcrumbList',
+					itemListElement: [
+						{
+							'@type': 'ListItem',
+							position: 1,
+							name: 'Home',
+							item: `${url.origin}`,
+						},
+						{
+							'@type': 'ListItem',
+							position: 2,
+							name: 'Blog',
+							item: `${url.origin}/blog`,
+						},
+						{
+							'@type': 'ListItem',
+							position: 3,
+							name: 'Developer Experience',
+							item: `${url.origin}/overview`,
+						},
+						{
+							'@type': 'ListItem',
+							position: 4,
+							name: 'Newsletter',
+							item: `${url.origin}/newsletter`,
+						},
+						{
+							'@type': 'ListItem',
+							position: 5,
+							name: 'Learning',
+							item: `${url.origin}/learning/year`,
+						},
+					],
+				},
 			},
 		},
 	];

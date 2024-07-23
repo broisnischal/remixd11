@@ -49,18 +49,129 @@ import { Badge } from './components/ui/badge';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import { RssIcon } from 'lucide-react';
 import { Button } from './components/ui/button';
+import { MetaCreator } from './utils/meta';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
 };
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
+	const url = new URL('https://nischal-dahal.com.np');
+
+	const metadata = MetaCreator({
+		title: 'Nischal Dahal | Broisnees ',
+		description: 'Developer, Creator, Editor, and Designer.',
+		image: '/ogimg.png',
+		url: `${url.origin}${location.pathname}`,
+		others: [
+			{
+				name: 'author',
+				content: 'Nischal Dahal',
+			},
+			{
+				name: 'keywords',
+				content:
+					'Nischal, Dahal, Nischal Dahal, Nepal Developer, Broisnees, neeswebservices, nees, best developer, best programmer, from nepal',
+			},
+			{
+				tagName: 'link',
+				rel: 'canonical',
+				href: `${url.origin}${location.pathname}`,
+			},
+			// {
+			// 	httpEquiv: 'Content-Security-Policy',
+			// },
+		],
+	});
+
 	return [
+		...metadata,
+		{
+			'script:ld+json': {
+				'@context': 'https://schema.org',
+				'@type': 'WebPage',
+				name: 'Nischal Dahal | Broisnees ',
+				description: 'Developer, Creator, Editor, and Designer.',
+				jobTitle: 'Full Stack Developer',
+				telephone: '+977 9741844523',
+				genderName: 'male',
+				nationality: 'Nepal',
+				address: 'Kathmandu, Nepal',
+				url: `${url.origin}${location.pathname}`,
+				mainEntity: [
+					{
+						'@type': 'Blog',
+						name: 'Blog',
+						url: `${url.origin}/blog`,
+						description: 'Collection of blog posts',
+					},
+					{
+						'@type': 'Overview',
+						name: 'Developer Experience',
+						url: `${url.origin}/overview`,
+						description: 'Showcase of development skills and experience',
+					},
+					{
+						'@type': 'Bookmarks',
+						name: 'Bookmarks',
+						url: `${url.origin}/bookmarks`,
+						description: 'Detailed narrative of the Heroku experience',
+					},
+					{
+						'@type': 'Guestbook',
+						name: 'Work',
+						url: 'https://nischal-dahal.com.np/guestbook',
+						description: 'Portfolio of completed work and projects',
+					},
+				],
+				publisher: {
+					'@type': 'Organization',
+					name: 'Nischal Dahal',
+					logo: {
+						'@type': 'ImageObject',
+						url: `${url.origin}/images/og.png`,
+					},
+				},
+				breadcrumb: {
+					'@type': 'BreadcrumbList',
+					itemListElement: [
+						{
+							'@type': 'ListItem',
+							position: 1,
+							name: 'Home',
+							item: `${url.origin}`,
+						},
+						{
+							'@type': 'ListItem',
+							position: 2,
+							name: 'Blog',
+							item: `${url.origin}/blog`,
+						},
+						{
+							'@type': 'ListItem',
+							position: 3,
+							name: 'Developer Experience',
+							item: `${url.origin}/overview`,
+						},
+						{
+							'@type': 'ListItem',
+							position: 4,
+							name: 'Newsletter',
+							item: `${url.origin}/newsletter`,
+						},
+						{
+							'@type': 'ListItem',
+							position: 5,
+							name: 'Learning',
+							item: `${url.origin}/learning/year`,
+						},
+					],
+				},
+			},
+		},
+
 		{ charset: 'utf-8' },
-		{ name: 'robots', content: 'follow, index' },
 		{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-		{ title: 'Nischal Dahal' },
-		{ name: 'description', content: 'Nischal Dahal' },
 	];
 };
 
@@ -348,7 +459,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					}}
 					className=""
 				>
-					<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-lg ">
+					<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-md">
 						<Layout children={<Outlet />} />
 					</div>
 					<Clap count={data.count} />

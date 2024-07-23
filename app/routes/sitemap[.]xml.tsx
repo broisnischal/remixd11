@@ -34,6 +34,14 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 	// );
 
 	sitemap.append(new URL('/', url), new Date());
+	sitemap.append(new URL('/blog', url), new Date());
+	sitemap.append(new URL('/guestbook', url), new Date());
+	sitemap.append(new URL('/bookmarks', url), new Date());
+	sitemap.append(new URL('/overview', url), new Date());
+	sitemap.append(new URL('/hire', url), new Date());
+	sitemap.append(new URL('/newsletter', url), new Date());
+	sitemap.append(new URL('/chat', url), new Date());
+	sitemap.append(new URL('/learning/year', url), new Date());
 	// sitemap.append(new URL('/blogs', url), lastArticleDate);
 	// sitemap.append(new URL('/tutorials', url), lastTutorialDate);
 	// sitemap.append(new URL('/bookmarks', url), lastBookmarkDate);

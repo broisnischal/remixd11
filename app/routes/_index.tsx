@@ -54,9 +54,10 @@ export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
 	const url = new URL('https://nischal-dahal.com.np');
 
 	const metadata = MetaCreator({
-		title: 'Nischal Dahal | Broisnees ',
+		title:
+			'Nischal Dahal | Broisnees - Software Engineer & Full Stack Developer | Designer | Learner',
 		description:
-			'an 18-year-old Developer, Creator, and Designer from Nepal, Crafting enchanting web experiences that seamlessly blend form and function. On mission to develop software that not only performs flawlessly but also delights users with its intuitive design and thoughtful details.',
+			'an 18-year-old Developer, Creator, and Designer from Nepal, mostly like RUST, Typescript, Go, I love Crafting enchanting web experiences that seamlessly blend form and function. Best developer in Nepal.',
 		image: '/ogimg.png',
 		url: `${url.origin}${location.pathname}`,
 		others: [

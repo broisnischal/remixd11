@@ -31,6 +31,7 @@ import {
 	TwitterLogoIcon,
 	DiscordLogoIcon,
 	InstagramLogoIcon,
+	LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
 
 import {
@@ -59,9 +60,10 @@ export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
 	const url = new URL('https://nischal-dahal.com.np');
 
 	const metadata = MetaCreator({
-		title: 'Nischal Dahal | Broisnees ',
+		title:
+			'Nischal Dahal | Broisnees - Software Engineer & Full Stack Developer | Designer | Learner  ',
 		description:
-			'an 18-year-old Developer, Creator, and Designer from Nepal, Crafting enchanting web experiences that seamlessly blend form and function. On mission to develop software that not only performs flawlessly but also delights users with its intuitive design and thoughtful details.',
+			'an 18-year-old Developer, Creator, and Designer from Nepal, mostly like RUST, Typescript, Go, I love Crafting enchanting web experiences that seamlessly blend form and function. Best developer in Nepal.',
 		image: '/ogimg.png',
 		url: `${url.origin}${location.pathname}`,
 		others: [
@@ -294,18 +296,18 @@ const Footer = () => {
 	return (
 		<div className="m-auto my-16">
 			<div className=" flex items-center justify-center gap-4">
-				<Link to="https://github.com/broisnischal">
+				<Link target="_blank" to="https://github.com/broisnischal">
 					<GitHubLogoIcon width={30} height={30} />
 				</Link>
 
-				<Link to="https://discord.gg/@broisnees">
+				<Link target="_blank" to="https://discord.gg/@broisnees">
 					<DiscordLogoIcon width={30} height={30} />
 				</Link>
 
-				<Link to="https://instagram.com/broisnees">
+				<Link target="_blank" to="https://instagram.com/broisnees">
 					<InstagramLogoIcon width={30} height={30} />
 				</Link>
-				<Link to="https://twitter.com/broisnees">
+				<Link target="_blank" to="https://twitter.com/broisnees">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="25"
@@ -319,6 +321,9 @@ const Footer = () => {
 							d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
 						/>
 					</svg>
+				</Link>
+				<Link target="_blank" to="https://www.linkedin.com/in/neeswebservices/">
+					<LinkedInLogoIcon width={30} height={30} />
 				</Link>
 				<a href="/feed.json">
 					<RssIcon width={30} height={30} />
@@ -334,7 +339,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 			<ProgessBar />
 			<NavBar />
 			<div className="my-[2rem] min-h-[60vh] px-5 md:px-0">
-				<AnimatePresence mode="popLayout">
+				{/* <AnimatePresence mode="popLayout">
 					<motion.div
 						key={useLocation().pathname}
 						variants={{
@@ -346,9 +351,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 						initial="initial"
 						animate="animate"
 					>
-						{children}
 					</motion.div>
-				</AnimatePresence>
+				</AnimatePresence> */}
+				{children}
 			</div>
 			<Footer />
 		</div>

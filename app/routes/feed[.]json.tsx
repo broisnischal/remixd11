@@ -10,7 +10,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 	const list = posts.reduce((acc, post) => {
 		acc.push({
 			id: `${post.slug}`,
-			url: `https://${url.host}/${post.slug}`,
+			url: `https://${url.host}/blog/${post.slug}`,
 			title: post.frontmatter.title,
 			content_text: post.frontmatter.description,
 			date_published: post.frontmatter.published,

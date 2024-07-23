@@ -10,6 +10,7 @@ import { RSS } from '~/modules/rss.server';
 
 export async function loader({ request, context }: LoaderFunctionArgs) {
 	// void new Logger(context).http(request);
+	const url = new URL(request.url);
 
 	// let db = database(context.db);
 	// let articles = await Article.list({ db });
@@ -23,10 +24,8 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 	});
 
 	for (let article of posts) {
-		let link = new URL(
-			`/blog/${article.slug}`,
-			'https://nischal-dahal.com.np',
-		).toString();
+		// let link = new URL(`/blog/${article.slug}`, ).toString();
+		let link = `${url.host}/blog/${article.slug}`;
 		rss.addItem({
 			guid: article.slug,
 			title: article.slug.replace(/-/g, ' '),

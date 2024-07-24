@@ -31,6 +31,7 @@ export default defineConfig({
 				// v3_throwAbortReason: true,
 			},
 			ssr: true,
+
 			routes(defineRoutes) {
 				return flatRoutes('routes', defineRoutes);
 			},

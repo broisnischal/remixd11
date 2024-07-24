@@ -1,54 +1,43 @@
-import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
-import { json } from '@remix-run/cloudflare';
-import { Link, useLoaderData } from '@remix-run/react';
-import {
-	ContextMenu,
-	ContextMenuContent,
-	ContextMenuItem,
-	ContextMenuTrigger,
-} from '~/components/ui/context-menu';
-
-// import { Redis } from '@upstash/redis';
-
+import type { MetaFunction } from '@remix-run/cloudflare';
+import { Link } from '@remix-run/react';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import { Badge } from '~/components/ui/badge';
 import { TextHighlight } from '~/components/ui/highlight';
 
-import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { MetaCreator } from '~/utils/meta';
 
-const slugs = [
-	'typescript',
-	'javascript',
-	'dart',
-	'java',
-	'react',
-	'flutter',
-	'android',
-	'html5',
-	'css3',
-	'nodedotjs',
-	'express',
-	'nextdotjs',
-	'prisma',
-	'amazonaws',
-	'postgresql',
-	'firebase',
-	'nginx',
-	'vercel',
-	'testinglibrary',
-	'jest',
-	'cypress',
-	'docker',
-	'git',
-	'jira',
-	'github',
-	'gitlab',
-	'visualstudiocode',
-	'androidstudio',
-	'sonarqube',
-	'figma',
-];
+// const slugs = [
+// 	'typescript',
+// 	'javascript',
+// 	'dart',
+// 	'java',
+// 	'react',
+// 	'flutter',
+// 	'android',
+// 	'html5',
+// 	'css3',
+// 	'nodedotjs',
+// 	'express',
+// 	'nextdotjs',
+// 	'prisma',
+// 	'amazonaws',
+// 	'postgresql',
+// 	'firebase',
+// 	'nginx',
+// 	'vercel',
+// 	'testinglibrary',
+// 	'jest',
+// 	'cypress',
+// 	'docker',
+// 	'git',
+// 	'jira',
+// 	'github',
+// 	'gitlab',
+// 	'visualstudiocode',
+// 	'androidstudio',
+// 	'sonarqube',
+// 	'figma',
+// ];
 
 export const meta: MetaFunction = ({ location }) => {
 	const url = new URL('https://nischal-dahal.com.np');

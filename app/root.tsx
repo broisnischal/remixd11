@@ -11,6 +11,8 @@ import {
 	InstagramLogoIcon,
 	LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
+import { isRouteErrorResponse, useRouteError } from '@remix-run/react';
+
 import {
 	Await,
 	defer,
@@ -203,7 +205,7 @@ const RouteLink = ({
 };
 
 const NavBar = () => {
-	const { user } = useLoaderData<typeof loader>();
+	const data = useLoaderData<typeof loader>();
 
 	const [isOpen, setIsOpen] = React.useState(false);
 
@@ -230,7 +232,7 @@ const NavBar = () => {
 					{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 					{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
 					<React.Suspense>
-						<Await resolve={user}>
+						<Await resolve={data.user}>
 							{user => (
 								<>
 									{user?.type == 'nees' && (
@@ -283,7 +285,7 @@ const NavBar = () => {
 						{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 						{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
 						<React.Suspense>
-							<Await resolve={user}>
+							<Await resolve={data.user}>
 								{user => (
 									<>
 										{user?.type == 'nees' && (
@@ -434,85 +436,44 @@ export function App() {
 	const [theme] = useTheme();
 
 	return (
-		<ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
-			<html lang="en" className={clsx(theme)}>
-				<head>
-					{/* <React.Suspense> */}
-					{/* <script
-							async
-							src="https://www.googletagmanager.com/gtag/js?id=G-J1R7CN2HWC"
-						></script> */}
-
-					{/* <script
-							async
-							dangerouslySetInnerHTML={{
-								__html: `{
-								 window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-J1R7CN2HWC');}`,
-							}}
-						></script> */}
-
-					{/* <script
-							async
-							dangerouslySetInnerHTML={{
-								__html: `{
-								(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MP2DTZJB');}`,
-							}}
-						></script> */}
-					{/* </React.Suspense> */}
-					<meta charSet="utf-8" />
-					<meta charSet="UTF-8" />
-					<meta
-						name="google-site-verification"
-						content="edGz_5Jr5VsLbGpxvQ3AZBAKtuEyNBgc_qtdthOPJKU"
-					/>
-					<meta
-						name="viewport"
-						content="width=device-width, initial-scale=1.0"
-					/>
-
-					{/* {title ? <title>{title}</title> : null} */}
-					<Meta />
-					<Links />
-					<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
-				</head>
-				<body
-					style={{
-						fontFamily: 'system-ui, sans-serif',
-						lineHeight: '1.6',
-						margin: 0,
-						// width: 'calc(100vw - 1rem)',
-					}}
-					className=""
-				>
-					<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-md">
-						<Layout children={<Outlet />} />
-					</div>
-					<React.Suspense>
-						<Await resolve={data.count}>
-							{count => <Clap count={count as number} />}
-						</Await>
-					</React.Suspense>
-					<ScrollRestoration />
-					<Scripts />
-					{/* <noscript>
-						<iframe
-							src="https://www.googletagmanager.com/ns.html?id=GTM-MP2DTZJB"
-							height="0"
-							width="0"
-							style={{ display: 'none', visibility: 'hidden' }}
-						></iframe>
-					</noscript> */}
-				</body>
-			</html>
-		</ThemeProvider>
+		<html lang="en" className={clsx(theme)}>
+			<head>
+				<meta charSet="UTF-8" />
+				<meta
+					name="google-site-verification"
+					content="edGz_5Jr5VsLbGpxvQ3AZBAKtuEyNBgc_qtdthOPJKU"
+				/>
+				{/* <link rel="alternate" type="application/rss+xml" href="/srss" /> */}
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<meta name="MobileOptimized" content="320" />
+				<meta name="pagename" content="Nischal Dahal" />
+				<meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+				<meta name="mobile-web-app-capable" content="yes" />
+				<Meta />
+				<Links />
+				<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
+			</head>
+			<body
+				style={{
+					fontFamily: 'system-ui, sans-serif',
+					lineHeight: '1.6',
+					margin: 0,
+					// width: 'calc(100vw - 1rem)',
+				}}
+				className=""
+			>
+				<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-md">
+					<Layout children={<Outlet />} />
+				</div>
+				<React.Suspense>
+					<Await resolve={data.count}>
+						{count => <Clap count={count as number} />}
+					</Await>
+				</React.Suspense>
+				<ScrollRestoration />
+				<Scripts />
+			</body>
+		</html>
 	);
 }
 
@@ -586,4 +547,57 @@ export function Clap({ count }: { count: number }) {
 			</Badge>
 		</div>
 	);
+}
+
+export function ErrorBoundary() {
+	const error = useRouteError();
+
+	if (isRouteErrorResponse(error)) {
+		return (
+			<div
+				className="flex flex-col items-center justify-center"
+				style={{
+					fontFamily: 'system-ui, sans-serif',
+					lineHeight: '1.6',
+					margin: 20,
+
+					// width: 'calc(100vw - 1rem)',
+				}}
+			>
+				<h1>
+					{error.status} {error.statusText}
+				</h1>
+				<p>{error.data}</p>
+			</div>
+		);
+	} else if (error instanceof Error) {
+		return (
+			<div
+				className="flex flex-col items-center justify-center"
+				style={{
+					fontFamily: 'system-ui, sans-serif',
+					lineHeight: '1.6',
+					margin: 20,
+					// width: 'calc(100vw - 1rem)',
+				}}
+			>
+				<h1>Error</h1>
+				<p>{error.message}</p>
+				<pre>{import.meta.env.DEV && error.stack}</pre>
+			</div>
+		);
+	} else {
+		return (
+			<h1
+				style={{
+					fontFamily: 'system-ui, sans-serif',
+					lineHeight: '1.6',
+					margin: 0,
+					// width: 'calc(100vw - 1rem)',
+				}}
+			>
+				Unknown Error
+			</h1>
+		);
+	}
 }

@@ -4,13 +4,17 @@ import type {
 	LoaderFunctionArgs,
 	MetaFunction,
 } from '@remix-run/cloudflare';
-import X from '~/assets/x.svg?react';
 
+import {
+	DiscordLogoIcon,
+	GitHubLogoIcon,
+	InstagramLogoIcon,
+	LinkedInLogoIcon,
+} from '@radix-ui/react-icons';
 import {
 	Form,
 	Link,
 	Links,
-	LiveReload,
 	Meta,
 	NavLink,
 	Outlet,
@@ -20,20 +24,14 @@ import {
 	useActionData,
 	useLoaderData,
 	useLocation,
-	useNavigation,
 	useSubmit,
 } from '@remix-run/react';
 import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
-import {
-	GitHubLogoIcon,
-	TwitterLogoIcon,
-	DiscordLogoIcon,
-	InstagramLogoIcon,
-	LinkedInLogoIcon,
-} from '@radix-ui/react-icons';
 
+import { Redis } from '@upstash/redis/cloudflare';
+import { RssIcon } from 'lucide-react';
+import { GoHeart, GoHeartFill } from 'react-icons/go';
 import {
 	PreventFlashOnWrongTheme,
 	ThemeProvider,
@@ -41,15 +39,12 @@ import {
 } from 'remix-themes';
 import ProgessBar from './components/global-progess';
 import { ModeToggle } from './components/toggle-mode';
+import { Badge } from './components/ui/badge';
+import { Button } from './components/ui/button';
+import { Search } from './routes/search';
+import { SessionStorage } from './services/session.server';
 import { themeSessionResolver } from './session.server';
 import styles from './tailwind.css?url';
-import { SessionStorage } from './services/session.server';
-import { Search } from './routes/search';
-import { Redis } from '@upstash/redis/cloudflare';
-import { Badge } from './components/ui/badge';
-import { GoHeart, GoHeartFill } from 'react-icons/go';
-import { RssIcon } from 'lucide-react';
-import { Button } from './components/ui/button';
 import { MetaCreator } from './utils/meta';
 
 export const links: LinksFunction = () => {
@@ -291,18 +286,34 @@ const Footer = () => {
 	return (
 		<div className="m-auto my-16">
 			<div className=" flex items-center justify-center gap-4">
-				<Link target="_blank" to="https://github.com/broisnischal">
+				<Link
+					aria-label="Github"
+					target="_blank"
+					to="https://github.com/broisnischal"
+				>
 					<GitHubLogoIcon width={30} height={30} />
 				</Link>
 
-				<Link target="_blank" to="https://discord.gg/@broisnees">
+				<Link
+					aria-label="Discord"
+					target="_blank"
+					to="https://discord.gg/@broisnees"
+				>
 					<DiscordLogoIcon width={30} height={30} />
 				</Link>
 
-				<Link target="_blank" to="https://instagram.com/broisnees">
+				<Link
+					aria-label="Instagram"
+					target="_blank"
+					to="https://instagram.com/broisnees"
+				>
 					<InstagramLogoIcon width={30} height={30} />
 				</Link>
-				<Link target="_blank" to="https://twitter.com/broisnees">
+				<Link
+					aria-label="Twitter"
+					target="_blank"
+					to="https://twitter.com/broisnees"
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="25"
@@ -317,7 +328,11 @@ const Footer = () => {
 						/>
 					</svg>
 				</Link>
-				<Link target="_blank" to="https://www.linkedin.com/in/neeswebservices/">
+				<Link
+					aria-label="LinkedIn"
+					target="_blank"
+					to="https://www.linkedin.com/in/neeswebservices/"
+				>
 					<LinkedInLogoIcon width={30} height={30} />
 				</Link>
 				<a href="/feed.json">
@@ -391,7 +406,7 @@ export default function AppWithProviders() {
 	);
 }
 
-export function App({}) {
+export function App() {
 	const data = useLoaderData<typeof loader>();
 	const [theme] = useTheme();
 
@@ -399,25 +414,13 @@ export function App({}) {
 		<ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
 			<html lang="en" className={clsx(theme)}>
 				<head>
-					<link
-						href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900"
-						rel="stylesheet"
-					/>
-					<link
-						href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
-						rel="stylesheet"
-					/>
-					<link
-						href="https://fonts.googleapis.com/css?family=Nunito:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
-						rel="stylesheet"
-					/>
-					<React.Suspense>
-						<script
+					{/* <React.Suspense> */}
+					{/* <script
 							async
 							src="https://www.googletagmanager.com/gtag/js?id=G-J1R7CN2HWC"
-						></script>
+						></script> */}
 
-						<script
+					{/* <script
 							async
 							dangerouslySetInnerHTML={{
 								__html: `{
@@ -427,9 +430,9 @@ export function App({}) {
 
   gtag('config', 'G-J1R7CN2HWC');}`,
 							}}
-						></script>
+						></script> */}
 
-						<script
+					{/* <script
 							async
 							dangerouslySetInnerHTML={{
 								__html: `{
@@ -439,9 +442,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MP2DTZJB');}`,
 							}}
-						></script>
-					</React.Suspense>
+						></script> */}
+					{/* </React.Suspense> */}
 					<meta charSet="utf-8" />
+					<meta charSet="UTF-8" />
 					<meta
 						name="google-site-verification"
 						content="edGz_5Jr5VsLbGpxvQ3AZBAKtuEyNBgc_qtdthOPJKU"
@@ -471,14 +475,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<Clap count={data.count} />
 					<ScrollRestoration />
 					<Scripts />
-					<noscript>
+					{/* <noscript>
 						<iframe
 							src="https://www.googletagmanager.com/ns.html?id=GTM-MP2DTZJB"
 							height="0"
 							width="0"
 							style={{ display: 'none', visibility: 'hidden' }}
 						></iframe>
-					</noscript>
+					</noscript> */}
 				</body>
 			</html>
 		</ThemeProvider>
@@ -516,7 +520,7 @@ export function Clap({ count }: { count: number }) {
 	return (
 		<div className="fixed inset-x-0 bottom-0 left-5 mb-4">
 			{/* <div className="round flex cursor-pointer items-center justify-center rounded-lg px-3 py-2">
-				
+
 			</div> */}
 			<Badge variant={'outline'}>
 				<Form

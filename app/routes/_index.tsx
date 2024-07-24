@@ -165,114 +165,112 @@ export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
 	];
 };
 
-export const loader = async (args: LoaderFunctionArgs) => {
-	// const kafka = new Kafka({
-	// 	url: args.context.env.UPSTASH_KAFKA_REST_URL,
-	// 	username: args.context.env.UPSTASH_KAFKA_REST_USERNAME,
-	// 	password: args.context.env.UPSTASH_KAFKA_REST_PASSWORD,
-	// });
+// export const loader = async (args: LoaderFunctionArgs) => {
+// const kafka = new Kafka({
+// 	url: args.context.env.UPSTASH_KAFKA_REST_URL,
+// 	username: args.context.env.UPSTASH_KAFKA_REST_USERNAME,
+// 	password: args.context.env.UPSTASH_KAFKA_REST_PASSWORD,
+// });
 
-	// const p = kafka.producer();
-	// const message = { hello: 'world' }; // Objects will get serialized using `JSON.stringify`
-	// const response = await p.produce('TOPIC', message);
-	// console.log(response);
-	// const response2 = await p.produce('TOPIC', message, {
-	// 	partition: 1,
-	// 	timestamp: 4567,
-	// 	key: 'KEY',
-	// 	headers: [{ key: 'TRACE-ID', value: '32h67jk' }],
-	// });
+// const p = kafka.producer();
+// const message = { hello: 'world' }; // Objects will get serialized using `JSON.stringify`
+// const response = await p.produce('TOPIC', message);
+// console.log(response);
+// const response2 = await p.produce('TOPIC', message, {
+// 	partition: 1,
+// 	timestamp: 4567,
+// 	key: 'KEY',
+// 	headers: [{ key: 'TRACE-ID', value: '32h67jk' }],
+// });
 
-	// getting the ip can be different depending on your hosting provider
+// getting the ip can be different depending on your hosting provider
 
-	// const posts = await getPosts();
+// const posts = await getPosts();
 
-	// const ratelimit = new Ratelimit({
-	// 	redis: Redis.fromEnv(args.context.env),
-	// 	limiter: Ratelimit.fixedWindow(10, '60 s'),
-	// 	enableProtection: true,
-	// 	analytics: true,
-	// });
+// const ratelimit = new Ratelimit({
+// 	redis: Redis.fromEnv(args.context.env),
+// 	limiter: Ratelimit.fixedWindow(10, '60 s'),
+// 	enableProtection: true,
+// 	analytics: true,
+// });
 
-	// const ip =
-	// 	args.request.headers.get('X-Forwarded-For') ??
-	// 	args.request.headers.get('x-real-ip');
+// const ip =
+// 	args.request.headers.get('X-Forwarded-For') ??
+// 	args.request.headers.get('x-real-ip');
 
-	// const identifier = ip ?? 'global';
+// const identifier = ip ?? 'global';
 
-	// const { success, limit, remaining, reset } =
-	// 	await ratelimit.limit(identifier);
+// const { success, limit, remaining, reset } =
+// 	await ratelimit.limit(identifier);
 
-	// const response = await axios.get('https://codeium.com/profile/broisnischal', {
-	// 	headers: {
-	// 		'Cache-Control': 'public, max-age=86400, immutable',
-	// 		// 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate',
-	// 	},
-	// });
+// const response = await axios.get('https://codeium.com/profile/broisnischal', {
+// 	headers: {
+// 		'Cache-Control': 'public, max-age=86400, immutable',
+// 		// 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate',
+// 	},
+// });
 
-	// const $ = load(response.data);
-	// const svgContent = $('svg.h-full.w-full').parent().html();
+// const $ = load(response.data);
+// const svgContent = $('svg.h-full.w-full').parent().html();
 
-	return json(
-		{
-			// success,
-			// svgContent,
-			// posts,
-			// limit,
-			// remaining,
-			// reset,
-			// identifier,
-			// url: args.context.env.UPSTASH_REDIS_REST_URL,
-			// token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
-		},
-		{
-			headers: {
-				// 'X-RateLimit-Limit': limit.toString(),
-				// 'X-RateLimit-Remaining': remaining.toString(),
-				// 'X-RateLimit-Reset': reset.toString(),
-			},
-		},
-	);
-	// return json({
-	// 	url: args.context.env.UPSTASH_REDIS_REST_URL,
-	// 	token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
-	// });
+// return json(
+// 	{
+// 		// success,
+// 		// svgContent,
+// 		// posts,
+// 		// limit,
+// 		// remaining,
+// 		// reset,
+// 		// identifier,
+// 		// url: args.context.env.UPSTASH_REDIS_REST_URL,
+// 		// token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
+// 	},
+// 	{
+// 		headers: {
+// 			// 'X-RateLimit-Limit': limit.toString(),
+// 			// 'X-RateLimit-Remaining': remaining.toString(),
+// 			// 'X-RateLimit-Reset': reset.toString(),
+// 		},
+// 	},
+// );
+// return json({
+// 	url: args.context.env.UPSTASH_REDIS_REST_URL,
+// 	token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
+// });
 
-	// const ratelimit = new Ratelimit({
-	// 	redis: new Redis({
-	// 		url: args.context.env.UPSTASH_REDIS_REST_URL,
-	// 		token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
-	// 	}),
-	// 	limiter: Ratelimit.fixedWindow(10, '60 s'),
-	// 	analytics: true,
-	// });
+// const ratelimit = new Ratelimit({
+// 	redis: new Redis({
+// 		url: args.context.env.UPSTASH_REDIS_REST_URL,
+// 		token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
+// 	}),
+// 	limiter: Ratelimit.fixedWindow(10, '60 s'),
+// 	analytics: true,
+// });
 
-	// 	const markdown = `
-	// 	# Learning about the code
+// 	const markdown = `
+// 	# Learning about the code
 
-	// Remix timte
+// Remix timte
 
-	// \`\`\`ts
+// \`\`\`ts
 
-	// import { json } from '@remix-run/cloudflare';
+// import { json } from '@remix-run/cloudflare';
 
-	// export const loader = async () => {
-	//     return json({ hello: 'world' });
-	// };
+// export const loader = async () => {
+//     return json({ hello: 'world' });
+// };
 
-	// export default function Index() {
-	//     return <div>hello</div>;
-	// }
+// export default function Index() {
+//     return <div>hello</div>;
+// }
 
-	// \`\`\`
-	// `;
+// \`\`\`
+// `;
 
-	// 	return json({ content: parse(markdown) });
-};
+// 	return json({ content: parse(markdown) });
+// };
 
 export default function Index() {
-	const data = useLoaderData<typeof loader>();
-
 	return (
 		<div>
 			<div className="flex flex-col items-start  gap-3">
@@ -364,7 +362,7 @@ export default function Index() {
 						<ArrowTopRightIcon /> MyBookmarks RSS
 					</a> */}
 				</div>
-				{/* 
+				{/*
 				<ul className="font-semibold">
 					<li>I ❤️ Remix.</li>
 					<li>I am a Typescript Mini Wizard 🚀</li>
@@ -993,114 +991,114 @@ export default function Index() {
 	);
 }
 
-const Gallery = ({ images }: { images: string[] }) => {
-	return (
-		// [&>div>img]:grayscale
-		<div className="[*]:h-full group:hover:[&>*]:opacity-75 grid h-[100vh] grid-cols-6 gap-4 *:border-[1px]  ">
-			<ContextMenu>
-				<ContextMenuTrigger className="border-1 col-span-3 overflow-hidden rounded-md bg-slate-400">
-					<div className=" h-full w-full overflow-hidden">
-						<img
-							src={images[1]}
-							alt="image"
-							className=" h-full w-full object-cover object-center"
-						/>
-					</div>
-				</ContextMenuTrigger>
-				<ContextMenuContent>
-					<ContextMenuItem
-						onClick={() => {
-							const imageUrl = images[1];
-							const link = document.createElement('a');
-							link.href = imageUrl;
-							link.target = '_blank';
-							link.download = 'downloaded-image.jpg';
-							document.body.appendChild(link);
-							link.click();
-							document.body.removeChild(link);
-						}}
-					>
-						Download
-					</ContextMenuItem>
-					<ContextMenuItem>Share</ContextMenuItem>
-					{/* <ContextMenuItem>Team</ContextMenuItem> */}
-					{/* <ContextMenuItem>Subscription</ContextMenuItem> */}
-				</ContextMenuContent>
-			</ContextMenu>
+// const Gallery = ({ images }: { images: string[] }) => {
+// 	return (
+// 		// [&>div>img]:grayscale
+// 		<div className="[*]:h-full group:hover:[&>*]:opacity-75 grid h-[100vh] grid-cols-6 gap-4 *:border-[1px]  ">
+// 			<ContextMenu>
+// 				<ContextMenuTrigger className="border-1 col-span-3 overflow-hidden rounded-md bg-slate-400">
+// 					<div className=" h-full w-full overflow-hidden">
+// 						<img
+// 							src={images[1]}
+// 							alt="image"
+// 							className=" h-full w-full object-cover object-center"
+// 						/>
+// 					</div>
+// 				</ContextMenuTrigger>
+// 				<ContextMenuContent>
+// 					<ContextMenuItem
+// 						onClick={() => {
+// 							const imageUrl = images[1];
+// 							const link = document.createElement('a');
+// 							link.href = imageUrl;
+// 							link.target = '_blank';
+// 							link.download = 'downloaded-image.jpg';
+// 							document.body.appendChild(link);
+// 							link.click();
+// 							document.body.removeChild(link);
+// 						}}
+// 					>
+// 						Download
+// 					</ContextMenuItem>
+// 					<ContextMenuItem>Share</ContextMenuItem>
+// 					{/* <ContextMenuItem>Team</ContextMenuItem> */}
+// 					{/* <ContextMenuItem>Subscription</ContextMenuItem> */}
+// 				</ContextMenuContent>
+// 			</ContextMenu>
 
-			<div className="border-1 col-span-1  overflow-hidden rounded-md bg-slate-400">
-				<img
-					src={images[2]}
-					alt="image"
-					className=" h-full w-full object-cover object-center"
-				/>
-			</div>
-			<div className="border-1 col-span-2 overflow-hidden rounded-md bg-slate-400">
-				<img
-					src={images[3]}
-					alt="image"
-					className=" h-full w-full object-cover object-center"
-				/>
-			</div>
-			<div className="border-1 col-span-2 overflow-hidden rounded-md bg-slate-400">
-				<img
-					src={images[4]}
-					alt="image"
-					className=" h-full w-full object-cover object-center"
-				/>
-			</div>
-			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
-				<img
-					src={images[0]}
-					alt="image"
-					className=" h-full w-full object-cover object-center"
-				/>
-			</div>
-			<div className="border-1 col-span-1  overflow-hidden rounded-md bg-slate-400">
-				<img
-					src={images[5]}
-					alt="image"
-					className=" object-fit h-full w-full object-center"
-				/>
-			</div>
-			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
-				<img
-					src={images[6]}
-					alt="image"
-					className=" h-full w-full object-cover object-center"
-				/>
-			</div>
-			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
-				<img
-					src={images[7]}
-					alt="image"
-					className=" h-full w-full object-cover object-center"
-				/>
-			</div>
+// 			<div className="border-1 col-span-1  overflow-hidden rounded-md bg-slate-400">
+// 				<img
+// 					src={images[2]}
+// 					alt="image"
+// 					className=" h-full w-full object-cover object-center"
+// 				/>
+// 			</div>
+// 			<div className="border-1 col-span-2 overflow-hidden rounded-md bg-slate-400">
+// 				<img
+// 					src={images[3]}
+// 					alt="image"
+// 					className=" h-full w-full object-cover object-center"
+// 				/>
+// 			</div>
+// 			<div className="border-1 col-span-2 overflow-hidden rounded-md bg-slate-400">
+// 				<img
+// 					src={images[4]}
+// 					alt="image"
+// 					className=" h-full w-full object-cover object-center"
+// 				/>
+// 			</div>
+// 			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
+// 				<img
+// 					src={images[0]}
+// 					alt="image"
+// 					className=" h-full w-full object-cover object-center"
+// 				/>
+// 			</div>
+// 			<div className="border-1 col-span-1  overflow-hidden rounded-md bg-slate-400">
+// 				<img
+// 					src={images[5]}
+// 					alt="image"
+// 					className=" object-fit h-full w-full object-center"
+// 				/>
+// 			</div>
+// 			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
+// 				<img
+// 					src={images[6]}
+// 					alt="image"
+// 					className=" h-full w-full object-cover object-center"
+// 				/>
+// 			</div>
+// 			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
+// 				<img
+// 					src={images[7]}
+// 					alt="image"
+// 					className=" h-full w-full object-cover object-center"
+// 				/>
+// 			</div>
 
-			{/* <div className="border-1 col-span-5 row-span-1 overflow-hidden rounded-md bg-slate-400">
-				<img
-					src={images[1]}
-					alt="image"
-					className=" h-full w-full object-cover object-center"
-				/>
-			</div>
-			<div className="border-1 col-span-5 row-span-1 overflow-hidden rounded-md bg-slate-400">
-				<img
-					src={images[3]}
-					alt="image"
-					className=" h-full w-full object-cover object-center"
-				/>
-			</div> */}
+// 			{/* <div className="border-1 col-span-5 row-span-1 overflow-hidden rounded-md bg-slate-400">
+// 				<img
+// 					src={images[1]}
+// 					alt="image"
+// 					className=" h-full w-full object-cover object-center"
+// 				/>
+// 			</div>
+// 			<div className="border-1 col-span-5 row-span-1 overflow-hidden rounded-md bg-slate-400">
+// 				<img
+// 					src={images[3]}
+// 					alt="image"
+// 					className=" h-full w-full object-cover object-center"
+// 				/>
+// 			</div> */}
 
-			{/* {images.map((image, index) => (
-				<img
-					src={image}
-					className={`col-span-2 row-span-${(index % 4) + 1}`}
-					alt="image" className='object-cove h-full w-full object-center"'
-					key={image}
-				/>
-			))} */}
-		</div>
-	);
-}; // [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] [grid-template-rows:masonry]
+// 			{/* {images.map((image, index) => (
+// 				<img
+// 					src={image}
+// 					className={`col-span-2 row-span-${(index % 4) + 1}`}
+// 					alt="image" className='object-cove h-full w-full object-center"'
+// 					key={image}
+// 				/>
+// 			))} */}
+// 		</div>
+// 	);
+// }; // [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] [grid-template-rows:masonry]

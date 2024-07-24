@@ -23,8 +23,6 @@ export const getPosts = async (): Promise<PostMeta[]> => {
 	// 	{ eager: true },
 	// );
 
-	// console.log(values);
-
 	const build = await import('virtual:remix/server-build');
 
 	const posts = Object.entries(modules).map(([file, post]) => {

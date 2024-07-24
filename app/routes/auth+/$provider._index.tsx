@@ -11,10 +11,6 @@ export async function action({ request, params, context }: ActionFunctionArgs) {
 
 	// let redirectTo = (formData.get('redirectTo') as string) || '/';
 
-	// console.log(redirectTo);
-
-	console.log(provider);
-
 	let auth = new Auth(context);
 	return await auth.authenticate(provider, request, {
 		successRedirect: `/auth/${provider}/callback`,

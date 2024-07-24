@@ -24,7 +24,6 @@ export async function action({ request, context }: ActionFunctionArgs) {
 	});
 
 	const dataStr = JSON.stringify(paths);
-	console.log(dataStr);
 	const blob = new Blob([dataStr], { type: 'application/json' });
 
 	const save = await db
@@ -49,8 +48,6 @@ export async function loader({ context }: LoaderFunctionArgs) {
 		})
 		.from(schema.canvas)
 		.limit(1);
-
-	console.log(canvas);
 
 	return { canvas };
 }
@@ -203,7 +200,6 @@ const DrawableCanvas: React.FC = () => {
 				method="post"
 				onSubmit={e => {
 					e.preventDefault();
-					console.log('saving');
 					// submit(
 					// 	{
 					// 		paths: JSON.stringify(paths),

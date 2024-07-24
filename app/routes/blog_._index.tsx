@@ -76,7 +76,6 @@ export const meta: MetaFunction<typeof loader> = ({
 
 export default function Component() {
 	const posts = useLoaderData<typeof loader>();
-	console.log(posts.length);
 
 	return (
 		<div className="">

@@ -50,7 +50,7 @@ const slugs = [
 	'figma',
 ];
 
-export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
+export const meta: MetaFunction = ({ location }) => {
 	const url = new URL('https://nischal-dahal.com.np');
 
 	const metadata = MetaCreator({
@@ -314,10 +314,11 @@ export default function Index() {
 				<div className="flex  flex-col items-start gap-4 ">
 					{/* <div className="desc flex w-[80%] flex-col items-start gap-4"> */}
 					<p>
-						an 18-year-old prodigy from Nepal, Crafting enchanting web
-						experiences that seamlessly blend form and function. On mission to
-						develop software that not only performs flawlessly but also delights
-						users with its intuitive design and thoughtful details.
+						Passionate software engineer and full stack developer with expertise
+						in backend development and DevOps. Skilled in a wide array of
+						technologies, frameworks, databases, and tools. Experienced content
+						creator and editor. Committed to building efficient, secure, and
+						innovative solutions.
 					</p>
 
 					<div className="flex items-center justify-center gap-2 text-sm">
@@ -327,7 +328,7 @@ export default function Index() {
 							),
 						)}
 					</div>
-
+					{/* 
 					<p>
 						Driven by an insatiable curiosity, I constantly refine my craft
 						through hands-on coding and in-depth research. Each project is an
@@ -338,7 +339,7 @@ export default function Index() {
 					<p>
 						Journey in the tech realm is defined by a relentless pursuit of
 						excellence, crafting sophisticated systems that drive the future.
-					</p>
+					</p> */}
 					{/* </div> */}
 					{/* <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden bg-background px-20  ">
 						<IconCloud iconSlugs={slugs} />
@@ -964,7 +965,7 @@ export default function Index() {
 			<br />
 
 			<div className="flex flex-wrap items-center gap-2">
-				<h1 className="mb-2 font-nunito ">Software I use Everyday :</h1>
+				<h1 className="mb-1 font-nunito ">Software Tools :</h1>
 				{[
 					'Raycast',
 					'Figma',

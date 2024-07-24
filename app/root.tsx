@@ -12,6 +12,8 @@ import {
 	LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
 import {
+	Await,
+	defer,
 	Form,
 	Link,
 	Links,
@@ -201,7 +203,7 @@ const RouteLink = ({
 };
 
 const NavBar = () => {
-	const data = useLoaderData<typeof loader>();
+	const { user } = useLoaderData<typeof loader>();
 
 	const [isOpen, setIsOpen] = React.useState(false);
 
@@ -221,16 +223,24 @@ const NavBar = () => {
 					<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
 					<RouteLink to={'/hire'}>hire me</RouteLink>
 					<RouteLink to={'/newsletter'}>newsletter</RouteLink>
-					{data.user?.type == 'nees' && (
-						<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
-					)}
 
 					{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 					{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
 					{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
 					{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 					{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
-					{data.user?.id && <Link to="/auth/logout">Logout</Link>}
+					<React.Suspense>
+						<Await resolve={user}>
+							{user => (
+								<>
+									{user?.type == 'nees' && (
+										<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
+									)}
+									{user?.id && <Link to="/auth/logout">Logout</Link>}
+								</>
+							)}
+						</Await>
+					</React.Suspense>
 				</div>
 				<div className="flex flex-col items-center justify-center gap-3 md:flex-row">
 					<Search />
@@ -265,16 +275,25 @@ const NavBar = () => {
 						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
 						<RouteLink to={'/hire'}>hire me</RouteLink>
 						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
-						{data.user?.type == 'nees' && (
-							<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
-						)}
+						{}
 
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
 						{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
 						{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 						{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
-						{data.user?.id && <Link to="/auth/logout">Logout</Link>}
+						<React.Suspense>
+							<Await resolve={user}>
+								{user => (
+									<>
+										{user?.type == 'nees' && (
+											<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
+										)}
+										{user?.id && <Link to="/auth/logout">Logout</Link>}
+									</>
+								)}
+							</Await>
+						</React.Suspense>
 					</div>
 				)}
 			</nav>
@@ -335,7 +354,7 @@ const Footer = () => {
 				>
 					<LinkedInLogoIcon width={30} height={30} />
 				</Link>
-				<a href="/feed.json">
+				<a href="/feed.json" aria-label="RSS" target="_blank">
 					<RssIcon width={30} height={30} />
 				</a>
 			</div>
@@ -373,17 +392,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 // Return the theme from the session storage using the loader
 export async function loader({ request, context }: LoaderFunctionArgs) {
 	const { getTheme } = await themeSessionResolver(request);
-	let data = await SessionStorage.returnUser(context, request);
-
+	let data = SessionStorage.returnUser(context, request);
 	const redis = Redis.fromEnv(context.env);
+	const count = redis.get('counter');
 
-	const count = (await redis.get('counter')) as number;
+	// return {
+	// 	theme: getTheme(),
+	// 	count: count || 0,
+	// 	user: data,
+	// };
 
-	return {
+	return defer({
 		theme: getTheme(),
 		count: count || 0,
 		user: data,
-	};
+	});
 }
 
 // export default function App() {
@@ -472,7 +495,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-md">
 						<Layout children={<Outlet />} />
 					</div>
-					<Clap count={data.count} />
+					<React.Suspense>
+						<Await resolve={data.count}>
+							{count => <Clap count={count as number} />}
+						</Await>
+					</React.Suspense>
 					<ScrollRestoration />
 					<Scripts />
 					{/* <noscript>

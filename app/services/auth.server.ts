@@ -61,8 +61,6 @@ export class Auth {
 					const { provider, id, emails, _json } = profile;
 					// getLoadContext(context.);
 
-					console.log(provider, id, emails, _json);
-
 					const { login, avatar_url, name } = _json;
 
 					let [u] = await db
@@ -74,7 +72,6 @@ export class Auth {
 					let updatedName = !_json.name ? 'Anonymous' : _json.name;
 
 					if (u) {
-						console.log('alredy a user');
 						return u;
 					} else {
 						let user = await db
@@ -94,8 +91,6 @@ export class Auth {
 							.from(users)
 							.where(eq(schema.users.email, emails[0].value))
 							.execute();
-
-						console.log('new a user');
 
 						return single;
 					}

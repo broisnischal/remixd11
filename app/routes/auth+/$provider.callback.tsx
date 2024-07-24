@@ -22,8 +22,6 @@ export async function loader({ request, params, context }: LoaderFunctionArgs) {
 
 	let headers = new Headers();
 
-	console.log(request);
-
 	headers.append('Set-Cookie', await sessionStorage.commit(session));
 	headers.append('Set-Cookie', await auth.clear(request));
 

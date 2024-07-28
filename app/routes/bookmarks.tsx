@@ -80,7 +80,7 @@ export default function Page() {
 				{data.map(data => {
 					return (
 						<div key={data.id}>
-							<a href={data.href} target="_blank" ref={'noopener'}>
+							<a href={data.href} target="_blank" rel="noreferrer">
 								{data.title}
 								<br />
 								{data.description && (

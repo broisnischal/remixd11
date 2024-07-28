@@ -363,7 +363,7 @@ export default function Index() {
 								</h1>
 								<small>
 									{new Date(post.frontmatter.published).toLocaleDateString()}
-									<br />
+									<br />f
 								</small>
 							</div>
 							<p className="rounded-md font-normal" key={post.slug}>

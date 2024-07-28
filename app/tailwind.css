@@ -93,8 +93,13 @@ html {
 		/* @apply underline decoration-cyan-700 hover:decoration-cyan-900; */
 	}
 
+	h1 {
+		@apply font-nunito;
+	}
+
 	p {
-		font-family: 'inter', sans-serif;
+		@apply font-atkinson;
+		/* font-family: 'inter', sans-serif; */
 		/* @apply text-zinc-800 dark:text-zinc-300; */
 		/* text-sm */
 	}

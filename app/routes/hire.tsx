@@ -18,6 +18,14 @@ export default function Page() {
 			<h1 className="text-3xl font-bold">🤝 Let's work together</h1>
 
 			<p>
+				Passionate software engineer and full stack developer with expertise in
+				backend development and DevOps. Skilled in a wide array of technologies,
+				frameworks, databases, and tools. Experienced content creator and
+				editor. Committed to building efficient, secure, and innovative
+				solutions.
+			</p>
+
+			<p>
 				I'm actively looking for a new role as a Full Stack Developer. Please
 				check out{' '}
 				<Link

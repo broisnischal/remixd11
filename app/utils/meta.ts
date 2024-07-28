@@ -18,10 +18,6 @@ export const MetaCreator: MetaCreator = arg => {
 			title: arg.title,
 		},
 		{
-			name: 'description',
-			content: arg.description,
-		},
-		{
 			property: 'og:title',
 			content: arg.title,
 		},
@@ -53,14 +49,10 @@ export const MetaCreator: MetaCreator = arg => {
 			property: 'og:locale',
 			content: 'en_US',
 		},
-		{
-			property: 'og:updated_time',
-			content: new Date().toISOString(),
-		},
-		{
-			property: 'og:site_name',
-			content: 'Nischal Dahal | broisnees',
-		},
+		// {
+		// 	property: 'og:updated_time',
+		// 	content: new Date().toISOString(),
+		// },
 	];
 
 	if (arg.image) {

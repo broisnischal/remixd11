@@ -6,6 +6,7 @@ import type {
 } from '@remix-run/cloudflare';
 
 import {
+	ArrowTopRightIcon,
 	DiscordLogoIcon,
 	GitHubLogoIcon,
 	InstagramLogoIcon,
@@ -171,7 +172,6 @@ export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
 				},
 			},
 		},
-
 		{ charset: 'utf-8' },
 		{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 	];
@@ -305,7 +305,7 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="m-auto my-16">
+		<div className="m-auto my-16 flex flex-col gap-6">
 			<div className=" flex items-center justify-center gap-4">
 				<Link
 					aria-label="Github"
@@ -360,6 +360,24 @@ const Footer = () => {
 					<RssIcon width={30} height={30} />
 				</a>
 			</div>
+			<div className="flex items-center justify-center gap-5">
+				<Link
+					to="mailto:info@nischal-dahal.com.np"
+					className="flex items-center gap-2 font-normal"
+				>
+					<ArrowTopRightIcon /> Mail
+				</Link>
+				<Link to="/chat" className="flex items-center  gap-2 font-normal">
+					<ArrowTopRightIcon /> Chat
+				</Link>
+				<a href="/blogs/rss" className="flex items-center  gap-2 font-normal">
+					<ArrowTopRightIcon /> Blog RSS
+				</a>
+
+				{/* <a href="/blogs/rss" className="flex items-center  gap-2">
+						<ArrowTopRightIcon /> MyBookmarks RSS
+					</a> */}
+			</div>
 		</div>
 	);
 };
@@ -369,7 +387,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
-			<div className="my-[2rem] min-h-[60vh] px-5 md:px-0">
+			<div className="my-[2rem] min-h-[50vh] px-5 md:px-0">
 				{/* <AnimatePresence mode="popLayout">
 					<motion.div
 						key={useLocation().pathname}
@@ -415,7 +433,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 // 	// const { menus } = useLoaderData<typeof loader>();
 
 // 	return (
-// 		<Document>
+// 		<ument>
 // 			<Layout children={<Outlet />} />
 // 		</Document>
 // 	);
@@ -423,6 +441,14 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 
 export default function AppWithProviders() {
 	const data = useLoaderData<typeof loader>();
+
+	// const [isClient, setIsClient] = React.useState(false);
+
+	// React.useEffect(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		setIsClient(true);
+	// 	}
+	// }, []);
 
 	return (
 		<ThemeProvider specifiedTheme={data.theme} themeAction="/action/set-theme">
@@ -449,6 +475,10 @@ export function App() {
 				<meta name="pagename" content="Nischal Dahal" />
 				<meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 				<meta name="mobile-web-app-capable" content="yes" />
+				<link
+					href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible:regular,italic,700,700italic"
+					rel="stylesheet"
+				/>
 				<Meta />
 				<Links />
 				<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
@@ -458,9 +488,7 @@ export function App() {
 					fontFamily: 'system-ui, sans-serif',
 					lineHeight: '1.6',
 					margin: 0,
-					// width: 'calc(100vw - 1rem)',
 				}}
-				className=""
 			>
 				<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-md">
 					<Layout children={<Outlet />} />

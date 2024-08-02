@@ -302,7 +302,13 @@ export default function Index() {
 				<h1 className="text-3xl font-bold leading-3 dark:text-zinc-100">
 					Nischal Dahal
 				</h1>
-				<h3>I'm a software developer from Nepal. I work at AITC.</h3>
+				<h3>
+					I'm a software developer from Nepal. I work at AITC ( Software
+					Engineer ).
+				</h3>
+				<Link className="font-nunito lowercase underline" to="/timeline">
+					my life Timeline
+				</Link>
 				{/* 
 				<div className="flex gap-1">
 					<Badge variant={'outline'}>Software Engineer</Badge>
@@ -356,14 +362,14 @@ export default function Index() {
 						className="group"
 						to={'/blog/' + post.slug + ''}
 					>
-						<div className="flex flex-col   bg-zinc-300/20 p-4 dark:bg-zinc-900/20">
+						<div className="flex flex-col border-2 p-4 dark:bg-zinc-900/20">
 							<div className="flex items-center justify-between">
 								<h1 className="group-hover:underline">
 									{post.frontmatter.title}
 								</h1>
 								<small>
 									{new Date(post.frontmatter.published).toLocaleDateString()}
-									<br />f
+									<br />
 								</small>
 							</div>
 							<p className="rounded-md font-normal" key={post.slug}>

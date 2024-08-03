@@ -2,6 +2,7 @@ import { json, MetaFunction } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 
 import { getPosts } from '~/.server/posts';
+import Hr from '~/components/hr';
 import { Post } from '~/components/post';
 import { MetaCreator } from '~/utils/meta';
 
@@ -81,9 +82,12 @@ export default function Component() {
 		<div className="">
 			<ul className="space-y-8">
 				{posts.map(post => (
-					<li key={post.slug}>
-						<Post {...post} />
-					</li>
+					<>
+						<li key={post.slug}>
+							<Post {...post} />
+						</li>
+						<Hr />
+					</>
 				))}
 			</ul>
 		</div>

@@ -5,6 +5,8 @@ export type Frontmatter = {
 	description: string;
 	published: string; // YYYY-MM-DD
 	featured: boolean;
+	author?: string;
+	tags?: string[];
 };
 
 export type PostMeta = {

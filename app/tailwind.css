@@ -86,7 +86,7 @@ html {
 		@apply bg-background text-foreground;
 	}
 
-	a:not(nav a) {
+	a:not(nav a, div a) {
 		/* @apply from-primary to-secondary bg-clip-text 	text-primary hover:bg-gradient-to-r hover:text-transparent; */
 		@apply font-bold;
 		font-family: 'poppins', sans-serif;

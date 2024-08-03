@@ -9,6 +9,8 @@ import { getPosts } from '~/.server/posts';
 import { _ } from 'node_modules/@upstash/redis/zmscore-80635339';
 import { useEffect } from 'react';
 import Cal, { getCalApi } from '@calcom/embed-react';
+import moment from 'moment';
+import Hr from '~/components/hr';
 
 // const slugs = [
 // 	'typescript',
@@ -306,9 +308,21 @@ export default function Index() {
 					I'm a software developer from Nepal. I work at AITC ( Software
 					Engineer ).
 				</h3>
-				<Link className="font-nunito lowercase underline" to="/timeline">
-					my life Timeline
-				</Link>
+				<div className="flex flex-wrap gap-4">
+					<Link
+						className="font-nunito font-bold lowercase underline"
+						to="/timeline"
+					>
+						my life Timeline
+					</Link>
+					<Link
+						className="font-nunito font-bold lowercase underline"
+						to="/framer"
+					>
+						50 days of Framer
+					</Link>
+				</div>
+				<Hr />
 				{/* 
 				<div className="flex gap-1">
 					<Badge variant={'outline'}>Software Engineer</Badge>
@@ -354,27 +368,31 @@ export default function Index() {
 			</div>
 			<br />
 			{/* <hr />	 */}
-			<h2 className="mb-4 text-xl font-bold">Featured Posts</h2>
-			<div className="flex flex-col gap-4">
+			<div className="flex flex-col items-start gap-10">
 				{featuredPosts.map(post => (
 					<Link
 						key={post.slug}
 						className="group"
 						to={'/blog/' + post.slug + ''}
 					>
-						<div className="flex flex-col border-2 p-4 dark:bg-zinc-900/20">
-							<div className="flex items-center justify-between">
-								<h1 className="group-hover:underline">
-									{post.frontmatter.title}
-								</h1>
-								<small>
-									{new Date(post.frontmatter.published).toLocaleDateString()}
-									<br />
-								</small>
-							</div>
+						<div className="flex flex-col items-start gap-1">
+							<p className="font-inter text-sm text-zinc-500">
+								{moment(post.frontmatter.published).format('MMMM Do YYYY')}
+							</p>
+
+							<h1 className="font-poppins text-[1.2rem] font-bold capitalize tracking-wide group-hover:underline">
+								{post.frontmatter.title}
+							</h1>
+
 							<p className="rounded-md font-normal" key={post.slug}>
 								{post.frontmatter.description}
 							</p>
+
+							<div className="flex flex-wrap gap-1">
+								{post.frontmatter.tags?.map(item => (
+									<Badge variant={'outline'}>{item}</Badge>
+								))}
+							</div>
 						</div>
 					</Link>
 				))}

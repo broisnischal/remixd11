@@ -219,7 +219,7 @@ const NavBar = () => {
 				<div className="mr-auto flex flex-row flex-wrap items-center gap-1 md:gap-5">
 					<RouteLink to={'/'}>home</RouteLink>
 					<RouteLink to={'/learning/year'}>learning</RouteLink>
-					<RouteLink to={'/blog'}>blogs</RouteLink>
+					<RouteLink to={'/blog'}>contents</RouteLink>
 					<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 					<RouteLink to={'/overview'}>overview</RouteLink>
 					<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
@@ -305,7 +305,7 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="m-auto my-16 flex flex-col gap-6">
+		<div className="m-auto my-16 flex flex-col items-center justify-center gap-6">
 			<div className=" flex items-center justify-center gap-4">
 				<Link
 					aria-label="Github"
@@ -378,6 +378,7 @@ const Footer = () => {
 						<ArrowTopRightIcon /> MyBookmarks RSS
 					</a> */}
 			</div>
+			<small>Press Ctrl/Cmd + K to search...</small>
 		</div>
 	);
 };
@@ -498,7 +499,11 @@ export function App() {
 						{count => <Clap count={count as number} />}
 					</Await>
 				</React.Suspense>
-				<ScrollRestoration />
+				<ScrollRestoration
+					getKey={location => {
+						return location.pathname;
+					}}
+				/>
 				<Scripts />
 			</body>
 		</html>

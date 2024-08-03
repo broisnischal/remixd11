@@ -306,59 +306,62 @@ const NavBar = () => {
 const Footer = () => {
 	return (
 		<div className="m-auto my-16 flex flex-col items-center justify-center gap-6">
-			<div className=" flex items-center justify-center gap-4">
-				<Link
-					aria-label="Github"
-					target="_blank"
-					to="https://github.com/broisnischal"
-				>
-					<GitHubLogoIcon width={30} height={30} />
-				</Link>
-
-				<Link
-					aria-label="Discord"
-					target="_blank"
-					to="https://discord.gg/@broisnees"
-				>
-					<DiscordLogoIcon width={30} height={30} />
-				</Link>
-
-				<Link
-					aria-label="Instagram"
-					target="_blank"
-					to="https://instagram.com/broisnees"
-				>
-					<InstagramLogoIcon width={30} height={30} />
-				</Link>
-				<Link
-					aria-label="Twitter"
-					target="_blank"
-					to="https://twitter.com/broisnees"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="25"
-						height="25"
-						fill="none"
-						viewBox="0 0 1200 1227"
+			<div className="flex flex-col gap-4">
+				<h2 className="text-center text-xl font-bold">Check me out on,</h2>
+				<div className=" flex items-center justify-center gap-4">
+					<Link
+						aria-label="Github"
+						target="_blank"
+						to="https://github.com/broisnischal"
 					>
-						<path
-							// fill="#000 dark:#fff"
-							className="fill-black dark:fill-white"
-							d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
-						/>
-					</svg>
-				</Link>
-				<Link
-					aria-label="LinkedIn"
-					target="_blank"
-					to="https://www.linkedin.com/in/neeswebservices/"
-				>
-					<LinkedInLogoIcon width={30} height={30} />
-				</Link>
-				<a href="/feed.json" aria-label="RSS" target="_blank">
-					<RssIcon width={30} height={30} />
-				</a>
+						<GitHubLogoIcon width={30} height={30} />
+					</Link>
+
+					<Link
+						aria-label="Discord"
+						target="_blank"
+						to="https://discord.gg/@broisnees"
+					>
+						<DiscordLogoIcon width={30} height={30} />
+					</Link>
+
+					<Link
+						aria-label="Instagram"
+						target="_blank"
+						to="https://instagram.com/broisnees"
+					>
+						<InstagramLogoIcon width={30} height={30} />
+					</Link>
+					<Link
+						aria-label="Twitter"
+						target="_blank"
+						to="https://twitter.com/broisnees"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="25"
+							height="25"
+							fill="none"
+							viewBox="0 0 1200 1227"
+						>
+							<path
+								// fill="#000 dark:#fff"
+								className="fill-black dark:fill-white"
+								d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
+							/>
+						</svg>
+					</Link>
+					<Link
+						aria-label="LinkedIn"
+						target="_blank"
+						to="https://www.linkedin.com/in/neeswebservices/"
+					>
+						<LinkedInLogoIcon width={30} height={30} />
+					</Link>
+					<a href="/feed.json" aria-label="RSS" target="_blank">
+						<RssIcon width={30} height={30} />
+					</a>
+				</div>
 			</div>
 			<div className="flex items-center justify-center gap-5">
 				<Link
@@ -378,7 +381,10 @@ const Footer = () => {
 						<ArrowTopRightIcon /> MyBookmarks RSS
 					</a> */}
 			</div>
-			<small>Press Ctrl/Cmd + K to search...</small>
+			<small className="text-center">
+				Alternatively press Ctrl/Cmd + K to search -- Nischal Dahal | Made with
+				❤️
+			</small>
 		</div>
 	);
 };

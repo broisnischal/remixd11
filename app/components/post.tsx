@@ -27,8 +27,8 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 			</p>
 
 			<div className="flex flex-wrap gap-1">
-				{frontmatter.tags?.map(item => (
-					<Badge className="rounded-md" variant={'secondary'}>
+				{frontmatter.tags?.map((item, i) => (
+					<Badge key={i} className="rounded-md" variant={'secondary'}>
 						{item}
 					</Badge>
 				))}

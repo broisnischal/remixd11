@@ -7,6 +7,17 @@ meta:
   description:
     How do you create the bookmark parser, using cheerio in typescript
 featured: true
+tags:
+  [
+    vector-database,
+    vector-embeddings,
+    indexing,
+    distance-metrics,
+    cosine-similarity,
+    other,
+  ]
+readTime: 5
+author: Nischal Dahal
 ---
 
 export const meta = ({ attributes }) => {
@@ -22,7 +33,15 @@ export const meta = ({ attributes }) => {
 
 };
 
-## How do you build {frontmatter.title} ?
+import PostHeading from '../components/post-heading.tsx';
+
+<PostHeading
+	title={frontmatter.title}
+	readingTime={frontmatter.readTime}
+	tags={frontmatter.tags}
+	date={frontmatter.published}
+	author={frontmatter.author}
+/>
 
 If you haven't had looked what the exported bookmark file look like, here i show
 how it looks like.

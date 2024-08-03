@@ -33,16 +33,12 @@ export default function Component() {
 					<ArrowLeft className="h-5 w-5" /> Back
 				</div>
 			</Link>
-			<small>{/* Published on {moment(value).format('MMMM Do YYYY')} */}</small>
-			<br />
-
-			<div className="prose dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-img:rounded-md ">
+			<div className="prose dark:prose-invert lg:prose-xl prose-h2:leading-4 prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-img:rounded-md ">
 				<Outlet />
 			</div>
 			<br />
 			<br />
 			<br />
-
 			<br />
 			<div className="share flex items-center justify-center gap-2">
 				<p className="text-center">Share this article on your socials | </p>
@@ -89,8 +85,6 @@ export default function Component() {
 					<br />
 				</div>
 			</div>
-			<br />
-			<br />
 		</div>
 	);
 }

@@ -22,7 +22,7 @@ tags:
     cosine-similarity,
     other,
   ]
-readTime: 5
+readTime: 15
 ---
 
 import { MetaCreator } from '../utils/meta';
@@ -45,7 +45,15 @@ export const meta = ({ attributes }) => {
 
 };
 
-<h3 className="my-10 font-bold">What is Vector database?</h3>
+import PostHeading from '../components/post-heading.tsx';
+
+<PostHeading
+	title={frontmatter.title}
+	readingTime={frontmatter.readTime}
+	tags={frontmatter.tags}
+	date={frontmatter.published}
+	author={frontmatter.author}
+/>
 
 Vector databases stores unstructured data in the form of vectors that captures
 the meaning and context of natural language processing and computer vison. They

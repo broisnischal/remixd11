@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import Cal, { getCalApi } from '@calcom/embed-react';
 import moment from 'moment';
 import Hr from '~/components/hr';
+import { Button } from '~/components/ui/button';
 
 // const slugs = [
 // 	'typescript',
@@ -401,6 +402,11 @@ export default function Index() {
 				))}
 			</div>
 			<br />
+			<Link to="/blog">
+				<Button className="self-center" variant={'outline'}>
+					Read more
+				</Button>
+			</Link>
 
 			{/* <div className=" hidden flex-col dark:flex">
 				<h1 className="mb-4 text-2xl font-bold">Don't code, Just Use AI</h1>

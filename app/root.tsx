@@ -384,7 +384,7 @@ const Footer = () => {
 			</div>
 			<small className="text-center">
 				Alternatively press Ctrl/Cmd + K to search -- Nischal Dahal | Made with
-				❤️
+				Remix ❤️
 			</small>
 			<br />
 		</div>

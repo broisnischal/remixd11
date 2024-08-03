@@ -60,6 +60,53 @@ export const meta: MetaFunction = ({ location }) => {
 	return [...metadata];
 };
 
+interface Repo {
+	name: string;
+	html_url: string;
+	description: string | null;
+	stargazers_count: number;
+}
+
+interface RepoData {
+	title: string;
+	url: string;
+	description: string | null;
+	stars: number;
+}
+
+const fetchLatestRepos = async (
+	username: string,
+	repoCount: number = 5,
+): Promise<RepoData[]> => {
+	try {
+		const response = await axios.get<Repo[]>(
+			`https://api.github.com/users/${username}/repos`,
+			{
+				params: {
+					sort: 'created',
+					direction: 'desc',
+					per_page: repoCount,
+				},
+				headers: {
+					Accept: 'application/vnd.github.v3+json',
+				},
+			},
+		);
+
+		const repos: RepoData[] = response.data.map(repo => ({
+			title: repo.name,
+			url: repo.html_url,
+			description: repo.description,
+			stars: repo.stargazers_count,
+		}));
+
+		return repos;
+	} catch (error) {
+		console.error('Error fetching repos:', error);
+		return [];
+	}
+};
+
 export async function loader() {
 	type Level = 0 | 1 | 2 | 3 | 4;
 
@@ -75,77 +122,100 @@ export async function loader() {
 		}[];
 	}>(`https://github-contributions-api.jogruber.de/v4/broisnischal?y=last`);
 
-	return json({ contributions: data.data.contributions });
+	const repos = await fetchLatestRepos('broisnischal', 9);
+
+	return json({ contributions: data.data.contributions, repos });
 }
 
 export default function Overview() {
-	const { contributions } = useLoaderData<typeof loader>();
+	const { contributions, repos } = useLoaderData<typeof loader>();
 
 	return (
 		<div className="m-auto flex flex-col gap-4 md:max-w-[70vw]">
+			{repos.length > 0 && (
+				<>
+					<br />
+
+					<div>
+						<h1 className="mb-3 text-3xl font-bold">Recents Projects</h1>
+						<div className="items-sta flex gap-9">
+							{/* <VscVscode size={100} /> */}
+
+							<div className=" flex flex-wrap *:border-[1px]">
+								{repos.map(item => (
+									<div className="rounded-lg p-3">
+										<Link
+											target="_blank"
+											rel="noopener noreferrer"
+											to={item.url}
+										>
+											{item.title}
+										</Link>
+										{item.description && <p>{item.description}</p>}
+										{/* <small>Stars {item.stars}</small> */}
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+				</>
+			)}
 			<div>
-				<h1 className="mb-3 text-3xl font-bold">Projects</h1>
-				<div className="items-sta flex gap-9">
+				<h1 className="mb-3 text-3xl font-bold">Featured Projects</h1>
+				<div className="items-sta flex gap-10">
 					{/* <VscVscode size={100} /> */}
 
 					<div className="grid grid-cols-1 place-content-center gap-4 *:border-[1px] lg:grid-cols-2 xl:grid-cols-3 ">
 						<div className="single rounded-lg p-3">
-							<Link to="ms">Milliseconds</Link>
-							<p>
-								A vscode extension that prompts user their option to insert
-								millisecond
-							</p>
-						</div>
-						<div className="single rounded-lg p-3">
-							<Link to="ms">Assetize</Link>
+							<Link
+								className="text-lg"
+								to="https://github.com/broisnischal/assetize.git"
+							>
+								Assetize
+							</Link>
 							<p>
 								Assetify an autocomplete for your images, videos, fonts, and
 								more.
 							</p>
 						</div>
 						<div className="single rounded-lg p-3">
-							<Link to="ms">Prisma</Link>
+							<Link to="https://github.com/broisnischal/prisma-fns">
+								Prisma Fns
+							</Link>
 							<p>
 								a revolutionary utility extension for seamless Prisma
 								integration.
 							</p>
 						</div>
 						<div className="single rounded-lg p-3">
-							<Link to="ms">My Resume</Link>
+							<Link to="https://github.com/broisnischal/myresume.git">
+								My Resume
+							</Link>
 							<p>a resume that is built for developers,</p>
 						</div>
 						<div className="single rounded-lg p-3">
-							<Link to="ms">Bookmark</Link>
+							<Link to="https://github.com/broisnischal/bookmark.git">
+								Bookmark
+							</Link>
 							<p>
 								Vscode Extension that let's you bookmark your important files,
 								and folder and works like pinning the item.
 							</p>
 						</div>
 						<div className="single rounded-lg p-3">
-							<Link to="ms">Figma Generator</Link>
+							<Link to="https://github.com/broisnischal/flutter-color-constant">
+								Figma Generator
+							</Link>
 							<p>
-								Figma plugin streamlines the process of generating code for
-								Tailwind CSS configuration, ARB Intl files, color constants, and
-								exporting all assets.
+								Figma plugin for Tailwind CSS configuration, ARB Intl files,
+								color constants, and exporting all assets.
 							</p>
 						</div>
 						<div className="single rounded-lg p-3">
-							<Link to="ms">Prisma Type Generator</Link>
+							<Link to="https://github.com/broisnischal/prisma-type-generator">
+								Prisma Type Generator
+							</Link>
 							<p>A prisma type and interface generator. 🚀</p>
-						</div>
-						<div className="single rounded-lg p-3">
-							<Link to="ms">Auto Select URL</Link>
-							<p>
-								Extension let's you automatically select the whole block of the
-								url without having to select manually.🚀
-							</p>
-						</div>
-						<div className="single rounded-lg p-3">
-							<Link to="ms">React CHATGPT Text</Link>
-							<p>
-								A typewriter, which generates the type effect like the ChatGPT
-								website's like AI typing, with thinking.
-							</p>
 						</div>
 					</div>
 				</div>
@@ -267,84 +337,84 @@ let configData: MyConfig[] = [
 	{
 		icon: SiNeovim,
 		title: 'Neovim',
-		link: 'aksdjlf',
+		link: 'https://github.com/broisnischal/vimconf',
 		description: 'Neovim config i use commonly in daily base.',
 		subicon: null,
 	},
 	{
 		icon: FaGitAlt,
 		title: 'Git',
-		link: 'git',
+		link: 'https://gist.github.com/broisnischal/19ae40c86ef5fecee8771f3895a0c84f',
 		description: 'Git config i use commonly in daily base.',
 		subicon: GitBranch,
 	},
 	{
 		icon: VscVscode,
-		title: 'VSC',
-		link: 'git',
+		title: 'Settings VSCode',
+		link: 'https://gist.github.com/broisnischal/e530cee85ab2ef4c14944bcd24544bda',
 		description: 'VSCode settings, and how i configure it for daily use.',
 		subicon: GitBranch,
 	},
 	{
 		icon: SiEslint,
-		title: 'ESlint',
-		link: 'git',
+		title: 'ESlint/Biome',
+		link: '',
 		description: 'ESlint config i use commonly in daily base.',
 		subicon: GitBranch,
 	},
 	{
 		icon: MdOutlineKeyboardCommandKey,
 		title: 'Keybinding',
-		link: 'git',
+		link: 'https://gist.github.com/broisnischal/a0490b77957760b2d7351392c626ec57',
 		description: 'Keybinding where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
 		icon: MdOutlineTerminal,
 		title: 'Bash RC',
-		link: 'git',
+		link: 'https://gist.github.com/broisnischal/ceebb7c9ecbdbc4a1a2095c314c3fbfb',
 		description: 'BashRC where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
 		icon: MdOutlineTerminal,
 		title: 'ZSH RC',
-		link: 'git',
+		link: 'https://gist.github.com/broisnischal/e4976d57c5b37f05d3e88aa5a37a48f6',
 		description: 'ZSH where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
 		icon: SiTmux,
 		title: 'TMUX',
-		link: 'git',
+		link: 'https://gist.github.com/broisnischal/3a75ae382b28ecb75ba2b2353cbfd2e7',
 		description: 'Tmux where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
 		icon: FaDocker,
 		title: 'Docker',
-		link: 'git',
+		link: '',
 		description: 'Docker where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
 		icon: SiPrettier,
 		title: 'Prettier',
-		link: 'git',
+		link: 'https://gist.github.com/broisnischal/f1582660ef9fe6a2cdbd34c0a14e8085',
 		description: 'prettier where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
 		icon: SiEditorconfig,
 		title: 'Editorconfig',
-		link: 'editor',
+		link: 'https://gist.github.com/broisnischal/5d2b1d46bca9ae771cbb0627cec82623',
 		description: 'Editorconfig where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{
 		icon: RiFlutterFill,
 		title: 'Flutter',
-		link: 'editor',
+		link: '',
 		description: 'Flutter config where it helps to be fast.',
 		subicon: GitBranch,
 	},

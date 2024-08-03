@@ -5,11 +5,12 @@ import {
 	useOutlet,
 	useOutletContext,
 } from '@remix-run/react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Mails } from 'lucide-react';
 import moment from 'moment';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { Clap } from '~/root';
 import {
+	EmailIcon,
 	LinkedinIcon,
 	LinkedinShareButton,
 	RedditIcon,
@@ -80,7 +81,11 @@ export default function Component() {
 						where I cover a lot of the same topics but in video format.
 					</p>
 					<Link to={'/newsletter'}>
-						<ConnectButton>Subscribe to my newsletter?</ConnectButton>
+						<ConnectButton>
+							<div className="flex items-center justify-center gap-2">
+								<Mails size={18} /> Subscribe to my newsletter?
+							</div>
+						</ConnectButton>
 					</Link>{' '}
 					<br />
 				</div>

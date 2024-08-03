@@ -1,4 +1,5 @@
 import { Link } from '@remix-run/react';
+import DevStack from '~/components/devstack';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { Button } from '~/components/ui/button';
 import {
@@ -9,6 +10,7 @@ import {
 } from '~/components/ui/card';
 import { Input } from '~/components/ui/input';
 import { useIsPending } from '~/lib/misc';
+import { SoftwareTools } from './_index';
 
 export default function Page() {
 	const isPending = useIsPending();
@@ -47,6 +49,10 @@ export default function Page() {
 				<ConnectButton>View My Resume</ConnectButton>
 			</a>
 
+			<br />
+			<DevStack />
+			<br />
+
 			<h2 className=" text-2xl font-bold tracking-wide">Featuring</h2>
 
 			<ul className="list-disc pl-10">
@@ -56,6 +62,10 @@ export default function Page() {
 				<li> 🏡 Fully remote </li>
 				<li>🏖️ Unlimited paid time off</li>
 			</ul>
+			<br />
+
+			<SoftwareTools />
+
 			<br />
 
 			<div className="div flex w-full flex-col">

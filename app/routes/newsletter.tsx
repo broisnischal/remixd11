@@ -129,7 +129,7 @@ export default function NewsLetter() {
 	});
 
 	return (
-		<div className="">
+		<div>
 			{/* <div className="flex  flex-col gap-3 ">
 				<h2 className="text-4xl font-bold">Newsletter</h2>
 				<p className="max-w-[350px] text-balance">
@@ -137,7 +137,7 @@ export default function NewsLetter() {
 					Tuned for the latest releases and features.
 				</p>
 			</div> */}
-			<div className="flex  flex-col ">
+			<div>
 				<h3 className="mb-4 text-4xl font-bold"> Subscribe to Newsletter</h3>
 
 				<div className="flex flex-col items-start">
@@ -182,11 +182,27 @@ export default function NewsLetter() {
 					)}
 				</div>
 				<p className="mt-2 w-full text-left text-xs text-gray-500 dark:text-gray-400">
-					Get notified when I publish something new and unsubscribe at any time.{' '}
+					Stay tuned and get notified when I publish something new and
+					unsubscribe at any time.{' '}
 					<Link className="underline underline-offset-2" to="/terms">
 						Terms & Conditions
 					</Link>
 				</p>
+
+				<br />
+				<div className="flex flex-col gap-4">
+					<h3 className=" font-bold">
+						About once per month, I send an email with:
+					</h3>
+					<p>
+						<ul>
+							<li>New guides and tutorials</li>
+							<li>New features</li>
+							<li>Announcements</li>
+							<li>Cool new libraries and packages</li>
+						</ul>
+					</p>
+				</div>
 			</div>
 		</div>
 	);

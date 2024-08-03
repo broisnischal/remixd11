@@ -45,7 +45,7 @@ export const ContributionBox = ({
 						: `${count} contributions on ${moment(date).format('MMM Do')}`}
 				</div>
 			</div>
-			<div className="absolute top-[-20px]">{monthNameShort}</div>
+			<div className="absolute top-[-15px] text-[12px]">{monthNameShort}</div>
 		</div>
 	);
 };

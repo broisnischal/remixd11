@@ -51,6 +51,7 @@ import { SessionStorage } from './services/session.server';
 import { themeSessionResolver } from './session.server';
 import styles from './tailwind.css?url';
 import { MetaCreator } from './utils/meta';
+import Hr from './components/hr';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -306,8 +307,8 @@ const NavBar = () => {
 const Footer = () => {
 	return (
 		<div className="m-auto my-16 flex flex-col items-center justify-center gap-6">
-			<div className="flex flex-col gap-4">
-				<h2 className="text-center text-xl font-bold">Check me out on,</h2>
+			<div className="flex flex-col ">
+				{/* <h2 className="text-center text-xl font-bold">Check me out</h2> */}
 				<div className=" flex items-center justify-center gap-4">
 					<Link
 						aria-label="Github"
@@ -385,16 +386,29 @@ const Footer = () => {
 				Alternatively press Ctrl/Cmd + K to search -- Nischal Dahal | Made with
 				❤️
 			</small>
+			<br />
 		</div>
 	);
 };
+
+export function WebsiteBanner() {
+	return (
+		<div className="flex flex-col items-center justify-center gap-5 border-b-[1px] py-1">
+			<p>
+				<small>
+					Site is under developement, Mobile version may have some issues.
+				</small>
+			</p>
+		</div>
+	);
+}
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
-			<div className="my-[2rem] min-h-[50vh] px-5 md:px-0">
+			<div className="my-[2rem] min-h-[45vh] px-5 md:px-0">
 				{/* <AnimatePresence mode="popLayout">
 					<motion.div
 						key={useLocation().pathname}
@@ -497,6 +511,8 @@ export function App() {
 					margin: 0,
 				}}
 			>
+				<WebsiteBanner />
+
 				<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-md">
 					<Layout children={<Outlet />} />
 				</div>

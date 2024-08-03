@@ -23,6 +23,7 @@ import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 import { useState } from 'react';
 import { MetaFunction } from '@remix-run/cloudflare';
 import { MetaCreator } from '~/utils/meta';
+import { GitHubLogoIcon } from '@radix-ui/react-icons';
 
 export const meta: MetaFunction = ({ location }) => {
 	const url = new URL('https://nischal-dahal.com.np');
@@ -152,7 +153,7 @@ export default function Overview() {
 
 			<br />
 			<div className="w-full ">
-				<h1 className="mb-3 text-3xl font-bold">Configs</h1>
+				<h1 className="mb-3 text-3xl font-bold">My Configs</h1>
 				{/* <GrDocumentConfig size={50} className="opacity-10" /> */}
 
 				{/* <div className="grid grid-cols-3 gap-4 *:border-[1px] ">
@@ -209,7 +210,11 @@ export default function Overview() {
 				</div>
 				<br />
 				<Link to="https://github.com/broisnischal">
-					<ConnectButton>Connect on Github</ConnectButton>
+					<ConnectButton>
+						<div className="flex items-center justify-center gap-2">
+							<GitHubLogoIcon /> Connect on Github
+						</div>
+					</ConnectButton>
 				</Link>
 			</div>
 
@@ -248,12 +253,11 @@ function MyConfig({ icon, title, link, description, subicon }: MyConfig) {
 			<div className="flex w-full flex-col border-[1px] p-3 ">
 				<div className="flex items-center gap-4">
 					{icon({ size: 20 })}
-					{/* <button onClick={onClickHandler}>{title}</button> */}
 					<Link to={link}>{title}</Link>
 				</div>
-				<div>
+				{/* <div>
 					<p>{description}</p>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

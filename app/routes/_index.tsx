@@ -272,6 +272,7 @@ export default function Index() {
 
 	return (
 		<div>
+			<br />
 			<div className="flex flex-col items-start  gap-4">
 				{/* <Link to={'/image'} unstable_viewTransition>
 				<img
@@ -305,8 +306,8 @@ export default function Index() {
 					Nischal Dahal
 				</h1>
 				<h3>
-					I'm a software developer from Nepal. I work at AITC ( Software
-					Engineer ).
+					I'm a software developer from Nepal. I work at AITC as Software
+					Engineer. <br /> I love to build things.
 				</h3>
 				<div className="flex flex-wrap gap-4">
 					<Link
@@ -322,7 +323,6 @@ export default function Index() {
 						50 days of Framer
 					</Link>
 				</div>
-				<Hr />
 				{/* 
 				<div className="flex gap-1">
 					<Badge variant={'outline'}>Software Engineer</Badge>
@@ -367,6 +367,9 @@ export default function Index() {
 				{/* <Markdown content={data.content} /> */}
 			</div>
 			<br />
+			<Hr />
+			<br />
+
 			{/* <hr />	 */}
 			<div className="flex flex-col items-start gap-10">
 				{featuredPosts.map(post => (

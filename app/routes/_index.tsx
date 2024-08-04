@@ -12,6 +12,7 @@ import Cal, { getCalApi } from '@calcom/embed-react';
 import moment from 'moment';
 import Hr from '~/components/hr';
 import { Button } from '~/components/ui/button';
+import { RouteLink } from '~/root';
 
 // const slugs = [
 // 	'typescript',
@@ -322,6 +323,12 @@ export default function Index() {
 						to="/framer"
 					>
 						50 days of Framer
+					</Link>
+					<Link
+						className="font-nunito font-bold lowercase underline"
+						to="/learning/year"
+					>
+						Learning Projects
 					</Link>
 				</div>
 				{/* 

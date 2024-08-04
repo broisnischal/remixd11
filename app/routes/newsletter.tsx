@@ -230,7 +230,7 @@ export default function NewsLetter() {
 						About once per month, I send an email with:
 					</h3>
 					<p>
-						<ul>
+						<ul className="ml-10 list-disc">
 							<li>New guides and tutorials</li>
 							<li>New features</li>
 							<li>Announcements</li>

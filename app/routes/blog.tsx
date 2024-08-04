@@ -42,7 +42,9 @@ export default function Component() {
 			<br />
 			<br />
 			<div className="share flex items-center justify-center gap-2">
-				<p className="text-center">Share this article on your socials | </p>
+				<p className="mr-2 text-center text-[18px]">
+					Share this article on your socials
+				</p>
 
 				<div className="share flex flex-wrap gap-3">
 					<TwitterShareButton
@@ -50,7 +52,11 @@ export default function Component() {
 						title={title}
 						className="Demo__some-network__share-button"
 					>
-						<XIcon size={32} round />
+						<XIcon
+							className="rounded-full border-[1px] border-zinc-500/50 p-1"
+							size={32}
+							round
+						/>
 					</TwitterShareButton>
 					<LinkedinShareButton
 						url={shareurl}

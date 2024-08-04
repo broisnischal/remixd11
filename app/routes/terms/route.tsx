@@ -1,9 +1,9 @@
 export default function Page() {
 	return (
 		<div className="m-auto ">
-			<h1 className="text-xl font-bold">Terms and Conditions</h1>
+			<h1 className="text-3xl font-bold">Terms and Conditions</h1>
 			<br />
-			<ul className="flex flex-col gap-4">
+			<ul className="flex flex-col gap-10 *:[&>li]:mt-2 *:[&>li]:text-wrap">
 				<li>
 					<strong>1. Acceptance of Terms</strong>
 					<ul>

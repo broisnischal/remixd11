@@ -255,6 +255,10 @@ export default function Page() {
 		<div>
 			<br />
 			<h1 className="text-3xl font-bold">Sign My Guestbook</h1>
+			<p className="font-atkinson">
+				Leave a comment below. It could be anything – appreciation, information,
+				wisdom, anything you can think of can be good or bad.
+			</p>
 			<br />
 			{data?.id ? (
 				<Form method="POST" className="" {...getFormProps(form)}>

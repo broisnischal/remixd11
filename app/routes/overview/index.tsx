@@ -141,7 +141,7 @@ export default function Overview() {
 						<div className="items-sta flex gap-9">
 							{/* <VscVscode size={100} /> */}
 
-							<div className=" flex flex-wrap *:border-[1px]">
+							<div className=" flex flex-wrap items-start gap-2 *:border-[1px]">
 								{repos.map(item => (
 									<div className="rounded-lg p-3">
 										<Link
@@ -160,6 +160,7 @@ export default function Overview() {
 					</div>
 				</>
 			)}
+			<br />
 			<div>
 				<h1 className="mb-3 text-3xl font-bold">Featured Projects</h1>
 				<div className="items-sta flex gap-10">

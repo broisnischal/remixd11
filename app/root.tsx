@@ -187,7 +187,7 @@ export const link: LinksFunction = () => {
 	];
 };
 
-const RouteLink = ({
+export const RouteLink = ({
 	to,
 	children,
 }: {
@@ -219,7 +219,6 @@ const NavBar = () => {
 			<nav className=" mt-8 hidden items-center  justify-center gap-3 px-4 md:flex md:px-0">
 				<div className="mr-auto flex flex-row flex-wrap items-center gap-1 md:gap-5">
 					<RouteLink to={'/'}>home</RouteLink>
-					<RouteLink to={'/learning/year'}>learning</RouteLink>
 					<RouteLink to={'/blog'}>contents</RouteLink>
 					<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 					<RouteLink to={'/overview'}>overview</RouteLink>
@@ -371,6 +370,10 @@ const Footer = () => {
 				>
 					<ArrowTopRightIcon /> Mail
 				</Link>
+
+				<Link to="/about" className="flex items-center  gap-2 font-normal">
+					<ArrowTopRightIcon /> About
+				</Link>
 				<Link to="/chat" className="flex items-center  gap-2 font-normal">
 					<ArrowTopRightIcon /> Chat
 				</Link>
@@ -384,7 +387,11 @@ const Footer = () => {
 			</div>
 			<small className="text-center">
 				Alternatively press Ctrl/Cmd + K to search.. <br /> Nischal Dahal | Made
-				with Remix ❤️
+				with{' '}
+				<Link target="_blank" className="underline" to="https://remix.run">
+					Remix
+				</Link>{' '}
+				❤️
 			</small>
 			<br />
 		</div>
@@ -586,7 +593,7 @@ export function Clap({ count }: { count: number }) {
 			{/* <div className="round flex cursor-pointer items-center justify-center rounded-lg px-3 py-2">
 
 			</div> */}
-			<Badge variant={'outline'}>
+			<Badge variant={'secondary'}>
 				<Form
 					ref={ref}
 					method="POST"

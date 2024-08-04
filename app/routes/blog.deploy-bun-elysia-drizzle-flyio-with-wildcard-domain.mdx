@@ -30,6 +30,13 @@ export const meta = ({ attributes }) => {
     	description: frontmatter.description,
     	image: frontmatter.image,
     	url: url,
+    	others: [
+    		{
+    			name: 'author',
+    			content: 'Nischal Dahal',
+    		},
+    	],
+    	keywords: frontmatter.tags,
     });
 
 

@@ -4,6 +4,7 @@ import {
 	LoaderFunctionArgs,
 	unstable_parseMultipartFormData,
 	unstable_createMemoryUploadHandler,
+	MetaFunction,
 } from '@remix-run/cloudflare';
 import {
 	ClientActionFunctionArgs,
@@ -15,6 +16,40 @@ import {
 import { drizzle } from 'drizzle-orm/d1';
 import { bookmarks } from '~/drizzle/schema.server';
 import { parseBookmarks } from '~/utils';
+import { MetaCreator } from '~/utils/meta';
+
+export const meta: MetaFunction<typeof loader> = ({
+	data,
+	matches,
+	location,
+}) => {
+	const url = new URL('https://nischal-dahal.com.np');
+
+	const metadata = MetaCreator({
+		title: `Bookmarks of Nischal Dahal`,
+		description: `Bookmarks of Nischal dahal, links that he reads, likes and shares.`,
+		image: '/ogimg.png',
+		url: `${url.origin}${location.pathname}`,
+		others: [
+			{
+				name: 'author',
+				content: 'Nischal Dahal',
+			},
+			{
+				tagName: 'link',
+				rel: 'canonical',
+				href: `${url.origin}${location.pathname}`,
+			},
+			{
+				tagName: 'link',
+				rel: 'icon',
+				href: 'https://avatars.githubusercontent.com/u/98168009?v=4',
+			},
+		],
+	});
+
+	return [...metadata];
+};
 
 export async function loader({ context }: LoaderFunctionArgs) {
 	const db = drizzle(context.env.DB);

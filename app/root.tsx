@@ -530,6 +530,23 @@ export function App() {
 						return location.pathname;
 					}}
 				/>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+					<script>
+    (function () {
+        window.counterscale = {
+            q: [["set", "siteId", "nischaldahalanalyticscounterscale"], ["trackPageview"]],
+        };
+    })();
+</script>
+<script
+    id="counterscale-script"
+    src="https://counterscale-dqi.pages.dev/tracker.js"
+    defer
+></script>`,
+					}}
+				></script>
 				<Scripts />
 			</body>
 		</html>

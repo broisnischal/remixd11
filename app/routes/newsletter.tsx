@@ -13,6 +13,7 @@ import {
 	ActionFunctionArgs,
 	json,
 	LoaderFunctionArgs,
+	MetaFunction,
 } from '@remix-run/cloudflare';
 import { drizzle } from 'drizzle-orm/d1';
 import { newsletters } from '~/drizzle/schema.server';
@@ -20,6 +21,40 @@ import { eq } from 'drizzle-orm';
 import { getZodConstraint, parseWithZod } from '@conform-to/zod';
 import { SessionStorage } from '~/services/session.server';
 import { useIsPending } from '~/lib/misc';
+import { MetaCreator } from '~/utils/meta';
+
+export const meta: MetaFunction<typeof loader> = ({
+	data,
+	matches,
+	location,
+}) => {
+	const url = new URL('https://nischal-dahal.com.np');
+
+	const metadata = MetaCreator({
+		title: `Nischal Dahal | Guestbook `,
+		description: `Subscribe to Nischal Dahal's newsletter, to get latest updates about cool stuffs`,
+		image: '/ogimg.png',
+		url: `${url.origin}${location.pathname}`,
+		others: [
+			{
+				name: 'author',
+				content: 'Nischal Dahal',
+			},
+			{
+				tagName: 'link',
+				rel: 'canonical',
+				href: `${url.origin}${location.pathname}`,
+			},
+			{
+				tagName: 'link',
+				rel: 'icon',
+				href: 'https://avatars.githubusercontent.com/u/98168009?v=4',
+			},
+		],
+	});
+
+	return [...metadata];
+};
 
 const subscribeSchema = z.object({
 	email: z

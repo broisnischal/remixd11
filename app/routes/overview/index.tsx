@@ -29,7 +29,7 @@ export const meta: MetaFunction = ({ location }) => {
 	const url = new URL('https://nischal-dahal.com.np');
 
 	const metadata = MetaCreator({
-		title: 'Nischal Dahal | Broisnees ',
+		title: 'Overview | Nischal Dahal - Projects, Configs and Contributions',
 		description:
 			'Nischal Dahal | list of project, configs and my contributions are listed out here.',
 		image: '/ogimg.png',

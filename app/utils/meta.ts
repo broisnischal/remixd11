@@ -7,6 +7,7 @@ type MetaItems = {
 	description?: string;
 	image?: string;
 	url?: string;
+	keywords?: string[];
 	others?: ReturnType<MetaFunction>;
 };
 
@@ -48,6 +49,14 @@ export const MetaCreator: MetaCreator = arg => {
 		{
 			property: 'og:locale',
 			content: 'en_US',
+		},
+		{
+			name: 'keywords',
+			content: arg.keywords?.join(', '),
+		},
+		{
+			name: 'author',
+			content: 'Nischal Dahal',
 		},
 		// {
 		// 	property: 'og:updated_time',

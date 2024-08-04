@@ -1,5 +1,36 @@
+import { MetaFunction } from '@remix-run/cloudflare';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
+import { MetaCreator } from '~/utils/meta';
+
+export const meta: MetaFunction = ({ data, matches, location }) => {
+	const url = new URL('https://nischal-dahal.com.np');
+
+	const metadata = MetaCreator({
+		title: `Nischal Dahal | Death timeline `,
+		description: `Nischal Dahal's death timeline, from ${currentAge} to ${expectedAge}.`,
+		image: '/ogimg.png',
+		url: `${url.origin}${location.pathname}`,
+		others: [
+			{
+				name: 'author',
+				content: 'Nischal Dahal',
+			},
+			{
+				tagName: 'link',
+				rel: 'canonical',
+				href: `${url.origin}${location.pathname}`,
+			},
+			{
+				tagName: 'link',
+				rel: 'icon',
+				href: 'https://avatars.githubusercontent.com/u/98168009?v=4',
+			},
+		],
+	});
+
+	return [...metadata];
+};
 
 const currentAge = 18;
 const expectedAge = 65;

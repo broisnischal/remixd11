@@ -1,21 +1,21 @@
 ---
-title: Deploy your Bun application at Fly.io with wildcard domain
+title: Deploy your Bun & Elysia application at Fly.io with wildcard domain
 description:
   How you can deploy your bun, elysia and flyio with wildcard domain and connect
   fly.io with cloudflare.
 published: 2024-08-04
 meta:
-  title: What is Vector database and how does it work
+  title: Deploy your Bun & Elysia application at Fly.io with wildcard domain
   author: Nischal Dahal
   description:
-    Vector databases, vector embeddings, indexing, distance metrics Cosine
-    Similarity and other
+    How you can deploy your bun, elysia and flyio with wildcard domain and
+    connect fly.io with cloudflare.
   image: https://nischal-dahal.com.np/images/blog.deploy-bun-elysia-drizzle-flyio-with-wildcard-domain_2024-08-04-10-39-42.png
 featured: true
 image: https://nischal-dahal.com.np/images/blog.deploy-bun-elysia-drizzle-flyio-with-wildcard-domain_2024-08-04-10-39-42.png
 tags:
   [bun, elysia, drizzle, flyio, cloudflare, wildcard-domain, neon-serverless]
-readTime: 10
+readTime: 20
 author: Nischal Dahal
 ---
 
@@ -206,6 +206,10 @@ If you have noticed we have been using two environment which is `port` and
 PORT=8080
 DRIZZLE_DATABASE_URL="postgresql://yourvalidneonurl@ep-still-bush-a5e3y5t2.us-east-2.aws.neon.tech/neondb?sslmode=require"
 ```
+
+You can find out the database url in the neon project dashboard.
+
+![](/images/blog.deploy-bun-elysia-drizzle-flyio-with-wildcard-domain_2024-08-04-11-55-42.png)
 
 We are done with setting up the code base. now we are going to deploy it.
 

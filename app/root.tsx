@@ -500,6 +500,10 @@ export function App() {
 					href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible:regular,italic,700,700italic"
 					rel="stylesheet"
 				/>
+				<link
+					href="https://fonts.googleapis.com/css?family=Inconsolata:200,300,regular,500,600,700,800,900"
+					rel="stylesheet"
+				/>
 				<Meta />
 				<Links />
 				<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />

@@ -393,8 +393,10 @@ export default function Index() {
 							</p>
 
 							<div className="flex flex-wrap gap-1">
-								{post.frontmatter.tags?.map(item => (
-									<Badge variant={'outline'}>{item}</Badge>
+								{post.frontmatter.tags?.map((item, i) => (
+									<Badge key={i} variant={'outline'}>
+										{item}
+									</Badge>
 								))}
 							</div>
 						</div>

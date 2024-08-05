@@ -11,8 +11,6 @@ jobs:
     name: Deploy
     steps: 
       - uses: actions/checkout@v4
-      - name: Install PNPM
-        run: pnpm i  &&  pnpm build
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         # preCommands: echo "*** pre command ***"

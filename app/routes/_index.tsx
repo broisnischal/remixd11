@@ -1,12 +1,12 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
-import { json, Link, useLoaderData } from '@remix-run/react';
+import { Await, defer, json, Link, useLoaderData } from '@remix-run/react';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import { Badge } from '~/components/ui/badge';
 import { TextHighlight } from '~/components/ui/highlight';
 
 import { MetaCreator } from '~/utils/meta';
 import { getPosts } from '~/.server/posts';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import Cal, { getCalApi } from '@calcom/embed-react';
 import moment from 'moment';
 import Hr from '~/components/hr';
@@ -175,10 +175,6 @@ export async function loader(args: LoaderFunctionArgs) {
 	// 	headers: [{ key: 'TRACE-ID', value: '32h67jk' }],
 	// });
 
-	const posts = await getPosts();
-
-	const featuredPosts = posts.filter(post => post.frontmatter.featured);
-
 	// const ratelimit = new Ratelimit({
 	// 	redis: Redis.fromEnv(args.context.env),
 	// 	limiter: Ratelimit.fixedWindow(10, '60 s'),
@@ -205,27 +201,42 @@ export async function loader(args: LoaderFunctionArgs) {
 	// const $ = load(response.data);
 	// const svgContent = $('svg.h-full.w-full').parent().html();
 
-	return json(
-		{
-			featuredPosts,
-			// success,
-			// svgContent,
-			// posts,
-			// limit,
-			// remaining,
-			// reset,
-			// identifier,
-			// url: args.context.env.UPSTASH_REDIS_REST_URL,
-			// token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
-		},
-		{
-			headers: {
-				// 'X-RateLimit-Limit': limit.toString(),
-				// 'X-RateLimit-Remaining': remaining.toString(),
-				// 'X-RateLimit-Reset': reset.toString(),
-			},
-		},
+	const posts = getPosts().then(posts =>
+		posts
+			.filter(post => post.frontmatter.featured === true)
+			.filter(post => post.frontmatter.published)
+			.sort(
+				(a, b) =>
+					new Date(b.frontmatter.published).getTime() -
+					new Date(a.frontmatter.published).getTime(),
+			)
+			.slice(0, 10),
 	);
+
+	// const featuredPosts = posts.filter(post => post.frontmatter.featured);
+
+	// return json(
+	// 	{
+	// 		posts,
+	// 		// success,
+	// 		// svgContent,
+	// 		// posts,
+	// 		// limit,
+	// 		// remaining,
+	// 		// reset,
+	// 		// identifier,
+	// 		// url: args.context.env.UPSTASH_REDIS_REST_URL,
+	// 		// token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
+	// 	},
+	// 	{
+	// 		headers: {
+	// 			// 'X-RateLimit-Limit': limit.toString(),
+	// 			// 'X-RateLimit-Remaining': remaining.toString(),
+	// 			// 'X-RateLimit-Reset': reset.toString(),
+	// 		},
+	// 	},
+	// );
+	return defer({ posts });
 }
 // return json({
 // 	url: args.context.env.UPSTASH_REDIS_REST_URL,
@@ -265,7 +276,7 @@ export async function loader(args: LoaderFunctionArgs) {
 // };
 
 export default function Index() {
-	const { featuredPosts } = useLoaderData<typeof loader>();
+	const { posts } = useLoaderData<typeof loader>();
 
 	return (
 		<div>
@@ -377,37 +388,48 @@ export default function Index() {
 
 			{/* <hr />	 */}
 			<div className="flex flex-col items-start gap-10">
-				{featuredPosts.map(post => (
-					<Link
-						key={post.slug}
-						className="group"
-						to={'/blog/' + post.slug + ''}
-					>
-						<div className="flex flex-col items-start gap-1">
-							<p className="font-inter text-sm text-zinc-500">
-								<small>
-									{moment(post.frontmatter.published).format('MMMM Do YYYY')}
-								</small>
-							</p>
-							<div className="div">
-								<h1 className="font-poppins text-[1.2rem] font-bold capitalize leading-tight tracking-wide group-hover:underline">
-									{post.frontmatter.title}
-								</h1>
+				<Suspense fallback={<div>Loading...</div>}>
+					<Await resolve={posts}>
+						{posts =>
+							posts.map((post, index) => (
+								<Link
+									key={post.slug}
+									className="group"
+									to={'/blog/' + post.slug + ''}
+								>
+									<div className="flex flex-col items-start gap-1">
+										<p className="font-inter text-sm text-zinc-500">
+											<small>
+												{moment(post.frontmatter.published).format(
+													'MMMM Do YYYY',
+												)}
+											</small>
+										</p>
+										<div className="div">
+											<h1 className="font-poppins text-[1.2rem] font-bold capitalize leading-tight tracking-wide group-hover:underline">
+												{post.frontmatter.title}
+											</h1>
 
-								<p className="secondary rounded-md font-normal" key={post.slug}>
-									{post.frontmatter.description}
-								</p>
-							</div>
-							<div className="mt-1 flex flex-wrap gap-1">
-								{post.frontmatter.tags?.map((item, i) => (
-									<Badge key={i} variant={'outline'}>
-										{item}
-									</Badge>
-								))}
-							</div>
-						</div>
-					</Link>
-				))}
+											<p
+												className="secondary rounded-md font-normal"
+												key={post.slug}
+											>
+												{post.frontmatter.description}
+											</p>
+										</div>
+										<div className="mt-1 flex flex-wrap gap-1">
+											{post.frontmatter.tags?.map((item, i) => (
+												<Badge key={i} variant={'outline'}>
+													{item}
+												</Badge>
+											))}
+										</div>
+									</div>
+								</Link>
+							))
+						}
+					</Await>
+				</Suspense>
 			</div>
 			<br />
 			<Link to="/blog">

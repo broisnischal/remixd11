@@ -5,7 +5,7 @@ import {
 	useOutlet,
 	useOutletContext,
 } from '@remix-run/react';
-import { ArrowLeft, ArrowRight, Mails } from 'lucide-react';
+import { ArrowLeft, ArrowRight, HandHelping, Mails } from 'lucide-react';
 import moment from 'moment';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { Clap } from '~/root';
@@ -41,10 +41,12 @@ export default function Component() {
 			<br />
 			<br />
 			<br />
-			<div className="share flex items-center justify-center gap-2">
-				<p className="mr-2 text-center text-[18px]">
-					Share this article on your socials
+			<div className="share flex flex-col items-center justify-center gap-2 md:flex-row">
+				<p className="mr-1 text-center font-poppins text-[18px] font-bold">
+					Share this article on your socials...
 				</p>
+
+				<HandHelping />
 
 				<div className="share flex flex-wrap gap-3">
 					<TwitterShareButton
@@ -53,7 +55,7 @@ export default function Component() {
 						className="Demo__some-network__share-button"
 					>
 						<XIcon
-							className="rounded-full border-[1px] border-zinc-500/50 p-1"
+							className="rounded-full border-[1px] border-zinc-500/50"
 							size={32}
 							round
 						/>
@@ -78,6 +80,8 @@ export default function Component() {
 					</RedditShareButton>
 				</div>
 			</div>
+			<br />
+			<br />
 			<div className=" prose dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-img:rounded-md ">
 				<div className="flex flex-col items-center justify-center">
 					<h2 className=" text-2xl font-bold">Thanks for reading!</h2>

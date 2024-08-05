@@ -35,7 +35,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 
 import { Redis } from '@upstash/redis/cloudflare';
-import { RssIcon } from 'lucide-react';
+import { ArrowUp, RssIcon } from 'lucide-react';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import {
 	PreventFlashOnWrongTheme,
@@ -52,6 +52,7 @@ import { themeSessionResolver } from './session.server';
 import styles from './tailwind.css?url';
 import { MetaCreator } from './utils/meta';
 import Hr from './components/hr';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -411,26 +412,37 @@ export function WebsiteBanner() {
 }
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+	const [isClient, setIsClient] = React.useState(false);
+
+	React.useEffect(() => {
+		// This will only run on the client side
+		setIsClient(true);
+	}, []);
+
 	return (
 		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
 			<div className="my-[2rem] min-h-[45vh] px-5 md:px-0">
-				{/* <AnimatePresence mode="popLayout">
-					<motion.div
-						key={useLocation().pathname}
-						variants={{
-							initial: { opacity: 0, y: -30 },
-							animate: { opacity: 1, y: 0 },
-							exit: { opacity: 1, y: 30 },
-						}}
-						transition={{ duration: 0.5, ease: 'anticipate' }}
-						initial="initial"
-						animate="animate"
-					>
-					</motion.div>
-				</AnimatePresence> */}
-				{children}
+				{isClient ? (
+					<AnimatePresence mode="wait">
+						<motion.div
+							key={useLocation().pathname}
+							variants={{
+								initial: { opacity: 0, y: -30 },
+								animate: { opacity: 1, y: 0 },
+								exit: { opacity: 1, y: 30 },
+							}}
+							transition={{ duration: 0.4, ease: 'anticipate' }}
+							initial="initial"
+							animate="animate"
+						>
+							{children}
+						</motion.div>
+					</AnimatePresence>
+				) : (
+					<>{children}</>
+				)}
 			</div>
 			<Footer />
 		</div>
@@ -537,6 +549,7 @@ export function App() {
 						return location.pathname;
 					}}
 				/>
+				<ScrollToTopButton />
 				<script
 					dangerouslySetInnerHTML={{
 						__html: `
@@ -554,6 +567,7 @@ export function App() {
 ></script>`,
 					}}
 				></script>
+
 				<Scripts />
 			</body>
 		</html>
@@ -683,4 +697,39 @@ export function ErrorBoundary() {
 			</h1>
 		);
 	}
+}
+
+function ScrollToTopButton() {
+	const [showScrollToTopButton, setShowScrollToTopButton] =
+		React.useState(false);
+
+	React.useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 400) {
+				setShowScrollToTopButton(true);
+			} else {
+				setShowScrollToTopButton(false);
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
+	return (
+		<>
+			{showScrollToTopButton && (
+				<button
+					type="button"
+					className="fixed bottom-4 right-4 z-10  p-1 text-[#6d6d6d]"
+					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+				>
+					<ArrowUp />
+				</button>
+			)}
+		</>
+	);
 }

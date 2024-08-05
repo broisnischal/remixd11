@@ -6,7 +6,6 @@ import { TextHighlight } from '~/components/ui/highlight';
 
 import { MetaCreator } from '~/utils/meta';
 import { getPosts } from '~/.server/posts';
-import { _ } from 'node_modules/@upstash/redis/zmscore-80635339';
 import { useEffect } from 'react';
 import Cal, { getCalApi } from '@calcom/embed-react';
 import moment from 'moment';
@@ -313,6 +312,7 @@ export default function Index() {
 					I'm a full stack engineer with a focus on serverless architectures,
 					android development, user experience, and product development.
 				</h3>
+				<small>Change from github action</small>
 				<div className="flex flex-wrap gap-4">
 					<Link
 						className="font-nunito font-bold lowercase underline"

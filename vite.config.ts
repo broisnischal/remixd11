@@ -41,7 +41,8 @@ import { BundledTheme, codeToHtml } from 'shiki';
 // });
 // import { postProcess, preProcess } from '~/lib/rehype-pre-raw';
 
-let theme: BundledTheme = 'vitesse-dark';
+let dark: BundledTheme = 'dark-plus';
+let light: BundledTheme = 'light-plus';
 
 export default defineConfig({
 	plugins: [
@@ -53,13 +54,12 @@ export default defineConfig({
 			},
 
 			rehypePlugins: [
-				rehypePrettyCode,
 				rehypePrism,
 				// rehypePrettyCode,
 				[
 					rehypePrettyCode,
 					{
-						theme: theme,
+						theme: dark,
 						transformers: [
 							// transformerCopyButton({
 							// 	visibility: 'hover',

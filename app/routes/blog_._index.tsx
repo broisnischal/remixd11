@@ -80,7 +80,7 @@ export default function Component() {
 
 	return (
 		<div className="">
-			<ul className="space-y-8">
+			<ul className="space-y-10">
 				{posts.map(post => (
 					<>
 						<li key={post.slug}>

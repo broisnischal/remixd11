@@ -1,6 +1,7 @@
 import { MetaFunction } from '@remix-run/cloudflare';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
+import NewsComponent from '~/components/newscomponent';
 import { MetaCreator } from '~/utils/meta';
 
 export const meta: MetaFunction = ({ data, matches, location }) => {
@@ -36,6 +37,7 @@ const currentAge = 18;
 const expectedAge = 65;
 const weeksPerYear = 52;
 const totalWeeks = expectedAge * weeksPerYear;
+
 const weeksLived = currentAge * weeksPerYear;
 
 const birthDate = moment().subtract(currentAge, 'years');
@@ -67,13 +69,13 @@ const getWeekClass = (weekIndex: number) => {
 	const memory = memories.find(m => m.weekIndex === weekIndex);
 
 	if (memory) {
-		return 'dark:bg-white bg-black border border-black dark:border-white'; // Special background for weeks with memory
+		return 'bg-[#5d5d5d]'; // Special background for weeks with memory
 	} else if (weekIndex < currentWeek) {
-		return 'bg-[#30a14e] ';
+		return 'bg-[#888888] dark:bg-[#3d3d3d]';
 	} else if (weekIndex === currentWeek) {
-		return 'bg-red-400';
+		return 'bg-[#6d6d6d] dark:bg-[#e7e7e7]';
 	} else {
-		return 'bg-slate-400/50 dark:bg-slate-100/20 ';
+		return 'bg-[#e7e7e7] dark:bg-[#000000]';
 	}
 };
 
@@ -114,7 +116,7 @@ export default function Page() {
 	};
 
 	return (
-		<div>
+		<div className="flex flex-col gap-3">
 			<div className="flex items-center justify-between">
 				<h1 className="mb-4 text-2xl font-semibold">Timeline of my death</h1>
 				<p>
@@ -127,46 +129,104 @@ export default function Page() {
 				</p>
 			</div>
 
-			<div className="grid grid-cols-[repeat(52,1fr)] gap-1">
+			<div className="grid grid-flow-row-dense grid-cols-[repeat(52,1fr)] gap-1">
 				{Array.from({ length: totalWeeks }).map((_, i) => {
 					const memory = memories.find(m => m.weekIndex === i);
 					return (
 						<div
 							key={i}
-							className={`h-2 w-2 ${getWeekClass(i)}`}
-							onMouseEnter={
-								memory ? e => handleMouseEnter(e, memory) : undefined
-							}
-							onMouseLeave={handleMouseLeave}
+							className={`h-[10px] w-[10px] ${getWeekClass(i)}`}
 						></div>
 					);
 				})}
 			</div>
-			<Popup memory={hoveredMemory} position={popupPosition} />
 
-			<p className="my-2 text-zinc-700 dark:text-zinc-100">
-				<small>Weeks lived: {weeksLived}</small>
+			{/* <p className="my-2 text-zinc-700 dark:text-zinc-100">
 				<br />
 				This is my weeks of life, where green represents weeks that i lived.
-			</p>
+			</p> */}
+
+			<h2 className="text-xl">Weeks lived: {weeksLived}</h2>
+
+			<div className="m-auto my-24 w-[90%] ">
+				<h2 className="text-3xl font-bold">🫧 Life Journey</h2>
+
+				{dummyValue.map((item, index) => (
+					<NewsComponent key={index} {...item} />
+				))}
+			</div>
 		</div>
 	);
 }
 
-interface PopupProps {
-	memory: string | null;
-	position: { top: number; left: number };
+// interface PopupProps {
+// 	memory: string | null;
+// 	position: { top: number; left: number };
+// }
+
+// const Popup: React.FC<PopupProps> = ({ memory, position }) => {
+// 	if (!memory) return null;
+
+// 	return (
+// 		<div
+// 			className="absolute rounded border bg-white px-3 text-[12px] text-black shadow-lg"
+// 			style={{ top: position.top, left: position.left }}
+// 		>
+// 			{memory}
+// 		</div>
+// 	);
+// };
+
+interface Events {
+	date: string;
+	title: string;
+	body: string;
+	alt?: string;
+	image?: string[];
+	width?: number;
 }
 
-const Popup: React.FC<PopupProps> = ({ memory, position }) => {
-	if (!memory) return null;
+const dummyValue: Events[] = [
+	{
+		date: '2022-05-15',
+		title: 'Started full time as Software Engineer	',
+		body: 'Landed my first job at AITC International, where I worked on various backend technologies and honed my skills.',
+		// image: ['https://picsum.photos/200/300'],
+	},
+	{
+		date: '2022-05-20',
+		title: 'Graduated from high school',
+		body: 'Graduated from high school in 2022. I am currently pursuing my Masters in Computer Science.	',
+		// image: ['https://picsum.photos/200/300?random=1'],
+	},
+	{
+		date: '2021-01-20',
+		title: 'Shifted to Kathmandu',
+		body: 'Shifted to Kathmandu, to further continue my education and journey.',
+		image: ['me.jpg'],
+		width: 100,
+		alt: 'Pictured clicked when having launch at Mude.',
+	},
+	{
+		date: '2022-01-01',
+		title: 'Founded Routine of Nepal Technology',
+		body: 'Founded and worked on the RONT, as content creator and digital influencer.',
+		alt: 'Some of the images of the RONT',
+		image: [
+			'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fcode.jpg&w=3840&q=75',
+			'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd43.jpg&w=3840&q=75',
+		],
+	},
 
-	return (
-		<div
-			className="absolute rounded border bg-white px-3 text-[12px] text-black shadow-lg"
-			style={{ top: position.top, left: position.left }}
-		>
-			{memory}
-		</div>
-	);
-};
+	{
+		date: '2016-01-01',
+		title: 'Techonology Worm',
+		body: 'Started involving in techonology, with experties and keen to learning, and being creative, learning about Editing, Game Development, Web development, and more.',
+	},
+	{
+		date: '2006-03-17',
+		title: 'Borned',
+		body: ' Borned in Mainapokhari, Dolakha.',
+		// image: ['https://picsum.photos/200/300?random=1'],
+	},
+];

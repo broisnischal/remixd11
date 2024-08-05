@@ -1,19 +1,43 @@
+import { useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 import Hr from '~/components/hr';
 
 export default function Page() {
+	const [rotation, setRotation] = useState('0');
+
+	const handleMouseMove = (e: React.MouseEvent) => {
+		const card = e.currentTarget;
+		const rect = card.getBoundingClientRect();
+		const x = e.clientX - rect.left;
+		const y = e.clientY - rect.top;
+
+		const centerX = rect.width / 2;
+		const centerY = rect.height / 2;
+
+		const angleX = (y - centerY) / 10;
+		const angleY = (centerX - x) / 10;
+
+		setRotation(`rotateX(${angleX}deg) rotateY(${angleY}deg)`);
+	};
+
+	const handleMouseLeave = () => {
+		setRotation('rotateX(0deg) rotateY(0deg)');
+	};
+
 	return (
 		<div className="flex flex-col gap-8">
 			<br />
 			<h1 className="text-center text-4xl font-bold"> About Me 🐈‍</h1>
 			<div className="flex flex-col gap-4">
-				<p className="text-[18px] text-zinc-50">
-					Hello, my name is <Highlight>Nischal Dahal</Highlight>. I was born on
-					March 17, 2006. I am a versatile software engineer with expertise in
-					full stack development and experience leading teams. My passions
+				<p className="secondary text-[18px]">
+					Hello, my name is{' '}
+					<Highlight className="text-xl">Nischal Dahal</Highlight> . I was born
+					on March 17, 2006. I am a versatile software engineer with expertise
+					in full stack development and experience leading teams. My passions
 					include programming, cutting-edge gadgets, and adventuring adventures.
 				</p>
 				<br />
-				<p className="text-[18px] text-zinc-50">
+				<p className="secondary text-[18px]">
 					As a firm believer in transhumanism, I envision a future where
 					technology alleviates human suffering and fosters a more harmonious
 					world. I maintain a healthy lifestyle, free of bad habits, and am
@@ -24,7 +48,14 @@ export default function Page() {
 				</p>
 			</div>
 			<br />
-			<img src="/qr.png" className="mx-auto w-1/2" alt="" />
+			<img
+				src="/qr.png"
+				style={{ transform: rotation }}
+				onMouseMove={handleMouseMove}
+				onMouseLeave={handleMouseLeave}
+				className="mx-auto w-1/2 transform-gpu rounded-2xl border shadow-xl transition-transform duration-200 ease-out"
+				alt=""
+			/>
 			<br />
 
 			<div className="flex flex-col gap-6 text-[18px]">
@@ -171,9 +202,20 @@ function Experience(val: Experience) {
 	);
 }
 
-export function Highlight({ children }: { children: React.ReactNode }) {
+export function Highlight({
+	children,
+	className,
+}: {
+	children: React.ReactNode;
+	className?: string;
+}) {
 	return (
-		<span className="w-fit rounded-md border-[1px] border-zinc-500 bg-zinc-200/10 px-1 font-inconsolata text-sm">
+		<span
+			className={twMerge(
+				'w-fit rounded-md border-[1px] border-zinc-300 bg-zinc-200/40 px-2 font-inconsolata text-sm dark:border-zinc-500 dark:bg-zinc-200/10',
+				className,
+			)}
+		>
 			{children}
 		</span>
 	);

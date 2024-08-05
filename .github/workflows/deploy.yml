@@ -1,26 +1,63 @@
+# name: Deploy
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     name: Deploy
+#     steps: 
+#       - uses: actions/checkout@v4
+#       - name: Deploy
+#         uses: cloudflare/wrangler-action@v3
+#         # preCommands: echo "*** pre command ***"
+#         # postCommands: |
+#         #   echo "*** post commands ***"
+#         with:
+#           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+#           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+#           # workingDirectory: './'
+#           wranglerVersion: "3"
+#           packageManager: pnpm
+#           environment: production
+#           command: deploy
+
 name: Deploy
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ['CI']
+    types: [completed]
+    branches: [main]
 
 jobs:
-  deploy:
+  check:
+    name: Build and deploy CF Pages
     runs-on: ubuntu-latest
-    name: Deploy
-    steps: 
+    if: github.event.workflow_run.conclusion == 'success'
+    steps:
       - uses: actions/checkout@v4
-      - name: Deploy
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - run: pnpm install
+      - run: pnpm build
+
+      - name: Deploy wrangler
         uses: cloudflare/wrangler-action@v3
-        # preCommands: echo "*** pre command ***"
-        # postCommands: |
-        #   echo "*** post commands ***"
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # workingDirectory: './'
-          wranglerVersion: "3"
-          packageManager: pnpm
-          environment: production
-          command: deploy
+          command: pages deploy
+          packageManager: 'pnpm'
+          wranglerVersion: '3.23.0'

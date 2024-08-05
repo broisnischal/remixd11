@@ -61,6 +61,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./build/client
+          command: pages deploy ./build/client --project-name nees
           packageManager: 'pnpm'
           wranglerVersion: '3.23.0'

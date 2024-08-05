@@ -175,9 +175,9 @@ export default function NewsLetter() {
 			<div>
 				<h3 className="mb-4 text-4xl font-bold"> Subscribe to Newsletter</h3>
 
-				<div className="flex flex-col items-start">
+				<div className="flex flex-col items-start justify-center gap-2">
 					<Form
-						className="flex flex-col items-start justify-center gap-2 dark:bg-black dark:text-zinc-100 md:flex-row "
+						className="flex flex-col items-start justify-center gap-2   md:flex-row "
 						method="POST"
 						{...getFormProps(form)}
 					>
@@ -192,11 +192,11 @@ export default function NewsLetter() {
 						</Button>
 					</Form>
 
-					<Form
-						className="flex  gap-2 dark:bg-black dark:text-zinc-100 "
-						method="POST"
-						{...getFormProps(form)}
-					>
+					{fields.email.errors && fields.email.errors.length > 0 && (
+						<p className="text-sm text-red-500">{fields.email.errors[0]}</p>
+					)}
+
+					<Form className="flex  gap-2 " method="POST" {...getFormProps(form)}>
 						<Input
 							className="hidden"
 							readOnly
@@ -212,9 +212,6 @@ export default function NewsLetter() {
 							</Button>
 						)}
 					</Form>
-					{fields.email.errors && fields.email.errors.length > 0 && (
-						<p className="text-sm text-red-500">{fields.email.errors[0]}</p>
-					)}
 				</div>
 				<p className="mt-2 w-full text-left text-xs text-gray-500 dark:text-gray-400">
 					Stay tuned and get notified when I publish something new and

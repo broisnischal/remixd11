@@ -122,24 +122,23 @@ export async function loader() {
 		}[];
 	}>(`https://github-contributions-api.jogruber.de/v4/broisnischal?y=last`);
 
-	const repos = await fetchLatestRepos('broisnischal', 9);
+	// const repos = await fetchLatestRepos('broisnischal', 9);
 
-	return json({ contributions: data.data.contributions, repos });
+	return json({ contributions: data.data.contributions });
 }
 
 export default function Overview() {
-	const { contributions, repos } = useLoaderData<typeof loader>();
+	const { contributions } = useLoaderData<typeof loader>();
 
 	return (
 		<div className="m-auto flex flex-col gap-4 md:max-w-[70vw]">
-			{repos.length > 0 && (
+			{/* {repos.length > 0 && (
 				<>
 					<br />
 
 					<div>
 						<h1 className="mb-3 text-3xl font-bold">Recents Projects</h1>
 						<div className="items-sta flex gap-9">
-							{/* <VscVscode size={100} /> */}
 
 							<div className=" flex flex-wrap items-start gap-2 *:border-[1px]">
 								{repos.map((item, i) => (
@@ -152,15 +151,14 @@ export default function Overview() {
 											{item.title}
 										</Link>
 										{item.description && <p>{item.description}</p>}
-										{/* <small>Stars {item.stars}</small> */}
 									</div>
 								))}
 							</div>
 						</div>
 					</div>
 				</>
-			)}
-			<br />
+			)} */}
+			{/* <br /> */}
 			<div>
 				<h1 className="mb-3 text-3xl font-bold">Featured Projects</h1>
 				<div className="items-sta flex gap-10">

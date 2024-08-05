@@ -120,3 +120,30 @@ html {
 		@apply mb-2 mt-2 text-[1.8em];
 	}
 }
+
+code {
+	counter-reset: line;
+}
+
+code > [data-line]::before {
+	counter-increment: line;
+	content: counter(line);
+
+	display: inline-block;
+	width: 1rem;
+	margin-right: 2rem;
+	text-align: right;
+	color: rgba(128, 128, 128, 0.418);
+}
+
+code[data-line-numbers-max-digits='2'] > [data-line]::before {
+	width: 2rem;
+}
+
+code[data-line-numbers-max-digits='3'] > [data-line]::before {
+	width: 3rem;
+}
+
+code {
+	/* @apply bg-zinc-400/10 text-zinc-800 dark:bg-zinc-400/10 dark:text-zinc-300; */
+}

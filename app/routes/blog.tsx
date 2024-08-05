@@ -18,6 +18,7 @@ import {
 	TwitterShareButton,
 	XIcon,
 } from 'react-share';
+import MyMDXProvider from '~/lib/mdx';
 
 export default function Component() {
 	const location = useLocation();
@@ -34,7 +35,7 @@ export default function Component() {
 					<ArrowLeft className="h-5 w-5" /> Back
 				</div>
 			</Link>
-			<div className="prose prose-zinc dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-strong:font-inconsolata prose-code:rounded-md prose-code:font-inconsolata  prose-img:rounded-md ">
+			<div className="prose prose-zinc dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-strong:font-inconsolata prose-code:rounded-md  prose-code:font-inconsolata prose-img:rounded-md   ">
 				<Outlet />
 			</div>
 			<br />

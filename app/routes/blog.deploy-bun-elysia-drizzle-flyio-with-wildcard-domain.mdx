@@ -83,8 +83,9 @@ Projects includes multiple tools and technologies.
 **Bun, elysia, neon serverless postgres, drizzle, flyio, cloudflare,
 github_action, docker**
 
-Let's create the project using the starting elysia command **bun create elysia
-myapp**, after you initialized your project using elysia, you can run the
+    Let's create the project using the starting elysia command **bun create elysia
+
+myapp\*\*, after you initialized your project using elysia, you can run the
 project then it should run on port 3000.
 
 For `database` Today I am going to use the neon serverless postgres database
@@ -99,7 +100,7 @@ src folder,
 
 `db/index.ts`
 
-```tsx
+```tsx showLineNumbers
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import * as schema from './schema';

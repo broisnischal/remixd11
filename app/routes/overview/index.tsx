@@ -142,8 +142,8 @@ export default function Overview() {
 							{/* <VscVscode size={100} /> */}
 
 							<div className=" flex flex-wrap items-start gap-2 *:border-[1px]">
-								{repos.map(item => (
-									<div className="rounded-lg p-3">
+								{repos.map((item, i) => (
+									<div key={i} className="rounded-lg p-3">
 										<Link
 											target="_blank"
 											rel="noopener noreferrer"

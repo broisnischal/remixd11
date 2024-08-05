@@ -424,14 +424,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 			<ProgessBar />
 			<NavBar />
 			<div className="my-[2rem] min-h-[45vh] px-5 md:px-0">
-				{isClient ? (
-					<AnimatePresence mode="wait">
+				{/* {isClient ? (
+					<AnimatePresence mode="sync">
 						<motion.div
 							key={useLocation().pathname}
 							variants={{
-								initial: { opacity: 0, y: -30 },
+								initial: { opacity: 0, y: -20 },
 								animate: { opacity: 1, y: 0 },
-								exit: { opacity: 1, y: 30 },
+								exit: { opacity: 1, y: 0 },
 							}}
 							transition={{ duration: 0.4, ease: 'anticipate' }}
 							initial="initial"
@@ -442,7 +442,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 					</AnimatePresence>
 				) : (
 					<>{children}</>
-				)}
+				)} */}
+				<>{children}</>
 			</div>
 			<Footer />
 		</div>

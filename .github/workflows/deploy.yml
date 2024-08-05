@@ -12,7 +12,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
       - name: Deploy
-        uses: cloudflare/wrangler-action@v3.6.0
+        uses: cloudflare/wrangler-action@v3
         # preCommands: echo "*** pre command ***"
         # postCommands: |
         #   echo "*** post commands ***"
@@ -20,5 +20,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # workingDirectory: './'
-          packageManager: 'pnpm'
+          wranglerVersion: "3"
+          packageManager: pnpm
+          environment: production
           command: deploy

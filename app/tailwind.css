@@ -104,4 +104,19 @@ html {
 		/* @apply text-zinc-800 dark:text-zinc-300; */
 		/* text-sm */
 	}
+
+	.secondary {
+		@apply text-zinc-600 dark:text-zinc-400;
+	}
+}
+
+@layer components {
+	.prose :where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+		@apply mb-3 mt-3 text-sm text-[var(--tw-prose-headings)];
+	}
+
+	.prose-xl
+		:where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+		@apply mb-2 mt-2 text-[1.8em] leading-[1.1111111];
+	}
 }

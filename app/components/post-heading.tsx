@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { Badge } from './ui/badge';
+import Hr from './hr';
 
 export default function PostHeading({
 	title,
@@ -17,19 +18,20 @@ export default function PostHeading({
 	return (
 		<>
 			<div>
-				<h2 className="text-sm font-bold leading-none">{title}</h2>
+				<h2 className="text-3xl	 font-bold ">{title}</h2>
 
-				<p className="text-sm text-zinc-500 dark:text-gray-200">
+				<p className="secondary text-sm">
 					Published on {moment(date).format('MMMM Do YYYY')} with {readingTime}{' '}
 					minutes reading time by {author}
 				</p>
-				<div className="flex flex-wrap items-center gap-1">
+				<div className="flex flex-wrap items-center gap-3">
 					{tags?.map((item, i) => (
 						<Badge key={i + 1} className="rounded-md" variant={'secondary'}>
 							{item}
 						</Badge>
 					))}
 				</div>
+				<Hr />
 			</div>
 		</>
 	);

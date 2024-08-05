@@ -86,7 +86,7 @@ export default function Component() {
 						<li key={post.slug}>
 							<Post {...post} />
 						</li>
-						<Hr />
+						{/* <Hr /> */}
 					</>
 				))}
 			</ul>

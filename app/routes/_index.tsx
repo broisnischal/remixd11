@@ -307,7 +307,7 @@ export default function Index() {
 				<h1 className="text-3xl font-bold leading-3 dark:text-zinc-100">
 					Nischal Dahal
 				</h1>
-				<h3>
+				<h3 className="secondary">
 					I'm a software developer from Nepal. I work at AITC as Software
 					Engineer. <br /> I love to build things.
 				</h3>
@@ -388,18 +388,20 @@ export default function Index() {
 					>
 						<div className="flex flex-col items-start gap-1">
 							<p className="font-inter text-sm text-zinc-500">
-								{moment(post.frontmatter.published).format('MMMM Do YYYY')}
+								<small>
+									{moment(post.frontmatter.published).format('MMMM Do YYYY')}
+								</small>
 							</p>
+							<div className="div">
+								<h1 className="font-poppins text-[1.2rem] font-bold capitalize leading-tight tracking-wide group-hover:underline">
+									{post.frontmatter.title}
+								</h1>
 
-							<h1 className="font-poppins text-[1.2rem] font-bold capitalize tracking-wide group-hover:underline">
-								{post.frontmatter.title}
-							</h1>
-
-							<p className="rounded-md font-normal" key={post.slug}>
-								{post.frontmatter.description}
-							</p>
-
-							<div className="flex flex-wrap gap-1">
+								<p className="secondary rounded-md font-normal" key={post.slug}>
+									{post.frontmatter.description}
+								</p>
+							</div>
+							<div className="mt-1 flex flex-wrap gap-1">
 								{post.frontmatter.tags?.map((item, i) => (
 									<Badge key={i} variant={'outline'}>
 										{item}
@@ -413,7 +415,7 @@ export default function Index() {
 			<br />
 			<Link to="/blog">
 				<Button className="self-center" variant={'outline'}>
-					Read more
+					View more
 				</Button>
 			</Link>
 

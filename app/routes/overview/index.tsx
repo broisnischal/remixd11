@@ -1,29 +1,25 @@
 import { json, Link, useLoaderData } from '@remix-run/react';
-import { VscVscode, VscFolder } from 'react-icons/vsc';
-import { GrDocumentConfig } from 'react-icons/gr';
-import { GitBranch } from 'lucide-react';
-import { IconType } from 'react-icons/lib';
 import axios from 'axios';
-import { load } from 'cheerio';
+import { GitBranch } from 'lucide-react';
+import { FaDocker, FaGitAlt } from 'react-icons/fa';
+import { IconType } from 'react-icons/lib';
+import { MdOutlineKeyboardCommandKey, MdOutlineTerminal } from 'react-icons/md';
+import { RiFlutterFill } from 'react-icons/ri';
+import {
+	SiEditorconfig,
+	SiEslint,
+	SiNeovim,
+	SiPrettier,
+	SiTmux,
+} from 'react-icons/si';
+import { VscVscode } from 'react-icons/vsc';
 import { ContributionBox } from '~/components/contribution';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
-import { SiNeovim } from 'react-icons/si';
-import { FaGitAlt } from 'react-icons/fa';
-import { SiEslint } from 'react-icons/si';
-import { MdOutlineKeyboardCommandKey } from 'react-icons/md';
-import { MdOutlineTerminal } from 'react-icons/md';
-import { SiTmux } from 'react-icons/si';
-import { FaDocker } from 'react-icons/fa';
-import { SiPrettier } from 'react-icons/si';
-import { SiEditorconfig } from 'react-icons/si';
-import { RiFlutterFill } from 'react-icons/ri';
 
-import AvatarCircles from '~/components/magicui/avatar-circles';
-import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
-import { useState } from 'react';
-import { MetaFunction } from '@remix-run/cloudflare';
-import { MetaCreator } from '~/utils/meta';
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import { MetaFunction } from '@remix-run/cloudflare';
+import AvatarCircles from '~/components/magicui/avatar-circles';
+import { MetaCreator } from '~/utils/meta';
 
 export const meta: MetaFunction = ({ location }) => {
 	const url = new URL('https://nischal-dahal.com.np');
@@ -35,10 +31,6 @@ export const meta: MetaFunction = ({ location }) => {
 		image: '/ogimg.png',
 		url: `${url.origin}${location.pathname}`,
 		others: [
-			{
-				name: 'author',
-				content: 'Nischal Dahal',
-			},
 			{
 				name: 'keywords',
 				content:
@@ -110,7 +102,24 @@ const fetchLatestRepos = async (
 export async function loader() {
 	type Level = 0 | 1 | 2 | 3 | 4;
 
-	const data = await axios.get<{
+	// const data = await axios.get<{
+	// 	total: {
+	// 		lastYear: number;
+	// 		thisYear: number;
+	// 	};
+	// 	contributions: {
+	// 		date: string;
+	// 		count: number;
+	// 		level: Level;
+	// 	}[];
+	// }>(`https://github-contributions-api.jogruber.de/v4/broisnischal?y=last`);
+
+	// const repos = await fetchLatestRepos('broisnischal', 9);
+
+	const response = await fetch(
+		'https://github-contributions-api.jogruber.de/v4/broisnischal?y=last',
+	);
+	const data: {
 		total: {
 			lastYear: number;
 			thisYear: number;
@@ -120,11 +129,9 @@ export async function loader() {
 			count: number;
 			level: Level;
 		}[];
-	}>(`https://github-contributions-api.jogruber.de/v4/broisnischal?y=last`);
+	} = await response.json();
 
-	// const repos = await fetchLatestRepos('broisnischal', 9);
-
-	return json({ contributions: data.data.contributions });
+	return json({ contributions: data.contributions });
 }
 
 export default function Overview() {
@@ -301,22 +308,6 @@ type MyConfig = {
 };
 
 function MyConfig({ icon, title, link, description, subicon }: MyConfig) {
-	const [isOpen, setIsOpen] = useState(false);
-
-	const [isSubmitting, setIsSubmitting] = useState(false);
-
-	const onClickHandler = () => setIsOpen(!isOpen);
-
-	const onSubmitHandler = async () => {
-		setIsSubmitting(true);
-
-		await new Promise(resolve => setTimeout(resolve, 3000));
-
-		setIsSubmitting(false);
-		await new Promise(resolve => setTimeout(resolve, 500));
-		setIsOpen(false);
-	};
-
 	return (
 		<>
 			<div className="flex w-full flex-col border-[1px] p-3 ">
@@ -324,9 +315,6 @@ function MyConfig({ icon, title, link, description, subicon }: MyConfig) {
 					{icon({ size: 20 })}
 					<Link to={link}>{title}</Link>
 				</div>
-				{/* <div>
-					<p>{description}</p>
-				</div> */}
 			</div>
 		</>
 	);

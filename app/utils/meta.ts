@@ -14,6 +14,10 @@ type MetaItems = {
 type MetaCreator = (args: MetaItems) => ReturnType<MetaFunction>;
 
 export const MetaCreator: MetaCreator = arg => {
+	// const alreadyExistsMetaAuthor = arg.others?.some(
+	// 	meta => meta.name === 'author',
+	// );
+
 	const meta: ReturnType<MetaFunction> = [
 		{
 			title: arg.title,
@@ -58,10 +62,19 @@ export const MetaCreator: MetaCreator = arg => {
 			name: 'author',
 			content: 'Nischal Dahal',
 		},
+
 		// {
 		// 	property: 'og:updated_time',
 		// 	content: new Date().toISOString(),
 		// },
+		// ...(!alreadyExistsMetaAuthor
+		// 	? [
+		// 			{
+		// 				name: 'author',
+		// 				content: 'Nischal Dahal',
+		// 			},
+		// 		]
+		// 	: []),
 	];
 
 	if (arg.image) {

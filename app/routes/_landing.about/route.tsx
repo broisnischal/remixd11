@@ -104,9 +104,9 @@ export default function Page() {
 				<h1 className="text-3xl font-bold">💼 Experiences</h1>
 				<Hr />
 				<div className="experiences flex flex-col gap-10">
-					{experiences.map(experience => (
+					{experiences.map((experience, i) => (
 						<Experience
-							key={experience.company}
+							key={i}
 							image={experience.image}
 							company={experience.company}
 							headline={experience.headline}
@@ -187,12 +187,12 @@ function Experience(val: Experience) {
 				<small className="text-sm text-zinc-500">{val.headline}</small>
 
 				{val.items.map((item, i) => (
-					<div className="items flex w-full flex-col gap-1">
+					<div key={i} className="items flex w-full flex-col gap-1">
 						<h1>{item.title}</h1>
 						<p className="">{item.desc}</p>
 						<div className="languages flex flex-wrap items-center gap-3">
-							{item.languages.map(item => (
-								<Highlight>{item}</Highlight>
+							{item.languages.map((item, index) => (
+								<Highlight key={index}>{item}</Highlight>
 							))}
 						</div>
 					</div>

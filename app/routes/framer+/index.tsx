@@ -53,6 +53,7 @@ export default function Page() {
 						</Link>
 					) : (
 						<div
+							key={i}
 							className={`grid aspect-square w-20 cursor-no-drop place-content-center rounded-lg border-2 p-5 text-center ${
 								i === doingDay - 1
 									? 'bg-zinc-800/20 dark:bg-zinc-800/45'

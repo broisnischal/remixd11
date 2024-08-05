@@ -14,10 +14,6 @@ export const meta: MetaFunction = ({ data, matches, location }) => {
 		url: `${url.origin}${location.pathname}`,
 		others: [
 			{
-				name: 'author',
-				content: 'Nischal Dahal',
-			},
-			{
 				tagName: 'link',
 				rel: 'canonical',
 				href: `${url.origin}${location.pathname}`,

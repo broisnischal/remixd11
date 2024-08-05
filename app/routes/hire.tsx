@@ -11,6 +11,25 @@ import {
 import { Input } from '~/components/ui/input';
 import { useIsPending } from '~/lib/misc';
 import { SoftwareTools } from './_index';
+import { MetaCreator } from '~/utils/meta';
+import { MetaFunction } from '@remix-run/cloudflare';
+
+export const meta: MetaFunction = ({ location }) => {
+	const url = new URL('https://nischal-dahal.com.np');
+
+	const metadata = MetaCreator({
+		title: `Nischal Dahal | Guestbook `,
+		description: `Passionate software engineer and full stack developer with expertise in
+				backend development and DevOps. Skilled in a wide array of technologies,
+				frameworks, databases, and tools. Experienced content creator and
+				editor. Committed to building efficient, secure, and innovative
+				solutions.`,
+		image: '/ogimg.png',
+		url: `${url.origin}${location.pathname}`,
+	});
+
+	return [...metadata];
+};
 
 export default function Page() {
 	const isPending = useIsPending();
@@ -18,7 +37,6 @@ export default function Page() {
 	return (
 		<div className="flex flex-col items-start gap-4">
 			<h1 className="text-3xl font-bold">🤝 Let's work together</h1>
-
 			<p>
 				Passionate software engineer and full stack developer with expertise in
 				backend development and DevOps. Skilled in a wide array of technologies,
@@ -26,7 +44,6 @@ export default function Page() {
 				editor. Committed to building efficient, secure, and innovative
 				solutions.
 			</p>
-
 			<p>
 				I'm actively looking for a new role as a Full Stack Developer. Please
 				check out{' '}
@@ -44,17 +61,13 @@ export default function Page() {
 				</a>
 				!
 			</p>
-
 			<a href="https://rxresu.me/broisnischal/nischal-job" target="_blank">
 				<ConnectButton>View My Resume</ConnectButton>
 			</a>
-
 			<br />
 			<DevStack />
 			<br />
-
 			<h2 className=" text-2xl font-bold tracking-wide">Featuring</h2>
-
 			<ul className="list-disc pl-10">
 				<li>Full stack development,</li>
 				<li> Product Designer, and Graphic designing skills, </li>
@@ -63,11 +76,8 @@ export default function Page() {
 				<li>🏖️ Unlimited paid time off</li>
 			</ul>
 			<br />
-
 			<SoftwareTools />
-
 			<br />
-
 			<div className="div flex w-full flex-col">
 				<h1 className="mb-3 font-nunito text-xl">
 					💯 What people think of me?

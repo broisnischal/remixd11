@@ -58,10 +58,6 @@ export const meta: MetaFunction = ({ location }) => {
 		url: `${url.origin}${location.pathname}`,
 		others: [
 			{
-				name: 'author',
-				content: 'Nischal Dahal',
-			},
-			{
 				name: 'keywords',
 				content:
 					'Nischal, Dahal, Nischal Dahal, Nepal Developer, Broisnees, neeswebservices, nees, best developer, best programmer, from nepal',

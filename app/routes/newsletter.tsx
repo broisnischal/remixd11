@@ -37,10 +37,6 @@ export const meta: MetaFunction<typeof loader> = ({
 		url: `${url.origin}${location.pathname}`,
 		others: [
 			{
-				name: 'author',
-				content: 'Nischal Dahal',
-			},
-			{
 				tagName: 'link',
 				rel: 'canonical',
 				href: `${url.origin}${location.pathname}`,
@@ -226,14 +222,12 @@ export default function NewsLetter() {
 					<h3 className=" font-bold">
 						About once per month, I send an email with:
 					</h3>
-					<p>
-						<ul className="ml-10 list-disc">
-							<li>New guides and tutorials</li>
-							<li>New features</li>
-							<li>Announcements</li>
-							<li>Cool new libraries and packages</li>
-						</ul>
-					</p>
+					<ul className="ml-10 list-disc">
+						<li>New guides and tutorials</li>
+						<li>New features</li>
+						<li>Announcements</li>
+						<li>Cool new libraries and packages</li>
+					</ul>
 				</div>
 			</div>
 		</div>

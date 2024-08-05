@@ -22,10 +22,6 @@ export const meta: MetaFunction<typeof loader> = ({
 		url: `${url.origin}${location.pathname}`,
 		others: [
 			{
-				name: 'author',
-				content: 'Nischal Dahal',
-			},
-			{
 				name: 'keywords',
 				content: data && data.map(post => post.frontmatter.title).join(', '),
 			},
@@ -81,13 +77,10 @@ export default function Component() {
 	return (
 		<div className="">
 			<ul className="space-y-10">
-				{posts.map(post => (
-					<>
-						<li key={post.slug}>
-							<Post {...post} />
-						</li>
-						{/* <Hr /> */}
-					</>
+				{posts.map((post, i) => (
+					<li key={i}>
+						<Post key={post.slug} {...post} />
+					</li>
 				))}
 			</ul>
 		</div>

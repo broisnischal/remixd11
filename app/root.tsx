@@ -70,10 +70,6 @@ export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
 		url: `${url.origin}${location.pathname}`,
 		others: [
 			{
-				name: 'author',
-				content: 'Nischal Dahal',
-			},
-			{
 				name: 'keywords',
 				content:
 					'Nischal, Dahal, Nischal Dahal, Nepal Developer, Broisnees, neeswebservices, nees, best developer, best programmer, from nepal',
@@ -551,24 +547,6 @@ export function App() {
 					}}
 				/>
 				<ScrollToTopButton />
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `
-					<script>
-    (function () {
-        window.counterscale = {
-            q: [["set", "siteId", "nischaldahalanalyticscounterscale"], ["trackPageview"]],
-        };
-    })();
-</script>
-<script
-    id="counterscale-script"
-    src="https://counterscale-dqi.pages.dev/tracker.js"
-    defer
-></script>`,
-					}}
-				></script>
-
 				<Scripts />
 			</body>
 		</html>
@@ -650,6 +628,8 @@ export function Clap({ count }: { count: number }) {
 export function ErrorBoundary() {
 	const error = useRouteError();
 
+	console.log(error);
+
 	if (isRouteErrorResponse(error)) {
 		return (
 			<div
@@ -682,6 +662,7 @@ export function ErrorBoundary() {
 				<h1>Error</h1>
 				<p>{error.message}</p>
 				<pre>{import.meta.env.DEV && error.stack}</pre>
+				<pre>{error.stack}</pre>
 			</div>
 		);
 	} else {

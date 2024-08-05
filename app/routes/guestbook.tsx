@@ -97,10 +97,6 @@ export const meta: MetaFunction<typeof loader> = ({
 		url: `${url.origin}${location.pathname}`,
 		others: [
 			{
-				name: 'author',
-				content: 'Nischal Dahal',
-			},
-			{
 				name: 'keywords',
 				content:
 					data &&

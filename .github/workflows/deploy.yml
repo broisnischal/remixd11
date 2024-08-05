@@ -15,9 +15,9 @@ jobs:
         run: pnpm i  &&  pnpm build
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
-        preCommands: echo "*** pre command ***"
-        postCommands: |
-          echo "*** post commands ***"
+        # preCommands: echo "*** pre command ***"
+        # postCommands: |
+        #   echo "*** post commands ***"
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

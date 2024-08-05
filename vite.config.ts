@@ -1,33 +1,34 @@
+import mdx from '@mdx-js/rollup';
 import {
 	vitePlugin as remix,
 	cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
 } from '@remix-run/dev';
-import { defineConfig } from 'vite';
-import mdx from '@mdx-js/rollup';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeMeta from 'rehype-meta';
 import rehypePrettyCode from 'rehype-pretty-code';
+import rehypePrism from 'rehype-prism';
+import rehypeSlug from 'rehype-slug';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-import svgr from 'vite-plugin-svgr';
 import { flatRoutes } from 'remix-flat-routes';
-import rehypePrism from 'rehype-prism';
+import { defineConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
+
+import remarkToc from 'remark-toc';
 
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 // import 'prismjs/themes/prism-coy.css';
 // import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
-import { vitePluginUnified } from 'vite-plugin-unified';
-import { unified } from 'unified';
-import rehypeFormat from 'rehype-format';
 import rehypeStringify from 'rehype-stringify';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
+// import remarkParse from 'remark-parse';
+// import remarkRehype from 'remark-rehype';
 
-import { getLoadContext } from './load-context';
 import { visit } from 'unist-util-visit';
-import { transformerCopyButton } from '@rehype-pretty/transformers';
+import { getLoadContext } from './load-context';
 
-import { BundledTheme, codeToHtml } from 'shiki';
+import { BundledTheme } from 'shiki';
 
 // const code = await codeToHtml('console.log("Hello World")', {
 // 	lang: 'ts',
@@ -54,20 +55,29 @@ export default defineConfig({
 			},
 
 			rehypePlugins: [
-				rehypePrism,
+				rehypeAutolinkHeadings,
+				rehypeSlug,
+				rehypeMeta,
+				[
+					rehypePrism,
+					{
+						autolinker: true,
+					},
+				],
+				[remarkToc, { ordered: true, tight: false }],
+
 				// rehypePrettyCode,
 				[
 					rehypePrettyCode,
 					{
 						theme: dark,
-						transformers: [
-							// transformerCopyButton({
-							// 	visibility: 'hover',
-							// 	feedbackDuration: 2_000,
-							// 	successIcon: '👍',
-							// 	// copyIcon: '📋'	,
-							// }),
-						],
+						// transformers: [
+						// 	transformerCopyButton({
+						// 		visibility: 'always',
+						// 		successIcon: '✅',
+						// 		feedbackDuration: 3_000,
+						// 	}),
+						// ],
 						// theme: {
 						// 	dark: 'one-dark-pro',
 						// 	light: 'github-light',

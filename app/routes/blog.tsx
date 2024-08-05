@@ -8,6 +8,8 @@ import {
 import { ArrowLeft, ArrowRight, HandHelping, Mails } from 'lucide-react';
 import moment from 'moment';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
+import { MDXProvider } from '@mdx-js/react';
+
 import { Clap } from '~/root';
 import {
 	EmailIcon,
@@ -104,3 +106,21 @@ export default function Component() {
 		</div>
 	);
 }
+
+// const components = {
+// 	toc: props => <div className="toc">{props.children}</div>,
+// };
+
+// export function MyPage({ children }: { children: React.ReactNode }) {
+// 	return (
+// 		<MDXProvider components={components}>
+// 			<div className="content-container">
+// 				<div className="toc-container">
+// 					<h2>Table of Contents</h2>
+// 					<toc />
+// 				</div>
+// 				<div className="main-content">{children}</div>
+// 			</div>
+// 		</MDXProvider>
+// 	);
+// }

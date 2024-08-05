@@ -149,7 +149,7 @@ code[data-line-numbers-max-digits='3'] > [data-line]::before {
 }
 
 code {
-	@apply border-2 p-1;
+	@apply border p-1;
 }
 
 figure {

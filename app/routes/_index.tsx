@@ -307,9 +307,11 @@ export default function Index() {
 				<h1 className="text-3xl font-bold leading-3 dark:text-zinc-100">
 					Nischal Dahal
 				</h1>
-				<h3 className="secondary">
-					I'm a software developer from Nepal. I work at AITC as Software
-					Engineer. <br /> I love to build things.
+				<h3 className="secondary max-w-[70%]">
+					{/* I'm a software developer from Nepal. I work at AITC as Software
+					Engineer. <br /> I love to build things. */}
+					I'm a full stack engineer with a focus on serverless architectures,
+					android development, user experience, and product development.
 				</h3>
 				<div className="flex flex-wrap gap-4">
 					<Link

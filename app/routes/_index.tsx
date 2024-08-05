@@ -312,7 +312,6 @@ export default function Index() {
 					I'm a full stack engineer with a focus on serverless architectures,
 					android development, user experience, and product development.
 				</h3>
-				<small>Change from github action</small>
 				<div className="flex flex-wrap gap-4">
 					<Link
 						className="font-nunito font-bold lowercase underline"

@@ -1,18 +1,8 @@
-import {
-	Link,
-	Outlet,
-	useLocation,
-	useOutlet,
-	useOutletContext,
-} from '@remix-run/react';
-import { ArrowLeft, ArrowRight, HandHelping, Mails } from 'lucide-react';
-import moment from 'moment';
+import { Link, Outlet, useLocation } from '@remix-run/react';
+import { ArrowLeft, HandHelping, Mails } from 'lucide-react';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
-import { MDXProvider } from '@mdx-js/react';
 
-import { Clap } from '~/root';
 import {
-	EmailIcon,
 	LinkedinIcon,
 	LinkedinShareButton,
 	RedditIcon,
@@ -20,8 +10,6 @@ import {
 	TwitterShareButton,
 	XIcon,
 } from 'react-share';
-import MyMDXProvider from '~/lib/mdx';
-import Mermaid from '~/components/blogs/mermaid';
 
 export default function Component() {
 	const location = useLocation();
@@ -40,21 +28,23 @@ export default function Component() {
 			</Link>
 			{/* dummy test */}
 
-			<div className="prose prose-zinc dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-strong:font-inconsolata prose-code:rounded-md  prose-code:font-inconsolata prose-img:rounded-md   ">
+			<div className="prose-strong:font-inconsolata prose-code:font-inconsolata prose prose-zinc dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1  prose-code:rounded-md prose-img:rounded-md   ">
 				<Outlet />
 			</div>
 			<br />
 			<br />
 			<br />
 			<br />
-			<div className="share flex flex-col items-center justify-center gap-2 md:flex-row">
-				<p className="mr-1 text-center font-poppins text-[18px] font-bold">
-					Share this article on your socials...
+
+			<br />
+			<div className="share flex flex-col items-center justify-center gap-4">
+				<p className="mr-1 text-center font-poppins text-xl font-bold">
+					Share this article on your socials
 				</p>
-
-				<HandHelping />
-
-				<div className="share flex flex-wrap gap-3">
+				<p className=" font-inconsolata text-center ">
+					I hope you learned something new, and I wish you all the best.
+				</p>
+				<div className="share flex flex-wrap gap-5">
 					<TwitterShareButton
 						url={shareurl}
 						title={title}
@@ -62,7 +52,7 @@ export default function Component() {
 					>
 						<XIcon
 							className="rounded-full border-[1px] border-zinc-500/50"
-							size={32}
+							size={52}
 							round
 						/>
 					</TwitterShareButton>
@@ -72,7 +62,7 @@ export default function Component() {
 						about={title}
 						className="Demo__some-network__share-button"
 					>
-						<LinkedinIcon size={32} round />
+						<LinkedinIcon size={52} round />
 					</LinkedinShareButton>
 
 					<RedditShareButton
@@ -82,10 +72,15 @@ export default function Component() {
 						windowHeight={460}
 						className="Demo__some-network__share-button"
 					>
-						<RedditIcon size={32} round />
+						<RedditIcon size={52} round />
 					</RedditShareButton>
 				</div>
+
+				{/* <HandHelping /> */}
 			</div>
+			<br />
+			<br />
+			<br />
 			<br />
 			<br />
 			<div className=" prose dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-img:rounded-md ">
@@ -98,7 +93,7 @@ export default function Component() {
 					</p>
 					<Link to={'/newsletter'}>
 						<ConnectButton>
-							<div className="flex items-center justify-center gap-2">
+							<div className="flex items-center justify-center gap-2 p-2 text-[14px]">
 								<Mails size={18} /> Subscribe to my newsletter?
 							</div>
 						</ConnectButton>

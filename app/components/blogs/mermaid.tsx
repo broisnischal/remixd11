@@ -1,27 +1,26 @@
-// @ts-expect-error
-import { Mermaid } from 'mdx-mermaid/Mermaid';
+// import { Mermaid } from 'mdx-mermaid/Mermaid';
 
-export default function MermaidChart({ chart }: { chart: string }) {
-	return (
-		<div className="m-auto flex items-center justify-center ">
-			<Mermaid
-				config={{
-					//default,base,mforest,dark,neutral,null,auto
-					// mermaid: 'auto',
-					// theme: {
-					// 	dark: 'base',
-					// 	light: 'base',
-					// },
-					theme: {
-						dark: 'neutral',
-						light: 'neutral',
-					},
-				}}
-				chart={chart}
-			/>
-		</div>
-	);
-}
+// export default function MermaidChart({ chart }: { chart: string }) {
+// 	return (
+// 		<div className="m-auto flex items-center justify-center ">
+// 			<Mermaid
+// 				config={{
+// 					//default,base,mforest,dark,neutral,null,auto
+// 					// mermaid: 'auto',
+// 					// theme: {
+// 					// 	dark: 'base',
+// 					// 	light: 'base',
+// 					// },
+// 					theme: {
+// 						dark: 'neutral',
+// 						light: 'neutral',
+// 					},
+// 				}}
+// 				chart={chart}
+// 			/>
+// 		</div>
+// 	);
+// }
 
 // import React, { useEffect } from 'react';
 // import mermaid from 'mermaid';

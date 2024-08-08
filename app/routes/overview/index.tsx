@@ -1,5 +1,5 @@
 import { json, Link, useLoaderData } from '@remix-run/react';
-import axios from 'axios';
+// import axios from 'axios';
 import { GitBranch } from 'lucide-react';
 import { FaDocker, FaGitAlt } from 'react-icons/fa';
 import { IconType } from 'react-icons/lib';
@@ -66,38 +66,38 @@ interface RepoData {
 	stars: number;
 }
 
-const fetchLatestRepos = async (
-	username: string,
-	repoCount: number = 5,
-): Promise<RepoData[]> => {
-	try {
-		const response = await axios.get<Repo[]>(
-			`https://api.github.com/users/${username}/repos`,
-			{
-				params: {
-					sort: 'created',
-					direction: 'desc',
-					per_page: repoCount,
-				},
-				headers: {
-					Accept: 'application/vnd.github.v3+json',
-				},
-			},
-		);
+// const fetchLatestRepos = async (
+// 	username: string,
+// 	repoCount: number = 5,
+// ): Promise<RepoData[]> => {
+// 	try {
+// 		const response = await axios.get<Repo[]>(
+// 			`https://api.github.com/users/${username}/repos`,
+// 			{
+// 				params: {
+// 					sort: 'created',
+// 					direction: 'desc',
+// 					per_page: repoCount,
+// 				},
+// 				headers: {
+// 					Accept: 'application/vnd.github.v3+json',
+// 				},
+// 			},
+// 		);
 
-		const repos: RepoData[] = response.data.map(repo => ({
-			title: repo.name,
-			url: repo.html_url,
-			description: repo.description,
-			stars: repo.stargazers_count,
-		}));
+// 		const repos: RepoData[] = response.data.map(repo => ({
+// 			title: repo.name,
+// 			url: repo.html_url,
+// 			description: repo.description,
+// 			stars: repo.stargazers_count,
+// 		}));
 
-		return repos;
-	} catch (error) {
-		console.error('Error fetching repos:', error);
-		return [];
-	}
-};
+// 		return repos;
+// 	} catch (error) {
+// 		console.error('Error fetching repos:', error);
+// 		return [];
+// 	}
+// };
 
 export async function loader() {
 	type Level = 0 | 1 | 2 | 3 | 4;

@@ -16,7 +16,6 @@ import {
 import { desc } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/d1';
 import { bookmarks } from '~/drizzle/schema.server';
-import { parseBookmarks } from '~/utils';
 import { MetaCreator } from '~/utils/meta';
 import { Highlight } from './_landing.about/route';
 
@@ -75,11 +74,11 @@ export async function action({ request }: ActionFunctionArgs) {
 
 	const filecontent = await file.text();
 
-	const parsedBookmark = parseBookmarks(filecontent);
+	// const parsedBookmark = parseBookmarks(filecontent);
 
 	return json({
 		filesize,
-		parsedBookmark,
+		// parsedBookmark,
 	});
 }
 

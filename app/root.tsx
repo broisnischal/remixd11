@@ -305,13 +305,13 @@ const Footer = () => {
 		<div className="m-auto my-16 flex flex-col items-center justify-center gap-6">
 			<div className="flex flex-col ">
 				{/* <h2 className="text-center text-xl font-bold">Check me out</h2> */}
-				<div className=" flex items-center justify-center gap-4">
+				<div className=" flex items-center justify-center gap-6">
 					<Link
 						aria-label="Github"
 						target="_blank"
 						to="https://github.com/broisnischal"
 					>
-						<GitHubLogoIcon width={30} height={30} />
+						<GitHubLogoIcon width={40} height={40} />
 					</Link>
 
 					<Link
@@ -319,7 +319,7 @@ const Footer = () => {
 						target="_blank"
 						to="https://discord.gg/@broisnees"
 					>
-						<DiscordLogoIcon width={30} height={30} />
+						<DiscordLogoIcon width={40} height={40} />
 					</Link>
 
 					<Link
@@ -327,7 +327,7 @@ const Footer = () => {
 						target="_blank"
 						to="https://instagram.com/broisnees"
 					>
-						<InstagramLogoIcon width={30} height={30} />
+						<InstagramLogoIcon width={40} height={40} />
 					</Link>
 					<Link
 						aria-label="Twitter"
@@ -336,8 +336,8 @@ const Footer = () => {
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							width="25"
-							height="25"
+							width="35"
+							height="35"
 							fill="none"
 							viewBox="0 0 1200 1227"
 						>
@@ -353,10 +353,10 @@ const Footer = () => {
 						target="_blank"
 						to="https://www.linkedin.com/in/neeswebservices/"
 					>
-						<LinkedInLogoIcon width={30} height={30} />
+						<LinkedInLogoIcon width={40} height={40} />
 					</Link>
 					<a href="/feed.json" aria-label="RSS" target="_blank">
-						<RssIcon width={30} height={30} />
+						<RssIcon width={40} height={40} />
 					</a>
 				</div>
 			</div>

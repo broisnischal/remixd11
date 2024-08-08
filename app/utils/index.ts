@@ -1,5 +1,5 @@
 import fs from 'fs';
-import * as cheerio from 'cheerio';
+// import * as cheerio from 'cheerio';
 import { writeToPath } from 'fast-csv';
 import { z } from 'zod';
 
@@ -14,21 +14,21 @@ interface Bookmark {
 	url: string | undefined;
 }
 
-export const parseBookmarks = (fileContent: string): Bookmark[] => {
-	const $ = cheerio.load(fileContent);
+// export const parseBookmarks = (fileContent: string): Bookmark[] => {
+// 	const $ = cheerio.load(fileContent);
 
-	const bookmarks: Bookmark[] = [];
-	$('a').each((index, element) => {
-		const title = $(element).text();
-		const url = $(element).attr('href');
-		bookmarks.push({
-			title,
-			url,
-		});
-	});
+// 	const bookmarks: Bookmark[] = [];
+// 	$('a').each((index, element) => {
+// 		const title = $(element).text();
+// 		const url = $(element).attr('href');
+// 		bookmarks.push({
+// 			title,
+// 			url,
+// 		});
+// 	});
 
-	return bookmarks;
-};
+// 	return bookmarks;
+// };
 
 // export const parseBookmarks = (htmlFile: string): Bookmark[] => {
 // 	const html = fs.readFileSync(htmlFile, 'utf-8');

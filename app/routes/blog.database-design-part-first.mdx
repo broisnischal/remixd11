@@ -37,8 +37,6 @@ readTime: 25
 author: Nischal Dahal
 ---
 
-import { Tldraw } from 'tldraw';
-import Mermaid from '../components/blogs/mermaid.tsx';
 import { KBD } from '../components/KBD.tsx';
 import Hr from '../components/hr.tsx';
 import { MetaCreator } from '../utils/meta';
@@ -81,34 +79,6 @@ import PostHeading from '../components/post-heading.tsx';
 If you see a diagram that looks like this but you have vague understanding of
 the ERD, then it is a good idea to read this blog and understand what does this
 actually means and also how to design your database effectively.
-
-<Mermaid
-	chart={`erDiagram
-    USER {
-        int id PK
-        string name
-        string email
-        string password
-    }
-    POST {
-        int id PK
-        string title
-        string content
-        int user_id FK
-    }
-    COMMENT {
-        int id PK
-        string text
-        int post_id FK
-        int user_id FK
-    }
-
-    USER ||--o{ POST : "creates"
-    POST ||--o{ COMMENT : "has"
-    USER ||--o{ COMMENT : "writes"
-
-`} /> {/* <Mermaid 	chart={`erDiagram CUSTOMER ||--o{ ORDER : places ORDER ||--|{
-LINE-ITEM : contains CUSTOMER }|..|{ DELIVERY-ADDRESS : uses`} /> \*/}
 
 ### Today's Agendas
 

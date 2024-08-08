@@ -74,7 +74,7 @@ const config = {
 			inter: ['Inter', 'sans-serif'],
 			nunito: ['Nunito', 'sans-serif'],
 			atkinson: ['Atkinson Hyperlegible', 'sans-serif'],
-			inconsolata: ['Inconsolata', 'monospace'],
+			inconsolataπ: ['Inconsolata', 'monospace'],
 		},
 	},
 	plugins: [require('tailwindcss-animate'), typeography],

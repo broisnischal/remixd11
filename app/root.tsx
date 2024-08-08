@@ -194,7 +194,7 @@ export const RouteLink = ({
 	return (
 		<NavLink
 			prefetch="intent"
-			className={({ isActive }) => (isActive ? 'active' : '')}
+			className={({ isActive }) => (isActive ? 'active text-xl' : 'text-xl')}
 			to={to}
 		>
 			{children}
@@ -419,7 +419,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
-			<div className="my-[2rem] min-h-[45vh] px-5 md:px-0">
+			<div className="my-[3rem] min-h-[45vh] px-5 md:px-0">
 				{/* {isClient ? (
 					<AnimatePresence mode="sync">
 						<motion.div

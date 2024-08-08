@@ -15,6 +15,7 @@ import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
 import remarkToc from 'remark-toc';
+// import remarkMermaid from 'remark-mermaidjs';
 
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -42,6 +43,13 @@ import { BundledTheme } from 'shiki';
 // });
 // import { postProcess, preProcess } from '~/lib/rehype-pre-raw';
 
+// import mdxMermaid from 'mdx-mermaid';
+// import { Mermaid } from 'mdx-mermaid/lib/Mermaid';
+// import { Mermaid } from 'mdx-mermaid/Mermaid';
+
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+
 let dark: BundledTheme = 'dark-plus';
 let light: BundledTheme = 'light-plus';
 
@@ -49,7 +57,12 @@ export default defineConfig({
 	plugins: [
 		remixCloudflareDevProxy({ getLoadContext }),
 		mdx({
-			remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+			remarkPlugins: [
+				remarkFrontmatter,
+				remarkMdxFrontmatter,
+				remarkGfm,
+				remarkMath,
+			],
 			remarkRehypeOptions: {
 				// clobberPrefix: 'mdx',
 			},
@@ -113,6 +126,8 @@ export default defineConfig({
 					});
 				},
 				[rehypePrism, { plugins: ['line-numbers'] }],
+
+				// [mdxMermaid.default, { output: 'svg' }],
 			],
 		}),
 		// vitePluginUnified({

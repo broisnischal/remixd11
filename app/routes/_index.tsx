@@ -414,7 +414,7 @@ export default function Index() {
 												className="secondary rounded-md font-normal"
 												key={post.slug}
 											>
-												{post.frontmatter.description}
+												{post.frontmatter.description.slice(0, 250) + '...'}
 											</p>
 										</div>
 										<div className="mt-1 flex flex-wrap gap-1">

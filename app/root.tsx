@@ -522,6 +522,19 @@ export function App() {
 				/>
 				<Meta />
 				<Links />
+				<script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=G-L2HXER3J9C"
+				></script>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: ` window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-L2HXER3J9C');`,
+					}}
+				/>
 				<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
 			</head>
 			<body
@@ -531,7 +544,7 @@ export function App() {
 					margin: 0,
 				}}
 			>
-				<WebsiteBanner />
+				{/* <WebsiteBanner /> */}
 
 				<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-md">
 					<Layout children={<Outlet />} />

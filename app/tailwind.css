@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+@import url('tldraw/tldraw.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -48,6 +51,16 @@ html {
 		--input: 240 5.9% 90%;
 		--ring: 240 5.9% 10%;
 		--radius: 0.5rem;
+		--geist-background: #fff;
+		--accents-1: #fafafa;
+		--accents-2: #eaeaea;
+		--accents-3: #999;
+		--accents-4: #888;
+		--accents-5: #666;
+		--accents-6: #444;
+		--accents-7: #333;
+		--accents-8: #111;
+		--geist-foreground: #000;
 	}
 
 	.dark,
@@ -72,6 +85,16 @@ html {
 		--border: 240 3.7% 15.9%;
 		--input: 240 3.7% 15.9%;
 		--ring: 240 4.9% 83.9%;
+		--geist-background: #000;
+		--accents-1: #111;
+		--accents-2: #333;
+		--accents-3: #444;
+		--accents-4: #666;
+		--accents-5: #888;
+		--accents-6: #999;
+		--accents-7: #eaeaea;
+		--accents-8: #fafafa;
+		--geist-foreground: #fff;
 	}
 }
 
@@ -123,6 +146,10 @@ html {
 		:where(h2):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
 		@apply mb-2 mt-2 text-[1.8em];
 	}
+
+	svg[id^='mermaid'] {
+		/* @apply dark:rounded-md  dark:bg-[#e1e1e1]; */
+	}
 }
 
 code {
@@ -155,3 +182,11 @@ code {
 figure {
 	@apply rounded-lg border;
 }
+
+/* svg[id^='mermaid'] .node,
+svg[id^='mermaid'] .edgePath .path {
+	fill: black;
+	stroke: black;
+} */
+
+/* Fill and stroke settings for dark mode */

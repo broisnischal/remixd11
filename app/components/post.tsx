@@ -3,6 +3,7 @@ import { PostMeta } from '~/.server/posts';
 import { format } from 'timeago.js';
 import moment from 'moment';
 import { Badge } from './ui/badge';
+import { KBD } from './KBD';
 
 export const Post = ({ slug, frontmatter }: PostMeta) => {
 	return (
@@ -10,6 +11,7 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 			{/* <p className="font-inter text-sm text-zinc-500">
 				{moment(frontmatter.published).format('MMMM Do YYYY')}
 			</p> */}
+			{/* <KBD>asdf</KBD> */}
 
 			<Link to={`/blog/${slug.split('/').pop()}`}>
 				<time
@@ -25,7 +27,9 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 					{frontmatter.title}
 				</h3>
 			</Link>
-			<p className="secondary">{frontmatter.description}</p>
+			<p className="secondary">
+				{frontmatter.description.slice(0, 250) + '...'}
+			</p>
 			<div className="flex flex-wrap gap-2">
 				{frontmatter.tags?.map((item, i) => (
 					<Badge key={i} variant={'outline'}>

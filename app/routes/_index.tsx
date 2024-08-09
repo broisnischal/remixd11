@@ -88,15 +88,15 @@ export const meta: MetaFunction = ({ location }) => {
 					'https://github.com/broisnischal',
 					'https://www.linkedin.com/in/broisnees/',
 				],
-				blogPosts: {
-					'@type': 'Blog',
-					name: 'Nischal Dahal Blog',
-					numberOfPosts: 5,
-					audience: {
-						'@type': 'Audience',
-						audienceSize: 500,
-					},
-				},
+				address: 'Kathmandu, Nepal',
+				birthPlace: 'Mainapokhari, Dolakha',
+				email: 'info@nischal-dahal.com.np',
+				gender: 'Male',
+				givenName: 'Nischal',
+				height: 5.8,
+				nationality: 'Nepal',
+				image: 'https://avatars.githubusercontent.com/u/98168009?v=4',
+				alternateName: 'nees',
 				mainEntity: [
 					{
 						'@type': 'Blog',

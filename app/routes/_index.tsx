@@ -76,9 +76,46 @@ export const meta: MetaFunction = ({ location }) => {
 		{
 			'script:ld+json': {
 				'@context': 'https://schema.org',
-				'@type': 'WebPage',
-				name: 'Nischal Dahal | Broisnees ',
-				description: 'Developer, Creator, Editor, and Designer.',
+				'@type': 'Person',
+				name: 'Nischal Dahal ( broisnees )',
+				description:
+					"I'm a full stack engineer with a focus on serverless architectures,android development, user experience, and product development.",
+				url: `${url.origin}`,
+				jobTitle: 'Software Engineer and Educator',
+				sameAs: [
+					'https://dahal-nischal.com.np',
+					'https://twitter.com/broisnees',
+					'https://github.com/broisnischal',
+					'https://www.linkedin.com/in/broisnees/',
+				],
+				blogPosts: {
+					'@type': 'Blog',
+					name: 'Nischal Dahal Blog',
+					numberOfPosts: 5,
+					audience: {
+						'@type': 'Audience',
+						audienceSize: 500,
+					},
+				},
+				mainEntity: [
+					{
+						'@type': 'Blog',
+						name: 'Nischal Dahal Blogs',
+						url: 'https://nischal-dahal.com.np/blog',
+						description:
+							"Join 6.61k people who have read Nischal's 20 articles on various web development topics",
+						blogPost: [
+							{
+								'@type': 'BlogPosting',
+								url: 'https://nischal-dahal.com.np/blog/deploy-bun-elysia-drizzle-flyio-with-wildcard-domain',
+							},
+							{
+								'@type': 'BlogPosting',
+								url: 'https://nischal-dahal.com.np/blog/database-design-part-first',
+							},
+						],
+					},
+				],
 			},
 		},
 	];

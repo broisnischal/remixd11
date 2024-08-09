@@ -303,10 +303,10 @@ export default function Index() {
 						src="/profile.jpg"
 						alt=""
 					/> */}
-				<h1 className="text-3xl font-bold leading-3 dark:text-zinc-100">
+				<h1 className="text-4xl font-bold leading-3 dark:text-zinc-100">
 					Nischal Dahal
 				</h1>
-				<h3 className="secondary max-w-[70%]">
+				<h3 className="secondary md:max-w-[70%]">
 					{/* I'm a software developer from Nepal. I work at AITC as Software
 					Engineer. <br /> I love to build things. */}
 					I'm a full stack engineer with a focus on serverless architectures,
@@ -395,7 +395,7 @@ export default function Index() {
 									className="group"
 									to={'/blog/' + post.slug + ''}
 								>
-									<div className="flex flex-col items-start gap-1">
+									<div className="flex w-full flex-col items-start gap-2">
 										<p className="font-inter text-sm text-zinc-500">
 											<small>
 												{moment(post.frontmatter.published).format(

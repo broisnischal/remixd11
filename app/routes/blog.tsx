@@ -39,8 +39,8 @@ export default function Component() {
 
 			<br />
 			<div className="share flex flex-col items-center justify-center gap-4">
-				<p className="mr-1 text-center font-poppins text-xl font-bold">
-					Share this article on your socials
+				<p className="mr-1 text-center font-poppins text-2xl font-bold">
+					Share this article
 				</p>
 				<p className=" font-inconsolata text-center ">
 					I hope you learned something new, and I wish you all the best.

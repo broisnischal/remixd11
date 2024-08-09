@@ -287,7 +287,7 @@ const NavBar = () => {
 			</nav>
 			<nav className=" mt-8  items-center  justify-center gap-3 px-4 md:hidden md:px-0">
 				<div className="flex w-full items-center justify-between md:w-auto">
-					<Link to={'/'} className="text-xl font-bold">
+					<Link to={'/'} className="text-3xl font-bold">
 						Broisnees
 					</Link>
 					<div className="flex flex-row items-center justify-center gap-3 md:flex-row">
@@ -304,7 +304,7 @@ const NavBar = () => {
 					</div>
 				</div>
 				{isOpen && (
-					<div className="mr-auto mt-2 flex flex-row flex-wrap items-center gap-2 py-2 md:gap-5">
+					<div className="mt-6 flex flex-row flex-wrap items-center gap-2 ">
 						<RouteLink to={'/'}>home</RouteLink>
 						<RouteLink to={'/learning/year'}>learning</RouteLink>
 						<RouteLink to={'/blog'}>blogs</RouteLink>
@@ -350,7 +350,7 @@ const Footer = () => {
 						target="_blank"
 						to="https://github.com/broisnischal"
 					>
-						<GitHubLogoIcon width={40} height={40} />
+						<GitHubLogoIcon width={30} height={30} />
 					</Link>
 
 					<Link
@@ -358,7 +358,7 @@ const Footer = () => {
 						target="_blank"
 						to="https://discord.gg/@broisnees"
 					>
-						<DiscordLogoIcon width={40} height={40} />
+						<DiscordLogoIcon width={30} height={30} />
 					</Link>
 
 					<Link
@@ -366,7 +366,7 @@ const Footer = () => {
 						target="_blank"
 						to="https://instagram.com/broisnees"
 					>
-						<InstagramLogoIcon width={40} height={40} />
+						<InstagramLogoIcon width={30} height={30} />
 					</Link>
 					<Link
 						aria-label="Twitter"
@@ -375,8 +375,8 @@ const Footer = () => {
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							width="35"
-							height="35"
+							width="23"
+							height="23"
 							fill="none"
 							viewBox="0 0 1200 1227"
 						>
@@ -392,10 +392,10 @@ const Footer = () => {
 						target="_blank"
 						to="https://www.linkedin.com/in/neeswebservices/"
 					>
-						<LinkedInLogoIcon width={40} height={40} />
+						<LinkedInLogoIcon width={30} height={30} />
 					</Link>
 					<a href="/feed.json" aria-label="RSS" target="_blank">
-						<RssIcon width={40} height={40} />
+						<RssIcon width={30} height={30} />
 					</a>
 				</div>
 			</div>
@@ -458,7 +458,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
-			<div className="my-[3rem] min-h-[45vh] px-5 md:px-0">
+			<div className="my-[2.5rem] min-h-[45vh] px-5 md:px-0">
 				{/* {isClient ? (
 					<AnimatePresence mode="sync">
 						<motion.div

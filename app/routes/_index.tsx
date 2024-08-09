@@ -353,7 +353,8 @@ export default function Index() {
 			<br />
 
 			{/* <hr />	 */}
-			<div className="flex flex-col items-start gap-10">
+			<div className="flex flex-col items-start gap-4">
+				<h3 className="secondary text-xl font-bold">Featured contents</h3>
 				<Suspense fallback={<div>Loading...</div>}>
 					<Await resolve={posts}>
 						{posts =>
@@ -398,11 +399,11 @@ export default function Index() {
 				</Suspense>
 			</div>
 			<br />
-			<Link to="/blog">
+			{/* <Link to="/blog">
 				<Button className="self-center" variant={'outline'}>
 					View more
 				</Button>
-			</Link>
+			</Link> */}
 
 			{/* <div className=" hidden flex-col dark:flex">
 				<h1 className="mb-4 text-2xl font-bold">Don't code, Just Use AI</h1>
@@ -560,7 +561,7 @@ export default function Index() {
 export function SoftwareTools() {
 	return (
 		<div className="flex flex-wrap items-center gap-2">
-			<h1 className="mb-1 font-nunito ">Software Tools :</h1>
+			<h1 className="mb-1 font-nunito ">I love :</h1>
 			{['Raycast', 'Figma', 'Arc', 'NotchNook', 'Zed', 'Adobes', 'Charles'].map(
 				(item, index) => (
 					<Badge

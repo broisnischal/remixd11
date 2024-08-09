@@ -22,6 +22,7 @@ import { getZodConstraint, parseWithZod } from '@conform-to/zod';
 import { SessionStorage } from '~/services/session.server';
 import { useIsPending } from '~/lib/misc';
 import { MetaCreator } from '~/utils/meta';
+import Hr from '~/components/hr';
 
 export const meta: MetaFunction<typeof loader> = ({
 	data,
@@ -209,7 +210,7 @@ export default function NewsLetter() {
 						)}
 					</Form>
 				</div>
-				<p className="mt-2 w-full text-left text-xs text-gray-500 dark:text-gray-400">
+				<p className="mt-2 w-full text-left text-gray-500 dark:text-gray-400">
 					Stay tuned and get notified when I publish something new and
 					unsubscribe at any time.{' '}
 					<Link className="underline underline-offset-2" to="/terms">
@@ -217,12 +218,13 @@ export default function NewsLetter() {
 					</Link>
 				</p>
 
-				<br />
-				<div className="flex flex-col gap-4">
-					<h3 className=" font-bold">
+				<Hr />
+
+				<div className="mt-2 flex flex-col gap-4">
+					<p className="secondary text-xl ">
 						About once per month, I send an email with:
-					</h3>
-					<ul className="ml-10 list-disc">
+					</p>
+					<ul className="secondary ml-10 list-disc">
 						<li>New guides and tutorials</li>
 						<li>New features</li>
 						<li>Announcements</li>

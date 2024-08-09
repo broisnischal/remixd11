@@ -1,4 +1,6 @@
 import { LoaderFunctionArgs } from '@remix-run/cloudflare';
+import { flushSync } from 'react-dom';
+
 import {
 	ClientLoaderFunctionArgs,
 	Link,
@@ -27,7 +29,7 @@ export async function loader({
 
 	let allblogs = await getPosts();
 
-	const featured = allblogs.filter(b => b.frontmatter.featured);
+	// const featured = allblogs.filter(b => b.frontmatter.featured);
 
 	const fuse = new Fuse(allblogs, {
 		shouldSort: true,
@@ -54,26 +56,37 @@ export async function clientLoader({
 	request,
 }: ClientLoaderFunctionArgs) {
 	// before data is stored in indexeddb, it hits the server to search
-	if (!memory) {
+	if (!memory || !memory.length) {
+		console.log('cool ');
 		replicateMovies();
 		return serverLoader();
 	}
 
 	// after it searches it searches the data locally
-	let q = new URL(request.url).searchParams.get('q');
+	let q = new URL(request.url).searchParams.get('q')?.trim();
 	if (!q) return [];
 
 	let matches = [];
+
 	for (let blog of memory) {
-		if (blog.frontmatter.title.toLowerCase().includes(q)) {
+		if (blog.frontmatter.title.toLowerCase().includes(q.trim().toLowerCase())) {
 			matches.push(blog);
 		}
 		if (matches.length >= 20) break;
 	}
+
+	if (!matches) {
+		matches = (await serverLoader()) as any;
+		localforage.setItem('all-blogs', matches);
+
+		memory = matches;
+	}
+
 	return matches;
 }
 
 let memory: any;
+
 let replicateMovies = async () => {
 	// @ts-ignore
 	replicateMovies = () => {};
@@ -84,14 +97,11 @@ let replicateMovies = async () => {
 	}
 
 	let response = await fetch('/all-blogs.json');
-	let movies = await response.json();
-	localforage.setItem('all-blogs', movies);
-	memory = movies;
+	let blogs = await response.json();
+	localforage.setItem('all-blogs', blogs);
+	memory = blogs;
 };
 
-// This is NOT an example of a production ready component, there's just enough
-// to simulate a search modal but it is not accessible enough, it's recommended
-// you use a modal from a library like React Aria, etc.
 export function Search() {
 	let [show, setShow] = useState(false);
 	let ref = useRef<HTMLInputElement | null>(null);
@@ -115,6 +125,9 @@ export function Search() {
 		let listener = (event: KeyboardEvent) => {
 			if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
 				event.preventDefault();
+				flushSync(() => {
+					ref.current?.focus();
+				});
 				setShow(true);
 			}
 		};
@@ -124,7 +137,7 @@ export function Search() {
 
 	return (
 		<>
-			{/* <Button
+			<Button
 				onClick={() => {
 					setShow(true);
 				}}
@@ -133,16 +146,16 @@ export function Search() {
 				size="icon"
 			>
 				<SearchIcon />
-			</Button> */}
+			</Button>
 			<div
 				onClick={() => {
 					setShow(false);
 				}}
 				hidden={!show}
-				className="fixed left-0 top-0 z-20 m-auto h-full w-full overflow-hidden bg-white/50 dark:bg-black/50"
+				className="fixed left-0 top-0 z-20 m-auto h-full w-full overflow-hidden bg-secondary-foreground/60 dark:bg-black/80"
 			>
 				<div
-					className="absolute left-1/2 top-[40vh] min-h-[50vh]  w-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md border-2 bg-white shadow-md dark:bg-black/80"
+					className="absolute left-1/2 top-[40vh] z-20  h-[40vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-md border bg-background  dark:bg-[#131313] md:w-[40vw]"
 					onClick={event => {
 						event.stopPropagation();
 					}}
@@ -184,60 +197,50 @@ export function Search() {
 							// 	borderBottom: 'solid 1px #ccc',
 							// 	outline: 'none',
 							// }}
-							className="border-b-[2px] border-white/40 dark:bg-black/10  "
 						/>
-
-						{search.data ? (
-							// [&>li]:border-b-2
-							<ul className="flex flex-col ">
-								{/* {JSON.stringify(search.data)} */}
-
-								{search.data.length <= 0 ? (
-									ref.current?.value === '' ||
-									ref.current?.value.trim() === '' ? (
-										<div className="m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
-											Search blogs
-										</div>
-									) : (
-										<div className="m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
-											No results found.
-										</div>
-									)
-								) : (
-									search.data?.map((blog, index) => (
-										<li key={index} className="border-b-2 px-4 py-2">
-											<Link to={`/blog/${blog.slug}`}>
-												<h1>{blog.frontmatter.title}</h1>
-												<small>
-													{blog.frontmatter.description.slice(0, 100)} ...
-												</small>
-											</Link>
-										</li>
-									))
-								)}
-							</ul>
-						) : (
-							<div>
-								<div className="py-4 text-center">Loading...</div>
-							</div>
-						)}
-
-						{/* <ul style={{ padding: '0 20px', minHeight: '1rem' }}>
-							{search.data &&
-								search.data.map((blog, index) => (
-									<li key={index}>
-										<div>
-											<h3 style={{ marginBottom: 0 }}>
-												<MovieLink blog={blog} />
-											</h3>
-											<p style={{ marginTop: 0 }}>
-												{blog.extract.slice(0, 200)}...
-											</p>
-										</div>
-									</li>
-								))}
-						</ul> */}
 					</search.Form>
+					{search.data ? (
+						// [&>li]:border-b-2
+						<ul
+							role="list"
+							onKeyDown={event => {
+								if (event.key === 'Enter') {
+									setShow(false);
+								}
+							}}
+							className="flex h-full flex-col overflow-scroll pb-10 "
+						>
+							{/* {JSON.stringify(search.data)} */}
+
+							{search.data.length <= 0 ? (
+								ref.current?.value === '' ||
+								ref.current?.value.trim() === '' ? (
+									<div className="m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
+										Search blogs
+									</div>
+								) : (
+									<div className="m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
+										No results found.
+									</div>
+								)
+							) : (
+								search.data?.map((blog, index) => (
+									<li key={index} className="border-b-2 px-4 py-2">
+										<Link to={`/blog/${blog.slug}`}>
+											<h1>{blog.frontmatter.title}</h1>
+											<small>
+												{blog.frontmatter.description.slice(0, 100)} ...
+											</small>
+										</Link>
+									</li>
+								))
+							)}
+						</ul>
+					) : (
+						<div>
+							<div className="py-4 text-center">Loading...</div>
+						</div>
+					)}
 				</div>
 			</div>
 		</>

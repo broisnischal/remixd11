@@ -23,7 +23,7 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 						{format(frontmatter.published.replace(/-/g, '/'), 'en_US')}
 					</small>
 				</time>
-				<h3 className="text-2xl font-bold leading-none hover:underline">
+				<h3 className="text-2xl font-bold leading-tight hover:underline">
 					{frontmatter.title}
 				</h3>
 			</Link>

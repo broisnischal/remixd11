@@ -37,14 +37,14 @@ export default function Page() {
 	return (
 		<div className="flex flex-col items-start gap-4">
 			<h1 className="text-3xl font-bold">🤝 Let's work together</h1>
-			<p>
+			<p className="secondary">
 				Passionate software engineer and full stack developer with expertise in
 				backend development and DevOps. Skilled in a wide array of technologies,
 				frameworks, databases, and tools. Experienced content creator and
 				editor. Committed to building efficient, secure, and innovative
 				solutions.
 			</p>
-			<p>
+			<p className="secondary">
 				I'm actively looking for a new role as a Full Stack Developer. Please
 				check out{' '}
 				<Link
@@ -68,7 +68,7 @@ export default function Page() {
 			<DevStack />
 			<br />
 			<h2 className=" text-2xl font-bold tracking-wide">Featuring</h2>
-			<ul className="list-disc pl-10">
+			<ul className="secondary list-disc pl-10">
 				<li>Full stack development,</li>
 				<li> Product Designer, and Graphic designing skills, </li>
 				<li> Keen to Learn, other things like DevOps and AI </li>

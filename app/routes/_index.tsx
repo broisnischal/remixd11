@@ -1,17 +1,13 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
-import { Await, defer, json, Link, useLoaderData } from '@remix-run/react';
-import { ArrowTopRightIcon } from '@radix-ui/react-icons';
+import { Await, defer, Link, useLoaderData } from '@remix-run/react';
 import { Badge } from '~/components/ui/badge';
-import { TextHighlight } from '~/components/ui/highlight';
 
-import { MetaCreator } from '~/utils/meta';
-import { getPosts } from '~/.server/posts';
-import { Suspense, useEffect } from 'react';
-import Cal, { getCalApi } from '@calcom/embed-react';
 import moment from 'moment';
+import { Suspense } from 'react';
+import { getPosts } from '~/.server/posts';
 import Hr from '~/components/hr';
 import { Button } from '~/components/ui/button';
-import { RouteLink } from '~/root';
+import { MetaCreator } from '~/utils/meta';
 
 // const slugs = [
 // 	'typescript',
@@ -294,9 +290,7 @@ export default function Index() {
 						}}
 						/>
 						</Link> */}
-
 				{/* <Link to="/signup">signup</Link> */}
-
 				{/* {data.success ? (
 				<div>
 				<p style={{ color: 'green' }}>success</p>
@@ -309,7 +303,6 @@ export default function Index() {
 						src="/profile.jpg"
 						alt=""
 					/> */}
-
 				<h1 className="text-3xl font-bold leading-3 dark:text-zinc-100">
 					Nischal Dahal
 				</h1>
@@ -320,6 +313,14 @@ export default function Index() {
 					android development, user experience, and product development.
 				</h3>
 				<div className="flex flex-wrap gap-4">
+					<Link
+						className="font-nunito font-bold lowercase underline"
+						to="https://codeium.com/profile/broisnischal"
+						target="_blank"
+						// rel="noopener noreferrer"
+					>
+						codeium profile
+					</Link>
 					<Link
 						className="font-nunito font-bold lowercase underline"
 						to="/timeline"
@@ -344,10 +345,8 @@ export default function Index() {
 					<Badge variant={'outline'}>Software Engineer</Badge>
 					<Badge variant={'secondary'}>18</Badge>
 				</div> */}
-
 				{/* <div className="flex  flex-col items-start gap-4 "> */}
 				{/* <div className="desc flex w-[80%] flex-col items-start gap-4"> */}
-
 				{/* <div className="flex items-center justify-center gap-2 text-sm">
 						{['typescript', 'flutter', 'zig', 'rust', 'go'].map(
 							(item, index) => (
@@ -379,7 +378,6 @@ export default function Index() {
 					<li>I am Android Developer 📱</li>
 					<li>I love IOT 👾</li>
 				</ul> */}
-
 				{/* <Markdown content={data.content} /> */}
 			</div>
 			<br />

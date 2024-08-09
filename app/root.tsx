@@ -95,79 +95,116 @@ export const meta: MetaFunction<typeof loader> = ({ location, data }) => {
 		{
 			'script:ld+json': {
 				'@context': 'https://schema.org',
-				'@type': 'WebPage',
+				'@type': 'Person',
 				name: 'Nischal Dahal | Broisnees ',
-				description: 'Developer, Creator, Editor, and Designer.',
-				url: `${url.origin}${location.pathname}`,
+				description:
+					"I'm a full stack engineer with a focus on serverless architectures,android development, user experience, and product development.",
+				url: `${url.origin}`,
+				jobTitle: 'Software Engineer and Educator',
+				sameAs: [
+					'https://dahal-nischal.com.np',
+					'https://twitter.com/broisnees',
+					'https://github.com/broisnischal',
+					'https://www.linkedin.com/in/broisnees/',
+				],
+				blogPosts: {
+					'@type': 'Blog',
+					name: 'Nischal Dahal Blog',
+					numberOfPosts: 5,
+					audience: {
+						'@type': 'Audience',
+						audienceSize: 500,
+					},
+				},
 				mainEntity: [
 					{
 						'@type': 'Blog',
-						name: 'Blog',
-						url: `${url.origin}/blog`,
-						description: 'Collection of blog posts',
-					},
-					{
-						'@type': 'Overview',
-						name: 'Developer Experience',
-						url: `${url.origin}/overview`,
-						description: 'Showcase of development skills and experience',
-					},
-					{
-						'@type': 'Bookmarks',
-						name: 'Bookmarks',
-						url: `${url.origin}/bookmarks`,
-						description: 'Detailed narrative of the Heroku experience',
-					},
-					{
-						'@type': 'Guestbook',
-						name: 'Work',
-						url: 'https://nischal-dahal.com.np/guestbook',
-						description: 'Portfolio of completed work and projects',
+						name: 'Nischal Dahal Blogs',
+						url: 'https://nischal-dahal.com.np/blog',
+						description:
+							"Join 6.61k people who have read Nischal's 20 articles on various web development topics",
+						blogPost: [
+							{
+								'@type': 'BlogPosting',
+								url: 'https://nischal-dahal.com.np/blog/deploy-bun-elysia-drizzle-flyio-with-wildcard-domain',
+							},
+							{
+								'@type': 'BlogPosting',
+								url: 'https://nischal-dahal.com.np/blog/database-design-part-first',
+							},
+						],
 					},
 				],
-				publisher: {
-					'@type': 'Organization',
-					name: 'Nischal Dahal',
-					logo: {
-						'@type': 'ImageObject',
-						url: `${url.origin}/images/og.png`,
-					},
-				},
-				breadcrumb: {
-					'@type': 'BreadcrumbList',
-					itemListElement: [
-						{
-							'@type': 'ListItem',
-							position: 1,
-							name: 'Home',
-							item: `${url.origin}`,
-						},
-						{
-							'@type': 'ListItem',
-							position: 2,
-							name: 'Blog',
-							item: `${url.origin}/blog`,
-						},
-						{
-							'@type': 'ListItem',
-							position: 3,
-							name: 'Developer Experience',
-							item: `${url.origin}/overview`,
-						},
-						{
-							'@type': 'ListItem',
-							position: 4,
-							name: 'Newsletter',
-							item: `${url.origin}/newsletter`,
-						},
-						{
-							'@type': 'ListItem',
-							position: 5,
-							name: 'Learning',
-							item: `${url.origin}/learning/year`,
-						},
-					],
-				},
+
+				// mainEntity: [
+				// 	{
+				// 		'@type': 'Blog',
+				// 		name: 'Blog',
+				// 		url: `${url.origin}/blog`,
+				// 		description: 'Collection of blog posts',
+				// 	},
+				// 	{
+				// 		'@type': 'Overview',
+				// 		name: 'Developer Experience',
+				// 		url: `${url.origin}/overview`,
+				// 		description: 'Showcase of development skills and experience',
+				// 	},
+				// 	{
+				// 		'@type': 'Bookmarks',
+				// 		name: 'Bookmarks',
+				// 		url: `${url.origin}/bookmarks`,
+				// 		description: 'Detailed narrative of the Heroku experience',
+				// 	},
+				// 	{
+				// 		'@type': 'Guestbook',
+				// 		name: 'Work',
+				// 		url: 'https://nischal-dahal.com.np/guestbook',
+				// 		description: 'Portfolio of completed work and projects',
+				// 	},
+				// ],
+				// publisher: {
+				// 	'@type': 'Organization',
+				// 	name: 'Nischal Dahal',
+				// 	logo: {
+				// 		'@type': 'ImageObject',
+				// 		url: `${url.origin}/images/og.png`,
+				// 	},
+				// },
+				// breadcrumb: {
+				// 	'@type': 'BreadcrumbList',
+				// 	itemListElement: [
+				// 		{
+				// 			'@type': 'ListItem',
+				// 			position: 1,
+				// 			name: 'Home',
+				// 			item: `${url.origin}`,
+				// 		},
+				// 		{
+				// 			'@type': 'ListItem',
+				// 			position: 2,
+				// 			name: 'Blog',
+				// 			item: `${url.origin}/blog`,
+				// 		},
+				// 		{
+				// 			'@type': 'ListItem',
+				// 			position: 3,
+				// 			name: 'Developer Experience',
+				// 			item: `${url.origin}/overview`,
+				// 		},
+				// 		{
+				// 			'@type': 'ListItem',
+				// 			position: 4,
+				// 			name: 'Newsletter',
+				// 			item: `${url.origin}/newsletter`,
+				// 		},
+				// 		{
+				// 			'@type': 'ListItem',
+				// 			position: 5,
+				// 			name: 'Learning',
+				// 			item: `${url.origin}/learning/year`,
+				// 		},
+				// 	],
+				// },
 			},
 		},
 		{ charset: 'utf-8' },
@@ -524,14 +561,15 @@ export function App() {
 				<Links />
 				<script
 					async
+					suppressHydrationWarning
 					src="https://www.googletagmanager.com/gtag/js?id=G-L2HXER3J9C"
 				></script>
 				<script
+					suppressHydrationWarning
 					dangerouslySetInnerHTML={{
 						__html: ` window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-
 		gtag('config', 'G-L2HXER3J9C');`,
 					}}
 				/>

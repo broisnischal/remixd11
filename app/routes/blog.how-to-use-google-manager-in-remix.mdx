@@ -60,7 +60,7 @@ user interactions and gather valuable insights. Here's how you can do it.
 
 First, sign in to [Google Analytics](https://analytics.google.com/) and create a
 new property if you haven't already. Once created, you'll receive a Tracking ID
-(usually starting with `G-` for GA4 or `UA-` for Universal Analytics).
+(usually starting with `G-` for GA4).
 
 #### 2. Add Google Analytics Script to Your Root Component
 
@@ -89,18 +89,18 @@ import { Links, Meta, Outlet, Scripts } from '@remix-run/react';
 
 export default function App() {
 	return (
-    <html lang="en">
-        <head>
-            <Meta />
-            <Links />
-            {/* Google Analytics Script */}
-            <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=ID`}
-            ></script>
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: `
+		<html lang="en">
+			<head>
+				<Meta />
+				<Links />
+				{/* Google Analytics Script */}
+				<script
+					async
+					src={`https://www.googletagmanager.com/gtag/js?id=ID`}
+				></script>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -108,14 +108,14 @@ export default function App() {
         page_path: window.location.pathname,
         });
     `,
-                }}
-            />
-        </head>
-        <body>
-            <Outlet />
-            <Scripts />
-        </body>
-    </html>
+					}}
+				/>
+			</head>
+			<body>
+				<Outlet />
+				<Scripts />
+			</body>
+		</html>
 	);
 }
 ```

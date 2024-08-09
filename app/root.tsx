@@ -231,7 +231,9 @@ export const RouteLink = ({
 	return (
 		<NavLink
 			prefetch="intent"
-			className={({ isActive }) => (isActive ? 'active text-xl' : 'text-xl')}
+			className={({ isActive }) =>
+				isActive ? 'active ml-2 text-[16px]' : 'ml-2 text-[16px]'
+			}
 			to={to}
 		>
 			{children}
@@ -250,7 +252,7 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className=" mt-8 hidden items-center  justify-center gap-3 px-4 md:flex md:px-0">
+			<nav className=" mt-8 hidden items-center justify-center  gap-3 rounded-md border px-4 md:flex md:px-2 md:py-2">
 				<div className="mr-auto flex flex-row flex-wrap items-center gap-1 md:gap-5">
 					<RouteLink to={'/'}>home</RouteLink>
 					<RouteLink to={'/blog'}>contents</RouteLink>
@@ -542,6 +544,10 @@ export function App() {
 				<meta
 					name="google-site-verification"
 					content="edGz_5Jr5VsLbGpxvQ3AZBAKtuEyNBgc_qtdthOPJKU"
+				/>
+				<meta
+					name="color-scheme"
+					content={theme === 'light' ? 'light' : 'dark'}
 				/>
 				{/* <link rel="alternate" type="application/rss+xml" href="/srss" /> */}
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />

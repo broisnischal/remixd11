@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { Badge } from './ui/badge';
 import Hr from './hr';
+import { KBD } from './KBD';
 
 export default function PostHeading({
 	title,
@@ -26,11 +27,12 @@ export default function PostHeading({
 				</p>
 				<div className="flex flex-wrap items-center gap-3">
 					{tags?.map((item, i) => (
-						<Badge key={i + 1} className="rounded-md" variant={'secondary'}>
-							{item}
-						</Badge>
+						// <Badge key={i + 1} className="rounded-md" variant={'outline'}>
+						<KBD>{item}</KBD>
+						// </Badge>
 					))}
 				</div>
+				<br />
 				<Hr />
 			</div>
 		</>

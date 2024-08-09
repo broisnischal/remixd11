@@ -53,9 +53,8 @@ export default defineConfig({
 				},
 			},
 		},
-		minify: 'esbuild',
-		cssMinify: true,
-
+		// minify: 'esbuild',
+		// cssMinify: true,
 		chunkSizeWarningLimit: 600, // Adjust chunk size warning limit as needed
 	},
 });

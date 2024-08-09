@@ -28,7 +28,7 @@ export default function PostHeading({
 				<div className="flex flex-wrap items-center gap-3">
 					{tags?.map((item, i) => (
 						// <Badge key={i + 1} className="rounded-md" variant={'outline'}>
-						<KBD>{item}</KBD>
+						<KBD key={i + 1}>{item}</KBD>
 						// </Badge>
 					))}
 				</div>

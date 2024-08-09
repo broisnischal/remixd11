@@ -684,55 +684,70 @@ export function Clap({ count }: { count: number }) {
 export function ErrorBoundary() {
 	const error = useRouteError();
 
-	console.log(error);
-
 	if (isRouteErrorResponse(error)) {
 		return (
-			<div
-				className="flex flex-col items-center justify-center"
-				style={{
-					fontFamily: 'system-ui, sans-serif',
-					lineHeight: '1.6',
-					margin: 20,
+			<>
+				<head>
+					<title>
+						{error.status} {error.statusText}
+					</title>
+				</head>
+				<div
+					className="flex flex-col items-center justify-center"
+					style={{
+						fontFamily: 'system-ui, sans-serif',
+						lineHeight: '1.6',
+						margin: 20,
 
-					// width: 'calc(100vw - 1rem)',
-				}}
-			>
-				<h1>
-					{error.status} {error.statusText}
-				</h1>
-				<p>{error.data}</p>
-			</div>
+						// width: 'calc(100vw - 1rem)',
+					}}
+				>
+					<h1>
+						{error.status} {error.statusText}
+					</h1>
+					<p>{error.data}</p>
+				</div>
+			</>
 		);
 	} else if (error instanceof Error) {
 		return (
-			<div
-				className="flex flex-col items-center justify-center"
-				style={{
-					fontFamily: 'system-ui, sans-serif',
-					lineHeight: '1.6',
-					margin: 20,
-					// width: 'calc(100vw - 1rem)',
-				}}
-			>
-				<h1>Error</h1>
-				<p>{error.message}</p>
-				<pre>{import.meta.env.DEV && error.stack}</pre>
-				<pre>{error.stack}</pre>
-			</div>
+			<>
+				<head>
+					<title>Error</title>
+				</head>
+				<div
+					className="flex flex-col items-center justify-center"
+					style={{
+						fontFamily: 'system-ui, sans-serif',
+						lineHeight: '1.6',
+						margin: 20,
+						// width: 'calc(100vw - 1rem)',
+					}}
+				>
+					<h1>Error</h1>
+					<p>{error.message}</p>
+					<pre>{import.meta.env.DEV && error.stack}</pre>
+					<pre>{error.stack}</pre>
+				</div>
+			</>
 		);
 	} else {
 		return (
-			<h1
-				style={{
-					fontFamily: 'system-ui, sans-serif',
-					lineHeight: '1.6',
-					margin: 0,
-					// width: 'calc(100vw - 1rem)',
-				}}
-			>
-				Unknown Error
-			</h1>
+			<>
+				<head>
+					<title>Error</title>
+				</head>
+				<h1
+					style={{
+						fontFamily: 'system-ui, sans-serif',
+						lineHeight: '1.6',
+						margin: 0,
+						// width: 'calc(100vw - 1rem)',
+					}}
+				>
+					Unknown Error
+				</h1>
+			</>
 		);
 	}
 }

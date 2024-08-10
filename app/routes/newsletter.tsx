@@ -74,7 +74,7 @@ export async function action({ request, context }: ActionFunctionArgs) {
 
 	const ratelimit = new Ratelimit({
 		redis: Redis.fromEnv(context.env),
-		limiter: Ratelimit.fixedWindow(4, '1 d'),
+		limiter: Ratelimit.fixedWindow(3, '1 d'),
 		enableProtection: true,
 		analytics: true,
 	});
@@ -313,7 +313,12 @@ export default function NewsLetter() {
 						)}
 					</Form>
 				</div>
-				<p className="mt-2 w-full text-left text-gray-500 dark:text-gray-400">
+				<p className="mt-2 ">
+					Once, you have subscribed, you will receive an email with a link to
+					verify so please your mail subscribe. You have only 3 chances to
+					subscribe/day.
+				</p>
+				<p className=" w-full text-left text-gray-500 dark:text-gray-400">
 					Stay tuned and get notified when I publish something new and
 					unsubscribe at any time.{' '}
 					<Link className="underline underline-offset-2" to="/terms">

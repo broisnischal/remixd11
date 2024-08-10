@@ -125,6 +125,23 @@ export async function action({ request, context }: ActionFunctionArgs) {
 		.insert(newsletters)
 		.values({ email: submission.value.email, verified: 1 })
 		.execute();
+
+	const res = await fetch('https://api.useplunk.com/v1/track', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${context.env.PLUNK_API_KEY}`,
+		},
+		body: JSON.stringify({
+			event: 'subscribed',
+			email: submission.value.email,
+			subscribed: true,
+			created_at: new Date().toISOString(),
+		}),
+	});
+
+	console.log(await res.json());
+
 	return json(
 		{ message: 'Subscribed Successfully!', submission },
 		{ status: 201 },

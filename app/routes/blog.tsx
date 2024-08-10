@@ -38,12 +38,13 @@ export default function Component() {
 			<br />
 
 			<br />
-			<div className="share flex flex-col items-center justify-center gap-4">
-				<p className="mr-1 text-center font-poppins text-2xl font-bold">
+			<div className="share flex flex-col items-center justify-center gap-3">
+				<p className="mr-1 text-center font-poppins text-3xl font-bold">
 					Share this article
 				</p>
-				<p className=" font-inconsolata text-center ">
-					I hope you learned something new, and I wish you all the best.
+				<p className="text-center font-bricolage text-[16px] ">
+					I hope you learned something new, and I wish you
+					<br /> all the best, Happy reading.
 				</p>
 				<div className="share flex flex-wrap gap-5">
 					<TwitterShareButton
@@ -85,10 +86,12 @@ export default function Component() {
 			<div className=" prose dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-img:rounded-md ">
 				<div className="flex flex-col items-center justify-center">
 					<h2 className=" text-2xl font-bold">Thanks for reading!</h2>
-					<p className="text-center">
+					<p className="text-center font-poppins">
 						If you found this useful, check out my{' '}
 						<Link to={'/blog'}>other articles</Link> and my YouTube Channel
-						where I cover a lot of the same topics but in video format.
+						where I cover a lot of the same topics but in video format. & If you
+						don't want to miss future article and updates similar to this do
+						subscribe to my newsletter.
 					</p>
 					<Link to={'/newsletter'}>
 						<ConnectButton>

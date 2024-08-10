@@ -11,7 +11,7 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 			</p> */}
 			{/* <KBD>asdf</KBD> */}
 
-			<Link to={`/blog/${slug.split('/').pop()}`}>
+			<Link prefetch="viewport" to={`/blog/${slug.split('/').pop()}`}>
 				<time
 					className="block text-sm text-gray-600 dark:text-white/60"
 					dateTime={frontmatter.published}

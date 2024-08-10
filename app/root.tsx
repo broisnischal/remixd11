@@ -229,7 +229,7 @@ export const RouteLink = ({
 }) => {
 	return (
 		<NavLink
-			// prefetch="intent"
+			prefetch="intent"
 			className={({ isActive }) =>
 				isActive
 					? 'active font-bricolage text-[16px] font-semibold'
@@ -253,15 +253,15 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className=" sticky top-0 z-[999] m-auto hidden  w-full  border-b bg-background/60 backdrop-blur-lg dark:bg-[#121212]/95 md:flex">
-				<div className="m-auto flex w-1/2 items-center  justify-between gap-5 py-2">
-					<div className="mr-10 flex gap-3">
+			<nav className=" sticky top-0 z-[999] m-auto hidden  w-full  border-b bg-background/60 backdrop-blur-lg dark:bg-[#121212]/85 md:flex">
+				<div className=" m-auto flex  w-3/4 items-center justify-between gap-5 py-2 lg:w-1/2">
+					<div className=" flex gap-4">
 						<RouteLink to={'/'}>home</RouteLink>
 						<RouteLink to={'/blog'}>contents</RouteLink>
 						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 						<RouteLink to={'/overview'}>overview</RouteLink>
 						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
-						<RouteLink to={'/hire'}>hire me</RouteLink>
+						<RouteLink to={'/hire'}>hireme</RouteLink>
 						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}

@@ -59,7 +59,7 @@ export default defineConfig({
 				},
 			},
 		},
-		minify: 'terser',
+		minify: 'esbuild',
 		cssMinify: true,
 		ssr: true,
 		chunkSizeWarningLimit: 600, // Adjust chunk size warning limit as needed

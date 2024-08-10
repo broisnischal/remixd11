@@ -306,9 +306,9 @@ export default function Index() {
 						<Link className="font-nunito font-bold underline" to="/timeline">
 							Life Timeline
 						</Link>
-						<Link className="font-nunito font-bold underline" to="/framer">
+						{/* <Link className="font-nunito font-bold underline" to="/framer">
 							Framer 50
-						</Link>
+						</Link> */}
 						<Link
 							className="font-nunito font-bold underline"
 							to="/learning/year"

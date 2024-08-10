@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Hr from '~/components/hr';
+import { KBD } from '~/components/KBD';
 
 export default function Page() {
 	const [rotation, setRotation] = useState('0');
@@ -28,62 +29,74 @@ export default function Page() {
 		<div className="flex flex-col gap-8">
 			<br />
 			<h1 className="text-center text-4xl font-bold"> About Me 🐈‍</h1>
-			<div className="flex flex-col gap-4">
-				<p className="secondary text-[18px]">
-					Hello, my name is{' '}
-					<Highlight className="text-xl">Nischal Dahal</Highlight> . I was born
-					on March 17, 2006. I am a versatile software engineer with expertise
-					in full stack development and experience leading teams. My passions
-					include programming, cutting-edge gadgets, and adventuring adventures.
-				</p>
-				<br />
-				<p className="secondary text-[18px]">
-					As a firm believer in transhumanism, I envision a future where
-					technology alleviates human suffering and fosters a more harmonious
-					world. I maintain a healthy lifestyle, free of bad habits, and am
-					currently unmarried without children also single. In the long term, I
-					aspire to contribute to innovative projects and initiatives that push
-					the boundaries of technology, making a lasting impact on society and
-					the world at large.
-				</p>
+			<Hr />
+			<div className="flex gap-8">
+				<div className="w-[1500px]">
+					<a href="https://dly.to/oYeNtLdx9va">
+						<img
+							src="https://api.daily.dev/devcards/v2/3Q1RK2pWVdw7exQHPKmL2.png?r=34v&type=default"
+							alt="Nischal Dahal's Dev Card"
+						/>
+					</a>
+				</div>
+				<div>
+					<p className="text-[18px]">
+						Hello, my name is{' '}
+						<Highlight className="text-xl">Nischal Dahal</Highlight> . I was
+						born on March 17, 2006. I am a versatile software engineer with
+						expertise in full stack development and experience leading teams. My
+						passions include programming, cutting-edge gadgets, and adventuring
+						adventures.
+					</p>
+					<br />
+					<p className=" text-[18px]">
+						As a firm believer in transhumanism, I envision a future where
+						technology alleviates human suffering and fosters a more harmonious
+						world. I maintain a healthy lifestyle, free of bad habits, and am
+						currently unmarried without children also single. In the long term,
+						I aspire to contribute to innovative projects and initiatives that
+						push the boundaries of technology, making a lasting impact on
+						society and the world at large.
+					</p>
+				</div>
 			</div>
 			<br />
-			<img
+			{/* <img
 				src="/qr.png"
 				style={{ transform: rotation }}
 				onMouseMove={handleMouseMove}
 				onMouseLeave={handleMouseLeave}
 				className="mx-auto w-1/2 transform-gpu rounded-2xl border shadow-xl transition-transform duration-200 ease-out"
 				alt=""
-			/>
+			/> */}
 			<br />
 
 			<div className="flex flex-col gap-6 text-[18px]">
 				<h1 className="text-3xl font-bold">🎉 Expected working conditions</h1>
 				<p className="">
-					I am eager to continue advancing my IT career, focusing on
+					I am eager to continue <KBD>advancing</KBD> my IT career, focusing on
 					development, and full-stack development. I am open to relocation,
-					flexible work schedules, and remote work opportunities. A key
-					requirement for me is the opportunity to work alongside my brother, a
-					fellow developer with experience in TypeScript, C#, and SQL.
+					flexible work schedules, and remote work opportunities also onsite
+					available on country or out of country.
 				</p>
 				<p>
 					I value the chance to demonstrate initiative and influence the outcome
-					of projects. I am enthusiastic about attending meetups, contributing
-					to open-source projects, and actively participating in the Flutter
-					community. Please note that I am not interested in working for
-					enforcement agencies, dictators, or companies that contradict
-					transhumanist values or cause harm to people.
+					of projects. I am enthusiastic about attending <KBD>meetups</KBD>,
+					contributing to <KBD>open-source projects</KBD>, and actively
+					participating in the Flutter community, web community and more.{' '}
+					<strong>
+						Please note that I am not interested in working for enforcement
+						agencies, dictators, or companies that contradict transhumanist
+						values or cause harm to people.
+					</strong>
 				</p>{' '}
 			</div>
 
-			<br />
 			<br />
 
 			<div className="div flex flex-col gap-3">
 				<h1 className="text-3xl font-bold">💬 Languages</h1>
 				<Hr />
-
 				<ul className="flex flex-col gap-3">
 					<li className="flex items-center gap-3">
 						<Highlight>Nepali</Highlight> ( Native )
@@ -95,15 +108,17 @@ export default function Page() {
 					<li className="flex items-center gap-3">
 						<Highlight>English</Highlight> ( Professional working )
 					</li>
+					<li className="flex items-center gap-3">
+						<Highlight>Spanish</Highlight> ( Basic )
+					</li>
 				</ul>
 			</div>
-			<br />
 			<br />
 
 			<div className="div flex flex-col gap-3">
 				<h1 className="text-3xl font-bold">💼 Experiences</h1>
 				<Hr />
-				<div className="experiences flex flex-col gap-10">
+				<div className="experiences flex flex-col gap-14">
 					{experiences.map((experience, i) => (
 						<Experience
 							key={i}
@@ -170,6 +185,19 @@ const experiences: Experience[] = [
 			},
 		],
 	},
+	{
+		company: 'Vrit Technologies',
+		// image:
+		// 	'https://rest.techbehemoths.com/storage/images/users/main/company-avatar-664d7a2f302be-x2.png',
+		headline: 'July 2020 - May 2021 . Remote',
+		items: [
+			{
+				title: 'Digital Creator & Graphic Designer',
+				desc: 'Creation of posts, and graphics that are used in social medias.',
+				languages: ['Photoshop', 'Illusustrator', 'After Effect', 'Blender'],
+			},
+		],
+	},
 ];
 
 function Experience(val: Experience) {
@@ -182,7 +210,7 @@ function Experience(val: Experience) {
 					alt=""
 				/>
 			)}
-			<div className="flex flex-col">
+			<div className="flex flex-col gap-1">
 				<h1 className="text-2xl font-bold">{val.company}</h1>
 				<small className="text-sm text-zinc-500">{val.headline}</small>
 
@@ -212,7 +240,7 @@ export function Highlight({
 	return (
 		<span
 			className={twMerge(
-				'w-fit rounded-md border-[1px] border-zinc-300 bg-zinc-200/40 px-2 font-inconsolata text-sm dark:border-zinc-500 dark:bg-zinc-200/10',
+				'font-inconsolata w-fit rounded-md border-[1px] border-zinc-300 bg-zinc-200/40 px-2 text-sm dark:border-zinc-500 dark:bg-zinc-200/10',
 				className,
 			)}
 		>
@@ -258,10 +286,7 @@ export function MySetup() {
 					<h2 className="font-atkinson text-xl font-bold">Parts</h2>
 					<ul className="flex flex-col gap-3">
 						<li className="flex items-center gap-3 font-semibold">
-							SSD :{' '}
-							<Highlight>
-								Samsung 980 PRO SSD 2TB PCIe NVMe MZ-V8P2T0B
-							</Highlight>
+							SSD : <Highlight>Samsung 980 PRO SSD 2TB</Highlight>
 						</li>
 						<li className="flex items-center gap-3 font-semibold">
 							FAN : <Highlight>Arctic Liquid Freezer II 360</Highlight>

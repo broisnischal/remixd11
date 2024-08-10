@@ -1,9 +1,7 @@
 import { Link } from '@remix-run/react';
 import { PostMeta } from '~/.server/posts';
-import { format } from 'timeago.js';
 import moment from 'moment';
 import { Badge } from './ui/badge';
-import { KBD } from './KBD';
 
 export const Post = ({ slug, frontmatter }: PostMeta) => {
 	return (
@@ -19,8 +17,7 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 					dateTime={frontmatter.published}
 				>
 					<small>
-						Published{' '}
-						{format(frontmatter.published.replace(/-/g, '/'), 'en_US')}
+						Published {moment(frontmatter.published).format('MMMM Do YYYY')}
 					</small>
 				</time>
 				<h3 className="text-2xl font-bold leading-tight hover:underline">

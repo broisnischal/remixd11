@@ -76,8 +76,6 @@ export default function Component() {
 						<RedditIcon size={52} round />
 					</RedditShareButton>
 				</div>
-
-				{/* <HandHelping /> */}
 			</div>
 			<br />
 			<br />

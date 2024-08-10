@@ -229,9 +229,11 @@ export const RouteLink = ({
 }) => {
 	return (
 		<NavLink
-			prefetch="intent"
+			// prefetch="intent"
 			className={({ isActive }) =>
-				isActive ? 'active ml-2 text-[16px]' : 'ml-2 text-[16px]'
+				isActive
+					? 'active font-bricolage text-[16px] font-semibold'
+					: 'font-bricolage text-[16px]'
 			}
 			to={to}
 		>
@@ -251,37 +253,38 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className=" mt-8 hidden items-center justify-center  gap-3 rounded-md border px-4 md:flex md:px-2 md:py-2">
-				<div className="mr-auto flex flex-row flex-wrap items-center gap-1 md:gap-5">
-					<RouteLink to={'/'}>home</RouteLink>
-					<RouteLink to={'/blog'}>contents</RouteLink>
-					<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-					<RouteLink to={'/overview'}>overview</RouteLink>
-					<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
-					<RouteLink to={'/hire'}>hire me</RouteLink>
-					<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+			<nav className=" sticky top-0 z-[999] m-auto hidden  w-full  border-b bg-background/60 backdrop-blur-lg dark:bg-[#121212]/95 md:flex">
+				<div className="m-auto flex w-1/2 items-center  justify-between gap-5 py-2">
+					<div className="mr-10 flex gap-3">
+						<RouteLink to={'/'}>home</RouteLink>
+						<RouteLink to={'/blog'}>contents</RouteLink>
+						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
+						<RouteLink to={'/overview'}>overview</RouteLink>
+						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
+						<RouteLink to={'/hire'}>hire me</RouteLink>
+						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 
-					{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
-					{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
-					{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
-					{/* <RouteLink to={'/career'}>projects</RouteLink> */}
-					{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
-					<React.Suspense>
-						<Await resolve={data.user}>
-							{user => (
-								<>
-									{user?.type == 'nees' && (
-										<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
-									)}
-									{user?.id && <Link to="/auth/logout">Logout</Link>}
-								</>
-							)}
-						</Await>
-					</React.Suspense>
-				</div>
-				<div className="flex flex-col items-center justify-center gap-3 md:flex-row">
-					<Search />
-					<ModeToggle />
+						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
+						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
+						{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
+						{/* <RouteLink to={'/career'}>projects</RouteLink> */}
+						{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
+						<React.Suspense>
+							<Await resolve={data.user}>
+								{user => (
+									<>
+										{user?.type == 'nees' && (
+											<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
+										)}
+										{user?.id && <Link to="/auth/logout">Logout</Link>}
+									</>
+								)}
+							</Await>
+						</React.Suspense>
+					</div>
+					<div className="flex flex-col items-center justify-center gap-3 md:flex-row">
+						<ModeToggle />
+					</div>
 				</div>
 			</nav>
 			<nav className=" mt-8  items-center  justify-center gap-3 px-4 md:hidden md:px-0">
@@ -457,7 +460,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
-			<div className="my-[2.5rem] min-h-[45vh] px-5 md:px-0">
+			<div className="mx-auto my-[2.5rem] min-h-[45vh] max-w-screen-sm px-5 sm:max-w-screen-md md:px-0 lg:max-w-screen-md">
 				{/* {isClient ? (
 					<AnimatePresence mode="sync">
 						<motion.div
@@ -559,6 +562,11 @@ export function App() {
 					rel="stylesheet"
 				/>
 				<link
+					href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:200,300,regular,500,600,700,800"
+					rel="stylesheet"
+				/>
+
+				<link
 					href="https://fonts.googleapis.com/css?family=Inconsolata:200,300,regular,500,600,700,800,900"
 					rel="stylesheet"
 				/>
@@ -588,10 +596,9 @@ export function App() {
 				}}
 			>
 				{/* <WebsiteBanner /> */}
+				<Search />
 
-				<div className="mx-auto max-w-screen-sm sm:max-w-screen-md lg:max-w-screen-md">
-					<Layout children={<Outlet />} />
-				</div>
+				<Layout children={<Outlet />} />
 				<React.Suspense>
 					<Await resolve={data.count}>
 						{count => <Clap count={count as number} />}
@@ -638,11 +645,8 @@ export function Clap({ count }: { count: number }) {
 	const ref = React.useRef<HTMLFormElement>(null);
 
 	return (
-		<div className="fixed inset-x-0 bottom-0 left-5 mb-4">
-			{/* <div className="round flex cursor-pointer items-center justify-center rounded-lg px-3 py-2">
-
-			</div> */}
-			<Badge variant={'secondary'}>
+		<div className="fixed inset-x-0 bottom-0 left-4 mb-4">
+			<Badge variant={'outline'} className="rounded-lg">
 				<Form
 					ref={ref}
 					method="POST"

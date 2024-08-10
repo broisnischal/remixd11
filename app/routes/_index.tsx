@@ -245,8 +245,14 @@ export default function Index() {
 	return (
 		<div>
 			<br />
-			<div className="flex flex-col items-start  gap-4">
-				{/* <Link to={'/image'} unstable_viewTransition>
+			<div className="flex items-start gap-8">
+				<img
+					src="/qr.png"
+					className="w-[180px] rounded-lg border shadow-sm"
+					alt=""
+				/>
+				<div className="flex flex-col items-start  gap-4">
+					{/* <Link to={'/image'} unstable_viewTransition>
 				<img
 				src={
 					'https://oyster.ignimgs.com/mediawiki/apis.ign.com/the-legend-of-zelda-breath-of-the-wild-2/3/38/Link2.png'
@@ -258,71 +264,73 @@ export default function Index() {
 						}}
 						/>
 						</Link> */}
-				{/* <Link to="/signup">signup</Link> */}
-				{/* {data.success ? (
+					{/* <Link to="/signup">signup</Link> */}
+					{/* {data.success ? (
 				<div>
 				<p style={{ color: 'green' }}>success</p>
 				</div>
 				) : (
 					<h1>You are being rate limited.</h1>
 					)} */}
-				{/* <img
+					{/* <img
 						className="aspect-square w-10 rounded-full"
 						src="/profile.jpg"
 						alt=""
 					/> */}
-				<h1 className="text-4xl font-bold leading-3 dark:text-zinc-100">
-					Nischal Dahal
-				</h1>
-				<h3 className="secondary md:max-w-[70%]">
-					{/* I'm a software developer from Nepal. I work at AITC as Software
+					<h1 className="text-4xl font-bold dark:text-zinc-100">
+						Nischal Dahal
+					</h1>
+					<h3 className="secondary md:max-w-[70%]">
+						{/* I'm a software developer from Nepal. I work at AITC as Software
 					Engineer. <br /> I love to build things. */}
-					I'm a full stack engineer with a focus on serverless architectures,
-					android development, user experience, and product development.
-				</h3>
-				<div className="flex flex-wrap gap-4">
-					<Link
-						className="font-nunito font-bold lowercase underline"
-						to="https://codeium.com/profile/broisnischal"
-						target="_blank"
-						// rel="noopener noreferrer"
-					>
-						codeium profile
-					</Link>
-					<Link
-						className="font-nunito font-bold lowercase underline"
-						to="/timeline"
-					>
-						my life Timeline
-					</Link>
-					<Link
-						className="font-nunito font-bold lowercase underline"
-						to="/framer"
-					>
-						50 days of Framer
-					</Link>
-					<Link
-						className="font-nunito font-bold lowercase underline"
-						to="/learning/year"
-					>
-						Learning Projects
-					</Link>
-				</div>
-				{/* 
+						I'm a full stack engineer with a focus on serverless architectures,
+						android development, user experience, and product development.
+					</h3>
+					<div className="flex flex-wrap gap-4">
+						<Link
+							className="font-nunito font-bold  underline"
+							to="https://codeium.com/profile/broisnischal"
+							target="_blank"
+							// rel="noopener noreferrer"
+						>
+							Codeium Profile
+						</Link>
+						<Link
+							className="font-nunito font-bold  underline"
+							to="https://dly.to/oYeNtLdx9va"
+							target="_blank"
+							// rel="noopener noreferrer"
+						>
+							Join Squad
+						</Link>
+						<Link className="font-nunito font-bold underline" to="/timeline">
+							Life Timeline
+						</Link>
+						<Link className="font-nunito font-bold underline" to="/framer">
+							Framer 50
+						</Link>
+						<Link
+							className="font-nunito font-bold underline"
+							to="/learning/year"
+						>
+							Projects
+						</Link>
+					</div>
+					{/* 
 				<div className="flex gap-1">
 					<Badge variant={'outline'}>Software Engineer</Badge>
 					<Badge variant={'secondary'}>18</Badge>
 				</div> */}
-				{/* <div className="flex  flex-col items-start gap-4 "> */}
-				{/* <div className="desc flex w-[80%] flex-col items-start gap-4"> */}
-				{/* <div className="flex items-center justify-center gap-2 text-sm">
+					{/* <div className="flex  flex-col items-start gap-4 "> */}
+					{/* <div className="desc flex w-[80%] flex-col items-start gap-4"> */}
+					{/* <div className="flex items-center justify-center gap-2 text-sm">
 						{['typescript', 'flutter', 'zig', 'rust', 'go'].map(
 							(item, index) => (
 								<TextHighlight key={index}>{item}</TextHighlight>
 							),
 						)}
 					</div> */}
-				{/* 
+					{/* 
 					<p>
 						Driven by an insatiable curiosity, I constantly refine my craft
 						through hands-on coding and in-depth research. Each project is an
@@ -334,69 +342,79 @@ export default function Index() {
 						Journey in the tech realm is defined by a relentless pursuit of
 						excellence, crafting sophisticated systems that drive the future.
 					</p> */}
-				{/* </div> */}
-				{/* <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden bg-background px-20  ">
+					{/* </div> */}
+					{/* <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden bg-background px-20  ">
 						<IconCloud iconSlugs={slugs} />
 					</div> */}
-				{/* </div>s */}
-				{/*
+					{/* </div>s */}
+					{/*
 				<ul className="font-semibold">
 					<li>I ❤️ Remix.</li>
 					<li>I am a Typescript Mini Wizard 🚀</li>
 					<li>I am Android Developer 📱</li>
 					<li>I love IOT 👾</li>
 				</ul> */}
-				{/* <Markdown content={data.content} /> */}
+					{/* <Markdown content={data.content} /> */}
+				</div>
 			</div>
 			<br />
 			<Hr />
-			<br />
-
-			{/* <hr />	 */}
 			<div className="flex flex-col items-start gap-4">
-				<h3 className="secondary text-xl font-bold">Featured contents</h3>
-				<Suspense fallback={<div>Loading...</div>}>
-					<Await resolve={posts}>
-						{posts =>
-							posts.map((post, index) => (
-								<Link
-									key={post.slug}
-									className="group"
-									to={'/blog/' + post.slug + ''}
-								>
-									<div className="flex w-full flex-col items-start gap-2">
-										<p className="font-inter text-sm text-zinc-500">
-											<small>
-												{moment(post.frontmatter.published).format(
-													'MMMM Do YYYY',
-												)}
-											</small>
-										</p>
-										<div className="div">
-											<h1 className="font-poppins text-[1.2rem] font-bold capitalize leading-tight tracking-wide group-hover:underline">
-												{post.frontmatter.title}
-											</h1>
-
-											<p
-												className="secondary rounded-md font-normal"
-												key={post.slug}
-											>
-												{post.frontmatter.description.slice(0, 250) + '...'}
+				<h3 className="secondary font-bricolage text-xl font-bold">
+					Featured contents
+				</h3>
+				<div
+					className="flex
+				 flex-col gap-12"
+				>
+					<Suspense fallback={<div>Loading...</div>}>
+						<Await resolve={posts}>
+							{posts =>
+								posts.map((post, index) => (
+									<Link
+										key={post.slug}
+										className="group"
+										to={'/blog/' + post.slug + ''}
+									>
+										<div className="flex w-full flex-col items-start gap-2">
+											<p className="font-inter text-zinc-500">
+												<small>
+													{moment(post.frontmatter.published).format(
+														'MMMM Do YYYY',
+													)}
+												</small>
 											</p>
+											<div className="flex flex-col gap-2">
+												<h1 className="font-poppins text-[1.2rem] font-bold capitalize leading-tight tracking-wide group-hover:underline">
+													{post.frontmatter.title}
+												</h1>
+
+												<div className="flex flex-wrap gap-1">
+													{post.frontmatter.tags?.map((item, i) => (
+														<Badge
+															key={i}
+															className="rounded-md"
+															variant={'outline'}
+														>
+															{item}
+														</Badge>
+													))}
+												</div>
+
+												<p
+													className="secondary rounded-md font-normal"
+													key={post.slug}
+												>
+													{post.frontmatter.description.slice(0, 250) + '...'}
+												</p>
+											</div>
 										</div>
-										<div className="mt-1 flex flex-wrap gap-1">
-											{post.frontmatter.tags?.map((item, i) => (
-												<Badge key={i} variant={'outline'}>
-													{item}
-												</Badge>
-											))}
-										</div>
-									</div>
-								</Link>
-							))
-						}
-					</Await>
-				</Suspense>
+									</Link>
+								))
+							}
+						</Await>
+					</Suspense>
+				</div>
 			</div>
 			<br />
 			{/* <Link to="/blog">

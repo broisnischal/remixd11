@@ -2,7 +2,6 @@ import { json, MetaFunction } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 
 import { getPosts } from '~/.server/posts';
-import Hr from '~/components/hr';
 import { Post } from '~/components/post';
 import { MetaCreator } from '~/utils/meta';
 

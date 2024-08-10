@@ -9,11 +9,11 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import rehypePrism from 'rehype-prism';
 import rehypeSlug from 'rehype-slug';
 import remarkFrontmatter from 'remark-frontmatter';
+import remarkGfm from 'remark-gfm';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { flatRoutes } from 'remix-flat-routes';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import remarkGfm from 'remark-gfm';
 import { getLoadContext } from './load-context';
 
 export default defineConfig({
@@ -50,17 +50,18 @@ export default defineConfig({
 		tsconfigPaths(),
 	],
 	build: {
-		// rollupOptions: {
-		// 	output: {
-		// 		// manualChunks(id) {
-		// 		// 	if (id.includes('node_modules')) {
-		// 		// 		return 'vendor';
-		// 		// 	}
-		// 		// },
-		// 	},
-		// },
-		// minify: 'esbuild',
-		// cssMinify: true,
+		rollupOptions: {
+			output: {
+				manualChunks(id) {
+					if (id.includes('node_modules')) {
+						return 'vendor';
+					}
+				},
+			},
+		},
+		minify: 'terser',
+		cssMinify: true,
+		ssr: true,
 		chunkSizeWarningLimit: 600, // Adjust chunk size warning limit as needed
 	},
 });

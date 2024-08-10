@@ -75,6 +75,7 @@ const config = {
 			nunito: ['Nunito', 'sans-serif'],
 			atkinson: ['Atkinson Hyperlegible', 'sans-serif'],
 			inconsolataπ: ['Inconsolata', 'monospace'],
+			bricolage: ['Bricolage Grotesque', 'sans-serif'],
 		},
 	},
 	plugins: [require('tailwindcss-animate'), typeography],

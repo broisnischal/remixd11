@@ -137,7 +137,7 @@ export function Search() {
 
 	return (
 		<>
-			<Button
+			{/* <Button
 				onClick={() => {
 					setShow(true);
 				}}
@@ -146,7 +146,7 @@ export function Search() {
 				size="icon"
 			>
 				<SearchIcon />
-			</Button>
+			</Button> */}
 			<div
 				onClick={() => {
 					setShow(false);

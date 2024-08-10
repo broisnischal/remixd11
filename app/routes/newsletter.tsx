@@ -123,10 +123,12 @@ export async function action({ request, context }: ActionFunctionArgs) {
 				const { success, limit, remaining, reset } =
 					await ratelimit.limit(identifier);
 
+				console.log({ success, limit, remaining, reset });
+
 				if (!success) {
 					ctx.addIssue({
 						code: z.ZodIssueCode.custom,
-						path: ['message'],
+						path: ['email'],
 						params: {
 							type: 'rateLimit',
 							limit,
@@ -146,9 +148,8 @@ export async function action({ request, context }: ActionFunctionArgs) {
 	if (submission.status !== 'success') {
 		return json(
 			{
-				submission: submission.reply({
-					// resetForm: true,
-				}),
+				error: submission.error,
+				submission: submission.reply({}),
 			},
 			{
 				status: 400,
@@ -156,50 +157,59 @@ export async function action({ request, context }: ActionFunctionArgs) {
 		);
 	}
 
-	const res = await fetch('https://api.useplunk.com/v1/track', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${context.env.PLUNK_API_KEY}`,
-		},
-		body: JSON.stringify({
-			event: 'subscribed',
-			email: submission.value.email,
-			subscribed: false,
-			created_at: new Date().toISOString(),
-		}),
-	}).then(async res => {
-		const body = (await res.json()) satisfies {
-			success: boolean;
-			contact: string;
-			event: string;
-			timestamp: string;
-		};
-
-		const url = new URL(request.url);
-
-		console.log(url);
-
-		const options = {
+	if (submission.status === 'success' && !submission.value.session) {
+		const res = await fetch('https://api.useplunk.com/v1/track', {
 			method: 'POST',
 			headers: {
-				Authorization: `Bearer ${context.env.PLUNK_SECRET_KEY}`,
 				'Content-Type': 'application/json',
+				Authorization: `Bearer ${context.env.PLUNK_API_KEY}`,
 			},
 			body: JSON.stringify({
-				to: submission.value.email,
-				subject: 'Please verify your email',
-				body: `<a href='https://${url.host}/verify-subscription/${body.contact}'>Click here</a> to verify your email`,
-				// subscribed: false,
-				// headers: {},
+				event: 'subscribed',
+				email: submission.value.email,
+				subscribed: false,
+				created_at: new Date().toISOString(),
 			}),
-		};
+		}).then(async res => {
+			const body = (await res.json()) satisfies {
+				success: boolean;
+				contact: string;
+				event: string;
+				timestamp: string;
+			};
 
-		await fetch('https://api.useplunk.com/v1/send', options)
-			.then(response => response.json())
-			.then(response => console.log(response))
-			.catch(err => console.error(err));
-	});
+			const url = new URL(request.url);
+
+			console.log(url);
+
+			const options = {
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${context.env.PLUNK_SECRET_KEY}`,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					to: submission.value.email,
+					subject: 'Please verify your email',
+					body: `<a href='https://${url.host}/verify-subscription/${body.contact}'>Click here</a> to verify your email`,
+					// subscribed: false,
+					// headers: {},
+				}),
+			};
+
+			await fetch('https://api.useplunk.com/v1/send', options)
+				.then(response => response.json())
+				.then(response => console.log(response))
+				.catch(err => console.error(err));
+		});
+
+		return json(
+			{ message: 'Subscribed Successfully!', submission },
+			{
+				status: 201,
+			},
+		);
+	}
 
 	// const body = (await res.json()) satisfies {
 	// 	success: boolean;
@@ -210,7 +220,9 @@ export async function action({ request, context }: ActionFunctionArgs) {
 
 	return json(
 		{ message: 'Subscribed Successfully!', submission },
-		{ status: 201 },
+		{
+			status: 201,
+		},
 	);
 }
 

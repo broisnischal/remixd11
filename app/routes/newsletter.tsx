@@ -122,11 +122,6 @@ export async function action({ request, context }: ActionFunctionArgs) {
 		);
 	}
 
-	await db
-		.insert(newsletters)
-		.values({ email: submission.value.email, verified: 1 })
-		.execute();
-
 	const res = await fetch('https://api.useplunk.com/v1/track', {
 		method: 'POST',
 		headers: {
@@ -149,13 +144,14 @@ export async function action({ request, context }: ActionFunctionArgs) {
 
 		const url = new URL(request.url);
 
+		console.log(url);
+
 		const options = {
 			method: 'POST',
 			headers: {
 				Authorization: `Bearer ${context.env.PLUNK_SECRET_KEY}`,
 				'Content-Type': 'application/json',
 			},
-
 			body: JSON.stringify({
 				to: submission.value.email,
 				subject: 'Please verify your email',

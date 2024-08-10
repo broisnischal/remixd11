@@ -134,7 +134,7 @@ export async function action({ request, context }: ActionFunctionArgs) {
 
 	const identifier = ip ?? 'global';
 
-	// checkHoneypot(formData);
+	checkHoneypot(formData);
 	// await SessionStorage.requireAnonymous(context, request);
 	const submission = await parseWithZod(formData, {
 		schema: intent =>

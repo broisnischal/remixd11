@@ -5,6 +5,8 @@ import {
 	useFetcher,
 	useLoaderData,
 } from '@remix-run/react';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis/cloudflare';
 
 import { getFormProps, getInputProps, useForm } from '@conform-to/react';
 import { getZodConstraint, parseWithZod } from '@conform-to/zod';
@@ -26,6 +28,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 // import SubscribeEmail from '~/template/subscribe-email';
 import { render } from '@react-email/render';
+import { checkHoneypot } from '~/services/honeypot.server';
 
 export const meta: MetaFunction<typeof loader> = ({
 	data,
@@ -69,6 +72,20 @@ const subscribeSchema = z.object({
 export async function action({ request, context }: ActionFunctionArgs) {
 	const formData = await request.formData();
 
+	const ratelimit = new Ratelimit({
+		redis: Redis.fromEnv(context.env),
+		limiter: Ratelimit.fixedWindow(4, '1 d'),
+		enableProtection: true,
+		analytics: true,
+	});
+
+	const ip =
+		request.headers.get('X-Forwarded-For') ?? request.headers.get('x-real-ip');
+
+	const identifier = ip ?? 'global';
+
+	checkHoneypot(formData);
+
 	const db = drizzle(context.env.DB);
 
 	const submission = await parseWithZod(formData, {
@@ -103,8 +120,25 @@ export async function action({ request, context }: ActionFunctionArgs) {
 					});
 					return z.NEVER;
 				}
+				const { success, limit, remaining, reset } =
+					await ratelimit.limit(identifier);
 
-				return { ...data, session };
+				if (!success) {
+					ctx.addIssue({
+						code: z.ZodIssueCode.custom,
+						path: ['message'],
+						params: {
+							type: 'rateLimit',
+							limit,
+							remaining,
+							reset,
+						},
+						message: 'Too many request, please try again later.',
+					});
+					return z.NEVER;
+				}
+
+				return { ...data, session, success, limit, remaining, reset };
 			}),
 		async: true,
 	});

@@ -181,8 +181,8 @@ function FeaturedImage({
 
 async function satoriResponse(jsx: JSX.Element) {
 	const svg = await satori(jsx, {
-		width: 2000,
-		height: 1000,
+		width: 800,
+		height: 400,
 		fonts: await Promise.all([
 			getFont('Inter'),
 			getFont('Playfair Display'),

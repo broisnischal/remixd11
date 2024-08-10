@@ -1,0 +1,114 @@
+---
+title: Story of discord storing trillions of messages.
+description:
+  Story of discord storing trillions of messages, In 2017, discord shared how
+  they were able to store billions of message, also they shared their journey of
+  how they started MongoDB but migrated their data to Cassandra because they
+  were looking for a database that was scalable, fault-tolerant, and relatively
+  low maintenance.
+published: 2023-03-18
+meta:
+  title: Story of discord storing trillions of messages.
+  author: Nischal Dahal
+  description:
+    Story of discord storing trillions of messages, In 2017, discord shared how
+    they were able to store billions of message, also they shared their journey
+    of how they started MongoDB but migrated their data to Cassandra because
+    they were looking for a database that was scalable, fault-tolerant, and
+    relatively low maintenance.
+  image: https://nischal-dahal.com.np/resources/og-image?title=Where%20to%20host%20your%20modern%20applications%20in%202024%20and%20What%20are%20the%20Best%20Hosting%20Platforms?&date=2023-03-18
+featured: false
+image: https://nischal-dahal.com.np/resources/og-image?title=Where%20to%20host%20your%20modern%20applications%20in%202024%20and%20What%20are%20the%20Best%20Hosting%20Platforms&date=2023-03-18
+tags: [discord, scaling, database, scalable, fault-tolerant, low maintenance]
+keywords:
+  [discord, scaling, database, scalable, fault-tolerant, low maintenance]
+readTime: 20
+author: Nischal Dahal
+---
+
+import { MetaCreator } from '../utils/meta';
+
+export const meta = ({ attributes }) => {
+
+    const url = new URL('https://nischal-dahal.com.np/blog/vector-database');
+
+    const metadata = MetaCreator({
+    	title: frontmatter.title,
+    	description: frontmatter.description,
+    	image: frontmatter.image,
+    	url: url,
+      date: frontmatter.published,
+    	others: [
+    		{
+    			name: 'author',
+    			content: 'Nischal Dahal',
+    		},
+    	],
+    	keywords: frontmatter.keywords,
+    });
+
+
+    return [
+    	...metadata,
+    ];
+
+};
+
+import { KBD } from '../components/KBD.tsx';
+import Hr from '../components/hr.tsx';
+import PostHeading from '../components/post-heading.tsx';
+
+<PostHeading
+	title={frontmatter.title}
+	readingTime={frontmatter.readTime}
+	tags={frontmatter.tags}
+	keywords={frontmatter.keywords}
+	date={frontmatter.published}
+	author={frontmatter.author}
+/>
+
+In 2017, discord shared how they were able to store billions of message, also
+they shared their journey of how they started MongoDB but migrated their data to
+Cassandra because they were looking for a database that was scalable,
+fault-tolerant, and relatively low maintenance. Discord’s decision was to
+migrate from MongoDB to Cassandra due to the rapidly growing chat messages and
+the need for a more scalable database. Discord had to understand their
+read/write patterns to choose the right database. They defined their
+requirements, which included linear scalability, automatic failover, low
+maintenance, proven to work, predictable performance, not a blob store, and open
+source. Cassandra was the only database that fulfilled all their requirements.
+
+Discord chose Cassandra because it is a KV (Key-Value) store with a partition
+key and clustering key that allows for powerful data modeling. Discord used
+channel_id as the partition key and message_id (a Snowflake) as the clustering
+key to make range scanning for messages more efficient. Overall, Cassandra was a
+good choice for Discord because it allowed for easy distribution around the
+cluster, minimum seeks, and self-healing capabilities.
+
+Discord now switched from Cassandra to ScyllaDB,
+
+how a messaging company started with MongoDB but switched to Cassandra to store
+billions of messages, hoping for a database that was scalable, fault-tolerant,
+and low maintenance. However, as their data grew to trillions of messages across
+177 nodes, they faced serious performance issues, including unpredictable
+latency, maintenance operations that were too expensive to run, and hot
+partitions that led to struggles for the cluster.
+
+To address these issues, they migrated to ScyllaDB, a Cassandra-compatible
+database written in C++, which promised better performance, faster repairs, and
+stronger workload isolation via its shard-per-core architecture. Despite being a
+big cluster, with trillions of messages and nearly 200 nodes, they migrated
+every database but one to ScyllaDB, as they gained more experience with it in
+production, used it in anger, and learned its pitfalls.
+
+They worked to improve ScyllaDB performance for their use case, including
+optimizing its use of resources and tuning its settings, and were able to
+maintain their message schema and continue to use Snowflake IDs to sort messages
+chronologically. With ScyllaDB, they were able to eliminate the garbage
+collector issues that had caused significant latency spikes and stability issues
+with Cassandra.
+
+Overall, the article highlights the challenges of scaling a database to handle
+massive amounts of data, the importance of finding the right database for your
+use case, and the value of experimenting with and learning from new
+technologies.

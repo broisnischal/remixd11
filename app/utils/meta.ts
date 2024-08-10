@@ -6,6 +6,7 @@ type MetaItems = {
 	title: string;
 	description?: string;
 	image?: string;
+	generateimage?: boolean;
 	url?: string;
 	keywords?: string[];
 	others?: ReturnType<MetaFunction>;
@@ -77,7 +78,7 @@ export const MetaCreator: MetaCreator = arg => {
 		// 	: []),
 	];
 
-	if (arg.image) {
+	if (arg.image && !arg.generateimage) {
 		meta.push({
 			property: 'og:image',
 			content: arg.image,
@@ -85,6 +86,17 @@ export const MetaCreator: MetaCreator = arg => {
 		meta.push({
 			property: 'twitter:image',
 			content: arg.image,
+		});
+	}
+
+	if (arg.generateimage) {
+		meta.push({
+			property: 'og:image',
+			content: `https://nischal-dahal.com.np/resources/og-image?title=${arg.title}`,
+		});
+		meta.push({
+			property: 'twitter:image',
+			content: `https://nischal-dahal.com.np/resources/og-image?title=${arg.title}`,
 		});
 	}
 

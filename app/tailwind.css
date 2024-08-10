@@ -147,6 +147,10 @@ html {
 	svg[id^='mermaid'] {
 		/* @apply dark:rounded-md  dark:bg-[#e1e1e1]; */
 	}
+
+	prose-strong {
+		/* @apply font-light text-red-400; */
+	}
 }
 
 code {

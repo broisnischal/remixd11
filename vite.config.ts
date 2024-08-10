@@ -49,21 +49,21 @@ export default defineConfig({
 		}),
 		tsconfigPaths(),
 	],
-	build: {
-		rollupOptions: {
-			output: {
-				manualChunks(id) {
-					if (id.includes('node_modules')) {
-						return 'vendor';
-					}
-				},
-			},
-		},
-		minify: 'esbuild',
-		cssMinify: true,
-		ssr: true,
-		chunkSizeWarningLimit: 600, // Adjust chunk size warning limit as needed
-	},
+	// build: {
+	// 	rollupOptions: {
+	// 		output: {
+	// 			manualChunks(id) {
+	// 				if (id.includes('node_modules')) {
+	// 					return 'vendor';
+	// 				}
+	// 			},
+	// 		},
+	// 	},
+	// 	minify: 'esbuild',
+	// 	cssMinify: true,
+	// 	ssr: true,
+	// 	chunkSizeWarningLimit: 600, // Adjust chunk size warning limit as needed
+	// },
 });
 
 // import mdx from '@mdx-js/rollup';

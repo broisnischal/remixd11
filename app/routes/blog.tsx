@@ -83,7 +83,7 @@ export default function Component() {
 			<br />
 			<br />
 			<br />
-			<div className=" prose dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-img:rounded-md ">
+			<div className=" prose dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:border prose-strong:bg-secondary prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-normal prose-img:rounded-md ">
 				<div className="flex flex-col items-center justify-center">
 					<h2 className=" text-2xl font-bold">Thanks for reading!</h2>
 					<p className="text-center font-poppins">

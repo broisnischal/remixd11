@@ -148,8 +148,18 @@ html {
 		/* @apply dark:rounded-md  dark:bg-[#e1e1e1]; */
 	}
 
-	prose-strong {
-		/* @apply font-light text-red-400; */
+	.prose-strong {
+		@apply font-light text-red-400;
+	}
+}
+
+@layer utilities {
+	.prose :where(p):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+		@apply mb-3 mt-3 text-[1em];
+	}
+
+	.bg {
+		@apply bg-[#e1e1e1]/20 dark:bg-[#333]/10;
 	}
 }
 
@@ -206,5 +216,5 @@ th {
 }
 
 tbody tr:nth-child(even) {
-	@apply bg-background/20;
+	@apply bg;
 }

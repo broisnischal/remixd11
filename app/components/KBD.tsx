@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '~/lib/utils';
 
 const kbdVariants = cva(
-	'w-fit inline-flex items-center tracking-loose font-atkinson whitespace-nowrap rounded-md border text-sm tracking-tight text-[16px] bg-[var(--accents-1)] border-[var(--accents-2)]',
+	'w-fit inline-flex items-center capitalize tracking-loose font-atkinson whitespace-nowrap rounded-md border text-sm tracking-tight text-[16px] bg-[var(--accents-1)] border-[var(--accents-2)]',
 	{
 		variants: {
 			size: {

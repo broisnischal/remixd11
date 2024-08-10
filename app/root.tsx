@@ -253,7 +253,7 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className=" sticky top-0 z-[999] m-auto hidden  w-full  border-b bg-background/60 backdrop-blur-lg dark:bg-[#121212]/85 md:flex">
+			<nav className=" sticky top-0 z-[998] m-auto hidden  w-full  border-b bg-background/60 backdrop-blur-lg dark:bg-[#121212]/85 md:flex">
 				<div className=" m-auto flex  w-3/4 items-center justify-between gap-5 py-2 lg:w-1/2">
 					<div className=" flex gap-4">
 						<RouteLink to={'/'}>home</RouteLink>

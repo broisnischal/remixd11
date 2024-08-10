@@ -27,7 +27,13 @@ export default defineConfig({
 				rehypeMeta,
 				[rehypePrism, { autolinker: true }],
 				// [remarkToc, { ordered: true, tight: false }],
-				[rehypePrettyCode, { theme: 'dark-plus' }],
+				[
+					rehypePrettyCode,
+					{
+						// theme: 'material-theme-darker',
+						theme: 'vesper',
+					},
+				],
 				[rehypePrism, { plugins: ['line-numbers'] }],
 			],
 		}),

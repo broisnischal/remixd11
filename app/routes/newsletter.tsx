@@ -314,9 +314,8 @@ export default function NewsLetter() {
 					</Form>
 				</div>
 				<p className="mt-2 ">
-					Once, you have subscribed, you will receive an email with a link to
-					verify so please your mail subscribe. You have only 3 chances to
-					subscribe/day.
+					Once, you have subscribed, you will receive an email with the
+					verification once you click on that then you will be verified.
 				</p>
 				<p className=" w-full text-left text-gray-500 dark:text-gray-400">
 					Stay tuned and get notified when I publish something new and

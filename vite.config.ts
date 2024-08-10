@@ -39,10 +39,10 @@ export default defineConfig({
 		}),
 		remix({
 			future: {
-				unstable_lazyRouteDiscovery: true,
-				unstable_singleFetch: true,
+				// unstable_lazyRouteDiscovery: true,
+				// unstable_singleFetch: true,
 			},
-			ssr: true,
+			// ssr: true,
 			routes(defineRoutes) {
 				return flatRoutes('routes', defineRoutes);
 			},
@@ -50,15 +50,15 @@ export default defineConfig({
 		tsconfigPaths(),
 	],
 	build: {
-		rollupOptions: {
-			output: {
-				manualChunks(id) {
-					if (id.includes('node_modules')) {
-						return 'vendor';
-					}
-				},
-			},
-		},
+		// rollupOptions: {
+		// 	output: {
+		// 		// manualChunks(id) {
+		// 		// 	if (id.includes('node_modules')) {
+		// 		// 		return 'vendor';
+		// 		// 	}
+		// 		// },
+		// 	},
+		// },
 		// minify: 'esbuild',
 		// cssMinify: true,
 		chunkSizeWarningLimit: 600, // Adjust chunk size warning limit as needed

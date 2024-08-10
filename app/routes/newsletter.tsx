@@ -5,24 +5,27 @@ import {
 	useFetcher,
 	useLoaderData,
 } from '@remix-run/react';
-import { Button } from '../components/ui/button';
-import { z } from 'zod';
+
 import { getFormProps, getInputProps, useForm } from '@conform-to/react';
-import { Input } from '../components/ui/input';
+import { getZodConstraint, parseWithZod } from '@conform-to/zod';
 import {
 	ActionFunctionArgs,
 	json,
 	LoaderFunctionArgs,
 	MetaFunction,
 } from '@remix-run/cloudflare';
-import { drizzle } from 'drizzle-orm/d1';
-import { newsletters } from '~/drizzle/schema.server';
 import { eq } from 'drizzle-orm';
-import { getZodConstraint, parseWithZod } from '@conform-to/zod';
-import { SessionStorage } from '~/services/session.server';
-import { useIsPending } from '~/lib/misc';
-import { MetaCreator } from '~/utils/meta';
+import { drizzle } from 'drizzle-orm/d1';
+import { z } from 'zod';
 import Hr from '~/components/hr';
+import { newsletters } from '~/drizzle/schema.server';
+import { useIsPending } from '~/lib/misc';
+import { SessionStorage } from '~/services/session.server';
+import { MetaCreator } from '~/utils/meta';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+// import SubscribeEmail from '~/template/subscribe-email';
+import { render } from '@react-email/render';
 
 export const meta: MetaFunction<typeof loader> = ({
 	data,
@@ -119,8 +122,6 @@ export async function action({ request, context }: ActionFunctionArgs) {
 		);
 	}
 
-	// console.log(email);
-
 	await db
 		.insert(newsletters)
 		.values({ email: submission.value.email, verified: 1 })
@@ -135,15 +136,44 @@ export async function action({ request, context }: ActionFunctionArgs) {
 		body: JSON.stringify({
 			event: 'subscribed',
 			email: submission.value.email,
-			subscribed: true,
+			subscribed: false,
 			created_at: new Date().toISOString(),
 		}),
 	});
 
-	console.log(await res.json());
+	const body = (await res.json()) satisfies {
+		success: boolean;
+		contact: string;
+		event: string;
+		timestamp: string;
+	};
+
+	const url = new URL(request.url);
+
+	const options = {
+		method: 'POST',
+		headers: {
+			Authorization: `Bearer ${context.env.PLUNK_SECRET_KEY}`,
+			'Content-Type': 'application/json',
+		},
+
+		body: JSON.stringify({
+			to: submission.value.email,
+			subject: 'Please verify your email',
+			body: `<a href='https://${url.host}/verify-subscription/${body.contact}'>Click here</a> to verify your email`,
+			subscribed: false,
+			headers: {},
+			created_at: new Date().toISOString(),
+		}),
+	};
+
+	fetch('https://api.useplunk.com/v1/send', options)
+		.then(response => response.json())
+		.then(response => console.log(response))
+		.catch(err => console.error(err));
 
 	return json(
-		{ message: 'Subscribed Successfully!', submission },
+		{ message: 'Subscribed Successfully!', submission, plunk: body },
 		{ status: 201 },
 	);
 }
@@ -174,8 +204,16 @@ export default function NewsLetter() {
 			return parseWithZod(formData, { schema: subscribeSchema });
 		},
 		shouldValidate: 'onSubmit',
+
 		// shouldRevalidate: 'onInput',
 	});
+
+	// if (lastResult) {
+	// 	// @ts-ignore
+	// 	if (lastResult.plunk) {
+
+	// 	}
+	// }
 
 	return (
 		<div>

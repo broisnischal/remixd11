@@ -156,13 +156,12 @@ export async function action({ request, context }: ActionFunctionArgs) {
 				to: submission.value.email,
 				subject: 'Please verify your email',
 				body: `<a href='https://${url.host}/verify-subscription/${body.contact}'>Click here</a> to verify your email`,
-				subscribed: false,
-				headers: {},
-				created_at: new Date().toISOString(),
+				// subscribed: false,
+				// headers: {},
 			}),
 		};
 
-		fetch('https://api.useplunk.com/v1/send', options)
+		await fetch('https://api.useplunk.com/v1/send', options)
 			.then(response => response.json())
 			.then(response => console.log(response))
 			.catch(err => console.error(err));

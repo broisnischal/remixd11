@@ -1,4 +1,5 @@
 import { json, LoaderFunctionArgs, redirect } from '@remix-run/cloudflare';
+import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/d1';
 import { newsletters } from '~/drizzle/schema.server';
 
@@ -51,6 +52,16 @@ export async function loader({ request, context, params }: LoaderFunctionArgs) {
 		}),
 	});
 	const db = drizzle(context.env.DB);
+
+	const existing = await db
+		.select()
+		.from(newsletters)
+		.where(eq(newsletters.email, contactresponse.email))
+		.execute();
+
+	if (existing.length > 0) {
+		return redirect('/' + '?alreadysubscribed=true');
+	}
 
 	await db
 		.insert(newsletters)

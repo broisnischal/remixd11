@@ -59,48 +59,22 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 function TitleSection({ title, date }: { title: string; date: string }) {
-	const titleSize = title.length < 40 ? 'text-5xl' : 'text-4xl';
+	const titleSize = title.length < 40 ? 'text-[5rem]' : 'text-[5.5rem]';
 
 	return (
-		<div tw="flex justify-center items-center w-full mx-auto">
-			<div tw="flex flex-col w-full px-16 py-8 text-center items-center max-w-2xl mx-auto ">
+		<div tw="flex justify-center items-center  w-full mx-auto">
+			<div tw="flex flex-col w-full px-16 py-8 text-center items-center mx-auto">
 				{date !== 'Invalid Date' ? (
 					<span tw="uppercase text-lg font-bold mx-auto -mb-4">{date}</span>
 				) : null}
 
-				<h2 tw={`${titleSize} font-bold mb-0`}>{title}</h2>
+				<h2
+					tw={`${titleSize} font-bold leading-tight tracking-tight mb-0`}
+					style={{}}
+				>
+					{title}
+				</h2>
 			</div>
-		</div>
-	);
-}
-
-function BrowserSection({
-	children,
-	className,
-}: {
-	children: React.ReactNode;
-	className?: string;
-}) {
-	return (
-		<div
-			tw={twMerge([
-				'rounded-t-md flex flex-col gap-0 pb-48 mx-auto relative overflow-hidden z-10',
-				'bg-white border border-neutral-100 shadow',
-				className,
-			])}
-		>
-			<div tw="flex w-full" style={{ width: '600px' }}>
-				<div tw="flex pl-3">
-					<div tw="h-3 w-3 mt-3 mr-1 rounded-full border border-red-600 border-opacity-30 bg-red-500"></div>
-					<div tw="h-3 w-3 mt-3 mx-1 rounded-full border border-yellow-600 border-opacity-30 bg-yellow-500"></div>
-					<div tw="h-3 w-3 mt-3 mx-1 rounded-full border border-green-600 border-opacity-30 bg-green-500"></div>
-				</div>
-				<div tw="mx-auto bg-neutral-400/10  mt-2 px-16 py-1 rounded border border-neutral-400/20 text-xs">
-					jacobparis.com
-				</div>
-			</div>
-
-			{children}
 		</div>
 	);
 }
@@ -117,12 +91,18 @@ function DefaultImage({
 	const descriptionSize = description.length < 80 ? 'text-2xl' : 'text-xl';
 
 	return (
-		<div tw="h-full flex flex-col bg-[#fafafa] text-neutral-700 pt-16 px-8 relative text-2xl">
+		<div tw="h-full flex flex-col bg-[#121212] text-[#eee] pt-16 px-8 relative text-2xl">
 			<div style={{ width: '1136px' }}>{/* 1200px - 64px (px-8) */}</div>
 
 			<TitleSection title={title} date={date} />
 
-			<BrowserSection className="border border-neutral-100 bg-white shadow">
+			<p tw="text-center w-full flex items-center justify-center font-poppins text-3xl font-bold">
+				A blog by Nischal Dahal
+			</p>
+
+			{/* <h2>Nischal Dahal</h2> */}
+
+			{/* <BrowserSection className="border border-neutral-100 bg-white shadow">
 				<div tw="flex flex-col w-full px-16 py-8 text-center items-center max-w-2xl mx-auto">
 					<p
 						tw={`text-neutral-700 ${descriptionSize} mb-12`}
@@ -145,7 +125,7 @@ function DefaultImage({
 						</div>
 					</div>
 				</div>
-			</BrowserSection>
+			</BrowserSection> */}
 		</div>
 	);
 }
@@ -160,29 +140,18 @@ function FeaturedImage({
 	date: string;
 }) {
 	return (
-		<div tw="h-full flex flex-col bg-neutral-800 text-white pt-16 px-8 relative text-2xl">
+		<div tw="h-full flex flex-col bg-neutral-800 pt-16 px-8 relative text-2xl">
 			<div style={{ width: '1136px' }}>{/* 1200px - 64px (px-8) */}</div>
 
 			<TitleSection title={title} date={date} />
-
-			<BrowserSection className="border border-neutral-500 bg-neutral-600 shadow">
-				<div tw="flex flex-col w-full px-2 py-2 text-center items-center max-w-2xl mx-auto">
-					<img
-						tw="w-full rounded-xs border border-neutral-500"
-						// Satori is ok with ArrayBuffer | Buffer | string
-						src={img as string}
-						alt=""
-					/>
-				</div>
-			</BrowserSection>
 		</div>
 	);
 }
 
 async function satoriResponse(jsx: JSX.Element) {
 	const svg = await satori(jsx, {
-		width: 800,
-		height: 400,
+		width: 1400,
+		height: 800,
 		fonts: await Promise.all([
 			getFont('Inter'),
 			getFont('Playfair Display'),

@@ -8,6 +8,7 @@ type MetaItems = {
 	image?: string;
 	generateimage?: boolean;
 	url?: string;
+	date?: string;
 	keywords?: string[];
 	others?: ReturnType<MetaFunction>;
 };
@@ -92,11 +93,11 @@ export const MetaCreator: MetaCreator = arg => {
 	if (arg.generateimage) {
 		meta.push({
 			property: 'og:image',
-			content: `https://nischal-dahal.com.np/resources/og-image?title=${arg.title}`,
+			content: `https://nischal-dahal.com.np/resources/og-image?title=${arg.title}&date=${arg.date}`,
 		});
 		meta.push({
 			property: 'twitter:image',
-			content: `https://nischal-dahal.com.np/resources/og-image?title=${arg.title}`,
+			content: `https://nischal-dahal.com.np/resources/og-image?title=${arg.title}&date=${arg.date}`,
 		});
 	}
 

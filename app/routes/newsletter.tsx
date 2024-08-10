@@ -157,7 +157,7 @@ export async function action({ request, context }: ActionFunctionArgs) {
 		);
 	}
 
-	if (submission.status === 'success' && !submission.value.session) {
+	if (submission.status === 'success') {
 		const res = await fetch('https://api.useplunk.com/v1/track', {
 			method: 'POST',
 			headers: {

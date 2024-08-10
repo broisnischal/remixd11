@@ -2,6 +2,7 @@ import { json, MetaFunction } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 
 import { getPosts } from '~/.server/posts';
+import Hr from '~/components/hr';
 import { Post } from '~/components/post';
 import { MetaCreator } from '~/utils/meta';
 
@@ -22,7 +23,7 @@ export const meta: MetaFunction<typeof loader> = ({
 		others: [
 			{
 				name: 'keywords',
-				content: data && data.map(post => post.frontmatter.title).join(', '),
+				content: data && data.map(post => post.frontmatter.keywords).join(', '),
 			},
 			{
 				tagName: 'link',
@@ -75,11 +76,14 @@ export default function Component() {
 
 	return (
 		<div className="">
-			<ul className="space-y-10">
+			<ul className="space-y-10 ">
 				{posts.map((post, i) => (
-					<li key={i}>
-						<Post key={post.slug} {...post} />
-					</li>
+					<div key={i}>
+						<li key={i} className="">
+							<Post key={post.slug} {...post} />
+						</li>
+						<Hr />
+					</div>
 				))}
 			</ul>
 		</div>

@@ -8,6 +8,7 @@ meta:
     How do you create the bookmark parser, using cheerio in typescript
 featured: false
 tags: [bookmark, parser, cheerio]
+keywords: [bookmark, parser, cheerio]
 readTime: 5
 author: Nischal Dahal
 ---
@@ -21,6 +22,7 @@ export const meta = ({ attributes }) => {
     	{
     		description: frontmatter.description,
     	},
+
     ];
 
 };
@@ -31,6 +33,7 @@ import PostHeading from '../components/post-heading.tsx';
 	title={frontmatter.title}
 	readingTime={frontmatter.readTime}
 	tags={frontmatter.tags}
+	keywords={frontmatter.keywords}
 	date={frontmatter.published}
 	author={frontmatter.author}
 />

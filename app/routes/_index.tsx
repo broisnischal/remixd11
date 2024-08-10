@@ -245,7 +245,7 @@ export default function Index() {
 	return (
 		<div>
 			<br />
-			<div className="flex items-start gap-8">
+			<div className="flex flex-col items-start gap-8 md:flex-row">
 				<img
 					src="/qr.png"
 					className="w-[180px] rounded-lg border shadow-sm"

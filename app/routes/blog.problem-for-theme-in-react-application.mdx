@@ -20,6 +20,7 @@ meta:
 featured: false
 image: https://nischal-dahal.com.np/images/blog.deploy-bun-elysia-drizzle-flyio-with-wildcard-domain_2024-08-04-10-39-42.png
 tags: [theme, theme-problem, lightmode, darkmode, react, remix, nextjs]
+keywords: [theme, theme-problem, lightmode, darkmode, react, remix, nextjs]
 readTime: 20
 author: Nischal Dahal
 ---
@@ -41,7 +42,7 @@ export const meta = ({ attributes }) => {
     			content: 'Nischal Dahal',
     		},
     	],
-    	keywords: frontmatter.tags,
+    	keywords: frontmatter.keywords,
     });
 
 
@@ -57,10 +58,10 @@ import PostHeading from '../components/post-heading.tsx';
 	title={frontmatter.title}
 	readingTime={frontmatter.readTime}
 	tags={frontmatter.tags}
+	keywords={frontmatter.keywords}
 	date={frontmatter.published}
 	author={frontmatter.author}
 />
-
 Ok you added you theme, as well but the issue is your style are not working when
 the color theme of system is `light` mode, and then if you change your
 application to dark it might not work properly.

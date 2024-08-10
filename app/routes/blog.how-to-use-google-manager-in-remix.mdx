@@ -10,6 +10,7 @@ meta:
 featured: true
 image: https://nischal-dahal.com.np/images/blog.deploy-bun-elysia-drizzle-flyio-with-wildcard-domain_2024-08-04-10-39-42.png
 tags: [remix, google-analytics, analytics]
+keywords: [remix, google-analytics, analytics]
 readTime: 10
 author: Nischal Dahal
 ---
@@ -33,7 +34,7 @@ export const meta = ({ attributes }) => {
     			content: 'Nischal Dahal',
     		},
     	],
-    	keywords: frontmatter.tags,
+    	keywords: frontmatter.keywords,
     });
 
 
@@ -49,6 +50,7 @@ import PostHeading from '../components/post-heading.tsx';
 	title={frontmatter.title}
 	readingTime={frontmatter.readTime}
 	tags={frontmatter.tags}
+	keywords={frontmatter.keywords}
 	date={frontmatter.published}
 	author={frontmatter.author}
 />

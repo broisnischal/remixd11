@@ -30,8 +30,8 @@ export default function Page() {
 			<br />
 			<h1 className="text-center text-4xl font-bold"> About Me 🐈‍</h1>
 			<Hr />
-			<div className="flex gap-8">
-				<div className="w-[1500px]">
+			<div className="flex flex-col gap-8 md:flex-row">
+				<div className="hidden w-[1500px] md:block">
 					<a href="https://dly.to/oYeNtLdx9va">
 						<img
 							src="https://api.daily.dev/devcards/v2/3Q1RK2pWVdw7exQHPKmL2.png?r=34v&type=default"
@@ -312,7 +312,7 @@ export function MySetup() {
 							Chair : <Highlight>Noblechair Hero Black</Highlight>
 						</li>
 						<li className="flex items-center gap-3 font-semibold">
-							Webcam : <Highlight> Logitech C922 Pro Stream 1080p</Highlight>
+							Webcam : <Highlight> Logitech C922 Pro</Highlight>
 						</li>
 					</ul>
 				</div>

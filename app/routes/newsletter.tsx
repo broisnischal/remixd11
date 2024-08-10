@@ -273,16 +273,16 @@ export default function NewsLetter() {
 				</p>
 			</div> */}
 			<div>
-				<h3 className="mb-4 text-4xl font-bold"> Subscribe to Newsletter</h3>
+				<h3 className="mb-4 text-3xl font-bold md:text-4xl"> Subscribe</h3>
 
 				<div className="flex flex-col items-start justify-center gap-2">
 					<Form
-						className="flex flex-col items-start justify-center gap-2   md:flex-row "
+						className="flex flex-col  items-start justify-center gap-2 sm:flex-row  "
 						method="POST"
 						{...getFormProps(form)}
 					>
 						<Input
-							className="min-w-[300px] md:min-w-[500px]"
+							className="min-w-[300px] sm:min-w-[400px] md:min-w-[500px]"
 							placeholder="Suscribe to our newsletter"
 							{...getInputProps(fields.email, { type: 'email' })}
 						/>
@@ -324,20 +324,17 @@ export default function NewsLetter() {
 						Terms & Conditions
 					</Link>
 				</p>
+				<br />
 
-				<Hr />
-
-				<div className="mt-2 flex flex-col gap-4">
-					<p className="secondary text-xl ">
-						About once per month, I send an email with:
-					</p>
-					<ul className="secondary ml-10 list-disc">
-						<li>New guides and tutorials</li>
-						<li>New features</li>
-						<li>Announcements</li>
-						<li>Cool new libraries and packages</li>
-					</ul>
-				</div>
+				<p className="font-poppins ">
+					About once per month, I send an email with:
+				</p>
+				<ul className=" ml-0 ">
+					<li>New guides and tutorials</li>
+					<li>New features</li>
+					<li>Announcements</li>
+					<li>Cool new libraries and packages</li>
+				</ul>
 			</div>
 		</div>
 	);

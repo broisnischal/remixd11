@@ -1,7 +1,7 @@
 ---
 title:
   Where to host your modern applications in 2024 and What are the Best Hosting
-  Platforms
+  Platforms ?
 description:
   Discover the top hosting platforms to deploy and scale your modern web
   applications in 2024. Explore serverless, cloud hosting, edge computing, and
@@ -21,7 +21,8 @@ meta:
   image: https://nischal-dahal.com.np/images/blog.deploy-bun-elysia-drizzle-flyio-with-wildcard-domain_2024-08-04-10-39-42.png
 featured: true
 image: https://nischal-dahal.com.np/images/blog.deploy-bun-elysia-drizzle-flyio-with-wildcard-domain_2024-08-04-10-39-42.png
-tags:
+tags: [hosting, serverless, edge computing, cloud hosting, web app hosting]
+keywords:
   [
     modern application hosting,
     best hosting platforms 2024,
@@ -57,7 +58,7 @@ export const meta = ({ attributes }) => {
     			content: 'Nischal Dahal',
     		},
     	],
-    	keywords: frontmatter.tags,
+    	keywords: frontmatter.keywords,
     });
 
 
@@ -75,6 +76,7 @@ import PostHeading from '../components/post-heading.tsx';
 	title={frontmatter.title}
 	readingTime={frontmatter.readTime}
 	tags={frontmatter.tags}
+	keywords={frontmatter.keywords}
 	date={frontmatter.published}
 	author={frontmatter.author}
 />

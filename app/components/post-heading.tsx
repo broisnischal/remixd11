@@ -15,6 +15,7 @@ export default function PostHeading({
 	tags: string[];
 	date: string;
 	author?: string;
+	keywords?: string[];
 }) {
 	return (
 		<>

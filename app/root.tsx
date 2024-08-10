@@ -308,12 +308,11 @@ const NavBar = () => {
 				{isOpen && (
 					<div className="mt-6 flex flex-row flex-wrap items-center gap-2 ">
 						<RouteLink to={'/'}>home</RouteLink>
-						<RouteLink to={'/learning/year'}>learning</RouteLink>
-						<RouteLink to={'/blog'}>blogs</RouteLink>
+						<RouteLink to={'/blog'}>contents</RouteLink>
 						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 						<RouteLink to={'/overview'}>overview</RouteLink>
 						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
-						<RouteLink to={'/hire'}>hire me</RouteLink>
+						<RouteLink to={'/hire'}>hireme</RouteLink>
 						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 						{}
 
@@ -460,7 +459,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
-			<div className="mx-auto my-[2.5rem] min-h-[45vh] max-w-screen-sm px-5 sm:max-w-screen-md md:px-0 lg:max-w-screen-md">
+			<div className="mx-auto my-[2.5rem] min-h-[45vh] w-[90vw] max-w-screen-sm px-2 sm:max-w-screen-md md:px-0 lg:max-w-screen-md">
 				{/* {isClient ? (
 					<AnimatePresence mode="sync">
 						<motion.div
@@ -646,7 +645,10 @@ export function Clap({ count }: { count: number }) {
 
 	return (
 		<div className="fixed inset-x-0 bottom-0 left-4 mb-4">
-			<Badge variant={'outline'} className="rounded-lg">
+			<Badge
+				variant={'outline'}
+				className="rounded-lg bg-[#fff] dark:bg-[#121212]"
+			>
 				<Form
 					ref={ref}
 					method="POST"
@@ -690,68 +692,51 @@ export function ErrorBoundary() {
 
 	if (isRouteErrorResponse(error)) {
 		return (
-			<>
-				<head>
-					<title>
-						{error.status} {error.statusText}
-					</title>
-				</head>
-				<div
-					className="flex flex-col items-center justify-center"
-					style={{
-						fontFamily: 'system-ui, sans-serif',
-						lineHeight: '1.6',
-						margin: 20,
+			<div
+				className="flex w-[90vw] flex-col items-center justify-center"
+				style={{
+					fontFamily: 'system-ui, sans-serif',
+					lineHeight: '1.6',
+					margin: 20,
 
-						// width: 'calc(100vw - 1rem)',
-					}}
-				>
-					<h1>
-						{error.status} {error.statusText}
-					</h1>
-					<p>{error.data}</p>
-				</div>
-			</>
+					// width: 'calc(100vw - 1rem)',
+				}}
+			>
+				<h1>
+					{error.status} {error.statusText}
+				</h1>
+				<p>{error.data}</p>
+			</div>
 		);
 	} else if (error instanceof Error) {
 		return (
-			<>
-				<head>
-					<title>Error</title>
-				</head>
-				<div
-					className="flex flex-col items-center justify-center"
-					style={{
-						fontFamily: 'system-ui, sans-serif',
-						lineHeight: '1.6',
-						margin: 20,
-						// width: 'calc(100vw - 1rem)',
-					}}
-				>
-					<h1>Error</h1>
-					<p>{error.message}</p>
-					<pre>{import.meta.env.DEV && error.stack}</pre>
-					<pre>{error.stack}</pre>
-				</div>
-			</>
+			<div
+				className="flex w-[90vw] flex-col items-center justify-center"
+				style={{
+					fontFamily: 'system-ui, sans-serif',
+					lineHeight: '1.6',
+					margin: 20,
+					// width: 'calc(100vw - 1rem)',
+				}}
+			>
+				<h1>Error</h1>
+				<p>{error.message}</p>
+				<pre>{import.meta.env.DEV && error.stack}</pre>
+				<pre>{error.stack}</pre>
+			</div>
 		);
 	} else {
 		return (
-			<>
-				<head>
-					<title>Error</title>
-				</head>
-				<h1
-					style={{
-						fontFamily: 'system-ui, sans-serif',
-						lineHeight: '1.6',
-						margin: 0,
-						// width: 'calc(100vw - 1rem)',
-					}}
-				>
-					Unknown Error
-				</h1>
-			</>
+			<h1
+				style={{
+					fontFamily: 'system-ui, sans-serif',
+					lineHeight: '1.6',
+					margin: 0,
+					// width: 'calc(100vw - 1rem)',
+				}}
+			>
+				Unknown Error
+			</h1>
 		);
 	}
 }

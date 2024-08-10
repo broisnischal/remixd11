@@ -7,6 +7,7 @@ export type Frontmatter = {
 	featured: boolean;
 	author?: string;
 	tags?: string[];
+	keywords?: string[];
 };
 
 export type PostMeta = {

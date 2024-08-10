@@ -20,7 +20,7 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 						Published {moment(frontmatter.published).format('MMMM Do YYYY')}
 					</small>
 				</time>
-				<h3 className="text-2xl font-bold leading-tight hover:underline">
+				<h3 className="text-xl font-bold leading-tight hover:underline md:text-2xl">
 					{frontmatter.title}
 				</h3>
 			</Link>

@@ -191,3 +191,20 @@ svg[id^='mermaid'] .edgePath .path {
 } */
 
 /* Fill and stroke settings for dark mode */
+
+table {
+	@apply w-full overflow-scroll rounded-lg;
+}
+
+th,
+td {
+	@apply border px-4 py-2 text-center align-top;
+}
+
+th {
+	@apply font-semibold text-gray-700;
+}
+
+tbody tr:nth-child(even) {
+	@apply bg-background/20;
+}

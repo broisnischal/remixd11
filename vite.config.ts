@@ -31,7 +31,7 @@ export default defineConfig({
 					rehypePrettyCode,
 					{
 						// theme: 'material-theme-darker',
-						theme: 'vesper',
+						theme: 'vesper', // dark-plus
 					},
 				],
 				[rehypePrism, { plugins: ['line-numbers'] }],

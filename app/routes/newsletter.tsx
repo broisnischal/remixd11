@@ -139,41 +139,48 @@ export async function action({ request, context }: ActionFunctionArgs) {
 			subscribed: false,
 			created_at: new Date().toISOString(),
 		}),
+	}).then(async res => {
+		const body = (await res.json()) satisfies {
+			success: boolean;
+			contact: string;
+			event: string;
+			timestamp: string;
+		};
+
+		const url = new URL(request.url);
+
+		const options = {
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${context.env.PLUNK_SECRET_KEY}`,
+				'Content-Type': 'application/json',
+			},
+
+			body: JSON.stringify({
+				to: submission.value.email,
+				subject: 'Please verify your email',
+				body: `<a href='https://${url.host}/verify-subscription/${body.contact}'>Click here</a> to verify your email`,
+				subscribed: false,
+				headers: {},
+				created_at: new Date().toISOString(),
+			}),
+		};
+
+		fetch('https://api.useplunk.com/v1/send', options)
+			.then(response => response.json())
+			.then(response => console.log(response))
+			.catch(err => console.error(err));
 	});
 
-	const body = (await res.json()) satisfies {
-		success: boolean;
-		contact: string;
-		event: string;
-		timestamp: string;
-	};
-
-	const url = new URL(request.url);
-
-	const options = {
-		method: 'POST',
-		headers: {
-			Authorization: `Bearer ${context.env.PLUNK_SECRET_KEY}`,
-			'Content-Type': 'application/json',
-		},
-
-		body: JSON.stringify({
-			to: submission.value.email,
-			subject: 'Please verify your email',
-			body: `<a href='https://${url.host}/verify-subscription/${body.contact}'>Click here</a> to verify your email`,
-			subscribed: false,
-			headers: {},
-			created_at: new Date().toISOString(),
-		}),
-	};
-
-	fetch('https://api.useplunk.com/v1/send', options)
-		.then(response => response.json())
-		.then(response => console.log(response))
-		.catch(err => console.error(err));
+	// const body = (await res.json()) satisfies {
+	// 	success: boolean;
+	// 	contact: string;
+	// 	event: string;
+	// 	timestamp: string;
+	// };
 
 	return json(
-		{ message: 'Subscribed Successfully!', submission, plunk: body },
+		{ message: 'Subscribed Successfully!', submission },
 		{ status: 201 },
 	);
 }

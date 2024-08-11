@@ -75,6 +75,110 @@ layouts per subdomain, you can take the example medium. You got what i mean, and
 you can also leverage wildcard subdomains to host your own domain. we will go
 through how can we actually use it.
 
+In this blog, I have only used the single service but in your sceneriao you can
+also use the server, ( ngnix, caddy ) then locate to your different webapp. here
+is the demo configuration of ngnix and caddy.
+
+```sh
+# ngnix
+
+server {
+    listen 80;
+    server_name example.com;
+    return 301 https://www.example.com$request_uri;
+}
+
+server {
+    listen 80;
+    server_name www.example.com;
+    location / {
+        proxy_pass http://main_page_backend;
+    }
+}
+
+server {
+    listen 80;
+    server_name *.example.com;
+
+    location / {
+        if ($host ~* ^console\.) {
+            proxy_pass http://admin_backend;
+        }
+        if ($host ~* ^(?!console\.).+\.example\.com$) {
+            proxy_pass http://user_backend;
+        }
+    }
+}
+
+upstream main_page_backend {
+    server backend1.example.com;
+    server backend2.example.com;
+}
+
+upstream user_backend {
+    server user1.example.com;
+    server user2.example.com;
+}
+
+upstream admin_backend {
+    server admin1.example.com;
+    server admin2.example.com;
+}
+
+```
+
+Nginx:
+
+- The server_name directive is used to match domains.
+- The location block handles the proxying to the appropriate backend based on
+  the domain. upstream directives are used to define load-balanced backends.
+
+```sh
+#  caddy
+
+example.com {
+    redir https://www.example.com{uri}
+}
+
+www.example.com {
+    reverse_proxy main_page_backend
+}
+
+*.example.com {
+    @console {
+        host console.example.com
+    }
+    reverse_proxy @console admin_backend
+
+    @user {
+        not host console.example.com
+    }
+    reverse_proxy @user user_backend
+}
+
+main_page_backend {
+    to backend1.example.com backend2.example.com
+}
+
+user_backend {
+    to user1.example.com user2.example.com
+}
+
+admin_backend {
+    to admin1.example.com admin2.example.com
+}
+
+```
+
+Caddy:
+
+- Caddy uses reverse_proxy to handle requests and balance the load across
+  backends.
+- The @console and @user matchers are used to route requests to the correct
+  backend based on the domain.
+
+ok let's go to todays project.
+
 ## Setting Up the Project
 
 Projects includes multiple tools and technologies.

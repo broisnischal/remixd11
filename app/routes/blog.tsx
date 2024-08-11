@@ -15,7 +15,9 @@ export default function Component() {
 	const location = useLocation();
 
 	let shareurl = 'https://nischal-dahal.com.np' + location.pathname;
+
 	let title = 'Check out this article by Nischal Dahal.';
+
 	// const value = useOutletContext();
 	// const vla = useOutlet();
 

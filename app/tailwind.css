@@ -221,3 +221,8 @@ th {
 tbody tr:nth-child(even) {
 	@apply bg;
 }
+
+.balanced {
+	max-inline-size: 50ch;
+	text-wrap: balance;
+}

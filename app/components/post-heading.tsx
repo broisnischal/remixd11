@@ -19,13 +19,12 @@ export default function PostHeading({
 }) {
 	return (
 		<>
-			<div>
-				<h2 className="text-3xl	 font-bold ">{title}</h2>
+			<div className="flex flex-col items-center justify-center ">
+				<h2 className="balanced text-center text-6xl font-bold  ">{title}</h2>
 
-				<p className="secondary text-sm">
-					Published on {moment(date).format('MMMM Do YYYY')} with {readingTime}{' '}
-					minutes reading time by {author}
-				</p>
+				<small className="secondary mb-2">
+					{moment(date).format('MMM Do YYYY')} | {readingTime} min | {author}
+				</small>
 				<div className="flex flex-wrap items-center gap-3">
 					{tags?.map((item, i) => (
 						// <Badge key={i + 1} className="rounded-md" variant={'outline'}>

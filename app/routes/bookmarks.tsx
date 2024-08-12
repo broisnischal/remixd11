@@ -92,7 +92,13 @@ export default function Page() {
 			<br />
 
 			<h1 className="text-3xl font-bold">Bookmarks</h1>
-			<h2 className="text-xl ">Links that I read and liked.</h2>
+			<h2 className=" ">
+				Links to content I liked, sometimes with my commentary.
+				<br />
+				<a className="text-sm underline" href="">
+					Subscribe with RSS.
+				</a>
+			</h2>
 
 			{/* <Form method="POST" encType="multipart/form-data">
 				<input name="bmrk" type="file" accept=".html" />

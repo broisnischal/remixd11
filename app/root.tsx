@@ -232,8 +232,8 @@ export const RouteLink = ({
 			prefetch="intent"
 			className={({ isActive }) =>
 				isActive
-					? 'active font-bricolage text-[16px] font-semibold'
-					: 'font-bricolage text-[16px]'
+					? 'active font-bricolage font-semibold md:text-[16px]'
+					: 'font-bricolage md:text-[16px]'
 			}
 			to={to}
 		>
@@ -253,8 +253,8 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className=" sticky top-0 z-[998] m-auto hidden  w-full  border-b bg-background/60 backdrop-blur-lg dark:bg-[#121212]/85 md:flex">
-				<div className=" m-auto flex w-[70%] items-center justify-between gap-5 py-2 md:w-[70%] lg:w-[50%]">
+			<nav className=" sticky top-0 z-[998] hidden w-full    border-b bg-background/60 backdrop-blur-lg dark:bg-[#121212]/85 md:flex">
+				<div className=" mainwidth m-auto flex  items-center justify-between gap-5 overflow-hidden  py-2">
 					<div className=" flex gap-4">
 						<RouteLink to={'/'}>home</RouteLink>
 						<RouteLink to={'/blog'}>contents</RouteLink>
@@ -342,7 +342,7 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="m-auto my-16 flex flex-col items-center justify-center gap-6">
+		<div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">
 			<div className="flex flex-col ">
 				{/* <h2 className="text-center text-xl font-bold">Check me out</h2> */}
 				<div className=" flex items-center justify-center gap-6">

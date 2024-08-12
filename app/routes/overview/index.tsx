@@ -278,7 +278,7 @@ export default function Overview() {
 						{contributions.map((item, index) => (
 							<ContributionBox
 								item={item}
-								className="aspect-square xl:h-[11px] xl:w-[11px]"
+								className="aspect-square xl:h-[13px] xl:w-[13px]"
 								key={index}
 							/>
 						))}

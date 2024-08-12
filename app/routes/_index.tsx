@@ -245,7 +245,10 @@ export default function Index() {
 	return (
 		<div className="w-full">
 			<br />
-			<div className="flex flex-col items-start gap-8 md:flex-row">
+			<div
+				className="flex flex-col items-start justify-center
+			 gap-8 md:flex-row "
+			>
 				{/* <div className="h-[180px] w-[180px] rounded-lg bg-zinc-600"> */}
 				<img
 					src="/qr.png"
@@ -253,7 +256,7 @@ export default function Index() {
 					alt=""
 				/>
 				{/* </div> */}
-				<div className="flex flex-col items-start  gap-2">
+				<div className="flex flex-col items-start justify-center  gap-2">
 					{/* <Link to={'/image'} unstable_viewTransition>
 				<img
 				src={
@@ -282,7 +285,7 @@ export default function Index() {
 					<h1 className="text-4xl font-bold dark:text-zinc-100">
 						Nischal Dahal
 					</h1>
-					<h3 className="secondary md:max-w-[70%]">
+					<h3 className="secondary xl:max-w-[70%]">
 						{/* I'm a software developer from Nepal. I work at AITC as Software
 					Engineer. <br /> I love to build things. */}
 						I'm a full stack engineer with a focus on serverless architectures,
@@ -360,14 +363,17 @@ export default function Index() {
 				</div>
 			</div>
 			<br />
-			<Hr />
+			<br />
 			<div className="flex flex-col items-start gap-4">
-				<h3 className="secondary font-bricolage text-xl font-bold">
-					Featured contents
+				<h3 className=" secondary font-bricolage text-sm">
+					Here are my Featured contents, check them out. I continue Sharing my
+					thoughts on software development, life. Writing mostly for my past
+					self. Thanks for stopping by!
 				</h3>
+				{/* <Hr /> */}
 				<div
 					className="flex
-				 flex-col gap-12"
+				 flex-col gap-4"
 				>
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={posts}>
@@ -379,19 +385,19 @@ export default function Index() {
 										to={'/blog/' + post.slug + ''}
 									>
 										<div className="flex w-full flex-col items-start gap-2">
-											<p className="font-inter text-zinc-500">
+											{/* <p className="font-inter text-zinc-500">
 												<small>
 													{moment(post.frontmatter.published).format(
 														'MMMM Do YYYY',
 													)}
 												</small>
-											</p>
-											<div className="flex flex-col gap-2">
-												<h1 className="font-poppins text-[1.2rem] font-bold capitalize leading-tight tracking-wide group-hover:underline">
-													{post.frontmatter.title}
-												</h1>
+											</p> */}
+											<h1 className="text-[1rem] capitalize  leading-tight tracking-wide group-hover:underline">
+												{post.frontmatter.title}
+											</h1>
+											{/* <div className="flex flex-col gap-2"> */}
 
-												<div className="flex flex-wrap gap-1">
+											{/* <div className="flex flex-wrap gap-1">
 													{post.frontmatter.tags?.map((item, i) => (
 														<Badge
 															key={i}
@@ -401,15 +407,15 @@ export default function Index() {
 															{item}
 														</Badge>
 													))}
-												</div>
+												</div> */}
 
-												<p
+											{/* <p
 													className="secondary rounded-md font-normal"
 													key={post.slug}
 												>
 													{post.frontmatter.description.slice(0, 250) + '...'}
-												</p>
-											</div>
+												</p> */}
+											{/* </div> */}
 										</div>
 									</Link>
 								))

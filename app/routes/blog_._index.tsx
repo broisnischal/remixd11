@@ -76,13 +76,12 @@ export default function Component() {
 
 	return (
 		<div className="">
-			<ul className="space-y-10 ">
+			<ul className="space-y-14 ">
 				{posts.map((post, i) => (
 					<div key={i}>
 						<li key={i} className="">
 							<Post key={post.slug} {...post} />
 						</li>
-						<Hr />
 					</div>
 				))}
 			</ul>

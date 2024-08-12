@@ -6,21 +6,14 @@ import { Badge } from './ui/badge';
 export const Post = ({ slug, frontmatter }: PostMeta) => {
 	return (
 		<article className="flex flex-col gap-2">
-			{/* <p className="font-inter text-sm text-zinc-500">
-				{moment(frontmatter.published).format('MMMM Do YYYY')}
-			</p> */}
-			{/* <KBD>asdf</KBD> */}
-
 			<Link prefetch="viewport" to={`/blog/${slug.split('/').pop()}`}>
 				<time
 					className="block text-sm text-gray-600 dark:text-white/60"
 					dateTime={frontmatter.published}
 				>
-					<small>
-						Published {moment(frontmatter.published).format('MMMM Do YYYY')}
-					</small>
+					Published {moment(frontmatter.published).format('MMMM Do YYYY')}
 				</time>
-				<h3 className="text-xl font-bold leading-tight hover:underline md:text-2xl">
+				<h3 className=" font-semibold leading-tight hover:underline md:text-2xl">
 					{frontmatter.title}
 				</h3>
 			</Link>

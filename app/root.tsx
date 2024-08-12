@@ -254,7 +254,7 @@ const NavBar = () => {
 	return (
 		<>
 			<nav className=" sticky top-0 z-[998] m-auto hidden  w-full  border-b bg-background/60 backdrop-blur-lg dark:bg-[#121212]/85 md:flex">
-				<div className=" m-auto flex  w-3/4 items-center justify-between gap-5 py-2 lg:w-1/2">
+				<div className=" m-auto flex w-[70%] items-center justify-between gap-5 py-2 md:w-[70%] lg:w-[50%]">
 					<div className=" flex gap-4">
 						<RouteLink to={'/'}>home</RouteLink>
 						<RouteLink to={'/blog'}>contents</RouteLink>
@@ -287,7 +287,7 @@ const NavBar = () => {
 					</div>
 				</div>
 			</nav>
-			<nav className=" mt-8  items-center  justify-center gap-3 px-4 md:hidden md:px-0">
+			<nav className=" m-auto  mt-8  w-[90%] items-center justify-center gap-3 md:hidden">
 				<div className="flex w-full items-center justify-between md:w-auto">
 					<Link to={'/'} className="text-3xl font-bold">
 						Broisnees
@@ -459,7 +459,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
-			<div className="mx-auto my-[2.5rem] min-h-[45vh] w-[90vw] max-w-screen-sm px-2 sm:max-w-screen-md md:px-0 lg:max-w-screen-md">
+			<div className="mainwidth mx-auto my-[2.5rem] min-h-[45vh]">
 				{/* {isClient ? (
 					<AnimatePresence mode="sync">
 						<motion.div

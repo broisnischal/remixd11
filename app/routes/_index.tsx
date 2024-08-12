@@ -243,15 +243,17 @@ export default function Index() {
 	const { posts } = useLoaderData<typeof loader>();
 
 	return (
-		<div>
+		<div className="w-full">
 			<br />
 			<div className="flex flex-col items-start gap-8 md:flex-row">
+				{/* <div className="h-[180px] w-[180px] rounded-lg bg-zinc-600"> */}
 				<img
 					src="/qr.png"
-					className="w-[180px] rounded-lg border shadow-sm"
+					className=" w-[150px] rounded-lg border shadow-sm"
 					alt=""
 				/>
-				<div className="flex flex-col items-start  gap-4">
+				{/* </div> */}
+				<div className="flex flex-col items-start  gap-2">
 					{/* <Link to={'/image'} unstable_viewTransition>
 				<img
 				src={

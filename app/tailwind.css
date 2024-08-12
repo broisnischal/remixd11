@@ -93,6 +93,9 @@ html {
 		--accents-8: #fafafa;
 		--geist-foreground: #fff;
 	}
+	.mainwidth {
+		@apply w-[90%] md:w-[70%] lg:w-[50%];
+	}
 }
 
 @layer base {

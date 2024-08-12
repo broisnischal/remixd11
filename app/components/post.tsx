@@ -29,7 +29,7 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 			</p>
 			<div className="flex flex-wrap gap-2">
 				{frontmatter.tags?.map((item, i) => (
-					<Badge key={i} variant={'outline'}>
+					<Badge key={i} className="rounded-md" variant={'outline'}>
 						{item}
 					</Badge>
 				))}

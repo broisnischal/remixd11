@@ -263,6 +263,7 @@ const NavBar = () => {
 						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
 						<RouteLink to={'/hire'}>hireme</RouteLink>
 						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+						<RouteLink to={'/links'}>links</RouteLink>
 
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
@@ -314,6 +315,8 @@ const NavBar = () => {
 						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
 						<RouteLink to={'/hire'}>hireme</RouteLink>
 						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+						<RouteLink to={'/links'}>links</RouteLink>
+
 						{}
 
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
@@ -342,96 +345,102 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">
-			<div className="flex flex-col ">
-				{/* <h2 className="text-center text-xl font-bold">Check me out</h2> */}
-				<div className=" flex items-center justify-center gap-6">
-					<Link
-						aria-label="Github"
-						target="_blank"
-						to="https://github.com/broisnischal"
-					>
-						<GitHubLogoIcon width={30} height={30} />
-					</Link>
-
-					<Link
-						aria-label="Discord"
-						target="_blank"
-						to="https://discord.gg/@broisnees"
-					>
-						<DiscordLogoIcon width={30} height={30} />
-					</Link>
-
-					<Link
-						aria-label="Instagram"
-						target="_blank"
-						to="https://instagram.com/broisnees"
-					>
-						<InstagramLogoIcon width={30} height={30} />
-					</Link>
-					<Link
-						aria-label="Twitter"
-						target="_blank"
-						to="https://twitter.com/broisnees"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="23"
-							height="23"
-							fill="none"
-							viewBox="0 0 1200 1227"
-						>
-							<path
-								// fill="#000 dark:#fff"
-								className="fill-black dark:fill-white"
-								d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
-							/>
-						</svg>
-					</Link>
-					<Link
-						aria-label="LinkedIn"
-						target="_blank"
-						to="https://www.linkedin.com/in/neeswebservices/"
-					>
-						<LinkedInLogoIcon width={30} height={30} />
-					</Link>
-					<a href="/feed.json" aria-label="RSS" target="_blank">
-						<RssIcon width={30} height={30} />
-					</a>
-				</div>
-			</div>
-			<div className="flex items-center justify-center gap-5">
-				<Link
-					to="mailto:info@nischal-dahal.com.np"
-					className="flex items-center gap-2 font-normal"
-				>
-					<ArrowTopRightIcon /> Mail
-				</Link>
-
-				<Link to="/about" className="flex items-center  gap-2 font-normal">
-					<ArrowTopRightIcon /> About
-				</Link>
-				<Link to="/chat" className="flex items-center  gap-2 font-normal">
-					<ArrowTopRightIcon /> Chat
-				</Link>
-				<a href="/blogs/rss" className="flex items-center  gap-2 font-normal">
-					<ArrowTopRightIcon /> Blog RSS
-				</a>
-
-				{/* <a href="/blogs/rss" className="flex items-center  gap-2">
-						<ArrowTopRightIcon /> MyBookmarks RSS
-					</a> */}
-			</div>
-			<small className="text-center">
-				Alternatively press Ctrl/Cmd + K to search.. <br /> Nischal Dahal | Made
-				with{' '}
-				<Link target="_blank" className="underline" to="https://remix.run">
-					Remix
-				</Link>{' '}
-				❤️
-			</small>
-			<br />
+		<div className="secondary m-auto my-10 flex items-center justify-center gap-2 text-sm">
+			© 2024 |{' '}
+			<Link className="text-[1rem] text-primary" to={'/links'}>
+				nischal
+			</Link>
 		</div>
+		// <div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">
+		// 	<div className="flex flex-col ">
+		// 		{/* <h2 className="text-center text-xl font-bold">Check me out</h2> */}
+		// 		<div className=" flex items-center justify-center gap-6">
+		// 			<Link
+		// 				aria-label="Github"
+		// 				target="_blank"
+		// 				to="https://github.com/broisnischal"
+		// 			>
+		// 				<GitHubLogoIcon width={30} height={30} />
+		// 			</Link>
+
+		// 			<Link
+		// 				aria-label="Discord"
+		// 				target="_blank"
+		// 				to="https://discord.gg/@broisnees"
+		// 			>
+		// 				<DiscordLogoIcon width={30} height={30} />
+		// 			</Link>
+
+		// 			<Link
+		// 				aria-label="Instagram"
+		// 				target="_blank"
+		// 				to="https://instagram.com/broisnees"
+		// 			>
+		// 				<InstagramLogoIcon width={30} height={30} />
+		// 			</Link>
+		// 			<Link
+		// 				aria-label="Twitter"
+		// 				target="_blank"
+		// 				to="https://twitter.com/broisnees"
+		// 			>
+		// 				<svg
+		// 					xmlns="http://www.w3.org/2000/svg"
+		// 					width="23"
+		// 					height="23"
+		// 					fill="none"
+		// 					viewBox="0 0 1200 1227"
+		// 				>
+		// 					<path
+		// 						// fill="#000 dark:#fff"
+		// 						className="fill-black dark:fill-white"
+		// 						d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
+		// 					/>
+		// 				</svg>
+		// 			</Link>
+		// 			<Link
+		// 				aria-label="LinkedIn"
+		// 				target="_blank"
+		// 				to="https://www.linkedin.com/in/neeswebservices/"
+		// 			>
+		// 				<LinkedInLogoIcon width={30} height={30} />
+		// 			</Link>
+		// 			<a href="/feed.json" aria-label="RSS" target="_blank">
+		// 				<RssIcon width={30} height={30} />
+		// 			</a>
+		// 		</div>
+		// 	</div>
+		// 	<div className="flex items-center justify-center gap-5">
+		// 		<Link
+		// 			to="mailto:info@nischal-dahal.com.np"
+		// 			className="flex items-center gap-2 font-normal"
+		// 		>
+		// 			<ArrowTopRightIcon /> Mail
+		// 		</Link>
+
+		// 		<Link to="/about" className="flex items-center  gap-2 font-normal">
+		// 			<ArrowTopRightIcon /> About
+		// 		</Link>
+		// 		<Link to="/chat" className="flex items-center  gap-2 font-normal">
+		// 			<ArrowTopRightIcon /> Chat
+		// 		</Link>
+		// 		<a href="/blogs/rss" className="flex items-center  gap-2 font-normal">
+		// 			<ArrowTopRightIcon /> Blog RSS
+		// 		</a>
+
+		// 		{/* <a href="/blogs/rss" className="flex items-center  gap-2">
+		// 				<ArrowTopRightIcon /> MyBookmarks RSS
+		// 			</a> */}
+		// 	</div>
+		// 	<small className="text-center">
+		// 		Alternatively press Ctrl/Cmd + K to search.. <br /> Nischal Dahal | Made
+		// 		with{' '}
+		// 		<Link target="_blank" className="underline" to="https://remix.run">
+		// 			Remix
+		// 		</Link>{' '}
+		// 		❤️
+		// 	</small>
+		// 	<br />
+		// </div>
 	);
 };
 

@@ -8,13 +8,59 @@ import rehypeMeta from 'rehype-meta';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypePrism from 'rehype-prism';
 import rehypeSlug from 'rehype-slug';
+import rehypeStringify from 'rehype-stringify';
+import rehypeParse from 'rehype-parse';
+import rehypeToc, { Options } from 'rehype-toc';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { flatRoutes } from 'remix-flat-routes';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
+
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { getLoadContext } from './load-context';
+
+import rehypeExpressiveCode from 'rehype-expressive-code';
+
+/** @type {import('rehype-expressive-code').RehypeExpressiveCodeOptions} */
+const rehypeExpressiveCodeOptions = {
+	defaultProps: {
+		// Enable word wrap by default
+		wrap: true,
+		// Disable wrapped line indentation for terminal languages
+		overridesByLang: {
+			'bash,ps,sh': { preserveIndent: false },
+		},
+	},
+	themes: ['dark-plus', 'solarized-light'],
+	frames: {
+		// Example: Hide the "Copy to clipboard" button
+		showCopyToClipboardButton: false,
+	},
+	shiki: {
+		// You can pass additional plugin options here,
+		// e.g. to load custom language grammars:
+		langs: [
+			// import('./some-exported-grammar.mjs'),
+			// JSON.parse(fs.readFileSync('./some-json-grammar.json', 'utf-8'))
+		],
+	},
+	// You can add configuration options here
+};
+
+const options: Options = {
+	headings: ['h1', 'h2'], // Only include <h1> and <h2> headings in the TOC
+	cssClasses: {
+		toc: 'page-outline', // Change the CSS class for the TOC
+		link: 'page-link', // Change the CSS class for links in the TOC
+	},
+	// customizeTOC: toc => {
+	// 	// Customize the TOC
+	// 	toc.properties.className = 'text-red-500';
+	// 	return toc;
+	// },
+};
 
 export default defineConfig({
 	plugins: [
@@ -25,16 +71,19 @@ export default defineConfig({
 				// rehypeAutolinkHeadings,
 				rehypeSlug,
 				rehypeMeta,
-				[rehypePrism, { autolinker: true }],
+				rehypeAutolinkHeadings,
+				// [rehypeToc, options],
+				// [rehypePrism, { autolinker: true }],
 				// [remarkToc, { ordered: true, tight: false }],
-				[
-					rehypePrettyCode,
-					{
-						// theme: 'material-theme-darker',
-						theme: 'vesper', // dark-plus
-					},
-				],
-				[rehypePrism, { plugins: ['line-numbers'] }],
+				// [
+				// 	rehypePrettyCode,
+				// 	{
+				// 		// theme: 'material-theme-darker',
+				// 		theme: 'vesper', // dark-plus
+				// 	},
+				// ],
+				// [rehypePrism, { plugins: ['line-numbers'] }],
+				[rehypeExpressiveCode, rehypeExpressiveCodeOptions],
 			],
 		}),
 		remix({

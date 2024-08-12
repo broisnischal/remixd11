@@ -1,6 +1,5 @@
 import fs from 'fs';
 // import * as cheerio from 'cheerio';
-import { writeToPath } from 'fast-csv';
 import { z } from 'zod';
 
 export const takeUniqueOrThrow = <T extends any[]>(values: T): T[number] => {

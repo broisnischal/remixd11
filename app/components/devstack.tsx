@@ -2,8 +2,8 @@ import { Badge } from './ui/badge';
 
 export default function DevStack() {
 	return (
-		<div>
-			<h1 className="mb-4 text-2xl font-bold">Favourite Dev Stack</h1>
+		<div className="hidden dark:block">
+			<h1 className="mb-4  text-2xl font-bold">Favourite Dev Stack</h1>
 
 			<div className="flex flex-wrap gap-2 md:max-w-[70%]">
 				{[

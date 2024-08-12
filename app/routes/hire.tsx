@@ -64,7 +64,6 @@ export default function Page() {
 			<a href="https://rxresu.me/broisnischal/nischal-job" target="_blank">
 				<ConnectButton>View My Resume</ConnectButton>
 			</a>
-			<br />
 			<DevStack />
 			<br />
 			<h2 className=" text-2xl font-bold tracking-wide">Featuring</h2>
@@ -75,10 +74,9 @@ export default function Page() {
 				<li> 🏡 Fully remote </li>
 				<li>🏖️ Unlimited paid time off</li>
 			</ul>
-			<br />
-			<SoftwareTools />
-			<br />
-			<div className="div flex w-full flex-col">
+			{/* <SoftwareTools /> */}
+			{/* <br /> */}
+			{/* <div className="div flex w-full flex-col">
 				<h1 className="mb-3 font-nunito text-xl">
 					💯 What people think of me?
 				</h1>
@@ -94,13 +92,7 @@ export default function Page() {
 						I love to hear from you. Your feedback is important to me.
 					</small>
 				</div>
-
-				{/* <div className="flex flex-col gap-4 ">
-					{testimonials.map(testimonial => (
-						<CardList key={testimonial.name} {...testimonial} />
-					))}
-				</div> */}
-			</div>
+			</div> */}
 		</div>
 	);
 }

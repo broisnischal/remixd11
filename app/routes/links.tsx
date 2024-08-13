@@ -182,7 +182,14 @@ export default function Page() {
 				<a className="text-primary" href="mailto:info@nischal-dahal.com.np">
 					info@nischal-dahal.com.np
 				</a>{' '}
-				or connect on social medias that i have mentioned.
+				or check out my{' '}
+				<a
+					className="text-primary"
+					href="https://orcid.org/0009-0007-8445-2408/print"
+				>
+					orcid
+				</a>{' '}
+				profile.
 			</p>
 			{/* Alternatively press Ctrl/Cmd + K to search.. */}
 			<small className="text-center">

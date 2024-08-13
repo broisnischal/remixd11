@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'avenir';
+	src: url('/avenir.otf');
+}
+
 html {
 	scrollbar-gutter: stable;
 }
@@ -122,7 +127,7 @@ html {
 	}
 
 	p {
-		@apply font-atkinson;
+		@apply font-avenir;
 		/* font-family: 'inter', sans-serif; */
 		/* @apply text-zinc-800 dark:text-zinc-300; */
 		/* text-sm */

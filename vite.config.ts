@@ -33,7 +33,7 @@ const rehypeExpressiveCodeOptions = {
 			'bash,ps,sh': { preserveIndent: false },
 		},
 	},
-	themes: ['dark-plus', 'solarized-light'],
+	themes: ['dark-plus'],
 	frames: {
 		// Example: Hide the "Copy to clipboard" button
 		showCopyToClipboardButton: false,

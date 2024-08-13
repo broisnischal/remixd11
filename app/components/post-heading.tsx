@@ -19,8 +19,8 @@ export default function PostHeading({
 }) {
 	return (
 		<>
-			<div className="flex flex-col items-center justify-center ">
-				<h2 className="balanced text-center text-6xl font-bold  ">{title}</h2>
+			<div className="flex flex-col items-start  ">
+				<h2 className="balanced text-3xl font-bold  ">{title}</h2>
 
 				<small className="secondary mb-2">
 					{moment(date).format('MMM Do YYYY')} | {readingTime} min | {author}

@@ -29,7 +29,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 		],
 	});
 
-	if (search) {
+	if (search && search?.length > 1) {
 		return json({
 			posts: fuse.search(search).map(({ item }) => item),
 			search,

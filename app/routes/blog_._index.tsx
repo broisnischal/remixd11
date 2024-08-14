@@ -1,11 +1,13 @@
 import { json, LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
-import { useLoaderData } from '@remix-run/react';
+import { Form, useLoaderData, useSubmit } from '@remix-run/react';
+import Fuse from 'fuse.js';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { getPosts } from '~/.server/posts';
 import Hr from '~/components/hr';
 import { Post } from '~/components/post';
+import { Input } from '~/components/ui/input';
 import { MetaCreator } from '~/utils/meta';
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -14,24 +16,22 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	const url = new URL(request.url);
 	const search = url.searchParams.get('q');
 
+	const fuse = new Fuse(posts, {
+		shouldSort: true,
+		threshold: 0.6,
+		keys: [
+			'title',
+			'extract',
+			'frontmatter.tags',
+			'frontmatter.title',
+			'frontmatter.keywords',
+			'frontmatter.description',
+		],
+	});
+
 	if (search) {
 		return json({
-			posts: posts
-				.filter(post =>
-					post.frontmatter.title.toLowerCase().includes(search.toLowerCase()),
-				)
-				.sort((a, b) => {
-					if (!a.frontmatter.published) return 1;
-					if (!b.frontmatter.published) return -1;
-
-					const aDate = new Date(a.frontmatter.published);
-					const bDate = new Date(b.frontmatter.published);
-
-					if (aDate > bDate) return -1;
-					if (aDate < bDate) return 1;
-
-					return 0;
-				}),
+			posts: fuse.search(search).map(({ item }) => item),
 			search,
 		});
 	}
@@ -107,6 +107,7 @@ export default function Component() {
 	const { posts, search } = useLoaderData<typeof loader>();
 
 	const [allposts, setAllPosts] = useState(posts);
+	const submit = useSubmit();
 
 	const nonRepetitiveTags = posts
 		.map(post => post.frontmatter.tags)
@@ -160,6 +161,7 @@ export default function Component() {
 				active: t.tag === tag,
 			})),
 		);
+
 		const filteredPosts = posts.filter(
 			post =>
 				(post.frontmatter.tags && post.frontmatter.tags?.includes(tag)) ||
@@ -171,32 +173,90 @@ export default function Component() {
 
 	return (
 		<div className="">
-			<div className="tags flex flex-wrap gap-2">
-				<input className="border" type="text" />
-				{activeTag &&
-					activeTag.map((tag, i) => (
-						<button
-							key={i}
-							className={twMerge(
-								'tag rounded-md border bg-secondary px-2 text-sm font-medium lowercase',
-								tag.active && 'bg-black text-white',
-							)}
-							onClick={() => {
-								handleChange({
-									tag: tag.tag,
-									active: false,
-								});
+			<Form
+				method="GET"
+				onChange={event => {
+					submit(event.currentTarget, {
+						replace: true,
+					});
 
-								setActiveTag(
-									activeTag.map(t => ({
-										...t,
-										active: t.active || t.tag === tag.tag,
-									})),
-								);
-							}}
-						>
-							# {tag.tag}
-						</button>
+					setAllPosts(posts);
+					// setActiveTag(tousetag);
+				}}
+			>
+				<label htmlFor="search" className="sr-only">
+					Search
+				</label>
+				<input
+					id="search"
+					type="text"
+					name="q"
+					onChange={event => {
+						if (event.currentTarget.value === '') {
+							setAllPosts(posts);
+						}
+					}}
+					placeholder="Search "
+					defaultValue={search || ''}
+					className="w-min min-w-[300px] rounded-md border px-2 py-1 placeholder:text-sm"
+				/>
+				{/* {search && <button onClick={() => submit({})}>X</button>} */}
+
+				{allposts.length > 0 && search ? (
+					<>
+						<p className="text-sm">{allposts.length} results</p>
+					</>
+				) : (
+					<>
+						<p className="text-sm">remix search</p>
+					</>
+				)}
+			</Form>
+			<br />
+			<div className="tags flex flex-wrap gap-2">
+				{/* <input className="border" type="text" /> */}
+
+				{activeTag &&
+					(activeTag.length <= 0 ? (
+						<>
+							<h2>No search matches the tags</h2>
+						</>
+					) : (
+						activeTag.map((tag, i) => (
+							<button
+								key={i}
+								className={twMerge(
+									'tag rounded-md border bg-secondary px-2 text-sm font-medium lowercase',
+									tag.active && 'bg-black text-white',
+								)}
+								// disabled={search ? true : false}
+								onClick={() => {
+									!tag.active
+										? handleChange({
+												tag: tag.tag,
+												active: !tag.active,
+											})
+										: search
+											? null
+											: setAllPosts(posts);
+
+									setActiveTag(
+										activeTag.map(t => ({
+											...t,
+											// t.tag === tag.tag
+											active:
+												t.active == false
+													? t.tag == tag.tag
+														? true
+														: false
+													: false,
+										})),
+									);
+								}}
+							>
+								# {tag.tag}
+							</button>
+						))
 					))}
 				{/* <button
 					className={twMerge(
@@ -209,13 +269,17 @@ export default function Component() {
 			</div>
 			<Hr />
 			<ul className="space-y-14 ">
-				{allposts.map((post, i) => (
-					<div key={i}>
-						<li key={i} className="">
-							<Post key={post.slug} {...post} />
-						</li>
-					</div>
-				))}
+				{allposts.length <= 0 ? (
+					<>No posts found</>
+				) : (
+					allposts.map((post, i) => (
+						<div key={i}>
+							<li key={i} className="">
+								<Post key={post.slug} {...post} />
+							</li>
+						</div>
+					))
+				)}
 			</ul>
 		</div>
 	);

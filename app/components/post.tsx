@@ -5,7 +5,7 @@ import { Badge } from './ui/badge';
 
 export const Post = ({ slug, frontmatter }: PostMeta) => {
 	return (
-		<article className="flex flex-col gap-2">
+		<article className="flex flex-col gap-1">
 			<Link prefetch="viewport" to={`/blog/${slug.split('/').pop()}`}>
 				<time
 					className="block text-sm text-gray-600 dark:text-white/60"
@@ -13,12 +13,12 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 				>
 					Published {moment(frontmatter.published).format('MMMM Do YYYY')}
 				</time>
-				<h3 className=" font-semibold leading-tight hover:underline md:text-2xl">
+				<h3 className="  leading-tight hover:underline md:text-2xl">
 					{frontmatter.title}
 				</h3>
 			</Link>
 			<p className="secondary">
-				{frontmatter.description.slice(0, 250) + '...'}
+				{frontmatter.description.slice(0, 200) + '...'}
 			</p>
 			<div className="flex flex-wrap gap-2">
 				{frontmatter.tags?.map((item, i) => (

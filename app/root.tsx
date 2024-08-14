@@ -345,10 +345,14 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="secondary m-auto my-10 flex items-center justify-center gap-2 text-sm">
-			© 2024 |{' '}
+		<div className="secondary m-auto my-10 flex min-h-[5vh] items-center justify-center gap-2 text-sm">
+			© 2024 -
+			<Link className="text-[1rem] text-primary" to={'/about'}>
+				about
+			</Link>
+			|{' '}
 			<Link className="text-[1rem] text-primary" to={'/links'}>
-				nischal
+				connect
 			</Link>
 		</div>
 		// <div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">

@@ -178,6 +178,10 @@ export default function Component() {
 				onChange={event => {
 					submit(event.currentTarget, {
 						replace: true,
+						unstable_flushSync: true,
+						unstable_viewTransition: true,
+						preventScrollReset: true,
+						navigate: true,
 					});
 
 					setAllPosts(posts);

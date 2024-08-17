@@ -39,9 +39,10 @@ export const meta = ({ attributes }) => {
     			content: 'Nischal Dahal',
     		},
         {
-           name: 'canonical',
-           content: 'https://nischal-dahal.com.np/blog/deploy-bun-elysia-drizzle-flyio-with-wildcard-domain',
-        }
+    			tagName: 'link',
+    			rel: 'canonical',
+    			href: `${url.origin}${location.pathname}`,
+    		},
     	],
     	keywords: frontmatter.keywords,
     });

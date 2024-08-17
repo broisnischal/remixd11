@@ -25,8 +25,7 @@ author: Nischal Dahal
 import { MetaCreator } from '../utils/meta';
 
 export const meta = ({ attributes }) => {
-
-    const url = new URL('https://nischal-dahal.com.np/blog/vector-database');
+  const url = 'https://nischal-dahal.com.np/blog.deploy-bun-elysia-drizzle-flyio-with-wildcard-domain'
 
     const metadata = MetaCreator({
     	title: frontmatter.title,
@@ -41,7 +40,7 @@ export const meta = ({ attributes }) => {
         {
     			tagName: 'link',
     			rel: 'canonical',
-    			href: `${url.origin}${location.pathname}`,
+    			href: url,
     		},
     	],
     	keywords: frontmatter.keywords,

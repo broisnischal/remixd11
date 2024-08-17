@@ -8,6 +8,9 @@ import { getPosts } from '~/.server/posts';
 import Hr from '~/components/hr';
 import { Button } from '~/components/ui/button';
 import { MetaCreator } from '~/utils/meta';
+import { ConnectButton } from '~/components/ui-library/tailwindbutton';
+import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
+import { HiDocumentText } from 'react-icons/hi';
 
 // const slugs = [
 // 	'typescript',
@@ -361,6 +364,38 @@ export default function Index() {
 				</ul> */}
 					{/* <Markdown content={data.content} /> */}
 				</div>
+			</div>
+			<br />
+			<div className="buttons flex flex-col items-center gap-2 md:flex-row">
+				<Link
+					target="_blank"
+					to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
+				>
+					<ConnectButton>
+						<div className="flex items-center justify-center gap-2">
+							<LinkedInLogoIcon /> Follow on LinkedIn
+						</div>
+					</ConnectButton>
+				</Link>
+				<Link target="_blank" to="https://github.com/broisnischal">
+					<ConnectButton>
+						<div className="flex items-center justify-center gap-2">
+							<GitHubLogoIcon /> Connect on Github
+						</div>
+					</ConnectButton>
+				</Link>
+				<Link
+					target="_blank"
+					to={
+						'https://github.com/broisnischal/broisnischal/blob/main/resume.pdf'
+					}
+				>
+					<ConnectButton>
+						<div className="flex items-center justify-center gap-2">
+							<HiDocumentText /> View Resume
+						</div>
+					</ConnectButton>
+				</Link>
 			</div>
 			<br />
 			<br />

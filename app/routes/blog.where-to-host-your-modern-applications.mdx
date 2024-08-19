@@ -1,5 +1,6 @@
 ---
 title: Where to host your modern applications in 2024?
+url: where-to-host-your-modern-applications
 description:
   Discover the top hosting platforms to deploy and scale your modern web
   applications in 2024. Explore serverless, cloud hosting, edge computing, and
@@ -39,9 +40,7 @@ author: Nischal Dahal
 import { MetaCreator } from '../utils/meta';
 
 export const meta = ({ attributes }) => {
-
-    const url = new URL('https://nischal-dahal.com.np/blog/vector-database');
-
+    const url = new URL(`https://nischal-dahal.com.np/blog/${frontmatter.url}`);
     const metadata = MetaCreator({
     	title: frontmatter.title,
     	description: frontmatter.description,
@@ -53,10 +52,14 @@ export const meta = ({ attributes }) => {
     			name: 'author',
     			content: 'Nischal Dahal',
     		},
+        {
+    			tagName: 'link',
+    			rel: 'canonical',
+    			href: url,
+    		},
     	],
     	keywords: frontmatter.keywords,
     });
-
 
     return [
     	...metadata,

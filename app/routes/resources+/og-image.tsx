@@ -76,10 +76,10 @@ function TitleSection({
 					{title
 						.replace('-', ' ')
 						.split(' ')
-						.map(word => word[0]?.toUpperCase() + word.slice(1))
-						.slice(0, 3)
+						// .map(word => word[0]?.toUpperCase() + word.slice(1))
+						// .slice(0, 3)
 						.join(' ')
-						.trim()}{' '}
+						.trim()}
 				</h2>
 
 				{description && (

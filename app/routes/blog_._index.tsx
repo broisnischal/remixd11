@@ -1,6 +1,7 @@
 import { json, LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
 import { Form, useLoaderData, useSubmit } from '@remix-run/react';
 import Fuse from 'fuse.js';
+import { SearchIcon } from 'lucide-react';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -188,10 +189,7 @@ export default function Component() {
 					// setActiveTag(tousetag);
 				}}
 			>
-				<label htmlFor="search" className="sr-only">
-					Search
-				</label>
-				<input
+				{/* <input
 					id="search"
 					type="text"
 					name="q"
@@ -203,23 +201,37 @@ export default function Component() {
 					placeholder="Search "
 					defaultValue={search || ''}
 					className="w-min min-w-[300px] rounded-md border px-2 py-1 placeholder:text-sm"
-				/>
-				{/* {search && <button onClick={() => submit({})}>X</button>} */}
-
-				{allposts.length > 0 && search ? (
-					<>
-						<p className="text-sm">{allposts.length} results</p>
-					</>
-				) : (
-					<>
-						<p className="text-sm">remix search</p>
-					</>
-				)}
+				/> */}
+				<div className="flex min-h-[20vh] flex-col items-center justify-center">
+					<div className="flex h-full w-full min-w-[300px] items-center gap-3 rounded-full border px-6 py-3 md:min-w-[400px] lg:max-w-[500px]">
+						<SearchIcon />
+						<input
+							id="search"
+							name="q"
+							type="text"
+							onChange={event => {
+								if (event.currentTarget.value === '') {
+									setAllPosts(posts);
+								}
+							}}
+							defaultValue={search || ''}
+							placeholder="Search for posts, problems or tags..."
+							className="w-full focus:outline-none"
+						/>
+					</div>
+					{/* {allposts.length > 0 && search ? (
+						<>
+							<p className="text-sm">{allposts.length} results</p>
+						</>
+					) : (
+						<>
+							<p className="text-sm"></p>
+						</>
+					)} */}
+				</div>
 			</Form>
-			<br />
-			<div className="tags flex flex-wrap gap-2">
+			<div className="tags m-auto flex max-w-[80%] flex-wrap items-center justify-center gap-2">
 				{/* <input className="border" type="text" /> */}
-
 				{activeTag &&
 					(activeTag.length <= 0 ? (
 						<>
@@ -230,7 +242,7 @@ export default function Component() {
 							<button
 								key={i}
 								className={twMerge(
-									'tag rounded-md border bg-secondary px-2 text-sm font-medium lowercase',
+									'tag rounded-md border bg-secondary px-2 text-sm lowercase',
 									tag.active && 'bg-black text-white',
 								)}
 								// disabled={search ? true : false}
@@ -271,20 +283,19 @@ export default function Component() {
 					x
 				</button> */}
 			</div>
-			<Hr />
-			<ul className="space-y-14 ">
+			<br />
+			<br />
+			<div className="grid grid-cols-3 gap-x-3 gap-y-10">
 				{allposts.length <= 0 ? (
 					<>No posts found</>
 				) : (
 					allposts.map((post, i) => (
 						<div key={i}>
-							<li key={i} className="">
-								<Post key={post.slug} {...post} />
-							</li>
+							<Post key={post.slug} {...post} />
 						</div>
 					))
 				)}
-			</ul>
+			</div>
 		</div>
 	);
 }

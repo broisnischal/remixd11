@@ -127,7 +127,7 @@ html {
 	}
 
 	p {
-		@apply font-atkinson;
+		@apply font-inter;
 		/* font-family: 'inter', sans-serif; */
 		/* @apply text-zinc-800 dark:text-zinc-300; */
 		/* text-sm */

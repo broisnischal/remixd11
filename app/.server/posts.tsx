@@ -7,6 +7,7 @@ export type Frontmatter = {
 	featured: boolean;
 	author?: string;
 	tags?: string[];
+	image?: string;
 	keywords?: string[];
 };
 

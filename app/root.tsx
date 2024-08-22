@@ -253,18 +253,19 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className=" sticky top-0 z-[998] hidden w-full    border-b bg-background/60 backdrop-blur-lg dark:bg-[#121212]/85 md:flex">
-				<div className=" mainwidth m-auto flex  items-center justify-between gap-5 overflow-hidden  py-2">
+			<nav className=" top-0 z-[998] hidden w-full py-10 md:flex">
+				<div className="m-auto flex items-center justify-between overflow-hidden py-1">
 					<div className=" flex gap-4">
-						<RouteLink to={'/'}>home</RouteLink>
-						<RouteLink to={'/blog'}>contents</RouteLink>
-						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-						<RouteLink to={'/overview'}>overview</RouteLink>
-						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
-						<RouteLink to={'/hire'}>hireme</RouteLink>
-						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
-						<RouteLink to={'/links'}>links</RouteLink>
-
+						<div className="flex gap-6">
+							<RouteLink to={'/'}>home</RouteLink>
+							<RouteLink to={'/blog'}>contents</RouteLink>
+							<RouteLink to={'/guestbook'}>guestbook</RouteLink>
+							<RouteLink to={'/overview'}>overview</RouteLink>
+							<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
+							<RouteLink to={'/hire'}>hireme</RouteLink>
+							<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+							<RouteLink to={'/links'}>links</RouteLink>
+						</div>
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
 						{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
@@ -283,9 +284,9 @@ const NavBar = () => {
 							</Await>
 						</React.Suspense>
 					</div>
-					<div className="flex flex-col items-center justify-center gap-3 md:flex-row">
+					{/* <div className="flex flex-col items-center justify-center gap-3 md:flex-row">
 						<ModeToggle />
-					</div>
+					</div> */}
 				</div>
 			</nav>
 			<nav className=" m-auto  mt-8  w-[90%] items-center justify-center gap-3 md:hidden">
@@ -611,11 +612,11 @@ export function App() {
 				<Search />
 
 				<Layout children={<Outlet />} />
-				<React.Suspense>
+				{/* <React.Suspense>
 					<Await resolve={data.count}>
 						{count => <Clap count={count as number} />}
 					</Await>
-				</React.Suspense>
+				</React.Suspense> */}
 				<ScrollRestoration
 					getKey={location => {
 						return location.pathname;

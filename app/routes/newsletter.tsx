@@ -265,15 +265,11 @@ export default function NewsLetter() {
 
 	return (
 		<div>
-			{/* <div className="flex  flex-col gap-3 ">
-				<h2 className="text-4xl font-bold">Newsletter</h2>
-				<p className="max-w-[350px] text-balance">
-					We are working hard to create this among you, all Developers. Stay
-					Tuned for the latest releases and features.
-				</p>
-			</div> */}
-			<div>
-				<h3 className="mb-4 text-3xl font-bold md:text-4xl"> Subscribe</h3>
+			<div className="flex flex-col items-center justify-center">
+				<h3 className="mb-4 text-center text-3xl font-bold md:text-5xl">
+					{' '}
+					Subscribe
+				</h3>
 
 				<div className="flex flex-col items-start justify-center gap-2">
 					<Form
@@ -317,7 +313,8 @@ export default function NewsLetter() {
 					After you successfully subscribe, You will receive an email with the
 					verification link!
 				</p>
-				<p className=" w-full text-left text-gray-500 dark:text-gray-400">
+				<br />
+				<p className=" balance balanced w-full text-center text-gray-500 dark:text-gray-400">
 					Stay tuned and get notified when I publish something new and
 					unsubscribe at any time.{' '}
 					<Link className="underline underline-offset-2" to="/terms">
@@ -326,7 +323,7 @@ export default function NewsLetter() {
 				</p>
 				<br />
 
-				<p className="font-poppins ">
+				{/* <p className="font-poppins ">
 					About once per month, I send an email with:
 				</p>
 				<ul className=" ml-0 ">
@@ -334,7 +331,7 @@ export default function NewsLetter() {
 					<li>New features</li>
 					<li>Announcements</li>
 					<li>Cool new libraries and packages</li>
-				</ul>
+				</ul> */}
 			</div>
 		</div>
 	);

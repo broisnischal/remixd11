@@ -11,6 +11,7 @@ import { MetaCreator } from '~/utils/meta';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import { HiDocumentText } from 'react-icons/hi';
+import { SearchIcon } from 'lucide-react';
 
 // const slugs = [
 // 	'typescript',
@@ -247,50 +248,31 @@ export default function Index() {
 
 	return (
 		<div className="w-full">
-			<br />
+			<div className="flex min-h-[40vh] items-center justify-center">
+				<div className="flex h-full w-full min-w-[300px] items-center gap-3 rounded-full border px-6 py-3 md:min-w-[400px] lg:max-w-[500px]">
+					<SearchIcon />
+					<input
+						type="text"
+						placeholder="Search for posts, problems or tags..."
+						className="w-full focus:outline-none"
+					/>
+				</div>
+			</div>
+			{/* <br />
 			<div
 				className="flex flex-col items-start justify-center
 			 gap-8 md:flex-row "
 			>
-				{/* <div className="h-[180px] w-[180px] rounded-lg bg-zinc-600"> */}
 				<img
 					src="/qr.png"
 					className=" w-[150px] rounded-lg border shadow-sm"
 					alt=""
 				/>
-				{/* </div> */}
 				<div className="flex flex-col items-start justify-center  gap-2">
-					{/* <Link to={'/image'} unstable_viewTransition>
-				<img
-				src={
-					'https://oyster.ignimgs.com/mediawiki/apis.ign.com/the-legend-of-zelda-breath-of-the-wild-2/3/38/Link2.png'
-					}
-					// alt={alt}
-					style={{
-						viewTransitionName: 'revert-layer',
-						width: '10%',
-						}}
-						/>
-						</Link> */}
-					{/* <Link to="/signup">signup</Link> */}
-					{/* {data.success ? (
-				<div>
-				<p style={{ color: 'green' }}>success</p>
-				</div>
-				) : (
-					<h1>You are being rate limited.</h1>
-					)} */}
-					{/* <img
-						className="aspect-square w-10 rounded-full"
-						src="/profile.jpg"
-						alt=""
-					/> */}
 					<h1 className="text-4xl font-bold dark:text-zinc-100">
 						Nischal Dahal
 					</h1>
 					<h3 className="secondary xl:max-w-[70%]">
-						{/* I'm a software developer from Nepal. I work at AITC as Software
-					Engineer. <br /> I love to build things. */}
 						I'm a full stack engineer with a focus on serverless architectures,
 						android development, user experience, and product development.
 					</h3>
@@ -299,7 +281,6 @@ export default function Index() {
 							className="font-nunito font-bold  underline"
 							to="https://codeium.com/profile/broisnischal"
 							target="_blank"
-							// rel="noopener noreferrer"
 						>
 							Codeium Profile
 						</Link>
@@ -307,16 +288,13 @@ export default function Index() {
 							className="font-nunito font-bold  underline"
 							to="https://dly.to/oYeNtLdx9va"
 							target="_blank"
-							// rel="noopener noreferrer"
 						>
 							Join Squad
 						</Link>
 						<Link className="font-nunito font-bold underline" to="/timeline">
 							Life Timeline
 						</Link>
-						{/* <Link className="font-nunito font-bold underline" to="/framer">
-							Framer 50
-						</Link> */}
+
 						<Link
 							className="font-nunito font-bold underline"
 							to="/learning/year"
@@ -324,45 +302,6 @@ export default function Index() {
 							Projects
 						</Link>
 					</div>
-					{/* 
-				<div className="flex gap-1">
-					<Badge variant={'outline'}>Software Engineer</Badge>
-					<Badge variant={'secondary'}>18</Badge>
-				</div> */}
-					{/* <div className="flex  flex-col items-start gap-4 "> */}
-					{/* <div className="desc flex w-[80%] flex-col items-start gap-4"> */}
-					{/* <div className="flex items-center justify-center gap-2 text-sm">
-						{['typescript', 'flutter', 'zig', 'rust', 'go'].map(
-							(item, index) => (
-								<TextHighlight key={index}>{item}</TextHighlight>
-							),
-						)}
-					</div> */}
-					{/* 
-					<p>
-						Driven by an insatiable curiosity, I constantly refine my craft
-						through hands-on coding and in-depth research. Each project is an
-						opportunity to push boundaries and create something truly
-						remarkable.
-					</p>
-
-					<p>
-						Journey in the tech realm is defined by a relentless pursuit of
-						excellence, crafting sophisticated systems that drive the future.
-					</p> */}
-					{/* </div> */}
-					{/* <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden bg-background px-20  ">
-						<IconCloud iconSlugs={slugs} />
-					</div> */}
-					{/* </div>s */}
-					{/*
-				<ul className="font-semibold">
-					<li>I ❤️ Remix.</li>
-					<li>I am a Typescript Mini Wizard 🚀</li>
-					<li>I am Android Developer 📱</li>
-					<li>I love IOT 👾</li>
-				</ul> */}
-					{/* <Markdown content={data.content} /> */}
 				</div>
 			</div>
 			<br />
@@ -398,59 +337,23 @@ export default function Index() {
 				</Link>
 			</div>
 			<br />
-			<br />
+			<br /> */}
 			<div className="flex flex-col items-start gap-4">
-				<h3 className=" secondary font-bricolage text-sm">
-					Here are my Featured contents, check them out. I continue Sharing my
-					thoughts on software development, life. Writing mostly for my past
-					self. Thanks for stopping by!
-				</h3>
-				{/* <Hr /> */}
-				<div
-					className="flex
-				 flex-col gap-4"
-				>
+				<h3 className=" secondary font-bricolage text-sm">Featured</h3>
+				<div className="grid grid-cols-3 gap-4 ">
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={posts}>
 							{posts =>
-								posts.map((post, index) => (
+								posts.slice(0, 6).map((post, index) => (
 									<Link
 										key={post.slug}
 										className="group"
 										to={'/blog/' + post.slug + ''}
 									>
-										<div className="flex w-full flex-col items-start gap-2">
-											{/* <p className="font-inter text-zinc-500">
-												<small>
-													{moment(post.frontmatter.published).format(
-														'MMMM Do YYYY',
-													)}
-												</small>
-											</p> */}
-											<h1 className="text-[1rem] capitalize  leading-tight tracking-wide group-hover:underline">
+										<div className="flex h-full min-h-[100px] w-full flex-col items-start gap-2 border">
+											<h1 className="m-auto max-w-[80%] text-center text-sm capitalize  leading-tight tracking-wide ">
 												{post.frontmatter.title}
 											</h1>
-											{/* <div className="flex flex-col gap-2"> */}
-
-											{/* <div className="flex flex-wrap gap-1">
-													{post.frontmatter.tags?.map((item, i) => (
-														<Badge
-															key={i}
-															className="rounded-md"
-															variant={'outline'}
-														>
-															{item}
-														</Badge>
-													))}
-												</div> */}
-
-											{/* <p
-													className="secondary rounded-md font-normal"
-													key={post.slug}
-												>
-													{post.frontmatter.description.slice(0, 250) + '...'}
-												</p> */}
-											{/* </div> */}
 										</div>
 									</Link>
 								))
@@ -460,164 +363,9 @@ export default function Index() {
 				</div>
 			</div>
 			<br />
-			{/* <Link to="/blog">
-				<Button className="self-center" variant={'outline'}>
-					View more
-				</Button>
-			</Link> */}
-
-			{/* <div className=" hidden flex-col dark:flex">
-				<h1 className="mb-4 text-2xl font-bold">Don't code, Just Use AI</h1>
-
-				<div
-					className="min-w-[100%]"
-					dangerouslySetInnerHTML={{ __html: data.svgContent! }}
-				></div>
-			</div> */}
-
-			{/* <h2 className="mb-4 text-xl font-bold">Design Works</h2>
-
-
-			<Gallery
-				images={[
-					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd48.png&w=3840&q=75',
-					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd5.png&w=3840&q=75',
-					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd28.png&w=3840&q=75',
-					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fcode.jpg&w=3840&q=75',
-					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd8.jpg&w=3840&q=75',
-					'https://nischaldahal.vercel.app/_next/image?url=%2Fdesigns%2Fd30.jpg&w=3840&q=75',
-					'https://res.cloudinary.com/dacp0r5b7/image/upload/v1663755037/works/neeswallpaper_fojhum.png',
-					'https://res.cloudinary.com/dacp0r5b7/image/upload/v1663755016/works/wallpaper1_nceg92.jpg',
-				]}
-			/> */}
-			<br />
-
-			{/* <Link className="flex items-center " to={'/framer'}>
-				50 Day Framer Motion Challange
-			</Link>
-			<br />
-			<Link
-				className="flex items-center "
-				target="_blank"
-				to={'https://blog.nischal-dahal.com.np/blog'}
-			>
-				Turn on Blog Mode?
-			</Link> */}
 		</div>
 	);
 }
-
-// const Gallery = ({ images }: { images: string[] }) => {
-// 	return (
-// 		// [&>div>img]:grayscale
-// 		<div className="[*]:h-full group:hover:[&>*]:opacity-75 grid h-[100vh] grid-cols-6 gap-4 *:border-[1px]  ">
-// 			<ContextMenu>
-// 				<ContextMenuTrigger className="border-1 col-span-3 overflow-hidden rounded-md bg-slate-400">
-// 					<div className=" h-full w-full overflow-hidden">
-// 						<img
-// 							src={images[1]}
-// 							alt="image"
-// 							className=" h-full w-full object-cover object-center"
-// 						/>
-// 					</div>
-// 				</ContextMenuTrigger>
-// 				<ContextMenuContent>
-// 					<ContextMenuItem
-// 						onClick={() => {
-// 							const imageUrl = images[1];
-// 							const link = document.createElement('a');
-// 							link.href = imageUrl;
-// 							link.target = '_blank';
-// 							link.download = 'downloaded-image.jpg';
-// 							document.body.appendChild(link);
-// 							link.click();
-// 							document.body.removeChild(link);
-// 						}}
-// 					>
-// 						Download
-// 					</ContextMenuItem>
-// 					<ContextMenuItem>Share</ContextMenuItem>
-// 					{/* <ContextMenuItem>Team</ContextMenuItem> */}
-// 					{/* <ContextMenuItem>Subscription</ContextMenuItem> */}
-// 				</ContextMenuContent>
-// 			</ContextMenu>
-
-// 			<div className="border-1 col-span-1  overflow-hidden rounded-md bg-slate-400">
-// 				<img
-// 					src={images[2]}
-// 					alt="image"
-// 					className=" h-full w-full object-cover object-center"
-// 				/>
-// 			</div>
-// 			<div className="border-1 col-span-2 overflow-hidden rounded-md bg-slate-400">
-// 				<img
-// 					src={images[3]}
-// 					alt="image"
-// 					className=" h-full w-full object-cover object-center"
-// 				/>
-// 			</div>
-// 			<div className="border-1 col-span-2 overflow-hidden rounded-md bg-slate-400">
-// 				<img
-// 					src={images[4]}
-// 					alt="image"
-// 					className=" h-full w-full object-cover object-center"
-// 				/>
-// 			</div>
-// 			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
-// 				<img
-// 					src={images[0]}
-// 					alt="image"
-// 					className=" h-full w-full object-cover object-center"
-// 				/>
-// 			</div>
-// 			<div className="border-1 col-span-1  overflow-hidden rounded-md bg-slate-400">
-// 				<img
-// 					src={images[5]}
-// 					alt="image"
-// 					className=" object-fit h-full w-full object-center"
-// 				/>
-// 			</div>
-// 			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
-// 				<img
-// 					src={images[6]}
-// 					alt="image"
-// 					className=" h-full w-full object-cover object-center"
-// 				/>
-// 			</div>
-// 			<div className="border-1 col-span-3  overflow-hidden rounded-md bg-slate-400">
-// 				<img
-// 					src={images[7]}
-// 					alt="image"
-// 					className=" h-full w-full object-cover object-center"
-// 				/>
-// 			</div>
-
-// 			{/* <div className="border-1 col-span-5 row-span-1 overflow-hidden rounded-md bg-slate-400">
-// 				<img
-// 					src={images[1]}
-// 					alt="image"
-// 					className=" h-full w-full object-cover object-center"
-// 				/>
-// 			</div>
-// 			<div className="border-1 col-span-5 row-span-1 overflow-hidden rounded-md bg-slate-400">
-// 				<img
-// 					src={images[3]}
-// 					alt="image"
-// 					className=" h-full w-full object-cover object-center"
-// 				/>
-// 			</div> */}
-
-// 			{/* {images.map((image, index) => (
-// 				<img
-// 					src={image}
-// 					className={`col-span-2 row-span-${(index % 4) + 1}`}
-// 					alt="image" className='object-cove h-full w-full object-center"'
-// 					key={image}
-// 				/>
-// 			))} */}
-// 		</div>
-// 	);
-// }; // [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] [grid-template-rows:masonry]
 
 export function SoftwareTools() {
 	return (

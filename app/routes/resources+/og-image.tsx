@@ -4,8 +4,6 @@ import satori from 'satori';
 // import { Resvg } from '@resvg/resvg-js';
 import { twMerge } from 'tailwind-merge';
 import invariant from 'tiny-invariant';
-// import { Transformer } from '@napi-rs/image';
-import sharp from 'sharp';
 
 declare module 'react' {
 	interface HTMLAttributes<T> {
@@ -58,21 +56,35 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	);
 }
 
-function TitleSection({ title, date }: { title: string; date: string }) {
-	const titleSize = title.length < 40 ? 'text-[5rem]' : 'text-[5.5rem]';
+function TitleSection({
+	title,
+	description,
+	date,
+}: {
+	title: string;
+	description: string;
+	date: string;
+}) {
+	const titleSize = title.length < 40 ? 'text-[3rem]' : 'text-[4rem]';
 
 	return (
-		<div tw="flex justify-center items-center  w-full mx-auto">
-			<div tw="flex flex-col w-full px-16 py-8 text-center items-center mx-auto">
-				{date !== 'Invalid Date' ? (
-					<span tw="uppercase text-lg font-bold mx-auto -mb-4">{date}</span>
-				) : null}
-
+		<div tw="flex justify-center items-center h-full w-full mx-auto">
+			<div tw="flex flex-col w-full  text-center items-center mx-auto">
 				<h2
-					tw={`${titleSize} font-bold leading-tight tracking-tight mb-0`}
+					tw={`${titleSize} text-black font-bold leading-tight tracking-tight mb-0`}
 					style={{}}
 				>
 					{title}
+				</h2>
+
+				<h2 className="text-3xl uppercase " tw="font-bold text-blue-600">
+					{description
+						.replace('-', ' ')
+						.split(' ')
+						.map(word => word[0].toUpperCase() + word.slice(1))
+						.slice(0, 3)
+						.join(' ')
+						.trim()}
 				</h2>
 			</div>
 		</div>
@@ -91,10 +103,8 @@ function DefaultImage({
 	const descriptionSize = description.length < 80 ? 'text-2xl' : 'text-xl';
 
 	return (
-		<div tw="h-full flex flex-col bg-[#121212] text-[#eee] pt-16 px-8 relative text-2xl">
-			<div style={{ width: '1136px' }}>{/* 1200px - 64px (px-8) */}</div>
-
-			<TitleSection title={title} date={date} />
+		<div tw="h-full flex flex-col bg-transparent px-8 relative text-2xl">
+			<TitleSection description={description} title={title} date={date} />
 
 			<p tw="text-center w-full flex items-center justify-center font-poppins text-3xl font-bold">
 				A blog by Nischal Dahal
@@ -143,15 +153,15 @@ function FeaturedImage({
 		<div tw="h-full flex flex-col bg-neutral-800 pt-16 px-8 relative text-2xl">
 			<div style={{ width: '1136px' }}>{/* 1200px - 64px (px-8) */}</div>
 
-			<TitleSection title={title} date={date} />
+			<TitleSection description={''} title={title} date={date} />
 		</div>
 	);
 }
 
 async function satoriResponse(jsx: JSX.Element) {
 	const svg = await satori(jsx, {
-		width: 1400,
-		height: 800,
+		width: 800,
+		height: 600,
 		fonts: await Promise.all([
 			getFont('Inter'),
 			getFont('Playfair Display'),

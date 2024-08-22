@@ -55,7 +55,7 @@ export function ModeToggle() {
 		// 		</DropdownMenuItem>
 		// 	</DropdownMenuContent>
 		// </DropdownMenu>
-		<Button variant="outline" size="icon">
+		<Button variant="ghost" size="icon">
 			<Sun
 				onClick={() => {
 					setTheme(Theme.DARK);

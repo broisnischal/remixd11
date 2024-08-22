@@ -77,15 +77,17 @@ function TitleSection({
 					{title}
 				</h2>
 
-				<h2 className="text-3xl uppercase " tw="font-bold text-blue-600">
-					{description
-						.replace('-', ' ')
-						.split(' ')
-						.map(word => word[0].toUpperCase() + word.slice(1))
-						.slice(0, 3)
-						.join(' ')
-						.trim()}
-				</h2>
+				{description && (
+					<h2 className="text-3xl uppercase " tw="font-bold text-blue-600">
+						{description
+							.replace('-', ' ')
+							.split(' ')
+							.map(word => word[0]?.toUpperCase() + word.slice(1))
+							.slice(0, 3)
+							.join(' ')
+							.trim()}
+					</h2>
+				)}
 			</div>
 		</div>
 	);

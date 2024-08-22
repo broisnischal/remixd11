@@ -11,11 +11,11 @@ import { Button } from '~/components/ui/button';
 
 export default function Page() {
 	return (
-		<div>
-			<h1 className="text-3xl">Links</h1>
+		<div className="flex flex-col items-center justify-center gap-2">
+			<h1 className="text-3xl font-bold">Links</h1>
 			<p>Quicklinks to my social platforms and projects.</p>
 			<br />
-			<div className="flex flex-wrap items-start gap-4">
+			<div className="flex flex-wrap items-center justify-center gap-4">
 				<div className="flex items-center justify-between gap-4 rounded-md border bg-[#f6f6f6]  px-4 py-2 dark:bg-[#191919] md:w-[400px]">
 					<div className="flex items-center gap-4">
 						<Link
@@ -159,7 +159,26 @@ export default function Page() {
 						</Link>
 						<div className="mr-2">
 							<h1>Youtube</h1>
-							<p className="secondary">Athestic videos and content.</p>
+							<p className="secondary">Athestic contents.</p>
+						</div>
+					</div>
+					<Button variant={'outline'} className="gap-2">
+						<ArrowTopRightIcon />
+						<span>SUB</span>
+					</Button>
+				</div>
+				<div className="flex items-center justify-between gap-4 rounded-md border bg-[#f6f6f6]  px-4 py-2 dark:bg-[#191919] md:w-[400px]">
+					<div className="flex items-center gap-4">
+						<Link
+							aria-label="Github"
+							target="_blank"
+							to="https://github.com/broisnischal"
+						>
+							<YoutubeIcon width={30} height={30} />
+						</Link>
+						<div className="mr-2">
+							<h1>Youtube</h1>
+							<p className="secondary">Athestic content.</p>
 						</div>
 					</div>
 					<Button variant={'outline'} className="gap-2">
@@ -176,15 +195,17 @@ export default function Page() {
 				{/* <a href="/feed.json" aria-label="RSS" target="_blank"></a> */}
 			</div>
 			<br />
-			<h3 className="text-xl">Connect</h3>
 			<p className="secondary">
 				Reach me directly at{' '}
-				<a className="text-primary" href="mailto:info@nischal-dahal.com.np">
+				<a
+					className="text-primary underline"
+					href="mailto:info@nischal-dahal.com.np"
+				>
 					info@nischal-dahal.com.np
 				</a>{' '}
 				or check out my{' '}
 				<a
-					className="text-primary"
+					className="text-primary underline"
 					href="https://orcid.org/0009-0007-8445-2408/print"
 				>
 					orcid
@@ -192,13 +213,13 @@ export default function Page() {
 				profile.
 			</p>
 			{/* Alternatively press Ctrl/Cmd + K to search.. */}
-			<small className="text-center">
+			{/* <small className="text-center">
 				<br /> Made with{' '}
 				<Link target="_blank" className="underline" to="https://remix.run">
 					Remix
 				</Link>{' '}
 				❤️
-			</small>
+			</small> */}
 		</div>
 	);
 }

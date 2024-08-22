@@ -350,7 +350,7 @@ export default function Index() {
 										className="group"
 										to={'/blog/' + post.slug + ''}
 									>
-										<div className="flex h-full min-h-[100px] w-full flex-col items-start gap-2 border">
+										<div className="flex h-full min-h-[100px] w-full flex-col items-start gap-2 border-[.5px]">
 											<h1 className="m-auto max-w-[80%] text-center text-sm capitalize  leading-tight tracking-wide ">
 												{post.frontmatter.title}
 											</h1>

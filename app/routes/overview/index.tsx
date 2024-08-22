@@ -138,7 +138,7 @@ export default function Overview() {
 	const { contributions } = useLoaderData<typeof loader>();
 
 	return (
-		<div className="m-auto flex flex-col gap-4 md:max-w-[70vw]">
+		<div className="m-auto flex flex-col gap-4 text-center md:max-w-[70vw]">
 			{/* {repos.length > 0 && (
 				<>
 					<br />
@@ -167,7 +167,7 @@ export default function Overview() {
 			)} */}
 			{/* <br /> */}
 			<div>
-				<h1 className="mb-3 text-3xl font-bold">Featured Projects</h1>
+				<h1 className="mb-3 text-3xl font-bold">Projects</h1>
 				<div className="items-sta flex gap-10">
 					{/* <VscVscode size={100} /> */}
 
@@ -256,21 +256,25 @@ export default function Overview() {
 				</div>
 			</div>
 			<br />
-			<div className="sposor">
+			<div className="flex flex-col items-center justify-center">
 				<h1 className="mb-3 text-3xl font-bold">Sponsors</h1>
 
-				{/* <p className="text-xl font-bold">Coming Soon...</p> */}
 				<AvatarCircles numPeople={11} avatarUrls={avatarUrls} />
 
 				<small className="flex gap-2">
 					Dummy, and Comming Soon.
-					<Link to="https://github.com/sponsors/broisnischal">Sponsor</Link>
+					<Link
+						className="underline"
+						to="https://github.com/sponsors/broisnischal"
+					>
+						Sponsor
+					</Link>
 				</small>
 			</div>
 			<br />
 
 			<div className=" github hidden w-full flex-col items-center justify-center overflow-scroll lg:flex lg:w-full">
-				<h1 className="text-3xl font-bold">My Contribution</h1>
+				<h1 className="text-3xl font-bold">My Contributions</h1>
 				<div className="flex w-fit flex-col">
 					<br />
 					<br />

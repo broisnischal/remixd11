@@ -248,61 +248,62 @@ export default function Page() {
 	});
 
 	return (
-		<div>
-			<br />
+		<div className="text-center">
 			<h1 className="text-3xl font-bold">Sign My Guestbook</h1>
-			<p className="mt-2 font-atkinson text-zinc-600 dark:text-zinc-400">
+			<p className="balanced m-auto mt-2 font-atkinson text-zinc-600 dark:text-zinc-400	">
 				Leave a comment below. It could be anything – appreciation, information,
 				wisdom, anything you can think of can be good or bad.
 			</p>
 			<br />
-			{data?.id ? (
-				<Form method="POST" className="" {...getFormProps(form)}>
-					<HoneypotInputs />
-					<div className="flex gap-4">
-						<Input
-							// type="text"
-							// name="message"
-							// {...conform.input(fields.title)}
-							className="min-w-[30vw]"
-							placeholder="Leave your kind message..."
-							aria-invalid={fields.message.errorId ? true : undefined}
-							aria-describedby={fields.message.errorId}
-							{...getInputProps(fields.message, { type: 'text' })}
-							{...{
-								autoFocus: true,
-								autoComplete: 'off',
-							}}
-						/>
+			<div className="flex items-center justify-center">
+				{data?.id ? (
+					<Form method="POST" className="" {...getFormProps(form)}>
+						<HoneypotInputs />
+						<div className="flex  gap-4">
+							<Input
+								// type="text"
+								// name="message"
+								// {...conform.input(fields.title)}
+								className="min-w-[30vw]"
+								placeholder="Leave your kind message..."
+								aria-invalid={fields.message.errorId ? true : undefined}
+								aria-describedby={fields.message.errorId}
+								{...getInputProps(fields.message, { type: 'text' })}
+								{...{
+									autoFocus: true,
+									autoComplete: 'off',
+								}}
+							/>
 
-						<input type="hidden" name="_intent" value="guestbook" />
-						<Button disabled={isPending} type="submit" variant="outline">
-							{isPending ? 'Loading...' : 'Send Message'}
+							<input type="hidden" name="_intent" value="guestbook" />
+							<Button disabled={isPending} type="submit" variant="outline">
+								{isPending ? 'Loading...' : 'Send Message'}
+							</Button>
+						</div>
+						{fields.message.errors ? (
+							<p id={fields.message.errorId} className="mt-2 text-red-500">
+								{fields.message.errors[0]}
+							</p>
+						) : (
+							''
+						)}
+					</Form>
+				) : (
+					<Form action="/auth/github" method="POST">
+						<Button
+							type="submit"
+							className="flex items-center justify-center gap-3"
+							variant="outline"
+						>
+							<GitHubLogoIcon /> Sign in with GitHub
 						</Button>
-					</div>
-					{fields.message.errors ? (
-						<p id={fields.message.errorId} className="mt-2 text-red-500">
-							{fields.message.errors[0]}
-						</p>
-					) : (
-						''
-					)}
-				</Form>
-			) : (
-				<Form action="/auth/github" method="POST">
-					<Button
-						type="submit"
-						className="flex items-center justify-center gap-3"
-						variant="outline"
-					>
-						<GitHubLogoIcon /> Sign in with GitHub
-					</Button>
-				</Form>
-			)}
+					</Form>
+				)}
+			</div>
 
 			<ul className="mt-4 flex flex-col gap-3">
 				{guestbooks.map(i => (
-					<li key={i.id}>
+					<li className="text-center" key={i.id}>
 						<strong>{i.name} : </strong> {i.message}
 					</li>
 				))}

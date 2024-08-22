@@ -88,16 +88,14 @@ export default function Page() {
 	const actionData = useActionData<typeof action>();
 
 	return (
-		<div className="min-w-[60vw]">
-			<br />
-
+		<div className="flex min-w-[60vw] flex-col items-center justify-center text-center">
 			<h1 className="text-3xl font-bold">Bookmarks</h1>
-			<h2 className=" ">
+			<h2 className="">
 				Links to content I liked, sometimes with my commentary.
 				<br />
-				<a className="text-sm underline" href="">
+				{/* <a className="text-sm underline" href="">
 					Subscribe with RSS.
-				</a>
+				</a> */}
 			</h2>
 
 			{/* <Form method="POST" encType="multipart/form-data">
@@ -115,18 +113,17 @@ export default function Page() {
 			</div> */}
 
 			<div className="mt-10 flex w-full flex-col gap-3 *:border-zinc-200/5 lg:max-w-[60%]">
-				{/* <div>
+				<div className="flex flex-col items-start">
 					<a href="" target="_blank" rel="noreferrer">
-						<span className="font-nunito font-semibold hover:underline">
+						<span className="font-nunito hover:underline">
 							Kubernetes vs Koyeb
 						</span>
 						<br />
-						<small className="font-sans font-normal text-zinc-600 dark:text-zinc-400	">
-							First glance to compare the Koyeb Serverless Platform to
-							Kubernetes.
-						</small>
 					</a>
-				</div> */}
+					<small className="font-sans font-normal text-zinc-600 dark:text-zinc-400	">
+						First glance to compare the Koyeb Serverless Platform to Kubernetes.
+					</small>
+				</div>
 
 				{data.map(data => {
 					return (

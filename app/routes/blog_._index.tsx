@@ -216,7 +216,7 @@ export default function Component() {
 							}}
 							defaultValue={search || ''}
 							placeholder="Search for posts, problems or tags..."
-							className="w-full focus:outline-none"
+							className="w-full bg-transparent focus:outline-none"
 						/>
 					</div>
 					{/* {allposts.length > 0 && search ? (

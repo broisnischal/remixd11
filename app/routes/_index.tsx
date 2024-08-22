@@ -254,7 +254,7 @@ export default function Index() {
 					<input
 						type="text"
 						placeholder="Search for posts, problems or tags..."
-						className="w-full focus:outline-none"
+						className="w-full bg-transparent focus:outline-none"
 					/>
 				</div>
 			</div>

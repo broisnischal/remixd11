@@ -553,7 +553,7 @@ export function App() {
 	const [theme] = useTheme();
 
 	return (
-		<html lang="en" className={clsx(theme)}>
+		<html lang="en" className={clsx('light')}>
 			<head>
 				<meta charSet="UTF-8" />
 				<meta

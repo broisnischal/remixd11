@@ -72,9 +72,14 @@ function TitleSection({
 			<div tw="flex flex-col w-full  text-center items-center mx-auto">
 				<h2
 					tw={`${titleSize} text-black font-bold leading-tight tracking-tight mb-0`}
-					style={{}}
 				>
-					{title}
+					{title
+						.replace('-', ' ')
+						.split(' ')
+						.map(word => word[0]?.toUpperCase() + word.slice(1))
+						.slice(0, 3)
+						.join(' ')
+						.trim()}{' '}
 				</h2>
 
 				{description && (

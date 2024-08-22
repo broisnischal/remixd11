@@ -340,7 +340,7 @@ export default function Index() {
 			<br /> */}
 			<div className="flex flex-col items-start gap-4">
 				<h3 className=" secondary font-bricolage text-sm">Featured</h3>
-				<div className="grid grid-cols-3 gap-4 ">
+				<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={posts}>
 							{posts =>

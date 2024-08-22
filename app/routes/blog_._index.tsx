@@ -230,7 +230,7 @@ export default function Component() {
 					)} */}
 				</div>
 			</Form>
-			<div className="tags m-auto flex max-w-[80%] flex-wrap items-center justify-center gap-2">
+			<div className="tags m-auto flex max-w-[95%] flex-wrap items-center justify-center gap-2 md:max-w-[80%]">
 				{/* <input className="border" type="text" /> */}
 				{activeTag &&
 					(activeTag.length <= 0 ? (
@@ -285,7 +285,7 @@ export default function Component() {
 			</div>
 			<br />
 			<br />
-			<div className="grid grid-cols-3 gap-x-3 gap-y-10">
+			<div className="grid grid-cols-1 gap-x-3 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
 				{allposts.length <= 0 ? (
 					<>No posts found</>
 				) : (

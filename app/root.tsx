@@ -295,7 +295,7 @@ const NavBar = () => {
 						Broisnees
 					</Link>
 					<div className="flex flex-row items-center justify-center gap-3 md:flex-row">
-						<ModeToggle />
+						{/* <ModeToggle /> */}
 						<Search />
 						<Button
 							size={'icon'}

@@ -99,7 +99,7 @@ html {
 		--geist-foreground: #fff;
 	}
 	.mainwidth {
-		@apply w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[60%] 2xl:w-[40%];
+		@apply w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[60%] 2xl:w-[70%];
 	}
 }
 

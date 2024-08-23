@@ -273,7 +273,7 @@ export default function Overview() {
 			</div>
 			<br />
 
-			<div className=" github hidden w-full flex-col items-center justify-center overflow-scroll lg:flex lg:w-full">
+			<div className=" github  hidden w-full flex-col items-center justify-center overflow-hidden lg:flex lg:w-full">
 				<h1 className="text-3xl font-bold">My Contributions</h1>
 				<div className="flex w-fit flex-col">
 					<br />

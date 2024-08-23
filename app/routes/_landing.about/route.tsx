@@ -1,30 +1,8 @@
-import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Hr from '~/components/hr';
 import { KBD } from '~/components/KBD';
 
 export default function Page() {
-	const [rotation, setRotation] = useState('0');
-
-	const handleMouseMove = (e: React.MouseEvent) => {
-		const card = e.currentTarget;
-		const rect = card.getBoundingClientRect();
-		const x = e.clientX - rect.left;
-		const y = e.clientY - rect.top;
-
-		const centerX = rect.width / 2;
-		const centerY = rect.height / 2;
-
-		const angleX = (y - centerY) / 10;
-		const angleY = (centerX - x) / 10;
-
-		setRotation(`rotateX(${angleX}deg) rotateY(${angleY}deg)`);
-	};
-
-	const handleMouseLeave = () => {
-		setRotation('rotateX(0deg) rotateY(0deg)');
-	};
-
 	return (
 		<div className="flex flex-col gap-8">
 			<br />
@@ -34,6 +12,7 @@ export default function Page() {
 				<div className="hidden w-[1500px] md:block">
 					<a href="https://dly.to/oYeNtLdx9va">
 						<img
+							className="rounded-3xl border"
 							src="https://api.daily.dev/devcards/v2/3Q1RK2pWVdw7exQHPKmL2.png?r=34v&type=default"
 							alt="Nischal Dahal's Dev Card"
 						/>

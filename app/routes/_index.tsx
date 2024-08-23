@@ -247,65 +247,28 @@ export default function Index() {
 	const { posts } = useLoaderData<typeof loader>();
 
 	return (
-		<div className="w-full">
-			<div className="flex min-h-[40vh] items-center justify-center">
-				<div className="flex h-full w-full min-w-[300px] items-center gap-3 rounded-full border px-6 py-3 md:min-w-[400px] lg:max-w-[500px]">
-					<SearchIcon />
-					<input
-						type="text"
-						placeholder="Search for posts, problems or tags..."
-						className="w-full bg-transparent focus:outline-none"
-					/>
-				</div>
-			</div>
-			{/* <br />
+		<div className="m-auto w-full">
 			<div
-				className="flex flex-col items-start justify-center
-			 gap-8 md:flex-row "
+				className="m-auto flex flex-col items-center
+			 justify-center gap-8 md:flex-col"
 			>
 				<img
 					src="/qr.png"
 					className=" w-[150px] rounded-lg border shadow-sm"
 					alt=""
 				/>
-				<div className="flex flex-col items-start justify-center  gap-2">
-					<h1 className="text-4xl font-bold dark:text-zinc-100">
-						Nischal Dahal
+				<div className="flex flex-col items-center justify-center  gap-2">
+					<h1 className="text-3xl font-bold dark:text-zinc-100">
+						Hey there, I'm Nischal.
 					</h1>
-					<h3 className="secondary xl:max-w-[70%]">
+					<h3 className="secondary text-center xl:max-w-[70%]">
 						I'm a full stack engineer with a focus on serverless architectures,
 						android development, user experience, and product development.
 					</h3>
-					<div className="flex flex-wrap gap-4">
-						<Link
-							className="font-nunito font-bold  underline"
-							to="https://codeium.com/profile/broisnischal"
-							target="_blank"
-						>
-							Codeium Profile
-						</Link>
-						<Link
-							className="font-nunito font-bold  underline"
-							to="https://dly.to/oYeNtLdx9va"
-							target="_blank"
-						>
-							Join Squad
-						</Link>
-						<Link className="font-nunito font-bold underline" to="/timeline">
-							Life Timeline
-						</Link>
-
-						<Link
-							className="font-nunito font-bold underline"
-							to="/learning/year"
-						>
-							Projects
-						</Link>
-					</div>
 				</div>
 			</div>
 			<br />
-			<div className="buttons flex flex-col items-center gap-2 md:flex-row">
+			<div className="m-auto flex flex-col items-center justify-center gap-2 md:flex-row">
 				<Link
 					target="_blank"
 					to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
@@ -337,10 +300,9 @@ export default function Index() {
 				</Link>
 			</div>
 			<br />
-			<br /> */}
+			<br />
 			<div className="flex flex-col items-start gap-4">
-				<h3 className=" secondary font-bricolage text-sm">Featured</h3>
-				<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
+				<div className="m-auto grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={posts}>
 							{posts =>
@@ -350,11 +312,21 @@ export default function Index() {
 										className="group"
 										to={'/blog/' + post.slug + ''}
 									>
-										<div className="flex h-full min-h-[100px] w-full flex-col items-start gap-2 border-[.5px]">
-											<h1 className="m-auto max-w-[80%] text-center text-sm capitalize  leading-tight tracking-wide ">
-												{post.frontmatter.title}
-											</h1>
-										</div>
+										{post.frontmatter.image ? (
+											<div className="div h-[150px]">
+												<img
+													className="h-full w-full rounded-md border object-cover object-center"
+													src={post.frontmatter.image}
+													alt=""
+												/>
+											</div>
+										) : (
+											<div className="flex h-full min-h-[100px] w-full flex-col items-start gap-2 border-[.5px]">
+												<h1 className="m-auto max-w-[80%] text-center text-sm capitalize  leading-tight tracking-wide ">
+													{post.frontmatter.title}
+												</h1>
+											</div>
+										)}
 									</Link>
 								))
 							}

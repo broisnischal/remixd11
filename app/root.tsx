@@ -346,15 +346,45 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="secondary m-auto my-10 flex min-h-[5vh] items-center justify-center gap-2 text-sm">
-			© 2024 -
-			<Link className="text-[1rem] text-primary" to={'/about'}>
-				about
-			</Link>
-			|{' '}
-			<Link className="text-[1rem] text-primary" to={'/links'}>
-				connect
-			</Link>
+		<div className="secondary m-auto my-10 flex min-h-[5vh] w-full flex-col items-center justify-center gap-2 text-sm">
+			<h2 className="font-bricolage text-xl font-bold ">Nischal Dahal</h2>
+			<Hr />
+			<div className="top flex gap-2">
+				© {new Date().getFullYear()}
+				{' - '}
+				<div className="flex gap-2">
+					<Link className="text-[1rem] text-primary" to={'/about'}>
+						about
+					</Link>
+
+					<Link className="text-[1rem] text-primary" to={'/links'}>
+						connect
+					</Link>
+				</div>
+			</div>
+			<div className="flex flex-wrap gap-4 ">
+				<Link
+					className="text-sm underline"
+					to="https://codeium.com/profile/broisnischal"
+					target="_blank"
+				>
+					MyCodeium
+				</Link>
+				<Link
+					className="  underline"
+					to="https://dly.to/oYeNtLdx9va"
+					target="_blank"
+				>
+					Join the Community
+				</Link>
+				<Link className=" underline" to="/timeline">
+					Timeline
+				</Link>
+
+				<Link className=" underline" to="/learning/year">
+					Roadmap
+				</Link>
+			</div>
 		</div>
 		// <div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">
 		// 	<div className="flex flex-col ">

@@ -113,17 +113,14 @@ export default function Page() {
 
 	return (
 		<div className="flex flex-col gap-3">
-			<div className="flex items-center justify-between">
+			<div className="flex flex-col items-center justify-center">
 				<h1 className="mb-4 text-2xl font-semibold">Timeline of my death</h1>
 				<p>
 					<span>🚀 </span>
 					<span>{moment(time).format('MMMM Do YYYY, h:mm:ss a')}</span>
-					{/* <br />
-				<span>
-					<small> {moment().add(weeksLived, 'weeks').fromNow()}</small>
-				</span> */}
 				</p>
 			</div>
+			<br />
 
 			<div className="grid grid-flow-row-dense grid-cols-[repeat(52,1fr)] gap-1">
 				{Array.from({ length: totalWeeks }).map((_, i) => {

@@ -5,13 +5,15 @@ import { KBD } from '~/components/KBD';
 export default function Page() {
 	return (
 		<div className="flex flex-col gap-8">
-			<br />
-			<h1 className="text-center text-4xl font-bold"> About Me 🐈‍</h1>
-			<Hr />
+			<h1 className="text-center font-bricolage text-4xl font-bold">
+				Am i human? 💩
+			</h1>
+			{/* <Hr /> */}
 			<div className="flex flex-col gap-8 md:flex-row">
-				<div className="hidden w-[1500px] md:block">
+				<div className="hidden  md:block">
 					<a href="https://dly.to/oYeNtLdx9va">
 						<img
+							width={1000}
 							className="rounded-3xl border"
 							src="https://api.daily.dev/devcards/v2/3Q1RK2pWVdw7exQHPKmL2.png?r=34v&type=default"
 							alt="Nischal Dahal's Dev Card"
@@ -63,12 +65,12 @@ export default function Page() {
 					of projects. I am enthusiastic about attending <KBD>meetups</KBD>,
 					contributing to <KBD>open-source projects</KBD>, and actively
 					participating in the Flutter community, web community and more.{' '}
-					<strong>
-						Please note that I am not interested in working for enforcement
-						agencies, dictators, or companies that contradict transhumanist
-						values or cause harm to people.
-					</strong>
 				</p>{' '}
+				<strong className="font-avenir text-red-500">
+					Please note that I am not interested in working for enforcement
+					agencies, dictators, or companies that contradict transhumanist values
+					or cause harm to people.
+				</strong>
 			</div>
 
 			<br />
@@ -241,7 +243,10 @@ export function MySetup() {
 				help me create software.
 			</p>
 
+			<br />
 			<Hr />
+			<br />
+
 			<div className="flex flex-col gap-10">
 				<div className="item flex flex-col gap-3">
 					<h2 className="font-atkinson text-xl font-bold">Development</h2>

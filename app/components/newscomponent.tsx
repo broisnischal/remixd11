@@ -18,8 +18,8 @@ export default function NewsComponent({
 				{props.title}
 			</div>
 
-			<div className="mb-1 flex flex-col items-start before:absolute before:left-2 before:h-full before:-translate-x-1/2 before:translate-y-3 before:self-start before:bg-[#d1d1d1] before:px-px after:absolute after:left-2 after:box-content after:h-2 after:w-2 after:-translate-x-1/2 after:translate-y-1.5 after:rounded-full after:border-4 after:border-slate-50    after:bg-[#d1d1d1] group-last:before:hidden dark:before:bg-[#3d3d3d]   dark:after:bg-[#3d3d3d] sm:flex-row sm:before:left-0 sm:before:ml-[6.5rem] sm:after:left-0 sm:after:ml-[6.5rem]">
-				<time className="-left-8 mb-3 inline-flex h-6 w-28 translate-y-0.5 items-center  justify-center  whitespace-nowrap  rounded-full bg-[#3d3d3d]/50 text-xs font-semibold text-white sm:absolute sm:mb-0">
+			<div className="mb-1 flex flex-col items-start before:absolute before:left-2 before:h-full before:-translate-x-1/2 before:translate-y-3 before:self-start before:bg-zinc-950 before:px-px after:absolute after:left-2 after:box-content after:h-2 after:w-2 after:-translate-x-1/2 after:translate-y-1.5 after:rounded-full after:border-4 after:border-slate-50    after:bg-zinc-950 group-last:before:hidden dark:before:bg-[#3d3d3d]   dark:after:bg-[#3d3d3d] sm:flex-row sm:before:left-0 sm:before:ml-[6.5rem] sm:after:left-0 sm:after:ml-[6.5rem]">
+				<time className="-left-8 mb-3 inline-flex h-6 w-28 translate-y-0.5 items-center  justify-center  whitespace-nowrap  rounded-full bg-[#3d3d3d]/80 text-xs font-semibold text-white sm:absolute sm:mb-0">
 					<History className="mr-1" size={15} />
 					{format(props.date)}
 				</time>
@@ -29,14 +29,14 @@ export default function NewsComponent({
 
 			{props.image ? (
 				props.image.length > 0 ? (
-					<div className="w-full">
+					<div className="w-full" key={props.title}>
 						<p>{props.body}</p>
 						<div className="mt-2 flex w-full gap-4">
 							{props.image.map((item, index) => (
 								<img
 									key={index}
 									className={twMerge(
-										'aspect-square  rounded border bg-gray-200',
+										'aspect-square  rounded border  bg-gray-200',
 										props.width ? `w-[100px]` : 'w-[200px]',
 									)}
 									src={item}

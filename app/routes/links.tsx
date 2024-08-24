@@ -6,7 +6,7 @@ import { TelegramIcon, WhatsappIcon } from 'react-share';
 export default function Page() {
 	return (
 		<div className="flex flex-col items-center justify-center gap-2">
-			<h1 className="text-4xl font-bold">Links</h1>
+			<h1 className="font-bricolage text-3xl font-bold">Links</h1>
 			<p>Quicklinks to my social platforms and contacts.</p>
 			<br />
 			<div className="balanced flex flex-wrap items-center justify-center gap-3 lg:w-[70%]">

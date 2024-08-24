@@ -35,7 +35,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 
 import { Redis } from '@upstash/redis/cloudflare';
-import { ArrowUp, RssIcon } from 'lucide-react';
+import { ArrowUp, HandHelping, Mails, RssIcon } from 'lucide-react';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import {
 	PreventFlashOnWrongTheme,
@@ -53,6 +53,7 @@ import styles from './tailwind.css?url';
 import { MetaCreator } from './utils/meta';
 import Hr from './components/hr';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ConnectButton } from './components/ui-library/tailwindbutton';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -347,7 +348,18 @@ const NavBar = () => {
 const Footer = () => {
 	return (
 		<div className="secondary m-auto my-10 flex min-h-[5vh] w-full flex-col items-center justify-center gap-2 text-sm">
-			<h2 className="font-bricolage text-xl font-bold ">Nischal Dahal</h2>
+			<div className="flex w-full items-center  justify-evenly">
+				<h2 className="font-bricolage text-xl font-bold text-primary ">
+					Nischal Dahal
+				</h2>
+				<Link to={'/newsletter'}>
+					<ConnectButton>
+						<div className="flex items-center justify-center gap-2 ">
+							<Mails size={18} /> Subscribe to my newsletter?
+						</div>
+					</ConnectButton>
+				</Link>
+			</div>
 			<Hr />
 			<div className="top flex gap-2">
 				© {new Date().getFullYear()}
@@ -356,7 +368,14 @@ const Footer = () => {
 					<Link className="text-[1rem] text-primary" to={'/about'}>
 						about
 					</Link>
-
+					|
+					<Link
+						className="text-primary"
+						to={'https://nischal-dahal.com.np/blogs/rss'}
+					>
+						Blog RSS
+					</Link>
+					|
 					<Link className="text-[1rem] text-primary" to={'/links'}>
 						connect
 					</Link>

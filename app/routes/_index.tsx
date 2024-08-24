@@ -310,14 +310,14 @@ export default function Index() {
 									>
 										{post.frontmatter.image ? (
 											<div>
-												<div className="div h-[150px]">
+												<div className="div h-[150px] rounded-md bg-white dark:bg-[#eee]">
 													<img
 														className="h-full w-full rounded-md border object-cover object-center"
 														src={post.frontmatter.image}
 														alt=""
 													/>
 												</div>
-												<h1 className="mt-2 font-bricolage text-sm capitalize leading-tight  tracking-wide text-zinc-600 ">
+												<h1 className="mt-2 font-bricolage text-sm capitalize leading-tight  tracking-wide text-zinc-600 dark:text-zinc-300 ">
 													{post.frontmatter.title}
 												</h1>
 											</div>

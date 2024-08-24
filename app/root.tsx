@@ -45,6 +45,7 @@ import { SessionStorage } from './services/session.server';
 import { themeSessionResolver } from './session.server';
 import styles from './tailwind.css?url';
 import { MetaCreator } from './utils/meta';
+import { ModeToggle } from './components/toggle-mode';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -276,9 +277,9 @@ const NavBar = () => {
 							</Await>
 						</React.Suspense>
 					</div>
-					{/* <div className="flex flex-col items-center justify-center gap-3 md:flex-row">
+					<div className="ml-5 flex flex-col items-center justify-center gap-3 md:flex-row">
 						<ModeToggle />
-					</div> */}
+					</div>
 				</div>
 			</nav>
 			<nav className=" m-auto  mt-8  w-[90%] items-center justify-center gap-3 md:hidden">
@@ -592,7 +593,7 @@ export function App() {
 	const [theme] = useTheme();
 
 	return (
-		<html lang="en" className={clsx('light')}>
+		<html lang="en" className={clsx(theme)}>
 			<head>
 				<meta charSet="UTF-8" />
 				<meta

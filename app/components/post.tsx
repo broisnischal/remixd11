@@ -9,7 +9,7 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 			<article className="flex flex-col gap-2 rounded-md ">
 				{/* bg-[#eee] dark:bg-[#0f0f0f] */}
 				{frontmatter.image && (
-					<div className="h-[180px] rounded-md border ">
+					<div className="h-[180px] rounded-md border bg-white dark:bg-[#eee]">
 						<img
 							src={frontmatter.image}
 							className="h-full w-[100%] rounded-sm object-cover"

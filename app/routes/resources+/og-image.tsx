@@ -76,7 +76,7 @@ function TitleSection({
 					{title
 						.replace('-', ' ')
 						.split(' ')
-						// .map(word => word[0]?.toUpperCase() + word.slice(1))
+						.map(word => word[0]?.toUpperCase() + word.slice(1))
 						// .slice(0, 3)
 						.join(' ')
 						.trim()}

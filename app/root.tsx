@@ -355,7 +355,7 @@ const Footer = () => {
 				<Link to={'/newsletter'}>
 					<ConnectButton>
 						<div className="flex items-center justify-center gap-2 ">
-							<Mails size={18} /> Subscribe to my newsletter?
+							<Mails size={18} /> Newsletter
 						</div>
 					</ConnectButton>
 				</Link>

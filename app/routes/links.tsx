@@ -11,11 +11,16 @@ export default function Page() {
 			<br />
 			<div className="balanced flex flex-wrap items-center justify-center gap-3 lg:w-[70%]">
 				{socialLinks.map((link, index) => (
-					<Link aria-label={link.name} target="_blank" to={link.url}>
+					<Link
+						aria-label={link.name}
+						key={index}
+						target="_blank"
+						to={link.url}
+					>
 						<div
 							key={index}
 							title={link.name}
-							className="flex aspect-square items-center justify-between gap-4 rounded-full border bg-[#f2f2f290] px-3 py-2 dark:bg-[#191919] "
+							className="grid aspect-square w-[60px] place-items-center border bg-[#f2f2f290] px-3 py-2 dark:bg-[#191919]  "
 						>
 							<div className="flex items-center gap-3">
 								<Link

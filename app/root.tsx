@@ -351,7 +351,10 @@ const Footer = () => {
 					</ConnectButton>
 				</Link>
 			</div>
+			<br />
 			<Hr />
+			<br />
+			<br />
 			<div className="top flex gap-2">
 				© {new Date().getFullYear()}
 				{' - '}

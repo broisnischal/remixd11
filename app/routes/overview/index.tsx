@@ -15,12 +15,6 @@ import {
 import { VscVscode } from 'react-icons/vsc';
 import { ContributionBox } from '~/components/contribution';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from '~/components/ui/tooltip';
 
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import { MetaFunction } from '@remix-run/cloudflare';
@@ -113,11 +107,11 @@ export default function Overview() {
 	return (
 		<div className="m-auto flex flex-col gap-8 text-center md:max-w-[70vw]">
 			<div>
-				<h1 className="mb-3 text-3xl font-bold">Projects</h1>
+				<h1 className="mb-5 font-bricolage text-3xl font-bold">Projects</h1>
 				<div className="flex items-start gap-10 text-start">
 					<div className="grid grid-cols-1 gap-2 *:border-[1px] lg:grid-cols-2 xl:grid-cols-3 ">
 						{projectdata.map((project, index) => (
-							<div key={index} className="single rounded-lg px-6 py-2">
+							<div key={index} className="single rounded-md px-6 py-2">
 								<Link className="font-bricolage text-lg" to={project.url}>
 									{project.name}
 								</Link>
@@ -211,20 +205,11 @@ type MyConfig = {
 
 function MyConfig({ icon, title, link, description, subicon }: MyConfig) {
 	return (
-		<TooltipProvider>
-			<Tooltip>
-				<TooltipTrigger>
-					<Link to={link} target="_blank">
-						<div className="flex w-min flex-col border-[1px] p-3 ">
-							{icon({ size: 30 })}
-						</div>
-					</Link>
-				</TooltipTrigger>
-				<TooltipContent>
-					<h1 className="font-bricolage">{title}</h1>
-				</TooltipContent>
-			</Tooltip>
-		</TooltipProvider>
+		<Link title={title} to={link} key={link} target="_blank">
+			<div className="flex aspect-square  flex-col border-[1px] p-3 ">
+				{icon({ size: 30 })}
+			</div>
+		</Link>
 	);
 }
 

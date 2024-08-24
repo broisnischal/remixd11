@@ -11,7 +11,7 @@ const kbdVariants = cva(
 			size: {
 				default: 'px-2 py-0',
 				sm: 'px-1 py-0.5 text-xs',
-				lg: 'px-3 py-1.5 text-base',
+				lg: 'px-3 py-1 text-base',
 			},
 		},
 		defaultVariants: {

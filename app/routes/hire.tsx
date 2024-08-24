@@ -13,6 +13,7 @@ import { useIsPending } from '~/lib/misc';
 import { SoftwareTools } from './_index';
 import { MetaCreator } from '~/utils/meta';
 import { MetaFunction } from '@remix-run/cloudflare';
+import { HiDocumentText } from 'react-icons/hi';
 
 export const meta: MetaFunction = ({ location }) => {
 	const url = new URL('https://nischal-dahal.com.np');
@@ -35,41 +36,34 @@ export default function Page() {
 	const isPending = useIsPending();
 
 	return (
-		<div className="flex flex-col items-start gap-4">
+		<div className="flex flex-col items-center justify-center gap-4">
 			<h1 className="text-3xl font-bold">🤝 Let's work together</h1>
-			<p className="secondary">
+			<p className="secondary text-center md:max-w-2xl">
 				Passionate software engineer and full stack developer with expertise in
 				backend development and DevOps. Skilled in a wide array of technologies,
 				frameworks, databases, and tools. Experienced content creator and
 				editor. Committed to building efficient, secure, and innovative
 				solutions.
 			</p>
-			<p className="secondary">
-				I'm actively looking for a new role as a Full Stack Developer. Please
-				check out{' '}
-				<Link
-					target="_blank"
-					rel="noopener"
-					className="underline"
-					to={'https://myresume.fly.dev/r/testingg'}
-				>
-					myresume
-				</Link>{' '}
-				and{' '}
-				<a className="underline" href="mailto:info@nischal-dahal.com.np">
-					contact me
-				</a>
-				!
-			</p>
-			<a href="https://rxresu.me/broisnischal/nischal-job" target="_blank">
-				<ConnectButton>View My Resume</ConnectButton>
-			</a>
+
+			<Link
+				target="_blank"
+				to={'https://github.com/broisnischal/broisnischal/blob/main/resume.pdf'}
+			>
+				<ConnectButton>
+					<div className="flex items-center justify-center gap-2">
+						<HiDocumentText /> View My Resume
+					</div>
+				</ConnectButton>
+			</Link>
 			<DevStack />
 			<br />
-			<h2 className=" text-2xl font-bold tracking-wide">Featuring</h2>
-			<ul className="secondary list-disc pl-10">
-				<li>Full stack development,</li>
-				<li> Product Designer, and Graphic designing skills, </li>
+			<h2 className="text-center font-bricolage text-2xl font-bold tracking-wide underline">
+				Featuring
+			</h2>
+			<ul className="secondary text-center">
+				<li>Full stack development</li>
+				<li> Product Designer, and Graphic designing skills </li>
 				<li> Keen to Learn, other things like DevOps and AI </li>
 				<li> 🏡 Fully remote </li>
 				<li>🏖️ Unlimited paid time off</li>

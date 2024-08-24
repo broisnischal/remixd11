@@ -21,24 +21,24 @@ export default function Page() {
 			<h1 className="text-4xl font-bold">Links</h1>
 			<p>Quicklinks to my social platforms and contacts.</p>
 			<br />
-			<div className="flex flex-wrap items-center justify-center gap-2 lg:w-[70%]">
+			<div className="balanced flex flex-wrap items-center justify-center gap-3 lg:w-[70%]">
 				{socialLinks.map((link, index) => (
 					<Link aria-label={link.name} target="_blank" to={link.url}>
 						<div
 							key={index}
-							className="flex min-w-[120px] items-center justify-between gap-4 rounded-md border bg-[#f2f2f2eb] px-4 py-2 dark:bg-[#191919] "
+							className="flex min-w-[120px] items-center justify-between gap-4 rounded-full border bg-[#f2f2f290] px-3 py-2 dark:bg-[#191919] "
 						>
 							<div className="flex items-center gap-3">
 								<Link
 									aria-label={link.name}
 									target="_blank"
 									to={link.url}
-									className=""
+									className=" text-primary"
 								>
 									{link.icon}
 								</Link>
 								<div className="mr-1">
-									<h1 className="font-bricolage text-xl">{link.name}</h1>
+									<h1 className="font-bricolage md:text-xl">{link.name}</h1>
 								</div>
 							</div>
 							{/* <Button variant={'outline'} className="gap-2">
@@ -58,8 +58,8 @@ export default function Page() {
 					href="mailto:info@nischal-dahal.com.np"
 				>
 					info@nischal-dahal.com.np
-				</a>{' '}
-				or check out my{' '}
+				</a>
+				, check out my{' '}
 				<a
 					className="text-primary underline"
 					href="https://orcid.org/0009-0007-8445-2408/print"
@@ -94,13 +94,7 @@ const socialLinks: {
 		icon: <GitHubLogoIcon width={30} height={30} />,
 		action: 'Visit',
 	},
-	{
-		name: 'Discord',
-		description: 'For help and discussion.',
-		url: 'https://discordapp.com/users/1154300430755573811',
-		icon: <DiscordLogoIcon width={30} height={30} />,
-		action: 'Join',
-	},
+
 	{
 		name: 'Instagram',
 		description: 'Updates and postings.',
@@ -122,7 +116,7 @@ const socialLinks: {
 		action: 'Follow',
 	},
 	{
-		name: 'X / Twitter',
+		name: 'Twitter',
 		description: "Sharing what I'm working on.",
 		url: 'https://x.com/broisnees',
 		icon: (
@@ -160,6 +154,13 @@ const socialLinks: {
 			</svg>
 		),
 		action: 'Check',
+	},
+	{
+		name: 'Discord',
+		description: 'For help and discussion.',
+		url: 'https://discordapp.com/users/1154300430755573811',
+		icon: <DiscordLogoIcon width={30} height={30} />,
+		action: 'Join',
 	},
 	{
 		name: 'Youtube',
@@ -219,7 +220,7 @@ const socialLinks: {
 	},
 
 	{
-		name: 'MyResume',
+		name: 'Resume',
 		description: 'My Resume',
 		url: 'https://myresume.fly.dev/r/testingg',
 		action: 'View',
@@ -231,6 +232,25 @@ const socialLinks: {
 		url: 'https://dly.to/oYeNtLdx9va',
 		action: 'Watch',
 		icon: <img src="https://docs.daily.dev/img/logo.png" width={22} />,
+	},
+	{
+		name: 'YM Grad',
+		description: 'My Graduation Video',
+		url: 'https://ymgrad.com/profile/nischaldahal',
+		action: 'Watch',
+		icon: (
+			<img
+				id="uni_logo"
+				alt="YMGrad logo"
+				loading="lazy"
+				width="20"
+				height="20"
+				decoding="async"
+				data-nimg="1"
+				src="https://ymgrad.com/static/base/logo.svg"
+				// style={'color: transparent;'}
+			></img>
+		),
 	},
 ];
 // https://github.com/broisnischal/broisnischal/blob/main/resume.pdf

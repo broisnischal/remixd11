@@ -18,6 +18,7 @@ import { drizzle } from 'drizzle-orm/d1';
 import { bookmarks } from '~/drizzle/schema.server';
 import { MetaCreator } from '~/utils/meta';
 import { Highlight } from './_landing.about/route';
+import Hr from '~/components/hr';
 
 export const meta: MetaFunction<typeof loader> = ({
 	data,
@@ -98,6 +99,8 @@ export default function Page() {
 				</a> */}
 			</h2>
 
+			<Hr />
+
 			{/* <Form method="POST" encType="multipart/form-data">
 				<input name="bmrk" type="file" accept=".html" />
 				<input type="submit" />
@@ -115,7 +118,10 @@ export default function Page() {
 			<div className="mt-10 flex w-full flex-col gap-3 *:border-zinc-200/5 ">
 				{data.map(data => {
 					return (
-						<div key={data.id} className="flex items-center gap-2 ">
+						<div
+							key={data.id}
+							className="flex items-center justify-center gap-2 "
+						>
 							<a
 								href={data.href}
 								target="_blank"
@@ -124,8 +130,8 @@ export default function Page() {
 							>
 								<span className="text-start font-nunito hover:underline">
 									{data.title}
-								</span>
-								|{/* <br /> */}
+								</span>{' '}
+								|{' '}
 								{data.description && (
 									<small className="font-sans font-normal text-zinc-600 dark:text-zinc-400">
 										{data.description}

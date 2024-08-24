@@ -246,7 +246,7 @@ export default function Index() {
 		<div className="m-auto w-full">
 			<div
 				className="m-auto flex flex-col items-center
-			 justify-center gap-8 md:flex-col"
+			 justify-center gap-4 md:flex-col"
 			>
 				<img
 					src="/qr.png"
@@ -255,9 +255,9 @@ export default function Index() {
 				/>
 				<div className="flex flex-col items-center justify-center  gap-2">
 					<h1 className="text-3xl font-bold dark:text-zinc-100">
-						Hey there, I'm Nischal.
+						Hey there, I'm Nischal! 😒
 					</h1>
-					<h3 className="secondary text-center xl:max-w-[70%]">
+					<h3 className="secondary balanced text-center xl:max-w-[70%]">
 						I'm a full stack engineer with a focus on serverless architectures,
 						android development, user experience, and product development.
 					</h3>
@@ -298,6 +298,7 @@ export default function Index() {
 			<br />
 			<br />
 			<div className="flex flex-col items-start gap-4">
+				<h1 className="w-full text-center font-bricolage">Featured Posts</h1>
 				<div className="m-auto grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={posts}>

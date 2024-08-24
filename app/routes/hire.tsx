@@ -56,6 +56,7 @@ export default function Page() {
 					</div>
 				</ConnectButton>
 			</Link>
+			<br />
 			<DevStack />
 			<br />
 			<h2 className="text-center font-bricolage text-2xl font-bold tracking-wide underline">

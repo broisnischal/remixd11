@@ -3,17 +3,12 @@ import {
 	vitePlugin as remix,
 	cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
 } from '@remix-run/dev';
-// import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeMeta from 'rehype-meta';
-import rehypePrettyCode from 'rehype-pretty-code';
-import rehypePrism from 'rehype-prism';
 import rehypeSlug from 'rehype-slug';
-import rehypeStringify from 'rehype-stringify';
-import rehypeParse from 'rehype-parse';
-import rehypeToc, { Options } from 'rehype-toc';
+import { Options } from 'rehype-toc';
 import remarkFrontmatter from 'remark-frontmatter';
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import remarkGfm from 'remark-gfm';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { flatRoutes } from 'remix-flat-routes';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';

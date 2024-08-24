@@ -1,5 +1,3 @@
-# Just Nischal Things
+# nischal-dahal.com.np
 
---
-
-Created with ❤️ by [Nischal](https://nischal-dahal.com.np)
+Created with ❤️ by [Remix](https://remix.run)

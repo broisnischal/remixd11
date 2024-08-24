@@ -128,8 +128,13 @@ export default function Page() {
 				{data.map(data => {
 					return (
 						<div key={data.id} className="flex flex-col items-start">
-							<a href={data.href} target="_blank" rel="noreferrer">
-								<span className="font-nunito hover:underline">
+							<a
+								href={data.href}
+								target="_blank"
+								className="text-start"
+								rel="noreferrer"
+							>
+								<span className="text-start font-nunito hover:underline">
 									{data.title}
 								</span>
 								<br />

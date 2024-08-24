@@ -313,12 +313,17 @@ export default function Index() {
 										to={'/blog/' + post.slug + ''}
 									>
 										{post.frontmatter.image ? (
-											<div className="div h-[150px]">
-												<img
-													className="h-full w-full rounded-md border object-cover object-center"
-													src={post.frontmatter.image}
-													alt=""
-												/>
+											<div>
+												<div className="div h-[150px]">
+													<img
+														className="h-full w-full rounded-md border object-cover object-center"
+														src={post.frontmatter.image}
+														alt=""
+													/>
+												</div>
+												<h1 className="mt-2 font-bricolage text-sm capitalize leading-tight  tracking-wide text-zinc-600 ">
+													{post.frontmatter.title}
+												</h1>
 											</div>
 										) : (
 											<div className="flex h-full min-h-[100px] w-full flex-col items-start gap-2 border-[.5px]">

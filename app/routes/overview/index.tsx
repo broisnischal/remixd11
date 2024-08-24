@@ -14,6 +14,12 @@ import {
 } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 import { ContributionBox } from '~/components/contribution';
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from '~/components/ui/tooltip';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
@@ -66,39 +72,6 @@ interface RepoData {
 	stars: number;
 }
 
-// const fetchLatestRepos = async (
-// 	username: string,
-// 	repoCount: number = 5,
-// ): Promise<RepoData[]> => {
-// 	try {
-// 		const response = await axios.get<Repo[]>(
-// 			`https://api.github.com/users/${username}/repos`,
-// 			{
-// 				params: {
-// 					sort: 'created',
-// 					direction: 'desc',
-// 					per_page: repoCount,
-// 				},
-// 				headers: {
-// 					Accept: 'application/vnd.github.v3+json',
-// 				},
-// 			},
-// 		);
-
-// 		const repos: RepoData[] = response.data.map(repo => ({
-// 			title: repo.name,
-// 			url: repo.html_url,
-// 			description: repo.description,
-// 			stars: repo.stargazers_count,
-// 		}));
-
-// 		return repos;
-// 	} catch (error) {
-// 		console.error('Error fetching repos:', error);
-// 		return [];
-// 	}
-// };
-
 export async function loader() {
 	type Level = 0 | 1 | 2 | 3 | 4;
 
@@ -138,109 +111,32 @@ export default function Overview() {
 	const { contributions } = useLoaderData<typeof loader>();
 
 	return (
-		<div className="m-auto flex flex-col gap-4 text-center md:max-w-[70vw]">
-			{/* {repos.length > 0 && (
-				<>
-					<br />
-
-					<div>
-						<h1 className="mb-3 text-3xl font-bold">Recents Projects</h1>
-						<div className="items-sta flex gap-9">
-
-							<div className=" flex flex-wrap items-start gap-2 *:border-[1px]">
-								{repos.map((item, i) => (
-									<div key={i} className="rounded-lg p-3">
-										<Link
-											target="_blank"
-											rel="noopener noreferrer"
-											to={item.url}
-										>
-											{item.title}
-										</Link>
-										{item.description && <p>{item.description}</p>}
-									</div>
-								))}
-							</div>
-						</div>
-					</div>
-				</>
-			)} */}
-			{/* <br /> */}
+		<div className="m-auto flex flex-col gap-8 text-center md:max-w-[70vw]">
 			<div>
 				<h1 className="mb-3 text-3xl font-bold">Projects</h1>
-				<div className="items-sta flex gap-10">
-					{/* <VscVscode size={100} /> */}
+				<div className="flex items-start gap-10 text-start">
+					<div className="grid grid-cols-1 gap-2 *:border-[1px] lg:grid-cols-2 xl:grid-cols-3 ">
+						{projectdata.map((project, index) => (
+							<div key={index} className="single rounded-lg px-6 py-2">
+								<Link className="font-bricolage text-lg" to={project.url}>
+									{project.name}
+								</Link>
 
-					<div className="grid grid-cols-1 place-content-center gap-4 *:border-[1px] lg:grid-cols-2 xl:grid-cols-3 ">
-						<div className="single rounded-lg p-3">
-							<Link
-								className="text-lg"
-								to="https://github.com/broisnischal/assetize.git"
-							>
-								Assetize
-							</Link>
-							<p>
-								Assetify an autocomplete for your images, videos, fonts, and
-								more.
-							</p>
-						</div>
-						<div className="single rounded-lg p-3">
-							<Link to="https://github.com/broisnischal/prisma-fns">
-								Prisma Fns
-							</Link>
-							<p>
-								a revolutionary utility extension for seamless Prisma
-								integration.
-							</p>
-						</div>
-						<div className="single rounded-lg p-3">
-							<Link to="https://github.com/broisnischal/myresume.git">
-								My Resume
-							</Link>
-							<p>a resume that is built for developers,</p>
-						</div>
-						<div className="single rounded-lg p-3">
-							<Link to="https://github.com/broisnischal/bookmark.git">
-								Bookmark
-							</Link>
-							<p>
-								Vscode Extension that let's you bookmark your important files,
-								and folder and works like pinning the item.
-							</p>
-						</div>
-						<div className="single rounded-lg p-3">
-							<Link to="https://github.com/broisnischal/flutter-color-constant">
-								Figma Generator
-							</Link>
-							<p>
-								Figma plugin for Tailwind CSS configuration, ARB Intl files,
-								color constants, and exporting all assets.
-							</p>
-						</div>
-						<div className="single rounded-lg p-3">
-							<Link to="https://github.com/broisnischal/prisma-type-generator">
-								Prisma Type Generator
-							</Link>
-							<p>A prisma type and interface generator. 🚀</p>
-						</div>
+								<p className="mt-1 text-sm">{project.description}</p>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
 
 			<br />
 			<div className="w-full ">
-				<h1 className="mb-3 text-3xl font-bold">My Configs</h1>
-				{/* <GrDocumentConfig size={50} className="opacity-10" /> */}
+				<h1 className="mb-5 font-bricolage text-3xl font-bold">
+					Configurations
+				</h1>
+				{/* grid w-full grid-cols-1 gap-3  sm:[grid-template-columns:repeat(auto-fill,minmax(200px,1fr))] xl:[grid-template-columns:repeat(3,minmax(0,1fr))] */}
 
-				{/* <div className="grid grid-cols-3 gap-4 *:border-[1px] ">
-						<div className="single rounded-lg p-3">
-							<div className="flex gap-2">
-								<GitBranch size={20} /> <Link to="ms">Git</Link>
-							</div>
-							<p>Git config i use commonly in daily base.</p>
-						</div>
-					</div> */}
-				<div className="grid w-full grid-cols-1 gap-3  sm:[grid-template-columns:repeat(auto-fill,minmax(200px,1fr))] xl:[grid-template-columns:repeat(3,minmax(0,1fr))]">
+				<div className="&>*:w-full balanced m-auto flex flex-wrap items-center justify-center gap-2">
 					{configData.map(config => {
 						return (
 							<MyConfig
@@ -257,7 +153,7 @@ export default function Overview() {
 			</div>
 			<br />
 			<div className="flex flex-col items-center justify-center">
-				<h1 className="mb-3 text-3xl font-bold">Sponsors</h1>
+				<h1 className="mb-5 font-bricolage text-3xl font-bold">Sponsors</h1>
 
 				<AvatarCircles numPeople={11} avatarUrls={avatarUrls} />
 
@@ -274,7 +170,9 @@ export default function Overview() {
 			<br />
 
 			<div className=" github  hidden w-full flex-col items-center justify-center overflow-hidden lg:flex lg:w-full">
-				<h1 className="text-3xl font-bold">My Contributions</h1>
+				<h1 className="mb-2 font-bricolage text-3xl font-bold">
+					Contributions
+				</h1>
 				<div className="flex w-fit flex-col">
 					<br />
 					<br />
@@ -313,14 +211,20 @@ type MyConfig = {
 
 function MyConfig({ icon, title, link, description, subicon }: MyConfig) {
 	return (
-		<>
-			<div className="flex w-full flex-col border-[1px] p-3 ">
-				<div className="flex items-center gap-4">
-					{icon({ size: 20 })}
-					<Link to={link}>{title}</Link>
-				</div>
-			</div>
-		</>
+		<TooltipProvider>
+			<Tooltip>
+				<TooltipTrigger>
+					<Link to={link} target="_blank">
+						<div className="flex w-min flex-col border-[1px] p-3 ">
+							{icon({ size: 30 })}
+						</div>
+					</Link>
+				</TooltipTrigger>
+				<TooltipContent>
+					<h1 className="font-bricolage">{title}</h1>
+				</TooltipContent>
+			</Tooltip>
+		</TooltipProvider>
 	);
 }
 
@@ -416,4 +320,46 @@ const avatarUrls = [
 	'https://avatars.githubusercontent.com/u/20110627',
 	'https://avatars.githubusercontent.com/u/106103625',
 	'https://avatars.githubusercontent.com/u/59228569',
+];
+
+const projectdata: {
+	name: string;
+	url: string;
+	description: string;
+}[] = [
+	{
+		name: 'Assetize',
+		url: 'https://github.com/broisnischal/assetize.git',
+		description:
+			'Assetify an autocomplete for your images, videos, fonts, and more.',
+	},
+	{
+		name: 'Prisma Fns',
+		url: 'https://github.com/broisnischal/prisma-fns',
+		description:
+			'A revolutionary utility extension for seamless Prisma integration.',
+	},
+	{
+		name: 'My Resume',
+		url: 'https://github.com/broisnischal/myresume.git',
+		description: 'A resume that is built for developers.',
+	},
+	{
+		name: 'Bookmark',
+		url: 'https://github.com/broisnischal/bookmark.git',
+		description:
+			'VSCode Extension that lets you bookmark your important files and folders, working like pinning the item.',
+	},
+	{
+		name: 'Figma Generator',
+		url: 'https://github.com/broisnischal/flutter-color-constant',
+		description:
+			'Figma plugin for Tailwind CSS configuration, ARB Intl files, color constants, and exporting all assets.',
+	},
+	{
+		name: 'Prisma Type Generator',
+		url: 'https://github.com/broisnischal/prisma-type-generator',
+		description:
+			'A Prisma type and interface generator, for better developer experience.',
+	},
 ];

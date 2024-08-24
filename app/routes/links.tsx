@@ -1,25 +1,13 @@
-import {
-	ArrowTopRightIcon,
-	DiscordLogoIcon,
-	GitHubLogoIcon,
-	InstagramLogoIcon,
-	LinkedInLogoIcon,
-} from '@radix-ui/react-icons';
+import { DiscordLogoIcon, GitHubLogoIcon } from '@radix-ui/react-icons';
+import { Link } from '@remix-run/react';
+import { HiDocumentText } from 'react-icons/hi';
+import { TelegramIcon, WhatsappIcon } from 'react-share';
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
 } from '~/components/ui/tooltip';
-import { Link } from '@remix-run/react';
-import { RssIcon, Youtube, YoutubeIcon } from 'lucide-react';
-import { CallTracker } from 'node:assert';
-import { FaYoutubeSquare } from 'react-icons/fa';
-import { HiDocumentText } from 'react-icons/hi';
-import { RiYoutubeLine } from 'react-icons/ri';
-import { TelegramIcon, WhatsappIcon } from 'react-share';
-import GlitchButton from '~/components/glitchbutton';
-import { Button } from '~/components/ui/button';
 
 export default function Page() {
 	return (

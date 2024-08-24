@@ -5,13 +5,6 @@ import type {
 	MetaFunction,
 } from '@remix-run/cloudflare';
 
-import {
-	ArrowTopRightIcon,
-	DiscordLogoIcon,
-	GitHubLogoIcon,
-	InstagramLogoIcon,
-	LinkedInLogoIcon,
-} from '@radix-ui/react-icons';
 import { isRouteErrorResponse, useRouteError } from '@remix-run/react';
 
 import {
@@ -35,7 +28,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 
 import { Redis } from '@upstash/redis/cloudflare';
-import { ArrowUp, HandHelping, Mails, RssIcon } from 'lucide-react';
+import { ArrowUp, Mails } from 'lucide-react';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import {
 	PreventFlashOnWrongTheme,
@@ -43,7 +36,8 @@ import {
 	useTheme,
 } from 'remix-themes';
 import ProgessBar from './components/global-progess';
-import { ModeToggle } from './components/toggle-mode';
+import Hr from './components/hr';
+import { ConnectButton } from './components/ui-library/tailwindbutton';
 import { Badge } from './components/ui/badge';
 import { Button } from './components/ui/button';
 import { Search } from './routes/search';
@@ -51,9 +45,6 @@ import { SessionStorage } from './services/session.server';
 import { themeSessionResolver } from './session.server';
 import styles from './tailwind.css?url';
 import { MetaCreator } from './utils/meta';
-import Hr from './components/hr';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ConnectButton } from './components/ui-library/tailwindbutton';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -394,14 +385,10 @@ const Footer = () => {
 					to="https://dly.to/oYeNtLdx9va"
 					target="_blank"
 				>
-					Join
+					DailyDev
 				</Link>
 				<Link className=" underline" to="/timeline">
 					Timeline
-				</Link>
-
-				<Link className=" underline" to="/learning/year">
-					Roadmap
 				</Link>
 			</div>
 		</div>

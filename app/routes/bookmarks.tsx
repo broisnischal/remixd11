@@ -98,8 +98,9 @@ export default function Page() {
 					Subscribe with RSS.
 				</a> */}
 			</h2>
-
+			<br />
 			<Hr />
+			<br />
 
 			{/* <Form method="POST" encType="multipart/form-data">
 				<input name="bmrk" type="file" accept=".html" />
@@ -118,10 +119,7 @@ export default function Page() {
 			<div className="mt-10 flex w-full flex-col gap-3 *:border-zinc-200/5 ">
 				{data.map(data => {
 					return (
-						<div
-							key={data.id}
-							className="flex items-center justify-center gap-2 "
-						>
+						<div key={data.id} className="flex items-center gap-2 ">
 							<a
 								href={data.href}
 								target="_blank"
@@ -133,7 +131,7 @@ export default function Page() {
 								</span>{' '}
 								|{' '}
 								{data.description && (
-									<small className="font-sans font-normal text-zinc-600 dark:text-zinc-400">
+									<small className="font-sans balanced font-normal text-zinc-600 dark:text-zinc-400">
 										{data.description}
 									</small>
 								)}

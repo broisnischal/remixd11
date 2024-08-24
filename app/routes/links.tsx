@@ -5,6 +5,12 @@ import {
 	InstagramLogoIcon,
 	LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from '~/components/ui/tooltip';
 import { Link } from '@remix-run/react';
 import { RssIcon, Youtube, YoutubeIcon } from 'lucide-react';
 import { CallTracker } from 'node:assert';
@@ -24,28 +30,35 @@ export default function Page() {
 			<div className="balanced flex flex-wrap items-center justify-center gap-3 lg:w-[70%]">
 				{socialLinks.map((link, index) => (
 					<Link aria-label={link.name} target="_blank" to={link.url}>
-						<div
-							key={index}
-							className="flex min-w-[120px] items-center justify-between gap-4 rounded-full border bg-[#f2f2f290] px-3 py-2 dark:bg-[#191919] "
-						>
-							<div className="flex items-center gap-3">
-								<Link
-									aria-label={link.name}
-									target="_blank"
-									to={link.url}
-									className=" text-primary"
-								>
-									{link.icon}
-								</Link>
-								<div className="mr-1">
-									<h1 className="font-bricolage md:text-xl">{link.name}</h1>
-								</div>
-							</div>
-							{/* <Button variant={'outline'} className="gap-2">
+						<TooltipProvider>
+							<Tooltip>
+								<TooltipTrigger>
+									<div
+										key={index}
+										title={link.name}
+										className="flex aspect-square items-center justify-between gap-4 rounded-full border bg-[#f2f2f290] px-3 py-2 dark:bg-[#191919] "
+									>
+										<div className="flex items-center gap-3">
+											<Link
+												aria-label={link.name}
+												target="_blank"
+												to={link.url}
+												className=" text-primary"
+											>
+												{link.icon}
+											</Link>
+										</div>
+										{/* <Button variant={'outline'} className="gap-2">
 								<ArrowTopRightIcon />
 								<span>{link.action}</span>
 							</Button> */}
-						</div>
+									</div>
+								</TooltipTrigger>
+								<TooltipContent>
+									<h1 className="font-bricolage">{link.name}</h1>
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
 					</Link>
 				))}
 			</div>

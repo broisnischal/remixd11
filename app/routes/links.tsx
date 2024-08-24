@@ -186,6 +186,25 @@ export default function Page() {
 						<span>SUB</span>
 					</Button>
 				</div>
+				<div className="flex items-center justify-between gap-4 rounded-md border bg-[#f6f6f6]  px-4 py-2 dark:bg-[#191919] md:w-[400px]">
+					<div className="flex items-center gap-4">
+						<Link
+							aria-label="Github"
+							target="_blank"
+							to="https://github.com/broisnischal"
+						>
+							<YoutubeIcon width={30} height={30} />
+						</Link>
+						<div className="mr-2">
+							<h1>Whatsapp</h1>
+							<p className="secondary">Connect nowhere.</p>
+						</div>
+					</div>
+					<Button variant={'outline'} className="gap-2">
+						<ArrowTopRightIcon />
+						<span>SUB</span>
+					</Button>
+				</div>
 				{/* 
 				<Link
 					aria-label="LinkedIn"

@@ -36,13 +36,13 @@ export default function PostHeading({
 						</KBD>
 					))}
 				</div>
-				<Link
+				{/* <Link
 					className="items-center self-start font-avenir text-sm font-normal no-underline"
 					to={'/blog'}
 				>
 					<ArrowLeft className="h-5 w-5" />
 				</Link>
-				<br />
+				<br /> */}
 			</div>
 		</>
 	);

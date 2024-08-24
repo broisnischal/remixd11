@@ -21,12 +21,12 @@ export default function Page() {
 			<h1 className="text-4xl font-bold">Links</h1>
 			<p>Quicklinks to my social platforms and contacts.</p>
 			<br />
-			<div className="flex flex-wrap items-center justify-center gap-4">
+			<div className="flex flex-wrap items-center justify-center gap-2 lg:w-[70%]">
 				{socialLinks.map((link, index) => (
 					<Link aria-label={link.name} target="_blank" to={link.url}>
 						<div
 							key={index}
-							className="flex min-w-[120px] items-center justify-between gap-4 rounded-md border bg-[#f6f6f6] px-4 py-2 dark:bg-[#191919] "
+							className="flex min-w-[120px] items-center justify-between gap-4 rounded-md border bg-[#f2f2f2eb] px-4 py-2 dark:bg-[#191919] "
 						>
 							<div className="flex items-center gap-3">
 								<Link
@@ -197,20 +197,6 @@ const socialLinks: {
 		action: 'Chat',
 	},
 	{
-		name: 'Bytebuffer',
-		description: 'Daily Dev',
-		url: 'https://dly.to/oYeNtLdx9va',
-		action: 'Watch',
-		icon: <img src="https://docs.daily.dev/img/logo.png" width={22} />,
-	},
-	{
-		name: 'MyResume',
-		description: 'My Resume',
-		url: 'https://myresume.fly.dev/r/testingg',
-		action: 'View',
-		icon: <HiDocumentText size={25} />,
-	},
-	{
 		name: 'Patreon',
 		description: 'Become a patron',
 		url: 'https://patreon.com/broisnees',
@@ -230,6 +216,21 @@ const socialLinks: {
 				></path>
 			</svg>
 		),
+	},
+
+	{
+		name: 'MyResume',
+		description: 'My Resume',
+		url: 'https://myresume.fly.dev/r/testingg',
+		action: 'View',
+		icon: <HiDocumentText size={25} />,
+	},
+	{
+		name: 'ByteBuffer',
+		description: 'Daily Dev',
+		url: 'https://dly.to/oYeNtLdx9va',
+		action: 'Watch',
+		icon: <img src="https://docs.daily.dev/img/logo.png" width={22} />,
 	},
 ];
 // https://github.com/broisnischal/broisnischal/blob/main/resume.pdf

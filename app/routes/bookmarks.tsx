@@ -113,7 +113,7 @@ export default function Page() {
 			</div> */}
 
 			<div className="mt-10 flex w-full flex-col gap-3 *:border-zinc-200/5 lg:max-w-[60%]">
-				<div className="flex flex-col items-start">
+				{/* <div className="flex flex-col items-start">
 					<a href="" target="_blank" rel="noreferrer">
 						<span className="font-nunito hover:underline">
 							Kubernetes vs Koyeb
@@ -123,13 +123,13 @@ export default function Page() {
 					<small className="font-sans font-normal text-zinc-600 dark:text-zinc-400	">
 						First glance to compare the Koyeb Serverless Platform to Kubernetes.
 					</small>
-				</div>
+				</div> */}
 
 				{data.map(data => {
 					return (
-						<div key={data.id}>
+						<div key={data.id} className="flex flex-col items-start">
 							<a href={data.href} target="_blank" rel="noreferrer">
-								<span className="font-nunito font-semibold hover:underline">
+								<span className="font-nunito hover:underline">
 									{data.title}
 								</span>
 								<br />

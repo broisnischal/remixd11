@@ -381,7 +381,7 @@ const Footer = () => {
 					</Link>
 				</div>
 			</div>
-			<div className="flex flex-wrap gap-4 ">
+			<div className="flex w-[90%] flex-wrap justify-center gap-4 ">
 				<Link
 					className="text-sm underline"
 					to="https://codeium.com/profile/broisnischal"
@@ -394,7 +394,7 @@ const Footer = () => {
 					to="https://dly.to/oYeNtLdx9va"
 					target="_blank"
 				>
-					Join the Community
+					Join
 				</Link>
 				<Link className=" underline" to="/timeline">
 					Timeline

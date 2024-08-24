@@ -1,7 +1,6 @@
 import { History } from 'lucide-react';
-import { format } from 'timeago.js';
-import Hr from './hr';
 import { twMerge } from 'tailwind-merge';
+import { format } from 'timeago.js';
 
 export default function NewsComponent({
 	...props

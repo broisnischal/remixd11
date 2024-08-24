@@ -6,9 +6,7 @@ import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { getPosts } from '~/.server/posts';
-import Hr from '~/components/hr';
 import { Post } from '~/components/post';
-import { Input } from '~/components/ui/input';
 import { MetaCreator } from '~/utils/meta';
 
 export async function loader({ request }: LoaderFunctionArgs) {

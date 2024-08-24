@@ -1,13 +1,6 @@
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
-import {
-	ArrowRight,
-	ChevronDown,
-	ChevronRight,
-	ChevronUp,
-	Rss,
-} from 'lucide-react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import { Fragment, useState } from 'react';
-import { FaArrowDown } from 'react-icons/fa';
 import { GrNotification } from 'react-icons/gr';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import useMeasure from 'react-use-measure';

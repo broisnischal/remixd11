@@ -7,6 +7,7 @@ import * as build from '../build/server';
 import { getLoadContext } from '../load-context';
 
 export const onRequest = createPagesFunctionHandler({
+	// @ts-expect-error
 	build,
 	getLoadContext,
 });

@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from '@remix-run/react';
-import { ArrowLeft, HandHelping, Mails } from 'lucide-react';
+import { ArrowLeft, Mails } from 'lucide-react';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 
 import {

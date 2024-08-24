@@ -1,7 +1,5 @@
-import Cal, { getCalApi } from '@calcom/embed-react';
-import { Link } from '@remix-run/react';
 import { Calendar } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '~/components/ui/button';
 
 export default function Chat() {

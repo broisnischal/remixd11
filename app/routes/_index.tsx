@@ -2,16 +2,12 @@ import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
 import { Await, defer, Link, useLoaderData } from '@remix-run/react';
 import { Badge } from '~/components/ui/badge';
 
-import moment from 'moment';
-import { Suspense } from 'react';
-import { getPosts } from '~/.server/posts';
-import Hr from '~/components/hr';
-import { Button } from '~/components/ui/button';
-import { MetaCreator } from '~/utils/meta';
-import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
+import { Suspense } from 'react';
 import { HiDocumentText } from 'react-icons/hi';
-import { SearchIcon } from 'lucide-react';
+import { getPosts } from '~/.server/posts';
+import { ConnectButton } from '~/components/ui-library/tailwindbutton';
+import { MetaCreator } from '~/utils/meta';
 
 // const slugs = [
 // 	'typescript',

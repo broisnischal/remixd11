@@ -1,7 +1,6 @@
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { LayoutGroup, motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import useMeasure from 'react-use-measure';
 
 export default function Page() {

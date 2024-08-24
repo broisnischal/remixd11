@@ -14,13 +14,13 @@ import {
 } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 import { ContributionBox } from '~/components/contribution';
+import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
 } from '~/components/ui/tooltip';
-import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import { MetaFunction } from '@remix-run/cloudflare';

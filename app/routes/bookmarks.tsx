@@ -98,8 +98,8 @@ export default function Page() {
 					Subscribe with RSS.
 				</a> */}
 			</h2>
-			<br />
-			<Hr />
+			{/* <br /> */}
+			{/* <Hr /> */}
 
 			{/* <Form method="POST" encType="multipart/form-data">
 				<input name="bmrk" type="file" accept=".html" />

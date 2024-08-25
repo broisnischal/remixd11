@@ -81,7 +81,6 @@ export default function Page() {
 				alt=""
 			/> */}
 			<br />
-
 			{/* <Link to="https://profile.codersrank.io/user/broisnischal">
 				<img
 					src="https://cr-skills-chart-widget.azurewebsites.net/api/api?username=broisnischal"
@@ -105,7 +104,6 @@ export default function Page() {
 					Nischal Dahal 
 				</a>
 			</div> */}
-
 			<div>
 				<h1 className="mb-4 font-bricolage text-3xl font-bold">Analytics</h1>
 
@@ -145,9 +143,7 @@ export default function Page() {
 					or cause harm to people.
 				</strong>
 			</div>
-
 			<br />
-
 			<div className="div flex flex-col gap-3">
 				<h1 className="mb-2 font-bricolage text-3xl font-bold">
 					💼 Experiences
@@ -166,7 +162,6 @@ export default function Page() {
 				</div>
 			</div>
 			<br />
-
 			<div className="div flex flex-col gap-3">
 				<h1 className="mb-2 font-bricolage text-3xl font-bold">💬 Languages</h1>
 				<Hr />

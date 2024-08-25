@@ -40,10 +40,10 @@ export default function Page() {
 			</h1>
 			{/* <Hr /> */}
 			<div className="flex flex-col gap-8 md:flex-row">
-				<div className="hidden  md:block">
+				<div className="hidden  ">
 					<a href="https://dly.to/oYeNtLdx9va">
 						<img
-							width={1400}
+							width={2000}
 							className="rounded-3xl border"
 							src="https://api.daily.dev/devcards/v2/3Q1RK2pWVdw7exQHPKmL2.png?r=34v&type=default"
 							alt="Nischal Dahal's Dev Card"
@@ -51,7 +51,7 @@ export default function Page() {
 					</a>
 				</div>
 				<div>
-					<p className="text-[18px]">
+					<p className="text-[18px] first-letter:text-3xl">
 						Hello, my name is{' '}
 						<Highlight className="text-xl">Nischal Dahal</Highlight> . I was
 						born on March 17, 2006. I am a versatile software engineer with
@@ -182,9 +182,6 @@ export default function Page() {
 				</ul>
 			</div>
 			<br />
-			<br />
-			<br />
-			<MySetup />
 		</div>
 	);
 }

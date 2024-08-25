@@ -357,18 +357,19 @@ const Footer = () => {
 			<br />
 			<br />
 			<div className="top flex gap-2">
-				© {new Date().getFullYear()}
+				broisnees © {new Date().getFullYear()}
 				{' - '}
 				<div className="flex gap-2">
-					<Link className="text-[1rem] text-primary" to={'/about'}>
-						about
+					<Link className="text-[1rem] text-primary" to={'/setup'}>
+						setup
 					</Link>
 					|
-					<Link
-						className="text-primary"
-						to={'https://nischal-dahal.com.np/blogs/rss'}
-					>
-						Blog RSS
+					<Link className="text-[1rem] text-primary" to={'/stack'}>
+						stacks
+					</Link>
+					|
+					<Link className="text-[1rem] text-primary" to={'/about'}>
+						about
 					</Link>
 					|
 					<Link className="text-[1rem] text-primary" to={'/links'}>
@@ -393,6 +394,13 @@ const Footer = () => {
 				</Link>
 				<Link className=" underline" to="/timeline">
 					Timeline
+				</Link>
+				|
+				<Link
+					className="underline"
+					to={'https://nischal-dahal.com.np/blogs/rss'}
+				>
+					Blog RSS
 				</Link>
 			</div>
 		</div>

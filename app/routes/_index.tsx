@@ -367,14 +367,14 @@ export default function Index() {
 						>
 							<ConnectButton>
 								<div className="flex items-center justify-center gap-2">
-									<LinkedInLogoIcon /> Follow on LinkedIn
+									<LinkedInLogoIcon /> Connect
 								</div>
 							</ConnectButton>
 						</Link>
 						<Link target="_blank" to="https://github.com/broisnischal">
 							<ConnectButton>
 								<div className="flex items-center justify-center gap-2">
-									<GitHubLogoIcon /> Connect on Github
+									<GitHubLogoIcon /> Follow
 								</div>
 							</ConnectButton>
 						</Link>
@@ -386,7 +386,7 @@ export default function Index() {
 						>
 							<ConnectButton>
 								<div className="flex items-center justify-center gap-2">
-									<HiDocumentText /> View Resume
+									<HiDocumentText /> Resume
 								</div>
 							</ConnectButton>
 						</Link>

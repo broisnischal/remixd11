@@ -344,11 +344,11 @@ export default function Index() {
 
 	return (
 		<div className="m-auto w-full">
-			<div className="flex gap-4">
+			<div className="flex flex-col gap-4 md:flex-row">
 				<div>
 					<img
 						src="/qr.png"
-						className=" w-[280px] rounded-lg border shadow-sm"
+						className="w-[150px] rounded-lg border shadow-sm md:w-[150px] xl:w-[280px]"
 						alt=""
 					/>
 				</div>
@@ -402,11 +402,11 @@ export default function Index() {
 					src={`https://open.spotify.com/embed/playlist/2A2M2HnXJTbt2V0XJ6BJ0P?utm_source=generator&theme=0`}
 					height="100%"
 					style={{ minHeight: '360px', minWidth: '360px' }}
-					className="rounded-2xl border "
+					className="flex-1 rounded-2xl border "
 					allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
 					loading="lazy"
 				/>
-				<div className="quote flex w-[360px] flex-col items-center  justify-center rounded-2xl border bg-slate-50 p-11 dark:bg-zinc-900">
+				<div className="quote flex h-[360px] w-[360px] flex-1 flex-col items-center  justify-center rounded-2xl border bg-slate-50 p-10 dark:bg-zinc-900">
 					<p className="font-bricolage text-2xl">
 						If you spend your time chasing butterflies, they'll fly away. But if
 						you spend time making a beautiful garden, the butterflies will come.

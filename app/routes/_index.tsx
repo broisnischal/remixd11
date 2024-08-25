@@ -348,7 +348,7 @@ export default function Index() {
 				<div>
 					<img
 						src="/qr.png"
-						className="w-[150px] rounded-lg border shadow-sm md:w-[150px] xl:w-[280px]"
+						className="w-[150px] rounded-lg border bg-transparent shadow-sm saturate-0 filter md:w-[150px] xl:w-[280px]"
 						alt=""
 					/>
 				</div>

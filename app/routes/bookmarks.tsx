@@ -100,7 +100,6 @@ export default function Page() {
 			</h2>
 			<br />
 			<Hr />
-			<br />
 
 			{/* <Form method="POST" encType="multipart/form-data">
 				<input name="bmrk" type="file" accept=".html" />

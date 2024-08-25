@@ -301,9 +301,9 @@ export default function Page() {
 				)}
 			</div>
 
-			<ul className="mt-4 flex flex-col gap-3">
+			<ul className="mt-4 flex flex-col items-start justify-start gap-3">
 				{guestbooks.map(i => (
-					<li className="text-center" key={i.id}>
+					<li className="text-start" key={i.id}>
 						<strong>{i.name} : </strong> {i.message}
 					</li>
 				))}

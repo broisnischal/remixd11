@@ -199,7 +199,7 @@ async function satoriResponse(jsx: JSX.Element) {
 	}
 }
 
-async function getFont(
+export async function getFont(
 	font: string,
 	weights = [400, 500, 600, 700],
 	text = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/\\!@#$%^&*()_+-=<>?[]{}|;:,.`\'’"–—',

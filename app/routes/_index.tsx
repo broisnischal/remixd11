@@ -253,16 +253,6 @@ export async function loader(args: LoaderFunctionArgs) {
 	// const { success, limit, remaining, reset } =
 	// 	await ratelimit.limit(identifier);
 
-	// const response = await axios.get('https://codeium.com/profile/broisnischal', {
-	// 	headers: {
-	// 		'Cache-Control': 'public, max-age=86400, immutable',
-	// 		// 'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate',
-	// 	},
-	// });
-
-	// const $ = load(response.data);
-	// const svgContent = $('svg.h-full.w-full').parent().html();
-
 	const posts = getPosts().then(posts =>
 		posts
 			.filter(post => post.frontmatter.featured === true)

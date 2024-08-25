@@ -228,7 +228,7 @@ export default function Component() {
 					)} */}
 				</div>
 			</Form>
-			<div className="tags m-auto flex max-w-[95%] flex-wrap items-center justify-center gap-2 md:max-w-[80%]">
+			<div className="tags m-auto flex max-w-[95%] flex-wrap items-center justify-center gap-2 md:max-w-[90%]">
 				{/* <input className="border" type="text" /> */}
 				{activeTag &&
 					(activeTag.length <= 0 ? (
@@ -283,12 +283,15 @@ export default function Component() {
 			</div>
 			<br />
 			<br />
-			<div className="grid grid-cols-1 gap-x-3 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+			<div className="grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-2">
 				{allposts.length <= 0 ? (
 					<>No posts found</>
 				) : (
 					allposts.map((post, i) => (
-						<div key={i}>
+						<div
+							key={i}
+							className="rounded-lg border border-dashed bg-zinc-50  p-4 transition duration-300 hover:-rotate-3 dark:bg-zinc-900"
+						>
 							<Post key={post.slug} {...post} />
 						</div>
 					))

@@ -348,7 +348,7 @@ export default function Index() {
 				<div>
 					<img
 						src="/qr.png"
-						className="w-[150px] rounded-lg border bg-transparent shadow-sm saturate-0 filter md:w-[150px] xl:w-[280px]"
+						className="w-[150px] rounded-lg border bg-transparent shadow-sm saturate-0 filter md:w-[150px] xl:w-[210px]"
 						alt=""
 					/>
 				</div>
@@ -356,7 +356,7 @@ export default function Index() {
 					<h1 className=" font-bold dark:text-zinc-100 md:text-3xl">
 						Hey, I'm Nischal! 😒
 					</h1>
-					<h3 className="secondary balanced  xl:max-w-[70%]">
+					<h3 className="secondary w-full">
 						I'm a full stack engineer with a focus on serverless architectures,
 						android development, user experience, and product development.
 					</h3>

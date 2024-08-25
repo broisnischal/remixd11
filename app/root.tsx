@@ -630,6 +630,15 @@ export function App() {
 					suppressHydrationWarning
 					src="https://www.googletagmanager.com/gtag/js?id=G-L2HXER3J9C"
 				></script>
+				<script src="https://unpkg.com/@codersrank/portfolio@0.9.10/codersrank-portfolio.min.js"></script>
+				<script src="https://unpkg.com/@codersrank/skills-chart@0.9.21/codersrank-skills-chart.min.js"></script>
+				<script
+					src="https://platform.linkedin.com/badges/js/profile.js"
+					async
+					defer
+					type="text/javascript"
+				></script>
+
 				<script
 					suppressHydrationWarning
 					dangerouslySetInnerHTML={{

@@ -1,6 +1,36 @@
 import { twMerge } from 'tailwind-merge';
 import Hr from '~/components/hr';
 import { KBD } from '~/components/KBD';
+import { useEffect } from 'react';
+
+import { Link } from '@remix-run/react';
+// global.d.ts
+declare global {
+	namespace JSX {
+		interface IntrinsicElements {
+			'codersrank-portfolio': React.DetailedHTMLProps<
+				React.HTMLAttributes<HTMLElement>,
+				HTMLElement
+			> & {
+				username: string;
+				// add other attributes you might need here
+			};
+
+			'codersrank-skills-chart': React.DetailedHTMLProps<
+				React.HTMLAttributes<HTMLElement>,
+				HTMLElement
+			> & {
+				username: string;
+				labels?: boolean;
+				legend?: boolean;
+				tooltip?: boolean;
+				// add other attributes you might need here
+			};
+		}
+	}
+}
+
+// register web component as <codersrank-skills-chart> element
 
 export default function Page() {
 	return (
@@ -13,7 +43,7 @@ export default function Page() {
 				<div className="hidden  md:block">
 					<a href="https://dly.to/oYeNtLdx9va">
 						<img
-							width={1000}
+							width={1400}
 							className="rounded-3xl border"
 							src="https://api.daily.dev/devcards/v2/3Q1RK2pWVdw7exQHPKmL2.png?r=34v&type=default"
 							alt="Nischal Dahal's Dev Card"
@@ -52,8 +82,51 @@ export default function Page() {
 			/> */}
 			<br />
 
+			{/* <Link to="https://profile.codersrank.io/user/broisnischal">
+				<img
+					src="https://cr-skills-chart-widget.azurewebsites.net/api/api?username=broisnischal"
+					alt=""
+					className="bg-transparent dark:hidden"
+				/>
+			</Link> */}
+			{/* <div
+				className="badge-base LI-profile-badge"
+				data-locale="en_US"
+				data-size="large"
+				data-theme="dark"
+				data-type="VERTICAL"
+				data-vanity="neeswebservices"
+				data-version="v1"
+			>
+				<a
+					className="badge-base__link LI-simple-link"
+					href="https://np.linkedin.com/in/neeswebservices?trk=profile-badge"
+				>
+					Nischal Dahal 
+				</a>
+			</div> */}
+
+			<div>
+				<h1 className="mb-4 font-bricolage text-3xl font-bold">Analytics</h1>
+
+				<codersrank-skills-chart
+					username="broisnischal"
+					labels
+					legend
+					tooltip
+				></codersrank-skills-chart>
+			</div>
+			<div>
+				<h1 className="mb-4 font-bricolage text-3xl font-bold">Workings</h1>
+				<codersrank-portfolio
+					username="broisnischal"
+					// logos
+				></codersrank-portfolio>
+			</div>
 			<div className="flex flex-col gap-6 text-[18px]">
-				<h1 className="text-3xl font-bold">🎉 Expected working conditions</h1>
+				<h1 className="mb-4 font-bricolage text-3xl font-bold">
+					🎉 Expected working conditions
+				</h1>
 				<p className="">
 					I am eager to continue <KBD>advancing</KBD> my IT career, focusing on
 					development, and full-stack development. I am open to relocation,
@@ -76,7 +149,26 @@ export default function Page() {
 			<br />
 
 			<div className="div flex flex-col gap-3">
-				<h1 className="text-3xl font-bold">💬 Languages</h1>
+				<h1 className="mb-2 font-bricolage text-3xl font-bold">
+					💼 Experiences
+				</h1>
+				<Hr />
+				<div className="experiences flex flex-col gap-14">
+					{experiences.map((experience, i) => (
+						<Experience
+							key={i}
+							image={experience.image}
+							company={experience.company}
+							headline={experience.headline}
+							items={experience.items}
+						/>
+					))}
+				</div>
+			</div>
+			<br />
+
+			<div className="div flex flex-col gap-3">
+				<h1 className="mb-2 font-bricolage text-3xl font-bold">💬 Languages</h1>
 				<Hr />
 				<ul className="flex flex-col gap-3">
 					<li className="flex items-center gap-3">
@@ -95,23 +187,6 @@ export default function Page() {
 				</ul>
 			</div>
 			<br />
-
-			<div className="div flex flex-col gap-3">
-				<h1 className="text-3xl font-bold">💼 Experiences</h1>
-				<Hr />
-				<div className="experiences flex flex-col gap-14">
-					{experiences.map((experience, i) => (
-						<Experience
-							key={i}
-							image={experience.image}
-							company={experience.company}
-							headline={experience.headline}
-							items={experience.items}
-						/>
-					))}
-				</div>
-			</div>
-
 			<br />
 			<br />
 			<MySetup />
@@ -233,7 +308,7 @@ export function Highlight({
 export function MySetup() {
 	return (
 		<div>
-			<h1 className="text-3xl font-bold">🧰 My Setup</h1>
+			<h1 className="mb-2 font-bricolage text-3xl font-bold">🧰 My Setup</h1>
 
 			<br />
 			<p>

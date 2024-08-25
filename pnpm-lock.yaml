@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@codersrank/skills-chart':
+    specifier: ^0.9.21
+    version: 0.9.21
   '@conform-to/react':
     specifier: ^1.1.5
     version: 1.1.5(react@18.3.1)
@@ -742,6 +745,10 @@ packages:
 
   /@cloudflare/workers-types@4.20240729.0:
     resolution: {integrity: sha512-wfe44YQkv5T9aBr/z95P706r2/Ydg32weJYyBOhvge7FqtdY6mM7l39rybNiJrbJoyN16dd0xxyQMf23aJNC6Q==}
+
+  /@codersrank/skills-chart@0.9.21:
+    resolution: {integrity: sha512-0JiDc1NSWclineCYm/BipCzmRGtmoE9/zwx41Q0wr0SuRGrd3/Sp+EHThMQ57QQWw5ZDnneM+iL3p4Y1VIowlQ==}
+    dev: false
 
   /@conform-to/dom@1.1.5:
     resolution: {integrity: sha512-tWI3YxWvDaZFSl4QN8Y0WbgBxsWEfcTrSMtKic3YTt/hGVJXjQ8qURBdsJXudzJ38zwAr5GhpLWmyI6BbG9+gA==}

@@ -8,7 +8,6 @@ import { HiDocumentText } from 'react-icons/hi';
 import { getPosts } from '~/.server/posts';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { MetaCreator } from '~/utils/meta';
-
 // const slugs = [
 // 	'typescript',
 // 	'javascript',
@@ -121,7 +120,106 @@ export const meta: MetaFunction = ({ location }) => {
 	];
 };
 
+interface Artist {
+	name: string;
+}
+
+interface Track {
+	name: string;
+	artists: Artist[];
+}
+
+interface SpotifyApiResponse {
+	items: Track[];
+}
+
+async function fetchWebApi<T>(
+	endpoint: string,
+	method: string,
+	token: string,
+	body?: any,
+): Promise<T> {
+	const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+		method,
+		body: body ? JSON.stringify(body) : undefined,
+	});
+	return await res.json();
+}
+
+const client_id = 'b387058b297a40de99bbcce45a2b3e97';
+const client_secret = '552f9d1e44bf4a55b82a8f460e8ae9bf';
+
+const getAccessToken = async () => {
+	const tokenEndpoint = 'https://accounts.spotify.com/api/token';
+
+	const headers = {
+		Authorization: 'Basic ' + btoa(`${client_id}:${client_secret}`),
+		'Content-Type': 'application/x-www-form-urlencoded',
+	};
+
+	const body = new URLSearchParams({
+		client_id: client_id,
+		grant_type: 'client_credentials',
+		code: 'user-read-currently-playing',
+		redirect_uri: 'http://localhost:3000',
+	});
+	console.log(body.toString());
+
+	try {
+		const response = await fetch(tokenEndpoint, {
+			method: 'POST',
+			headers: headers,
+			body: body.toString(),
+		});
+		const data: any = await response.json();
+		if (response.ok) {
+			return data.access_token;
+		} else {
+			throw new Error(data.error_description || 'Failed to fetch access token');
+		}
+	} catch (error) {
+		console.error('Error fetching access token:', error);
+	}
+};
+
 export async function loader(args: LoaderFunctionArgs) {
+	// const NOW_PLAYING_ENDPOINT = 'v1/me/player/currently-playing';
+
+	// const token = await getAccessToken();
+
+	// console.log(token);
+
+	// const newplaying = await fetchWebApi<SpotifyApiResponse>(
+	// 	NOW_PLAYING_ENDPOINT,
+	// 	'GET',
+	// 	token,
+	// );
+
+	// console.log(newplaying);
+
+	// console.log(
+	// 	topTracks.map(
+	// 		({ name, artists }) =>
+	// 			`${name} by ${artists.map(artist => artist.name).join(', ')}`,
+	// 	),
+	// );
+
+	// Step 3: Return the track information as JSON
+	// if (nowPlayingResponse.status === 200 && nowPlayingResponse.data) {
+	// 	const track = nowPlayingResponse.data.item;
+	// 	return json({
+	// 		name: track.name,
+	// 		artists: track.artists.map((artist: any) => artist.name).join(', '),
+	// 		album: track.album.name,
+	// 		albumArt: track.album.images[0].url,
+	// 	});
+	// } else {
+	// 	return json({ message: 'No music is currently playing.' });
+	// }
+
 	// const kafka = new Kafka({
 	// 	url: args.context.env.UPSTASH_KAFKA_REST_URL,
 	// 	username: args.context.env.UPSTASH_KAFKA_REST_USERNAME,
@@ -242,63 +340,86 @@ export async function loader(args: LoaderFunctionArgs) {
 export default function Index() {
 	const { posts } = useLoaderData<typeof loader>();
 
+	const playlistId = '2A2M2HnXJTbt2V0XJ6BJ0P';
+
 	return (
 		<div className="m-auto w-full">
-			<div
-				className="m-auto flex flex-col items-center
-			 justify-center gap-4 md:flex-col"
-			>
-				<img
-					src="/qr.png"
-					className=" w-[150px] rounded-lg border shadow-sm"
-					alt=""
-				/>
-				<div className="flex flex-col items-center justify-center  gap-2">
-					<h1 className="text-3xl font-bold dark:text-zinc-100">
-						Hey there, I'm Nischal! 😒
+			<div className="flex gap-4">
+				<div>
+					<img
+						src="/qr.png"
+						className=" w-[280px] rounded-lg border shadow-sm"
+						alt=""
+					/>
+				</div>
+				<div className="flex flex-col items-start justify-center  gap-2">
+					<h1 className=" font-bold dark:text-zinc-100 md:text-3xl">
+						Hey, I'm Nischal! 😒
 					</h1>
-					<h3 className="secondary balanced text-center xl:max-w-[70%]">
+					<h3 className="secondary balanced  xl:max-w-[70%]">
 						I'm a full stack engineer with a focus on serverless architectures,
 						android development, user experience, and product development.
 					</h3>
+					<div className="flex flex-col items-start gap-2 md:flex-row">
+						<Link
+							target="_blank"
+							to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
+						>
+							<ConnectButton>
+								<div className="flex items-center justify-center gap-2">
+									<LinkedInLogoIcon /> Follow on LinkedIn
+								</div>
+							</ConnectButton>
+						</Link>
+						<Link target="_blank" to="https://github.com/broisnischal">
+							<ConnectButton>
+								<div className="flex items-center justify-center gap-2">
+									<GitHubLogoIcon /> Connect on Github
+								</div>
+							</ConnectButton>
+						</Link>
+						<Link
+							target="_blank"
+							to={
+								'https://github.com/broisnischal/broisnischal/blob/main/resume.pdf'
+							}
+						>
+							<ConnectButton>
+								<div className="flex items-center justify-center gap-2">
+									<HiDocumentText /> View Resume
+								</div>
+							</ConnectButton>
+						</Link>
+					</div>
 				</div>
 			</div>
+
 			<br />
-			<div className="m-auto flex flex-col items-center justify-center gap-2 md:flex-row">
-				<Link
-					target="_blank"
-					to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
-				>
-					<ConnectButton>
-						<div className="flex items-center justify-center gap-2">
-							<LinkedInLogoIcon /> Follow on LinkedIn
-						</div>
-					</ConnectButton>
-				</Link>
-				<Link target="_blank" to="https://github.com/broisnischal">
-					<ConnectButton>
-						<div className="flex items-center justify-center gap-2">
-							<GitHubLogoIcon /> Connect on Github
-						</div>
-					</ConnectButton>
-				</Link>
-				<Link
-					target="_blank"
-					to={
-						'https://github.com/broisnischal/broisnischal/blob/main/resume.pdf'
-					}
-				>
-					<ConnectButton>
-						<div className="flex items-center justify-center gap-2">
-							<HiDocumentText /> View Resume
-						</div>
-					</ConnectButton>
-				</Link>
+			<br />
+			<div className="flex flex-wrap items-center justify-center gap-4	 ">
+				<iframe
+					title="Spotify Embed: Recommendation Playlist "
+					src={`https://open.spotify.com/embed/playlist/2A2M2HnXJTbt2V0XJ6BJ0P?utm_source=generator&theme=0`}
+					height="100%"
+					style={{ minHeight: '360px', minWidth: '360px' }}
+					className="rounded-2xl border "
+					allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+					loading="lazy"
+				/>
+				<div className="quote flex w-[360px] flex-col items-center  justify-center rounded-2xl border bg-slate-50 p-11 dark:bg-zinc-900">
+					<p className="font-bricolage text-2xl">
+						If you spend your time chasing butterflies, they'll fly away. But if
+						you spend time making a beautiful garden, the butterflies will come.
+					</p>
+					<br />
+					<br />
+					<span>- Don't chase, attract"</span>
+				</div>
 			</div>
 			<br />
 			<br />
 			<div className="flex flex-col items-start gap-4">
-				<h1 className="w-full text-center font-bricolage">Featured Posts</h1>
+				<h1 className="w-full font-bricolage">Featured Posts</h1>
 				<div className="m-auto grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={posts}>
@@ -311,7 +432,7 @@ export default function Index() {
 									>
 										{post.frontmatter.image ? (
 											<div>
-												<div className="div h-[150px] rounded-md bg-white dark:bg-[#eee]">
+												<div className="div h-[150px] rounded-md bg-white dark:hidden">
 													<img
 														className="h-full w-full rounded-md border object-cover object-center"
 														src={post.frontmatter.image}

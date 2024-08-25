@@ -89,7 +89,7 @@ export default function Page() {
 	const actionData = useActionData<typeof action>();
 
 	return (
-		<div className="flex min-w-[60vw] flex-col items-center justify-center text-center">
+		<div className="flex flex-col items-center justify-center">
 			<h1 className="text-3xl font-bold">Bookmarks</h1>
 			<h2 className="">
 				Links to content I liked, sometimes with my commentary.

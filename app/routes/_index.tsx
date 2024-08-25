@@ -365,7 +365,7 @@ export default function Index() {
 							target="_blank"
 							to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
 						>
-							<ConnectButton>
+							<ConnectButton focuscolor="via-blue-400/90">
 								<div className="flex items-center justify-center gap-2">
 									<LinkedInLogoIcon /> Connect
 								</div>
@@ -384,7 +384,7 @@ export default function Index() {
 								'https://github.com/broisnischal/broisnischal/blob/main/resume.pdf'
 							}
 						>
-							<ConnectButton>
+							<ConnectButton focuscolor="via-yellow-400">
 								<div className="flex items-center justify-center gap-2">
 									<HiDocumentText /> Resume
 								</div>

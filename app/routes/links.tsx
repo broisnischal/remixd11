@@ -9,9 +9,10 @@ export default function Page() {
 	return (
 		<div className="flex flex-col items-center justify-center gap-2">
 			<h1 className="font-bricolage text-3xl font-bold">Links</h1>
-			<p>Quicklinks to my social platforms and contacts.</p>
-			<br />
-			<div className="balanced flex flex-wrap items-center justify-center gap-3 lg:w-[100%]">
+			<p className="mb-4 text-center">
+				Quicklinks to my social platforms and contacts.
+			</p>
+			<div className="balanced flex flex-wrap items-center justify-start gap-3 md:justify-center lg:w-[100%]">
 				{socialLinks.map((link, index) => (
 					<Link
 						aria-label={link.name}
@@ -36,7 +37,6 @@ export default function Page() {
 					</Link>
 				))}
 			</div>
-
 			<br />
 			<p className="secondary">
 				Reach me directly at{' '}
@@ -55,7 +55,9 @@ export default function Page() {
 				</a>{' '}
 				profile.
 			</p>
-			{/* Alternatively press Ctrl/Cmd + K to search.. */}
+			<p className="secondary">
+				Share a interesting project idea? Feel free to reach out!
+			</p>
 			{/* <small className="text-center">
 				<br /> Made with{' '}
 				<Link target="_blank" className="underline" to="https://remix.run">

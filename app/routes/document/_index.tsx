@@ -50,7 +50,7 @@ export default function Index() {
 				{documents.map((item, index) => (
 					<Value
 						key={index}
-						title={item.data.value}
+						title={item.data.title}
 						value={item.data.value}
 						hidden={item.data.hidden == 1}
 					/>

@@ -86,6 +86,16 @@ export const canvas = sqliteTable('canvas', {
 	}).default('{}'),
 });
 
+export const document = sqliteTable('document', {
+	id: integer('id').primaryKey(),
+	data: blob('data', {
+		mode: 'json',
+	}),
+	value: text('value').notNull(),
+	title: text('title').notNull(),
+	hidden: integer('hidden').notNull().default(0),
+});
+
 // export const sessions = sqliteTable('sessions', {
 // 	id: integer('id').primaryKey(),
 // 	userId: integer('userId').notNull(),

@@ -7,45 +7,25 @@ import { Button } from '~/components/ui/button';
 import { useState } from 'react';
 
 export async function loader({ request, context }: LoaderFunctionArgs) {
-	await SessionStorage.requireUser(context, request);
-	let data = await SessionStorage.readUser(context, request);
+	// await SessionStorage.requireUser(context, request);
+	// let data = await SessionStorage.readUser(context, request);
 
 	let db = drizzle(context.env.DB, {
 		schema,
 	});
 
-	if (data?.type != 'nees') {
-		throw new Response('Unauthorized', {
-			status: 401,
-			statusText: 'Opps! You are not nees!',
-			cf: { cacheTtl: 0 },
-		});
-	}
+	// if (data?.type != 'nees') {
+	// 	throw new Response('Unauthorized', {
+	// 		status: 401,
+	// 		statusText: 'Opps! You are not nees!',
+	// 		cf: { cacheTtl: 0 },
+	// 	});
+	// }
 
 	return json({
-		data,
+		// data,
 	});
 }
-
-const data: {
-	value: string;
-	title: string;
-	hidden?: boolean;
-}[] = [
-	{ value: 'Nischal Dahal', title: 'Name' },
-	{ value: 'PA1619146', title: 'Passport No', hidden: true },
-	{ value: 'Jiri - Khadichaur Hwy', title: 'Street Address 1' },
-	{ value: 'Baiteshowor - 05, Mainapokhari', title: 'Street Address 2' },
-	{ value: '17 MAR 2006', title: 'Date of Birth', hidden: true },
-	{ value: 'santoshdahal1981@gmail.com', title: 'Father Email', hidden: true },
-	{ value: 'nirudahal1983@gmail.com', title: 'Mother Email', hidden: true },
-	{ value: '25 APR 2033', title: 'Passport DOE', hidden: true },
-	{ value: 'DOLAKHA', title: 'Place of Birth' },
-	{ value: '22017901395', title: 'Citizenship/Personal No', hidden: true },
-	{ value: 'Dolakha', title: 'District' },
-	{ value: '05', title: 'Ward No' },
-	{ value: 'Baiteshwor', title: 'R.M.' },
-];
 
 export default function Index() {
 	return (
@@ -55,9 +35,9 @@ export default function Index() {
 			</h1>
 			<br />
 			<div className="flex w-full flex-wrap items-start gap-2">
-				{data.map((item, index) => (
+				{/* {data.map((item, index) => (
 					<Value key={index} {...item} />
-				))}
+				))} */}
 			</div>
 		</div>
 	);

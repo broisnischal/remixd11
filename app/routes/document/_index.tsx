@@ -5,29 +5,41 @@ import * as schema from '../../drizzle/schema.server';
 import { CopyIcon, EyeIcon, TrashIcon } from '~/components/icons';
 import { Button } from '~/components/ui/button';
 import { useState } from 'react';
+import { desc } from 'drizzle-orm';
+import { useLoaderData } from '@remix-run/react';
 
 export async function loader({ request, context }: LoaderFunctionArgs) {
-	// await SessionStorage.requireUser(context, request);
-	// let data = await SessionStorage.readUser(context, request);
+	await SessionStorage.requireUser(context, request);
+	let data = await SessionStorage.readUser(context, request);
 
 	let db = drizzle(context.env.DB, {
 		schema,
 	});
 
-	// if (data?.type != 'nees') {
-	// 	throw new Response('Unauthorized', {
-	// 		status: 401,
-	// 		statusText: 'Opps! You are not nees!',
-	// 		cf: { cacheTtl: 0 },
-	// 	});
-	// }
+	let documents = await db
+		.select({
+			data: schema.document,
+		})
+		.from(schema.document)
+		.orderBy(desc(schema.document.id));
+
+	if (data?.type != 'nees') {
+		throw new Response('Unauthorized', {
+			status: 401,
+			statusText: 'Opps! You are not nees!',
+			cf: { cacheTtl: 0 },
+		});
+	}
 
 	return json({
-		// data,
+		data,
+		documents,
 	});
 }
 
 export default function Index() {
+	const { data, documents } = useLoaderData<typeof loader>();
+
 	return (
 		<div>
 			<h1 className="text-center font-bricolage text-2xl font-bold">
@@ -35,9 +47,14 @@ export default function Index() {
 			</h1>
 			<br />
 			<div className="flex w-full flex-wrap items-start gap-2">
-				{/* {data.map((item, index) => (
-					<Value key={index} {...item} />
-				))} */}
+				{documents.map((item, index) => (
+					<Value
+						key={index}
+						title={item.data.value}
+						value={item.data.value}
+						hidden={item.data.hidden == 1}
+					/>
+				))}
 			</div>
 		</div>
 	);

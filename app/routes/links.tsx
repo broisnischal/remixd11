@@ -334,6 +334,60 @@ const socialLinks: {
 		action: 'Visit',
 		icon: <CodeIcon width={30} height={30} />,
 	},
+
+	{
+		name: 'Chess',
+		description: 'Subscribe to my blog.',
+		url: 'https://www.chess.com/member/broisnees',
+		action: 'Feed',
+		icon: (
+			<img
+				src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phpNgJfyb.png"
+				alt=""
+				width={70}
+			/>
+		),
+	},
+	{
+		name: 'npmjs',
+		description: 'Subscribe to my blog.',
+		url: 'https://www.npmjs.com/~neeswebservice',
+		action: 'Feed',
+		icon: (
+			<svg
+				viewBox="0 0 256 256"
+				version="1.1"
+				width={30}
+				height={30}
+				xmlns="http://www.w3.org/2000/svg"
+				xmlnsXlink="http://www.w3.org/1999/xlink"
+				preserveAspectRatio="xMidYMid"
+				fill="#000000"
+			>
+				<g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+				<g
+					id="SVGRepo_tracerCarrier"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				></g>
+				<g id="SVGRepo_iconCarrier">
+					{' '}
+					<g>
+						{' '}
+						<polygon fill="#C12127" points="0 256 0 0 256 0 256 256">
+							{' '}
+						</polygon>{' '}
+						<polygon
+							fill="#FFFFFF"
+							points="48 48 208 48 208 208 176 208 176 80 128 80 128 208 48 208"
+						>
+							{' '}
+						</polygon>{' '}
+					</g>{' '}
+				</g>
+			</svg>
+		),
+	},
 	{
 		name: 'RSS',
 		description: 'Subscribe to my blog.',

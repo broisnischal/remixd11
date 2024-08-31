@@ -334,23 +334,23 @@ export default function Index() {
 
 	return (
 		<div className="m-auto w-full">
-			<div className="flex flex-col gap-4 md:flex-row">
+			<div className="flex flex-col items-center gap-4 md:flex-row">
 				<div>
 					<img
 						src="/qr.png"
-						className="w-[150px] rounded-lg border bg-transparent shadow-sm saturate-0 filter md:w-[150px] xl:w-[210px]"
+						className="w-[150px] rounded-lg border bg-transparent shadow-sm saturate-0 filter md:w-[150px] xl:w-[160px]"
 						alt=""
 					/>
 				</div>
-				<div className="flex flex-col items-start justify-center  gap-2">
-					<h1 className=" font-bold dark:text-zinc-100 md:text-3xl">
-						Hey, I'm Nischal! 😒
+				<div className="flex flex-col items-center justify-center  gap-2">
+					<h1 className=" text-3xl font-bold dark:text-zinc-100">
+						Hey, I'm Nischal!
 					</h1>
-					<h3 className="secondary w-full">
+					<h3 className="secondary balanced w-full text-center">
 						I'm a full stack engineer with a focus on serverless architectures,
 						android development, user experience, and product development.
 					</h3>
-					<div className="flex flex-col items-start gap-2 md:flex-row">
+					<div className="mt-2 flex flex-row flex-wrap items-center justify-center gap-2">
 						<Link
 							target="_blank"
 							to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
@@ -391,10 +391,19 @@ export default function Index() {
 					title="Spotify Embed: Recommendation Playlist "
 					src={`https://open.spotify.com/embed/playlist/2A2M2HnXJTbt2V0XJ6BJ0P?utm_source=generator&theme=0`}
 					height="100%"
-					style={{ minHeight: '360px', minWidth: '360px' }}
-					className="flex-1 rounded-2xl border "
+					style={{ height: '360px', minWidth: '90%' }}
+					className="flex-1 rounded-2xl border md:hidden "
 					allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-					loading="lazy"
+					// loading="lazy"
+				/>
+				<iframe
+					title="Spotify Embed: Recommendation Playlist "
+					src={`https://open.spotify.com/embed/playlist/2A2M2HnXJTbt2V0XJ6BJ0P?utm_source=generator&theme=0`}
+					// height="100%"
+					style={{ minHeight: '360px', minWidth: '360px' }}
+					className="hidden flex-1 rounded-2xl border md:block "
+					allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+					// loading="lazy"
 				/>
 				<div className="quote flex h-[360px] w-[360px] flex-1 flex-col items-center  justify-center rounded-2xl border bg-slate-50 p-10 dark:bg-zinc-900">
 					<p className="font-bricolage text-2xl">

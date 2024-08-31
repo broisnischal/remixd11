@@ -12,7 +12,7 @@ export default function Page() {
 			<p className="mb-4 text-center">
 				Quicklinks to my social platforms and contacts.
 			</p>
-			<div className="balanced flex flex-wrap items-center justify-start gap-3 md:justify-center lg:w-[100%]">
+			<div className="balanced flex flex-wrap items-center justify-center gap-3 md:justify-center lg:w-[100%]">
 				{socialLinks.map((link, index) => (
 					<Link
 						aria-label={link.name}

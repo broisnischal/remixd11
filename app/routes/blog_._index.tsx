@@ -290,7 +290,7 @@ export default function Component() {
 					allposts.map((post, i) => (
 						<div
 							key={i}
-							className="rounded-lg border border-dashed bg-zinc-50  p-4 transition duration-300 dark:bg-zinc-900"
+							className="rounded-lg  border  bg-zinc-50 p-2 transition duration-300 hover:scale-105 dark:bg-transparent"
 						>
 							<Post key={post.slug} {...post} />
 						</div>

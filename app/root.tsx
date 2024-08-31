@@ -283,25 +283,12 @@ const NavBar = () => {
 				</div>
 			</nav>
 			<nav className=" m-auto  mt-8  w-[90%] items-center justify-center gap-3 md:hidden">
-				<div className="flex w-full items-center justify-between md:w-auto">
-					<Link to={'/'} className="text-3xl font-bold">
-						Broisnees
-					</Link>
-					<div className="flex flex-row items-center justify-center gap-3 md:flex-row">
-						{/* <ModeToggle /> */}
-						<Search />
-						<Button
-							size={'icon'}
-							variant={'outline'}
-							onClick={toggleMenu}
-							className="text-xl md:hidden"
-						>
-							{isOpen ? '✖' : '☰'}
-						</Button>
-					</div>
+				<div className="fixed right-[24px] top-[24px] z-[999]">
+					<ModeToggle />
+					<Search />
 				</div>
-				{isOpen && (
-					<div className="mt-6 flex flex-row flex-wrap items-center gap-2 ">
+				<div className="flex w-full items-center justify-center">
+					<div className="mt-6 flex flex-row flex-wrap items-center justify-center gap-2 ">
 						<RouteLink to={'/'}>home</RouteLink>
 						<RouteLink to={'/blog'}>contents</RouteLink>
 						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
@@ -310,8 +297,6 @@ const NavBar = () => {
 						<RouteLink to={'/hire'}>hireme</RouteLink>
 						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 						<RouteLink to={'/links'}>links</RouteLink>
-
-						{}
 
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
@@ -331,7 +316,7 @@ const NavBar = () => {
 							</Await>
 						</React.Suspense>
 					</div>
-				)}
+				</div>
 			</nav>
 		</>
 	);
@@ -339,7 +324,7 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="secondary m-auto my-10 flex min-h-[5vh] w-full flex-col items-center justify-center gap-2 text-sm">
+		<div className="secondary m-auto my-10 flex min-h-[5vh] w-full max-w-[90%] flex-col items-center justify-center gap-2 text-sm">
 			<div className="flex w-full items-center  justify-evenly">
 				<h2 className="font-bricolage text-xl font-bold text-primary ">
 					Nischal Dahal
@@ -356,7 +341,7 @@ const Footer = () => {
 			<Hr />
 			<br />
 			<br />
-			<div className="top flex gap-2">
+			<div className="top flex flex-col items-center gap-2 md:flex-row">
 				broisnees © {new Date().getFullYear()}
 				{' - '}
 				<div className="flex gap-2">

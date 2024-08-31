@@ -15,10 +15,13 @@ export default function Page() {
 			</p>
 
 			{data.map(category => (
-				<div key={category.category} className="flex items-center  gap-4">
+				<div
+					key={category.category}
+					className="flex flex-col items-start gap-4  md:flex-row"
+				>
 					<h2 className="">{category.category}</h2>
 					{/* <KBD>{category.category}</KBD> */}
-					<ul className="flex gap-3">
+					<ul className="flex flex-wrap gap-3">
 						{category.items.map(item => (
 							<Link
 								key={item.link}

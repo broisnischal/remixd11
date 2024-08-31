@@ -22,7 +22,7 @@ import rehypeExpressiveCode from 'rehype-expressive-code';
 const rehypeExpressiveCodeOptions = {
 	defaultProps: {
 		// Enable word wrap by default
-		wrap: true,
+		// wrap: true,
 		// Disable wrapped line indentation for terminal languages
 		overridesByLang: {
 			'bash,ps,sh': { preserveIndent: false },

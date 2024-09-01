@@ -361,6 +361,7 @@ export default function Index() {
 								</div>
 							</ConnectButton>
 						</Link>
+
 						<Link target="_blank" to="https://github.com/broisnischal">
 							<ConnectButton>
 								<div className="flex items-center justify-center gap-2">
@@ -376,7 +377,19 @@ export default function Index() {
 						>
 							<ConnectButton focuscolor="via-yellow-400">
 								<div className="flex items-center justify-center gap-2">
-									<HiDocumentText /> Resume
+									<HiDocumentText /> MyResume
+								</div>
+							</ConnectButton>
+						</Link>
+						<Link target="_blank" to="https://dly.to/oYeNtLdx9va">
+							<ConnectButton focuscolor="via-blue-400/90">
+								<div className="flex items-center justify-center gap-2">
+									<img
+										src="https://cdn.prod.website-files.com/5e0a5d9d743608d0f3ea6753/5f1d8b1b9c7814aae6b69044_Daily%20Full%20logo.svg"
+										alt=""
+										width={60}
+									/>
+									Join
 								</div>
 							</ConnectButton>
 						</Link>

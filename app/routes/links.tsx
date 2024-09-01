@@ -12,7 +12,7 @@ export default function Page() {
 			<p className="mb-4 text-center">
 				Quicklinks to my social platforms and contacts.
 			</p>
-			<div className="balanced flex flex-wrap items-center justify-center gap-3 md:justify-center lg:w-[100%]">
+			<div className=" flex flex-wrap items-center justify-center gap-3 md:justify-center lg:w-[100%]">
 				{socialLinks.map((link, index) => (
 					<Link
 						aria-label={link.name}
@@ -38,13 +38,20 @@ export default function Page() {
 				))}
 			</div>
 			<br />
-			<p className="secondary">
+			<p className="secondary balanced text-center">
 				Reach me directly at{' '}
 				<a
 					className="text-primary underline"
 					href="mailto:info@nischal-dahal.com.np"
 				>
 					info@nischal-dahal.com.np
+				</a>{' '}
+				or{' '}
+				<a
+					className="text-primary underline"
+					href="mailto:bro@nischal-dahal.com.np"
+				>
+					bro@nischal-dahal.com.np
 				</a>
 				, check out my{' '}
 				<a
@@ -265,8 +272,8 @@ const socialLinks: {
 						fy="50.002%"
 						gradientTransform="matrix(1 0 0 .99985 0 0)"
 					>
-						<stop offset="0%" stop-color="#FFF" stop-opacity=".1" />
-						<stop offset="100%" stop-color="#FFF" stop-opacity="0" />
+						<stop offset="0%" stopColor="#FFF" stop-opacity=".1" />
+						<stop offset="100%" stopColor="#FFF" stop-opacity="0" />
 					</radialGradient>
 				</defs>
 				<path

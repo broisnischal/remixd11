@@ -113,15 +113,15 @@ export default function Page() {
 
 	return (
 		<div className="flex flex-col gap-3">
-			<div className="flex flex-col items-center justify-center">
+			{/* <span>{moment(time).format('MMMM Do YYYY, h:mm:ss a')}</span> */}
+			{/* <div className="flex flex-col items-center justify-center">
 				<h1 className="mb-4 text-2xl font-semibold">Timeline of my death</h1>
 				<p>
 					<span>🚀 </span>
-					<span>{moment(time).format('MMMM Do YYYY, h:mm:ss a')}</span>
 				</p>
-			</div>
+			</div> */}
 			<br />
-
+			{/* 
 			<div className="grid grid-flow-row-dense grid-cols-[repeat(52,1fr)] gap-1">
 				{Array.from({ length: totalWeeks }).map((_, i) => {
 					const memory = memories.find(m => m.weekIndex === i);
@@ -132,16 +132,14 @@ export default function Page() {
 						></div>
 					);
 				})}
-			</div>
+			</div> */}
 
 			{/* <p className="my-2 text-zinc-700 dark:text-zinc-100">
 				<br />
 				This is my weeks of life, where green represents weeks that i lived.
 			</p> */}
 
-			<h2 className="text-xl">Weeks lived: {weeksLived}</h2>
-
-			<div className="m-auto my-24 w-[90%] ">
+			<div className="m-auto w-[90%] ">
 				<h2 className="text-3xl font-bold">🫧 Life Journey</h2>
 
 				{dummyValue.map((item, index) => (

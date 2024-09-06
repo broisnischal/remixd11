@@ -7,10 +7,10 @@ import { Button } from '~/components/ui/button';
 export default function Page() {
 	return (
 		<div className="flex flex-col gap-2">
-			<div className="flex items-start gap-4">
+			<div className="flex flex-col items-start gap-4">
 				<img
 					src="https://avatars.githubusercontent.com/u/98168009?v=4"
-					className="w-[200px] rounded-md border bg-transparent shadow-sm saturate-50 hover:saturate-100 "
+					className="w-[100px] rounded-md border bg-transparent shadow-sm saturate-50 hover:saturate-100 "
 					alt=""
 				/>
 				<div className="flex flex-col gap-2">
@@ -29,7 +29,7 @@ export default function Page() {
 			<br />
 			<Link
 				target="_blank"
-				className="self-center"
+				// className="self-center"
 				to={'https://ko-fi.com/nischaldahal'}
 			>
 				<Button variant="outline" size={'lg'} className="flex gap-2">

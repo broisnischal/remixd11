@@ -378,6 +378,13 @@ const Footer = () => {
 						blog RSS
 					</Link>
 					|
+					<Link
+						className="text-sm underline underline-offset-2"
+						to={'https://nischal-dahal.com.np/sitemap.xml'}
+					>
+						sitemap
+					</Link>
+					|
 					<Link className="text-sm underline underline-offset-2" to="/terms">
 						terms & conditions
 					</Link>

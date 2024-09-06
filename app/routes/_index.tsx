@@ -347,15 +347,18 @@ export default function Index() {
 						Hey, I'm Nischal Dahal,
 					</h1>
 					<h3 className="w-full">
-						I'm a full stack engineer with a focus on serverless architectures,
-						android development, user experience, and product development.
+						I'm a full-stack engineer focusing on serverless architectures,
+						android development, user experience, and product development.{' '}
 					</h3>
 					<div className="mt-2 flex flex-row flex-wrap gap-2">
 						<Link
 							target="_blank"
 							to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
 						>
-							<ConnectButton focuscolor="via-blue-400/90">
+							<ConnectButton
+								className="rounded-md"
+								focuscolor="via-blue-400/90"
+							>
 								<div className="flex items-center justify-center gap-2">
 									<LinkedInLogoIcon /> Connect
 								</div>
@@ -363,7 +366,7 @@ export default function Index() {
 						</Link>
 
 						<Link target="_blank" to="https://github.com/broisnischal">
-							<ConnectButton>
+							<ConnectButton className="rounded-md">
 								<div className="flex items-center justify-center gap-2">
 									<GitHubLogoIcon /> Follow
 								</div>
@@ -375,14 +378,17 @@ export default function Index() {
 								'https://github.com/broisnischal/broisnischal/blob/main/resume.pdf'
 							}
 						>
-							<ConnectButton focuscolor="via-yellow-400">
+							<ConnectButton className="rounded-md" focuscolor="via-yellow-400">
 								<div className="flex items-center justify-center gap-2">
 									<HiDocumentText /> MyResume
 								</div>
 							</ConnectButton>
 						</Link>
 						<Link target="_blank" to="https://dly.to/oYeNtLdx9va">
-							<ConnectButton focuscolor="via-blue-400/90">
+							<ConnectButton
+								className="rounded-md"
+								focuscolor="via-blue-400/90"
+							>
 								<div className="flex items-center justify-center gap-2">
 									<FaConnectdevelop />
 									Join

@@ -10,6 +10,7 @@ import {
 	TwitterShareButton,
 	XIcon,
 } from 'react-share';
+import { SiGithubsponsors } from 'react-icons/si';
 
 export default function Component() {
 	const location = useLocation();
@@ -42,14 +43,8 @@ export default function Component() {
 			<br />
 
 			<br />
-			<div className="share flex flex-col items-center justify-center gap-3">
-				<p className="mr-1 text-center font-poppins text-3xl font-bold">
-					Share this article
-				</p>
-				<p className="text-center font-bricolage text-[16px] ">
-					I hope you learned something new, and I wish you
-					<br /> all the best, Happy reading.
-				</p>
+			<div className="share flex flex-col justify-center gap-3">
+				<p className="mr-1 font-bricolage text-2xl font-bold">Share article!</p>
 				<div className="share flex flex-wrap gap-5">
 					<TwitterShareButton
 						url={shareurl}
@@ -83,14 +78,20 @@ export default function Component() {
 				</div>
 			</div>
 			<br />
-			<br />
-			<br />
-			<br />
+			<div>
+				<h4 className="flex flex-wrap gap-2  font-bricolage  text-xl">
+					Did this help? Consider{' '}
+					<Link className="flex items-center gap-2 underline " to={'/sponsor'}>
+						<SiGithubsponsors /> sponsoring{' '}
+					</Link>{' '}
+					me{' '}
+				</h4>
+			</div>
 			<br />
 			<div className=" prose m-auto dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-img:rounded-md ">
-				<div className="flex flex-col items-center justify-center">
+				<div className="flex flex-col  justify-center">
 					<h2 className=" text-2xl font-bold">Thanks for reading!</h2>
-					<p className="text-center font-poppins">
+					<p className=" font-poppins text-[15px]">
 						If you found this useful, check out my{' '}
 						<Link to={'/blog'}>other articles</Link> and my YouTube Channel
 						where I cover a lot of the same topics but in video format. & If you
@@ -100,7 +101,7 @@ export default function Component() {
 					<Link to={'/newsletter'}>
 						<ConnectButton>
 							<div className="flex items-center justify-center gap-2 p-2 text-[14px]">
-								<Mails size={18} /> Subscribe to my newsletter?
+								<Mails size={18} /> Subscribe my newsletter?
 							</div>
 						</ConnectButton>
 					</Link>{' '}

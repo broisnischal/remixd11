@@ -7,12 +7,10 @@ import { TelegramIcon, WhatsappIcon } from 'react-share';
 
 export default function Page() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-2">
-			<h1 className="font-bricolage text-3xl font-bold">Links</h1>
-			<p className="mb-4 text-center">
-				Quicklinks to my social platforms and contacts.
-			</p>
-			<div className=" flex flex-wrap items-center justify-center gap-3 md:justify-center lg:w-[100%]">
+		<div className="flex flex-col  gap-2">
+			<h1 className="font-bricolage text-4xl font-bold">Links</h1>
+			<p className="mb-4 ">Quicklinks to my social platforms and contacts.</p>
+			<div className=" flex flex-wrap gap-3">
 				{socialLinks.map((link, index) => (
 					<Link
 						aria-label={link.name}
@@ -23,12 +21,12 @@ export default function Page() {
 						<div
 							key={index}
 							title={link.name}
-							className="flex aspect-square  w-[100px] flex-col place-items-center items-center justify-center gap-2 rounded-md border bg-[#f2f2f290] dark:bg-[#191919]  "
+							className="flex aspect-square  w-[45px] flex-col place-items-center items-center justify-center gap-2 rounded-md border bg-[#f2f2f290] dark:bg-[#191919]  "
 						>
 							<div className="flex items-center justify-center">
 								{link.icon}
 							</div>
-							<p className="text-center font-bricolage text-sm">{link.name}</p>
+							{/* <p cla	ssName=" font-bricolage text-sm">{link.name}</p> */}
 							{/* <Button variant={'outline'} className="gap-2">
 								<ArrowTopRightIcon />
 								<span>{link.action}</span>
@@ -37,35 +35,27 @@ export default function Page() {
 					</Link>
 				))}
 			</div>
-			<br />
-			<p className="secondary balanced text-center">
-				Reach me directly at{' '}
-				<a
+			<p className="secondary balanced ">
+				{/* Reach me directly at{' '} */}
+				{/* <a
 					className="text-primary underline"
 					href="mailto:info@nischal-dahal.com.np"
 				>
 					info@nischal-dahal.com.np
-				</a>{' '}
-				or{' '}
-				<a
+				</a>{' '} */}
+				{/* <a
 					className="text-primary underline"
-					href="mailto:bro@nischal-dahal.com.np"
-				>
-					bro@nischal-dahal.com.np
-				</a>
-				, check out my{' '}
-				<a
-					className="text-primary underline"
+					target="_blank"
 					href="https://orcid.org/0009-0007-8445-2408/print"
 				>
 					orcid
 				</a>{' '}
-				profile.
+				profile. */}
 			</p>
 			<p className="secondary">
 				Share a interesting project idea? Feel free to reach out!
 			</p>
-			{/* <small className="text-center">
+			{/* <small className="">
 				<br /> Made with{' '}
 				<Link target="_blank" className="underline" to="https://remix.run">
 					Remix
@@ -157,6 +147,33 @@ const socialLinks: {
 		description: 'For help and discussion.',
 		url: 'https://discordapp.com/users/1154300430755573811',
 		icon: <DiscordLogoIcon width={30} height={30} />,
+		action: 'Join',
+	},
+	{
+		name: 'Orchid',
+		description: 'For help and discussion.',
+		url: 'https://orcid.org/0009-0007-8445-2408/print',
+		icon: (
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="25px"
+				height="25px"
+				viewBox="0 0 1024 1024"
+			>
+				<circle
+					cx="512"
+					cy="512"
+					r="512"
+					style={{
+						fill: '#fff',
+					}}
+				/>
+				<path
+					d="M373.7 709.3h-50.4V358.5h50.4v350.8zm74-350.8h136.2c129.7 0 186.7 92.7 186.7 175.5 0 90.1-70.4 175.5-186 175.5H447.7v-351zm50.4 305.6h80.2c114.3 0 140.5-86.8 140.5-130 0-70.4-44.9-130-143.1-130h-77.6v260zM381.6 285.5c0 18-14.7 33.1-33.1 33.1-18.3 0-33.1-15.1-33.1-33.1 0-18.3 14.7-33.1 33.1-33.1 18.3 0 33.1 15.1 33.1 33.1z"
+					// style="fill:#fff"
+				/>
+			</svg>
+		),
 		action: 'Join',
 	},
 	{
@@ -349,9 +366,9 @@ const socialLinks: {
 		action: 'Feed',
 		icon: (
 			<img
-				src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phpNgJfyb.png"
+				src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phpkXK09k.png"
 				alt=""
-				width={70}
+				width={15}
 			/>
 		),
 	},

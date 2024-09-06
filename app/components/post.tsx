@@ -6,9 +6,9 @@ import { Badge } from './ui/badge';
 export const Post = ({ slug, frontmatter }: PostMeta) => {
 	return (
 		<Link prefetch="viewport" to={`/blog/${slug.split('/').pop()}`}>
-			<article className="flex flex-col gap-2 rounded-md ">
+			<article className="flex flex-col gap-1 rounded-md ">
 				{/* bg-[#eee] dark:bg-[#0f0f0f] */}
-				{frontmatter.image && (
+				{/* {frontmatter.image && (
 					<div className="h-[180px] rounded-md border bg-white dark:bg-[#eee]">
 						<img
 							src={frontmatter.image}
@@ -16,18 +16,18 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 							alt=""
 						/>
 					</div>
-				)}
+				)} */}
 				{/* <time
 					className="block text-sm text-gray-600 dark:text-white/60"
 					dateTime={frontmatter.published}
 				>
 					Published {moment(frontmatter.published).format('MMMM Do YYYY')}
 				</time> */}
-				<h3 className="">{frontmatter.title}</h3>
-				<p className="secondary text-sm">
-					{frontmatter.description.slice(0, 100) + '...'}
+				<h3 className="font-bricolage">{frontmatter.title}</h3>
+				<p className="secondary text-sm ">
+					{frontmatter.description.slice(0, 300) + ''}
 				</p>
-				<div className="flex flex-wrap gap-2">
+				<div className="flex flex-wrap gap-1">
 					{frontmatter.tags?.map((item, i) => (
 						<Badge key={i} className="rounded-md" variant={'outline'}>
 							{item}

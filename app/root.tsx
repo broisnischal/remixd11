@@ -225,8 +225,8 @@ export const RouteLink = ({
 			prefetch="intent"
 			className={({ isActive }) =>
 				isActive
-					? 'active font-bricolage font-semibold md:text-[16px]'
-					: 'font-bricolage md:text-[16px]'
+					? 'active font-bricolage md:text-[16px]'
+					: 'font-bricolage  md:text-[16px]'
 			}
 			to={to}
 		>
@@ -246,38 +246,36 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className=" top-0 z-[998] hidden w-full py-10 md:flex">
-				<div className="m-auto flex items-center justify-between overflow-hidden py-1">
-					<div className=" flex gap-4">
-						<div className="flex gap-6">
+			<nav className="mainwidth  top-0 z-[998] m-auto hidden py-12 md:flex">
+				<div className=" flex w-full items-center justify-between overflow-hidden py-1">
+					<div className=" flex w-full items-center justify-between gap-3 ">
+						<div className="flex gap-4 ">
 							<RouteLink to={'/'}>home</RouteLink>
-							<RouteLink to={'/blog'}>contents</RouteLink>
+							<RouteLink to={'/blog'}>blog</RouteLink>
+							<RouteLink to={'/overview'}>more</RouteLink>
 							<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-							<RouteLink to={'/overview'}>overview</RouteLink>
-							<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
-							<RouteLink to={'/hire'}>hireme</RouteLink>
+							<RouteLink to={'/bookmarks'}>bmrks</RouteLink>
+							{/* <RouteLink to={'/hire'}>hireme</RouteLink> */}
 							<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 							<RouteLink to={'/links'}>links</RouteLink>
+							<React.Suspense>
+								<Await resolve={data.user}>
+									{user => (
+										<>
+											{user?.type == 'nees' && (
+												<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
+											)}
+											{user?.id && <Link to="/auth/logout">Logout</Link>}
+										</>
+									)}
+								</Await>
+							</React.Suspense>
 						</div>
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
 						{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
-						{/* <RouteLink to={'/career'}>projects</RouteLink> */}
 						{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
-						<React.Suspense>
-							<Await resolve={data.user}>
-								{user => (
-									<>
-										{user?.type == 'nees' && (
-											<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
-										)}
-										{user?.id && <Link to="/auth/logout">Logout</Link>}
-									</>
-								)}
-							</Await>
-						</React.Suspense>
-					</div>
-					<div className="ml-5 flex flex-col items-center justify-center gap-3 md:flex-row">
+
 						<ModeToggle />
 					</div>
 				</div>
@@ -290,7 +288,7 @@ const NavBar = () => {
 				<div className="flex w-full items-center justify-center">
 					<div className="mt-6 flex flex-row flex-wrap items-center justify-center gap-2 ">
 						<RouteLink to={'/'}>home</RouteLink>
-						<RouteLink to={'/blog'}>contents</RouteLink>
+						<RouteLink to={'/blog'}>blog</RouteLink>
 						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 						<RouteLink to={'/overview'}>overview</RouteLink>
 						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
@@ -324,8 +322,8 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="secondary m-auto my-10 flex min-h-[5vh] w-full max-w-[90%] flex-col items-center justify-center gap-2 text-sm">
-			<div className="flex w-full items-center  justify-evenly">
+		<div className="mainwidth secondary m-auto flex min-h-[5vh]   flex-col justify-center gap-2 pb-32 pt-10 text-sm">
+			{/* <div className="flex w-full items-center  justify-evenly">
 				<h2 className="font-bricolage text-xl font-bold text-primary ">
 					Nischal Dahal
 				</h2>
@@ -336,57 +334,53 @@ const Footer = () => {
 						</div>
 					</ConnectButton>
 				</Link>
-			</div>
+			</div> */}
 			<br />
-			<Hr />
+			{/* <Hr /> */}
 			<br />
 			<br />
-			<div className="top flex flex-col items-center gap-2 md:flex-row">
+			<div className="top flex flex-col  gap-2 md:flex-row">
 				broisnees © {new Date().getFullYear()}
 				{' - '}
-				<div className="flex gap-2">
-					<Link className="text-[1rem] text-primary" to={'/setup'}>
-						setup
-					</Link>
-					|
-					<Link className="text-[1rem] text-primary" to={'/stack'}>
-						stacks
-					</Link>
-					|
-					<Link className="text-[1rem] text-primary" to={'/about'}>
-						about
-					</Link>
-					|
-					<Link className="text-[1rem] text-primary" to={'/links'}>
-						connect
-					</Link>
+				<div className="flex gap-2 text-primary">
+					{/* <Link className="text-[1rem] text-primary" to={'/setup'}> */}
+					<RouteLink to={'/setup'}>setup</RouteLink>
+					{/* </Link> */}|<RouteLink to={'/stack'}>stacks</RouteLink>|
+					<RouteLink to={'/about'}>about</RouteLink>|
+					<RouteLink to={'/links'}>connect</RouteLink>|
+					<RouteLink to={'/timeline'}>timeline</RouteLink>|
+					<RouteLink to={'/sponsor'}>sponsor</RouteLink>
 				</div>
 			</div>
-			<div className="flex w-[90%] flex-wrap justify-center gap-4 ">
-				<Link
-					className="text-sm underline"
-					to="https://codeium.com/profile/broisnischal"
-					target="_blank"
-				>
-					MyCodeium
-				</Link>
-				<Link
-					className="  underline"
-					to="https://dly.to/oYeNtLdx9va"
-					target="_blank"
-				>
-					DailyDev
-				</Link>
-				<Link className=" underline" to="/timeline">
-					Timeline
-				</Link>
-				|
-				<Link
-					className="underline"
-					to={'https://nischal-dahal.com.np/blogs/rss'}
-				>
-					Blog RSS
-				</Link>
+			<div className="flex flex-col">
+				<div className="flex w-[90%] flex-wrap gap-4 ">
+					<Link
+						className="text-sm underline underline-offset-2"
+						to="https://codeium.com/profile/broisnischal"
+						target="_blank"
+					>
+						codeium
+					</Link>
+					|
+					<Link
+						className="text-sm underline underline-offset-2"
+						to="https://dly.to/oYeNtLdx9va"
+						target="_blank"
+					>
+						daily dev
+					</Link>
+					|
+					<Link
+						className="text-sm underline underline-offset-2"
+						to={'https://nischal-dahal.com.np/blogs/rss'}
+					>
+						blog RSS
+					</Link>
+					|
+					<Link className="text-sm underline underline-offset-2" to="/terms">
+						terms & conditions
+					</Link>
+				</div>
 			</div>
 		</div>
 		// <div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">
@@ -472,7 +466,7 @@ const Footer = () => {
 		// 	<small className="text-center">
 		// 		Alternatively press Ctrl/Cmd + K to search.. <br /> Nischal Dahal | Made
 		// 		with{' '}
-		// 		<Link target="_blank" className="underline" to="https://remix.run">
+		// 		<Link target="_blank" className="text-primary text-sm " to="https://remix.run">
 		// 			Remix
 		// 		</Link>{' '}
 		// 		❤️
@@ -506,7 +500,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 		<div className="flex flex-col">
 			<ProgessBar />
 			<NavBar />
-			<div className="mainwidth mx-auto my-[2.5rem] min-h-[45vh]">
+			<div className="mainwidth mx-auto">
 				{/* {isClient ? (
 					<AnimatePresence mode="sync">
 						<motion.div

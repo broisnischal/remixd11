@@ -8,6 +8,7 @@ import { HiDocumentText } from 'react-icons/hi';
 import { getPosts } from '~/.server/posts';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { MetaCreator } from '~/utils/meta';
+import { FaConnectdevelop } from 'react-icons/fa';
 // const slugs = [
 // 	'typescript',
 // 	'javascript',
@@ -330,27 +331,26 @@ export async function loader(args: LoaderFunctionArgs) {
 export default function Index() {
 	const { posts } = useLoaderData<typeof loader>();
 
-	const playlistId = '2A2M2HnXJTbt2V0XJ6BJ0P';
-
 	return (
 		<div className="m-auto w-full">
-			<div className="flex flex-col items-center gap-4 md:flex-row">
+			<br />
+			<div className="flex flex-col items-center md:flex-row">
 				<div>
 					<img
 						src="/qr.png"
-						className="w-[150px] rounded-lg border bg-transparent shadow-sm saturate-0 filter md:w-[150px] xl:w-[160px]"
+						className="hidden w-[150px] rounded-lg border bg-transparent shadow-sm saturate-0 filter md:w-[150px] xl:w-[160px]"
 						alt=""
 					/>
 				</div>
-				<div className="flex flex-col items-center justify-center  gap-2">
+				<div className="flex flex-col gap-2">
 					<h1 className=" text-3xl font-bold dark:text-zinc-100">
-						Hey, I'm Nischal!
+						Hey, I'm Nischal Dahal,
 					</h1>
-					<h3 className="secondary balanced w-full text-center">
+					<h3 className="w-full">
 						I'm a full stack engineer with a focus on serverless architectures,
 						android development, user experience, and product development.
 					</h3>
-					<div className="mt-2 flex flex-row flex-wrap items-center justify-center gap-2">
+					<div className="mt-2 flex flex-row flex-wrap gap-2">
 						<Link
 							target="_blank"
 							to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
@@ -384,11 +384,7 @@ export default function Index() {
 						<Link target="_blank" to="https://dly.to/oYeNtLdx9va">
 							<ConnectButton focuscolor="via-blue-400/90">
 								<div className="flex items-center justify-center gap-2">
-									<img
-										src="https://cdn.prod.website-files.com/5e0a5d9d743608d0f3ea6753/5f1d8b1b9c7814aae6b69044_Daily%20Full%20logo.svg"
-										alt=""
-										width={60}
-									/>
+									<FaConnectdevelop />
 									Join
 								</div>
 							</ConnectButton>
@@ -397,9 +393,7 @@ export default function Index() {
 				</div>
 			</div>
 
-			<br />
-			<br />
-			<div className="flex flex-wrap items-center justify-center gap-4	 ">
+			{/* <div className="flex flex-wrap items-center justify-center gap-4	 ">
 				<iframe
 					title="Spotify Embed: Recommendation Playlist "
 					src={`https://open.spotify.com/embed/playlist/2A2M2HnXJTbt2V0XJ6BJ0P?utm_source=generator&theme=0`}
@@ -427,11 +421,9 @@ export default function Index() {
 					<br />
 					<span>- Don't chase, attract"</span>
 				</div>
-			</div>
-			<br />
-			<br />
-			<div className="flex flex-col items-start gap-4">
-				<h1 className="w-full font-bricolage">Featured Posts</h1>
+			</div> */}
+			{/* <div className="flex flex-col items-start ">
+				<h1 className="w-full font-bricolage text-sm">Featured Posts</h1>
 				<div className="m-auto grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
 					<Suspense fallback={<div>Loading...</div>}>
 						<Await resolve={posts}>
@@ -468,7 +460,7 @@ export default function Index() {
 						</Await>
 					</Suspense>
 				</div>
-			</div>
+			</div> */}
 			<br />
 		</div>
 	);

@@ -265,15 +265,17 @@ export default function NewsLetter() {
 
 	return (
 		<div>
-			<div className="flex flex-col items-center justify-center">
-				<h3 className="mb-4 text-center text-3xl font-bold md:text-5xl">
-					{' '}
-					Subscribe
-				</h3>
+			<div className="flex flex-col ">
+				<h3 className="mb-4  text-3xl font-bold md:text-4xl"> Subscribe</h3>
+				<p className="secondary text-sm">
+					Stay tuned and get notified when I publish something new and
+					unsubscribe at any time.
+				</p>
+				<br />
 
-				<div className="flex flex-col items-start justify-center gap-2">
+				<div className="flex flex-col items-start gap-2">
 					<Form
-						className="flex flex-col  items-start justify-center gap-2 sm:flex-row  "
+						className="flex flex-col  items-start gap-2 sm:flex-row  "
 						method="POST"
 						{...getFormProps(form)}
 					>
@@ -314,12 +316,8 @@ export default function NewsLetter() {
 					verification link!
 				</p>
 				<br />
-				<p className=" balance balanced w-full text-center text-gray-500 dark:text-gray-400">
-					Stay tuned and get notified when I publish something new and
-					unsubscribe at any time.{' '}
-					<Link className="underline underline-offset-2" to="/terms">
-						Terms & Conditions
-					</Link>
+				<p className=" balance balanced w-full  text-gray-500 dark:text-gray-400">
+					{' '}
 				</p>
 				<br />
 

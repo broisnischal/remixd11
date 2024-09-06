@@ -248,14 +248,14 @@ export default function Page() {
 	});
 
 	return (
-		<div className="text-center">
+		<div className="">
 			<h1 className="text-3xl font-bold">Sign My Guestbook</h1>
-			<p className="balanced m-auto mt-2 font-atkinson text-zinc-600 dark:text-zinc-400	">
+			<p className="m-auto mt-2 text-zinc-600 dark:text-zinc-400	">
 				Leave a comment below. It could be anything – appreciation, information,
 				wisdom, anything you can think of can be good or bad.
 			</p>
 			<br />
-			<div className="flex items-center justify-center">
+			<div className="flex items-center">
 				{data?.id ? (
 					<Form method="POST" className="" {...getFormProps(form)}>
 						<HoneypotInputs />

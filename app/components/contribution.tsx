@@ -22,6 +22,7 @@ export const ContributionBox = ({
 
 	return (
 		<div className="">
+			{/* <div className="absolute top-[-15px] text-[10px]">{monthNameShort}</div> */}
 			<div
 				className={cn(
 					' group relative h-[10px] w-[10px] cursor-auto rounded-[2px] outline-offset-[-1px]  [outline:1px_solid_#1b1f230f]  ',
@@ -35,7 +36,7 @@ export const ContributionBox = ({
 			>
 				<div
 					className={twMerge(
-						`absolute left-[50%] top-[-35px] z-10 hidden translate-x-[-50%] cursor-pointer rounded-[3px] bg-secondary px-1 py-1 text-center text-sm group-hover:flex group-hover:items-center group-hover:justify-center ${
+						`absolute left-[50%] top-[-35px] z-10 hidden translate-x-[-50%] cursor-pointer rounded-[3px] px-1 py-0.5 text-center text-[10px] group-hover:flex group-hover:items-center group-hover:justify-center ${
 							count === 0 ? 'min-w-[200px]' : 'min-w-[200px]'
 						}`,
 					)}
@@ -45,7 +46,6 @@ export const ContributionBox = ({
 						: `${count} contributions on ${moment(date).format('MMM Do')}`}
 				</div>
 			</div>
-			<div className="absolute top-[-15px] text-[12px]">{monthNameShort}</div>
 		</div>
 	);
 };

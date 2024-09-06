@@ -105,7 +105,7 @@ export default function Overview() {
 	const { contributions } = useLoaderData<typeof loader>();
 
 	return (
-		<div className="m-auto flex flex-col gap-8 text-center md:max-w-[70vw]">
+		<div className="m-auto flex flex-col gap-8  md:max-w-[70vw]">
 			<div>
 				<h1 className="mb-5 font-bricolage text-3xl font-bold">Projects</h1>
 				<div className="flex items-start gap-10 text-start">
@@ -130,7 +130,7 @@ export default function Overview() {
 				</h1>
 				{/* grid w-full grid-cols-1 gap-3  sm:[grid-template-columns:repeat(auto-fill,minmax(200px,1fr))] xl:[grid-template-columns:repeat(3,minmax(0,1fr))] */}
 
-				<div className="&>*:w-full balanced m-auto flex flex-wrap items-center justify-center gap-2">
+				<div className="&>*:w-full m-auto flex flex-wrap gap-2">
 					{configData.map(config => {
 						return (
 							<MyConfig
@@ -146,35 +146,30 @@ export default function Overview() {
 				</div>
 			</div>
 			<br />
-			<div className="flex flex-col items-center justify-center">
-				<h1 className="mb-5 font-bricolage text-3xl font-bold">Sponsors</h1>
+			<div className="flex flex-col gap-3">
+				<h1 className="mb-5 font-bricolage text-4xl font-bold">Sponsors</h1>
 
 				<AvatarCircles numPeople={11} avatarUrls={avatarUrls} />
 
 				<small className="flex gap-2">
 					Dummy, and Comming Soon.
-					<Link
-						className="underline"
-						to="https://github.com/sponsors/broisnischal"
-					>
+					<Link className="underline" to="/sponsor">
 						Sponsor
 					</Link>
 				</small>
 			</div>
 			<br />
 
-			<div className=" github  hidden w-full flex-col items-center justify-center overflow-hidden lg:flex lg:w-full">
+			<div className=" github  hidden w-full flex-col  lg:flex lg:w-full">
 				<h1 className="mb-2 font-bricolage text-3xl font-bold">
 					Contributions
 				</h1>
 				<div className="flex w-fit flex-col">
-					<br />
-					<br />
 					<div className="relative grid grid-flow-col grid-rows-[repeat(7,1fr)] place-content-center gap-[3px] place-self-center p-2">
 						{contributions.map((item, index) => (
 							<ContributionBox
 								item={item}
-								className="aspect-square xl:h-[13px] xl:w-[13px]"
+								className="aspect-square xl:h-[9px] xl:w-[9px]"
 								key={index}
 							/>
 						))}

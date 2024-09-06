@@ -89,14 +89,14 @@ export default function Page() {
 	const actionData = useActionData<typeof action>();
 
 	return (
-		<div className="flex flex-col items-center justify-center">
-			<h1 className="text-3xl font-bold">Bookmarks</h1>
+		<div className="flex flex-col  ">
+			<h1 className="text-4xl font-bold">Bookmarks</h1>
 			<h2 className="">
 				Links to content I liked, sometimes with my commentary.
 				<br />
-				{/* <a className="text-sm underline" href="">
+				<a className="text-sm underline" href="">
 					Subscribe with RSS.
-				</a> */}
+				</a>
 			</h2>
 			{/* <br /> */}
 			{/* <Hr /> */}
@@ -118,19 +118,16 @@ export default function Page() {
 			<div className="mt-10 flex w-full flex-col gap-3 *:border-zinc-200/5 ">
 				{data.map(data => {
 					return (
-						<div key={data.id} className="flex items-center gap-2 ">
+						<div key={data.id} className="flex  gap-2 ">
 							<a
 								href={data.href}
 								target="_blank"
-								className="text-start"
+								className="flex flex-col text-start "
 								rel="noreferrer"
 							>
-								<span className="text-start font-nunito hover:underline">
-									{data.title}
-								</span>{' '}
-								|{' '}
+								<span className="text-start font-avenir ">{data.title}</span>{' '}
 								{data.description && (
-									<small className="font-sans balanced font-normal text-zinc-600 dark:text-zinc-400">
+									<small className="font-sans font-normal text-zinc-600 dark:text-zinc-400">
 										{data.description}
 									</small>
 								)}

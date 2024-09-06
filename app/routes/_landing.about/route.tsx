@@ -288,7 +288,7 @@ export function Highlight({
 	return (
 		<span
 			className={twMerge(
-				'font-inconsolata w-fit rounded-md border-[1px] border-zinc-300 bg-zinc-200/40 px-2 text-sm dark:border-zinc-500 dark:bg-zinc-200/10',
+				'font-inconsolata w-fit rounded-md border-[1px] border-zinc-300 bg-zinc-200/40 px-2 text-sm text-sm dark:border-zinc-500 dark:bg-zinc-200/10',
 				className,
 			)}
 		>
@@ -311,24 +311,22 @@ export function MySetup() {
 			</p>
 
 			<br />
-			<Hr />
-			<br />
 
 			<div className="flex flex-col gap-10">
 				<div className="item flex flex-col gap-3">
-					<h2 className="font-atkinson text-xl font-bold">Development</h2>
+					<h2 className="font-atkinson text-xl">Development</h2>
 					<ul className="flex flex-col gap-3">
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							ESP32 : <Highlight>ESP32-C3 DevKitC V2 | NodeMCU</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							RaspberryPi : <Highlight> Raspberry Pi Pico</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Arduino : <Highlight>Arduino Uno</Highlight>
 						</li>
 
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Development Kit : <Highlight>NXP LPC55S28</Highlight>
 						</li>
 					</ul>
@@ -336,10 +334,10 @@ export function MySetup() {
 				<div className="item flex flex-col gap-3">
 					<h2 className="font-atkinson text-xl font-bold">Parts</h2>
 					<ul className="flex flex-col gap-3">
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							SSD : <Highlight>Samsung 980 PRO SSD 2TB</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							FAN : <Highlight>Arctic Liquid Freezer II 360</Highlight>
 						</li>
 					</ul>
@@ -347,22 +345,22 @@ export function MySetup() {
 				<div className="item flex flex-col gap-3">
 					<h2 className="font-atkinson text-xl font-bold">Periphery</h2>
 					<ul className="flex flex-col gap-3">
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Earbud : <Highlight>Nothing Ear 2</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Keyboard : <Highlight>Reddragon K810</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Microphone : <Highlight>N/A</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Mouse : <Highlight>Razer Mouse Basilisk V3 Pro</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Chair : <Highlight>Noblechair Hero Black</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Webcam : <Highlight> Logitech C922 Pro</Highlight>
 						</li>
 					</ul>
@@ -370,13 +368,13 @@ export function MySetup() {
 				<div className="item flex flex-col gap-3">
 					<h2 className="font-atkinson text-xl font-bold">Portable</h2>
 					<ul className="flex flex-col gap-3">
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Laptop : <Highlight>Macbook Pro M3 18GB 14" 512GB</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Phone : <Highlight>Nothing Phone 1 256GB/8GB</Highlight>
 						</li>
-						<li className="flex items-center gap-3 font-semibold">
+						<li className="flex items-center gap-3">
 							Watch : <Highlight>Watch Pro 2</Highlight>
 						</li>
 					</ul>

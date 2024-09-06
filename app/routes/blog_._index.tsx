@@ -176,11 +176,11 @@ export default function Component() {
 				method="GET"
 				onChange={event => {
 					submit(event.currentTarget, {
-						replace: true,
+						// replace: true,
 						unstable_flushSync: true,
 						unstable_viewTransition: true,
 						preventScrollReset: true,
-						navigate: true,
+						// navigate: true,
 					});
 
 					setAllPosts(posts);
@@ -200,9 +200,9 @@ export default function Component() {
 					defaultValue={search || ''}
 					className="w-min min-w-[300px] rounded-md border px-2 py-1 placeholder:text-sm"
 				/> */}
-				<div className="flex min-h-[20vh] flex-col items-center justify-center">
-					<div className="flex h-full w-full min-w-[300px] items-center gap-3 rounded-full border px-6 py-3 md:min-w-[400px] lg:max-w-[500px]">
-						<SearchIcon />
+				<div className="flex flex-col">
+					<div className="roundsm flex h-full w-full items-center gap-3 rounded-sm border px-3 py-2 lg:max-w-full">
+						<SearchIcon size={16} />
 						<input
 							id="search"
 							name="q"
@@ -228,7 +228,8 @@ export default function Component() {
 					)} */}
 				</div>
 			</Form>
-			<div className="tags m-auto flex max-w-[95%] flex-wrap items-center justify-center gap-2 md:max-w-[90%]">
+			<br />
+			<div className="tags m-auto flex flex-wrap gap-2">
 				{/* <input className="border" type="text" /> */}
 				{activeTag &&
 					(activeTag.length <= 0 ? (
@@ -283,14 +284,15 @@ export default function Component() {
 			</div>
 			<br />
 			<br />
-			<div className="grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-2">
+			<div className="flex flex-wrap gap-8">
 				{allposts.length <= 0 ? (
 					<>No posts found</>
 				) : (
 					allposts.map((post, i) => (
 						<div
 							key={i}
-							className="rounded-lg  border  bg-zinc-50 p-2 transition duration-300 hover:scale-105 dark:bg-transparent"
+							className=""
+							// rounded-lg  border  bg-zinc-50 p-2 dark:bg-transparent
 						>
 							<Post key={post.slug} {...post} />
 						</div>

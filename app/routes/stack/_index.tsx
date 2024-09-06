@@ -4,9 +4,7 @@ import { KBD } from '~/components/KBD';
 export default function Page() {
 	return (
 		<div className="flex flex-col gap-4">
-			<h1 className="text-center font-bricolage text-3xl font-bold">
-				Lovely Stack
-			</h1>
+			<h1 className="font-bricolage text-3xl font-bold">Lovely Stack</h1>
 
 			<p className="secondary font-avenir">
 				Just listing the stack that is close to me. Do not look for any deep
@@ -19,7 +17,7 @@ export default function Page() {
 					key={category.category}
 					className="flex flex-col items-start gap-4  md:flex-row"
 				>
-					<h2 className="">{category.category}</h2>
+					<h2 className="text-secondary-foreground">{category.category} :</h2>
 					{/* <KBD>{category.category}</KBD> */}
 					<ul className="flex flex-wrap gap-3">
 						{category.items.map(item => (
@@ -29,9 +27,7 @@ export default function Page() {
 								rel="noopener noreferrer"
 								target="_blank"
 							>
-								<KBD className="">
-									<li key={item.link}>{item.name}</li>
-								</KBD>
+								<li key={item.link}>{item.name}</li>
 							</Link>
 						))}
 					</ul>
@@ -174,15 +170,11 @@ let data = [
 		],
 	},
 	{
-		category: 'Monitoring',
+		category: 'Monitor',
 		items: [
 			{
 				name: 'uptime-kuma',
 				link: 'https://github.com/louislam/uptime-kuma',
-			},
-			{
-				name: 'oncall',
-				link: 'https://oncall.tools/',
 			},
 			{
 				name: 'loki',

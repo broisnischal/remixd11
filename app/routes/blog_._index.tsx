@@ -201,7 +201,7 @@ export default function Component() {
 					className="w-min min-w-[300px] rounded-md border px-2 py-1 placeholder:text-sm"
 				/> */}
 				<div className="flex flex-col">
-					<div className="roundsm flex h-full w-full items-center gap-3 rounded-sm border px-3 py-2 lg:max-w-full">
+					<div className=" flex h-full w-full items-center gap-3 rounded-full border px-5 py-2 lg:max-w-full">
 						<SearchIcon size={16} />
 						<input
 							id="search"
@@ -284,7 +284,7 @@ export default function Component() {
 			</div>
 			<br />
 			<br />
-			<div className="flex flex-wrap gap-8">
+			<div className="flex flex-wrap gap-12">
 				{allposts.length <= 0 ? (
 					<>No posts found</>
 				) : (

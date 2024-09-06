@@ -35,9 +35,7 @@ declare global {
 export default function Page() {
 	return (
 		<div className="flex flex-col gap-8">
-			<h1 className="text-center font-bricolage text-4xl font-bold">
-				Am i human? 💩
-			</h1>
+			<h1 className=" font-bricolage text-4xl font-bold">Am i human? 💩</h1>
 			{/* <Hr /> */}
 			<div className="flex flex-col gap-8 md:flex-row">
 				<div className="hidden  ">
@@ -52,12 +50,11 @@ export default function Page() {
 				</div>
 				<div>
 					<p className="text-[18px] first-letter:text-3xl">
-						Hello, my name is{' '}
-						<Highlight className="text-xl">Nischal Dahal</Highlight> . I was
-						born on March 17, 2006. I am a versatile software engineer with
-						expertise in full stack development and experience leading teams. My
-						passions include programming, cutting-edge gadgets, and adventuring
-						adventures.
+						Hello, my name is <Highlight className="">Nischal Dahal</Highlight>{' '}
+						. I was born on March 17, 2006. I am a versatile software engineer
+						with expertise in full stack development and experience leading
+						teams. My passions include programming, cutting-edge gadgets, and
+						adventuring adventures.
 					</p>
 					<br />
 					<p className=" text-[18px]">

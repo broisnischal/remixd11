@@ -8,10 +8,7 @@ interface Props {
 export default function Hr({ className }: Props) {
 	return (
 		<div
-			className={cn(
-				'my-4ß h-px w-full bg-black/20 dark:bg-white/10',
-				className,
-			)}
+			className={cn('my-4 h-px w-full bg-black/20 dark:bg-white/10', className)}
 		/>
 	);
 }

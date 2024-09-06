@@ -338,7 +338,12 @@ const Footer = () => {
 			<br />
 			{/* <Hr /> */}
 			<br />
-			<br />
+
+			<div>
+				<a href="mailto:ping@nischal.pro">
+					<p className="font-bricolage text-primary">ping@nischal.pro</p>
+				</a>
+			</div>
 			<div className="top flex flex-col gap-2 md:flex-row">
 				broisnees © {new Date().getFullYear()}
 				{' - '}
@@ -389,11 +394,6 @@ const Footer = () => {
 						terms & conditions
 					</Link>
 				</div>
-			</div>
-			<div>
-				<a href="mailto:ping@nischal.pro">
-					<p className="font-bricolage text-primary">ping@nischal.pro</p>
-				</a>
 			</div>
 		</div>
 		// <div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">

@@ -36,9 +36,9 @@ export default function Page() {
 	const isPending = useIsPending();
 
 	return (
-		<div className="flex flex-col items-center justify-center gap-4">
+		<div className="flex flex-col   gap-4">
 			<h1 className="text-3xl font-bold">🤝 Let's work together</h1>
-			<p className="secondary text-center md:max-w-2xl">
+			<p className="secondary  md:max-w-2xl">
 				Passionate software engineer and full stack developer with expertise in
 				backend development and DevOps. Skilled in a wide array of technologies,
 				frameworks, databases, and tools. Experienced content creator and
@@ -51,24 +51,25 @@ export default function Page() {
 				to={'https://github.com/broisnischal/broisnischal/blob/main/resume.pdf'}
 			>
 				<ConnectButton>
-					<div className="flex items-center justify-center gap-2">
+					<div className="flex items-center  gap-2">
 						<HiDocumentText /> View My Resume
 					</div>
 				</ConnectButton>
 			</Link>
-			<br />
-			<DevStack />
-			<br />
-			<h2 className="text-center font-bricolage text-2xl font-bold tracking-wide underline">
+			{/* <br />
+			<h2 className=" font-bricolage text-2xl font-bold tracking-wide underline">
 				Featuring
 			</h2>
-			<ul className="secondary text-center">
+			<ul className="secondary ">
 				<li>Full stack development</li>
 				<li> Product Designer, and Graphic designing skills </li>
 				<li> Keen to Learn, other things like DevOps and AI </li>
 				<li> 🏡 Fully remote </li>
 				<li>🏖️ Unlimited paid time off</li>
-			</ul>
+			</ul> */}
+			<br />
+			<DevStack />
+
 			{/* <SoftwareTools /> */}
 			{/* <br /> */}
 			{/* <div className="div flex w-full flex-col">

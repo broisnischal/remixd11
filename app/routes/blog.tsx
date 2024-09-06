@@ -30,7 +30,7 @@ export default function Component() {
 			</Link> */}
 
 			<div
-				className="prose-code:font-inconsolata prose-h5:text-md prose prose-zinc max-w-none dark:prose-invert lg:prose-xl prose-h1:text-4xl prose-h2:text-5xl prose-h3:text-xl prose-h4:text-lg prose-h6:text-sm prose-p:font-atkinson prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold prose-code:rounded-md  prose-table:overflow-x-auto prose-img:rounded-md"
+				className="prose-code:font-inconsolata prose-h5:text-md prose prose-zinc max-w-none dark:prose-invert lg:prose-xl prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-xl prose-h4:text-lg prose-h6:text-sm prose-p:font-atkinson prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold prose-code:rounded-md  prose-table:overflow-x-auto prose-img:rounded-md"
 				// 	className=" prose-code:font-inconsolata prose:w-[100%] prose prose-zinc dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold  prose-code:rounded-md prose-code:text-sm prose-table:overflow-x-auto
 				// prose-img:rounded-md"
 			>

@@ -1,5 +1,6 @@
 import { Link } from '@remix-run/react';
 import { KBD } from '~/components/KBD';
+import { Highlight } from '../_landing.about/route';
 
 export default function Page() {
 	return (
@@ -27,7 +28,10 @@ export default function Page() {
 								rel="noopener noreferrer"
 								target="_blank"
 							>
-								<li key={item.link}>{item.name}</li>
+								{/* <li className="underline hover:text-primary" key={item.link}> */}
+								<Highlight className="font-bricolage">{item.name}</Highlight>
+
+								{/* </li> */}
 							</Link>
 						))}
 					</ul>
@@ -172,14 +176,6 @@ let data = [
 	{
 		category: 'Monitor',
 		items: [
-			{
-				name: 'uptime-kuma',
-				link: 'https://github.com/louislam/uptime-kuma',
-			},
-			{
-				name: 'loki',
-				link: 'https://grafana.com/oss/loki/',
-			},
 			{
 				name: 'prometheus',
 				link: 'https://prometheus.io/',

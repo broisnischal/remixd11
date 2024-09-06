@@ -2,10 +2,10 @@ import { Badge } from './ui/badge';
 
 export default function DevStack() {
 	return (
-		<div className="hidden flex-col items-center justify-center dark:flex">
+		<div className="hidden flex-col  dark:flex">
 			<h1 className="mb-4  text-2xl font-bold">Favourite Dev Stack</h1>
 
-			<div className="flex flex-wrap items-center justify-center gap-2 md:max-w-[70%]">
+			<div className="flex flex-wrap  gap-2 ">
 				{[
 					{
 						name: 'Remix',
@@ -532,11 +532,7 @@ export default function DevStack() {
 						),
 					},
 				].map((item, index) => (
-					<Badge
-						variant={'outline'}
-						className="flex items-center justify-center gap-2"
-						key={index}
-					>
+					<Badge variant={'outline'} className="flex  gap-2" key={index}>
 						<div className="hidden dark:block">{item.svg}</div>
 						{item.name}
 					</Badge>

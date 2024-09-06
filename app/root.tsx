@@ -349,7 +349,8 @@ const Footer = () => {
 					<RouteLink to={'/about'}>about</RouteLink>|
 					<RouteLink to={'/links'}>connect</RouteLink>|
 					<RouteLink to={'/timeline'}>timeline</RouteLink>|
-					<RouteLink to={'/sponsor'}>sponsor</RouteLink>
+					<RouteLink to={'/sponsor'}>sponsor</RouteLink>|
+					<RouteLink to={'/hire'}>hire</RouteLink>
 				</div>
 			</div>
 			<div className="flex flex-col">

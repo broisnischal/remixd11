@@ -280,13 +280,13 @@ const NavBar = () => {
 					</div>
 				</div>
 			</nav>
-			<nav className=" m-auto  mt-8  w-[90%] items-center justify-center gap-3 md:hidden">
+			<nav className=" m-auto  mt-8 w-[90%] items-center gap-3 md:hidden">
 				<div className="fixed right-[24px] top-[24px] z-[999]">
 					<ModeToggle />
 					<Search />
 				</div>
-				<div className="flex w-full items-center justify-center">
-					<div className="mt-6 flex flex-row flex-wrap items-center justify-center gap-2 ">
+				<div className="flex w-full items-center">
+					<div className="mt-6 flex flex-row flex-wrap items-center gap-2 ">
 						<RouteLink to={'/'}>home</RouteLink>
 						<RouteLink to={'/blog'}>blog</RouteLink>
 						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
@@ -315,6 +315,7 @@ const NavBar = () => {
 						</React.Suspense>
 					</div>
 				</div>
+				<br />
 			</nav>
 		</>
 	);
@@ -347,7 +348,7 @@ const Footer = () => {
 			<div className="top flex flex-col gap-2 md:flex-row">
 				broisnees © {new Date().getFullYear()}
 				{' - '}
-				<div className="flex gap-2 text-primary">
+				<div className="flex flex-wrap gap-2 text-primary">
 					{/* <Link className="text-[1rem] text-primary" to={'/setup'}> */}
 					<RouteLink to={'/setup'}>setup</RouteLink>
 					{/* </Link> */}|<RouteLink to={'/stack'}>stacks</RouteLink>|

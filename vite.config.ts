@@ -13,7 +13,7 @@ import { flatRoutes } from 'remix-flat-routes';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+// import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { getLoadContext } from './load-context';
 
 import rehypeExpressiveCode from 'rehype-expressive-code';
@@ -66,7 +66,6 @@ export default defineConfig({
 				// rehypeAutolinkHeadings,
 				rehypeSlug,
 				rehypeMeta,
-				rehypeAutolinkHeadings,
 				// [rehypeToc, options],
 				// [rehypePrism, { autolinker: true }],
 				// [remarkToc, { ordered: true, tight: false }],
@@ -93,21 +92,21 @@ export default defineConfig({
 		}),
 		tsconfigPaths(),
 	],
-	// build: {
-	// 	rollupOptions: {
-	// 		output: {
-	// 			manualChunks(id) {
-	// 				if (id.includes('node_modules')) {
-	// 					return 'vendor';
-	// 				}
-	// 			},
-	// 		},
-	// 	},
-	// 	minify: 'esbuild',
-	// 	cssMinify: true,
-	// 	ssr: true,
-	// 	chunkSizeWarningLimit: 600, // Adjust chunk size warning limit as needed
-	// },
+	build: {
+		rollupOptions: {
+			output: {
+				manualChunks(id) {
+					if (id.includes('node_modules')) {
+						return 'vendor';
+					}
+				},
+			},
+		},
+		minify: 'esbuild',
+		cssMinify: true,
+		ssr: true,
+		chunkSizeWarningLimit: 600, // Adjust chunk size warning limit as needed
+	},
 });
 
 // import mdx from '@mdx-js/rollup';

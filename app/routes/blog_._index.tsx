@@ -291,7 +291,7 @@ export default function Component() {
 					allposts.map((post, i) => (
 						<div
 							key={i}
-							className=""
+							className="min-w-full"
 							// rounded-lg  border  bg-zinc-50 p-2 dark:bg-transparent
 						>
 							<Post key={post.slug} {...post} />

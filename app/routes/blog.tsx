@@ -88,7 +88,7 @@ export default function Component() {
 				</h4>
 			</div>
 			<br />
-			<div className=" prose m-auto dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-img:rounded-md ">
+			<div className=" prose dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-img:rounded-md ">
 				<div className="flex flex-col  justify-center">
 					<h2 className=" text-2xl font-bold">Thanks for reading!</h2>
 					<p className=" font-poppins text-[15px]">

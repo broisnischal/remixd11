@@ -85,7 +85,7 @@ export default defineConfig({
 				// unstable_lazyRouteDiscovery: true,
 				// unstable_singleFetch: true,
 			},
-			// ssr: true,
+			ssr: true,
 			routes(defineRoutes) {
 				return flatRoutes('routes', defineRoutes);
 			},

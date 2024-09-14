@@ -100,6 +100,9 @@ export default defineConfig({
 						return 'vendor';
 					}
 				},
+				minifyInternalExports: true,
+				compact: true,
+				// experimentalMinChunkSize: 5000000,
 			},
 		},
 		minify: 'esbuild',

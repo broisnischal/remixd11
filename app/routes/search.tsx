@@ -213,11 +213,11 @@ export function Search() {
 							{search.data.length <= 0 ? (
 								ref.current?.value === '' ||
 								ref.current?.value.trim() === '' ? (
-									<div className="m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
-										Search blogs
+									<div className="secondary m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
+										Search blogs...
 									</div>
 								) : (
-									<div className="m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
+									<div className="secondary m-auto flex h-full min-h-[20vh] w-full items-center justify-center">
 										No results found.
 									</div>
 								)

@@ -399,6 +399,7 @@ const Footer = () => {
 					</Link>
 				</div>
 			</div>
+			<small>Alternatively press Cmd + K to search...</small>
 		</div>
 		// <div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">
 		// 	<div className="flex flex-col ">

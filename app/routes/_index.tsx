@@ -354,7 +354,7 @@ export default function Index() {
 							brief intro?
 						</Link>
 					</h3>
-					<div className="mt-2 flex flex-row flex-wrap gap-2">
+					<div className="mt-4 flex flex-row flex-wrap gap-2">
 						<Link
 							target="_blank"
 							to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"

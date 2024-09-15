@@ -35,7 +35,7 @@ export default function Talks() {
 									src="https://github.com/broisnischal/bucket/blob/main/Screenshot%202024-09-15%20at%2019.50.56.png?raw=true"
 									alt=""
 								/>
-								<div className="flex flex-row justify-between">
+								<div className="flex flex-col justify-between md:flex-row">
 									<p className="secondary text-sm">
 										AITC International, Sept 2024
 									</p>

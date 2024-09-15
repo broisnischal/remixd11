@@ -9,6 +9,7 @@ import { getPosts } from '~/.server/posts';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { MetaCreator } from '~/utils/meta';
 import { FaConnectdevelop } from 'react-icons/fa';
+
 // const slugs = [
 // 	'typescript',
 // 	'javascript',
@@ -349,6 +350,9 @@ export default function Index() {
 					<h3 className="w-full">
 						I'm a full-stack engineer focusing on serverless architectures,
 						android development, user experience, and product development.{' '}
+						<Link to={'/about'} className="underline underline-offset-2">
+							brief intro?
+						</Link>
 					</h3>
 					<div className="mt-2 flex flex-row flex-wrap gap-2">
 						<Link
@@ -398,6 +402,33 @@ export default function Index() {
 					</div>
 				</div>
 			</div>
+
+			<div className="my-10 flex flex-col gap-3">
+				<h3 className="font-bold">
+					Learn <span className="text-purple-500">together</span>, Grow
+					<span className="text-purple-500"> together</span>!
+				</h3>
+
+				<p>
+					Join our <b>discord</b> server to learn together, grow together and
+					help each other out!
+				</p>
+				<p>
+					I upload content and shorts, sharing tech knowledge, tips and tricks,
+					product reviews and more!
+				</p>
+			</div>
+
+			{/* <div className="my-10 flex flex-col ">
+				<h2 className="text-3xl font-bold">Learn together, Grow Together</h2>
+			</div> */}
+
+			{/* <h2 className="text-left text-gray-500 xl:text-xl">
+				I value the chance to demonstrate initiative and influence the outcome
+				of projects. I am enthusiastic about attending meetups, contributing to
+				open-source projects, and actively participating in the Flutter
+				community, web community and more.
+			</h2> */}
 
 			{/* <div className="flex flex-wrap items-center justify-center gap-4	 ">
 				<iframe

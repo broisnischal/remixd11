@@ -290,11 +290,12 @@ const NavBar = () => {
 					<div className="mt-6 flex flex-row flex-wrap items-center gap-2 ">
 						<RouteLink to={'/'}>home</RouteLink>
 						<RouteLink to={'/blog'}>blog</RouteLink>
+						<RouteLink to={'/main'}>overview</RouteLink>
 						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-						<RouteLink to={'/overview'}>overview</RouteLink>
-						<RouteLink to={'/bookmarks'}>bookmarks</RouteLink>
-						<RouteLink to={'/hire'}>hireme</RouteLink>
+						<RouteLink to={'/bookmarks'}>bmrks</RouteLink>
+						{/* <RouteLink to={'/hire'}>hire</RouteLink> */}
 						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+						<RouteLink to={'/talks'}>talks</RouteLink>
 						<RouteLink to={'/links'}>links</RouteLink>
 
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
@@ -324,7 +325,7 @@ const NavBar = () => {
 
 const Footer = () => {
 	return (
-		<div className="mainwidth secondary m-auto flex min-h-[5vh]   flex-col justify-center gap-2 pb-32 pt-10 text-sm">
+		<div className="mainwidth secondary m-auto flex min-h-[5vh] flex-col justify-center gap-2 pb-32 pt-10 text-sm">
 			{/* <div className="flex w-full items-center  justify-evenly">
 				<h2 className="font-bricolage text-xl font-bold text-primary ">
 					Nischal Dahal
@@ -343,25 +344,26 @@ const Footer = () => {
 
 			<div>
 				<a href="mailto:ping@nischal.pro">
-					<p className="font-bricolage text-primary">ping@nischal.pro</p>
+					<p className="font-bricolage text-xl text-primary">
+						ping@nischal.pro
+					</p>
 				</a>
 			</div>
-			<div className="top flex flex-col gap-2 md:flex-row">
-				broisnees © {new Date().getFullYear()}
-				{' - '}
+			<div className="top flex flex-col gap-2 md:flex-row ">
+				broisnees © {new Date().getFullYear()} | Links :
 				<div className="flex flex-wrap gap-2 text-primary">
-					{/* <Link className="text-[1rem] text-primary" to={'/setup'}> */}
-					<RouteLink to={'/setup'}>setup</RouteLink>
-					{/* </Link> */}|<RouteLink to={'/stack'}>stacks</RouteLink>|
 					<RouteLink to={'/about'}>about</RouteLink>|
 					<RouteLink to={'/links'}>connect</RouteLink>|
+					<RouteLink to={'/setup'}>setup</RouteLink>|
+					<RouteLink to={'/stack'}>stacks</RouteLink>|
+					<RouteLink to={'/hire'}>hire</RouteLink>|
 					<RouteLink to={'/timeline'}>timeline</RouteLink>|
-					<RouteLink to={'/sponsor'}>sponsor</RouteLink>|
-					<RouteLink to={'/hire'}>hire</RouteLink>
+					<RouteLink to={'/sponsor'}>sponsor</RouteLink>
 				</div>
 			</div>
 			<div className="flex flex-col">
-				<div className="flex w-[90%] flex-wrap gap-4 ">
+				<h3 className="md:hidden">Other links</h3>
+				<div className="flex w-[90%] flex-wrap gap-2 ">
 					<Link
 						className="text-sm underline underline-offset-2"
 						to="https://codeium.com/profile/broisnischal"

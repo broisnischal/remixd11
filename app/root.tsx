@@ -257,6 +257,7 @@ const NavBar = () => {
 							<RouteLink to={'/bookmarks'}>bmrks</RouteLink>
 							{/* <RouteLink to={'/hire'}>hireme</RouteLink> */}
 							<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+							<RouteLink to={'/talks'}>talks</RouteLink>
 							<RouteLink to={'/links'}>links</RouteLink>
 							<React.Suspense>
 								<Await resolve={data.user}>

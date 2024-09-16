@@ -404,6 +404,9 @@ export default function Index() {
 			</div>
 
 			<div className="my-10 flex flex-col gap-3">
+				<p>
+					Currently <b>focused</b> on : <b>rust | go | zig | typescript</b>
+				</p>
 				<h3 className="font-bold">
 					Learn <span className="text-purple-500">together</span>, Grow
 					<span className="text-purple-500"> together</span>!

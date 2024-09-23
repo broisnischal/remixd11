@@ -615,6 +615,11 @@ export function App() {
 				<meta name="pagename" content="Nischal Dahal" />
 				<meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 				<meta name="mobile-web-app-capable" content="yes" />
+				<script
+					async
+					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6430477215422762"
+					crossOrigin="anonymous"
+				></script>
 				<link
 					href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible:regular,italic,700,700italic"
 					rel="stylesheet"

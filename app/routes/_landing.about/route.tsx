@@ -49,7 +49,7 @@ export default function Page() {
 					</a>
 				</div>
 				<div>
-					<p className="text-[18px] first-letter:text-3xl">
+					<p className="text-[18px]">
 						Hello, my name is <Highlight className="">Nischal Dahal</Highlight>{' '}
 						. I was born on March 17, 2006. I am a versatile software engineer
 						with expertise in full stack development and experience leading
@@ -142,9 +142,7 @@ export default function Page() {
 			</div>
 			<br />
 			<div className="div flex flex-col gap-3">
-				<h1 className="mb-2 font-bricolage text-3xl font-bold">
-					💼 Experiences
-				</h1>
+				<h1 className=" font-bricolage text-3xl font-bold">💼 Experiences</h1>
 				<Hr />
 				<div className="experiences flex flex-col gap-14">
 					{experiences.map((experience, i) => (
@@ -161,8 +159,7 @@ export default function Page() {
 			<br />
 			<div className="div flex flex-col gap-3">
 				<h1 className="mb-2 font-bricolage text-3xl font-bold">💬 Languages</h1>
-				<Hr />
-				<ul className="flex flex-col gap-3">
+				<ul className="flex flex-col gap-1">
 					<li className="flex items-center gap-3">
 						<Highlight>Nepali</Highlight> ( Native )
 					</li>
@@ -204,16 +201,23 @@ const experiences: Experience[] = [
 		headline: 'June 2022 - Present . Onsite',
 		items: [
 			{
-				title: 'Flutter Lead Software Engineer',
-				desc: 'Developed a cross platform flutter application.',
-				languages: ['Flutter', 'Dart', 'TypeScript', 'Kotlin'],
+				title: 'Full stack Developer | Software Engineer',
+				desc: '',
+				languages: [
+					'Flutter',
+					'Rust',
+					'Python',
+					'Dart',
+					'TypeScript',
+					'Kotlin',
+				],
 			},
 		],
 	},
 	{
 		company: 'Routine of Nepal Technology',
-		// image:
-		// 	'https://rest.techbehemoths.com/storage/images/users/main/company-avatar-664d7a2f302be-x2.png',
+		image:
+			'https://digitalgandaki.com/wp-content/uploads/2022/12/FB_IMG_1672128647897.jpg',
 		headline: 'July 2021 - May 2022 . Remote',
 		items: [
 			{
@@ -249,11 +253,13 @@ function Experience(val: Experience) {
 	return (
 		<div className="flex items-start gap-4 ">
 			{val.image && (
-				<img
-					className="aspect-square w-[50px] rounded-lg"
-					src={val.image}
-					alt=""
-				/>
+				<div className="flex aspect-square w-[70px] items-center justify-center rounded-lg border-2 bg-white p-1">
+					<img
+						className="w-[50px] object-cover object-center"
+						src={val.image}
+						alt=""
+					/>
+				</div>
 			)}
 			<div className="flex flex-col gap-1">
 				<h1 className="text-2xl font-bold">{val.company}</h1>
@@ -263,7 +269,7 @@ function Experience(val: Experience) {
 					<div key={i} className="items flex w-full flex-col gap-1">
 						<h1>{item.title}</h1>
 						<p className="">{item.desc}</p>
-						<div className="languages flex flex-wrap items-center gap-3">
+						<div className="languages mt-2 flex flex-wrap items-center gap-3">
 							{item.languages.map((item, index) => (
 								<Highlight key={index}>{item}</Highlight>
 							))}

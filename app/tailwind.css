@@ -33,7 +33,7 @@ html {
 
 @layer base {
 	:root {
-		--background: 0 0% 100%;
+		--background: 100 0% 100%;
 		--foreground: 240 10% 3.9%;
 		--card: 0 0% 100%;
 		--card-foreground: 240 10% 3.9%;
@@ -67,8 +67,8 @@ html {
 
 	.dark,
 	:root[class~='dark'] {
-		/* --background: 240 10% 3.9%; */
-		--background: #2c2c2c;
+		--background: 240 20% 3.9%;
+		/* --background: #2c2c2c; */
 		--foreground: 0 0% 98%;
 		--card: 240 10% 3.9%;
 		--card-foreground: 0 0% 98%;

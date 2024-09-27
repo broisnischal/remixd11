@@ -84,7 +84,7 @@ export default function Component() {
 					<Link className="flex items-center gap-2 underline " to={'/sponsor'}>
 						<SiGithubsponsors /> sponsoring{' '}
 					</Link>{' '}
-					me{' '}
+					me!{' '}
 				</h4>
 			</div>
 			<br />

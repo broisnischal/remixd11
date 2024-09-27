@@ -344,10 +344,12 @@ export default function Index() {
 					/>
 				</div>
 				<div className="flex flex-col gap-2">
-					<h1 className=" text-3xl font-bold dark:text-zinc-100">
-						Hey, I'm Nischal Dahal,
+					<h1 className=" mb-2 text-3xl font-bold dark:text-zinc-100">
+						Hey, I'm Nischal{' '}
+						<span className=" text-cyan-600 dark:text-cyan-400">Dahal</span>,
 					</h1>
-					<h3 className="w-full">
+
+					<h3 className="w-full text-xl">
 						I'm a full-stack engineer focusing on serverless architectures,
 						android development, user experience, and product development.{' '}
 						<Link to={'/about'} className="underline underline-offset-2">
@@ -404,6 +406,8 @@ export default function Index() {
 			</div>
 
 			<div className="my-10 flex flex-col gap-3">
+				<p>18 y/0 doing cooking some cool stuffs!</p>
+
 				<p>
 					Currently <b>focused</b> on :{' '}
 					<b>rust | go | zig | typescript | dart</b>
@@ -412,15 +416,6 @@ export default function Index() {
 					Learn <span className="text-purple-500">together</span>, Grow
 					<span className="text-purple-500"> together</span>!
 				</h3>
-
-				<p>
-					Join our <b>discord</b> server to learn together, grow together and
-					help each other out!
-				</p>
-				<p>
-					I upload content and shorts, sharing tech knowledge, tips and tricks,
-					product reviews and more!
-				</p>
 			</div>
 
 			{/* <div className="my-10 flex flex-col ">
@@ -502,7 +497,6 @@ export default function Index() {
 					</Suspense>
 				</div>
 			</div> */}
-			<br />
 		</div>
 	);
 }

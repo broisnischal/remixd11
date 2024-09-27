@@ -248,7 +248,7 @@ const NavBar = () => {
 		<>
 			<nav className="mainwidth  top-0 z-[998] m-auto hidden py-12 md:flex">
 				<div className=" flex w-full items-center justify-between overflow-hidden py-1">
-					<div className=" flex w-full items-center justify-between gap-3 ">
+					<div className=" flex items-center justify-between gap-4 ">
 						<div className="flex gap-4 ">
 							<RouteLink to={'/'}>home</RouteLink>
 							<RouteLink to={'/blog'}>blog</RouteLink>
@@ -342,28 +342,28 @@ const Footer = () => {
 			{/* <Hr /> */}
 			<br />
 
-			<div>
+			{/* <div>
 				<a href="mailto:ping@nischal.pro">
 					<p className="font-bricolage text-xl text-primary">
 						ping@nischal.pro
 					</p>
 				</a>
-			</div>
+			</div> */}
 			<div className="top flex flex-col gap-2 md:flex-row ">
-				broisnees © {new Date().getFullYear()} | Links :
-				<div className="flex flex-wrap gap-2 text-primary">
-					<RouteLink to={'/about'}>about</RouteLink>|
-					<RouteLink to={'/links'}>connect</RouteLink>|
-					<RouteLink to={'/setup'}>setup</RouteLink>|
-					<RouteLink to={'/stack'}>stacks</RouteLink>|
-					<RouteLink to={'/hire'}>hire</RouteLink>|
-					<RouteLink to={'/timeline'}>timeline</RouteLink>|
-					<RouteLink to={'/sponsor'}>sponsor</RouteLink>
-				</div>
+				broisnees © {new Date().getFullYear()}
+			</div>
+			<div className="flex flex-wrap gap-2 text-primary">
+				<RouteLink to={'/about'}>about</RouteLink>|
+				<RouteLink to={'/links'}>connect</RouteLink>|
+				<RouteLink to={'/setup'}>setup</RouteLink>|
+				<RouteLink to={'/stack'}>stacks</RouteLink>|
+				<RouteLink to={'/hire'}>hire</RouteLink>|
+				<RouteLink to={'/timeline'}>timeline</RouteLink>|
+				<RouteLink to={'/sponsor'}>sponsor</RouteLink>
 			</div>
 			<div className="flex flex-col">
 				<h3 className="md:hidden">Other links</h3>
-				<div className="flex w-[90%] flex-wrap gap-2 ">
+				<div className="mb-3 flex w-[90%] flex-wrap gap-2 ">
 					<Link
 						className="text-sm underline underline-offset-2"
 						to="https://codeium.com/profile/broisnischal"
@@ -399,7 +399,12 @@ const Footer = () => {
 					</Link>
 				</div>
 			</div>
-			<small>Alternatively press Cmd + K to search...</small>
+			<small>
+				Alternatively press Cmd + K to search...{' '}
+				<a href="mailto:ping@nischal.pro">
+					<p className="font-bricolage">ping@nischal.pro</p>
+				</a>
+			</small>
 		</div>
 		// <div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">
 		// 	<div className="flex flex-col ">

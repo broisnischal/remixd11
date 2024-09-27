@@ -20,7 +20,7 @@ export default function Talks() {
 			<div className="flex flex-col gap-4">
 				<div className="flex flex-col gap-2">
 					<div className="flex flex-col gap-2">
-						<div className="flex w-fit flex-col gap-2 rounded-md border p-6">
+						<div className="flex w-fit flex-col gap-2">
 							<Link
 								to={'https://dahal-nischal.com.np/'}
 								target="_blank"
@@ -29,21 +29,18 @@ export default function Talks() {
 								<h3 className=" font-bold">
 									API Architecture, Testing, Scaling & System Design
 								</h3>
-
-								<img
-									className="w-[400px] rounded-md"
-									src="https://github.com/broisnischal/bucket/blob/main/Screenshot%202024-09-15%20at%2019.50.56.png?raw=true"
-									alt=""
-								/>
 								<div className="flex flex-col justify-between md:flex-row">
 									<p className="secondary text-sm">
 										AITC International, Sept 2024
 									</p>
 									<p className="secondary text-sm">Bhaktapur, Nepal</p>
 								</div>
-								{/* <p className="text-sm text-gray-300">
-                A talk about API design and system design.
-              </p> */}
+								<img
+									className="w-[400px] rounded-md"
+									src="https://github.com/broisnischal/bucket/blob/main/Screenshot%202024-09-15%20at%2019.50.56.png?raw=true"
+									alt=""
+									loading="lazy"
+								/>
 							</Link>
 						</div>
 					</div>

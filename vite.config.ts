@@ -16,7 +16,11 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 // import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { getLoadContext } from './load-context';
 
-import rehypeExpressiveCode from 'rehype-expressive-code';
+import rehypeExpressiveCode, {
+	BundledShikiTheme,
+} from 'rehype-expressive-code';
+
+const theme: BundledShikiTheme = 'vitesse-dark';
 
 /** @type {import('rehype-expressive-code').RehypeExpressiveCodeOptions} */
 const rehypeExpressiveCodeOptions = {
@@ -28,7 +32,7 @@ const rehypeExpressiveCodeOptions = {
 			'bash,ps,sh': { preserveIndent: false },
 		},
 	},
-	themes: ['dark-plus'],
+	themes: [theme, 'vitesse-light'],
 	frames: {
 		// Example: Hide the "Copy to clipboard" button
 		showCopyToClipboardButton: false,

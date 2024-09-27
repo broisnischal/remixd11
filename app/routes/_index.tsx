@@ -404,8 +404,7 @@ export default function Index() {
 					</div>
 				</div>
 			</div>
-
-			<div className="my-10 flex flex-col gap-3">
+			<div className="my-8 flex flex-col gap-3">
 				<p>18 y/0 doing cooking some cool stuffs!</p>
 
 				<p>
@@ -418,17 +417,18 @@ export default function Index() {
 				</h3>
 			</div>
 
+			<a href="https://ko-fi.com/Z8Z712ZDYP" target="_blank">
+				<img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="" />
+			</a>
 			{/* <div className="my-10 flex flex-col ">
 				<h2 className="text-3xl font-bold">Learn together, Grow Together</h2>
 			</div> */}
-
 			{/* <h2 className="text-left text-gray-500 xl:text-xl">
 				I value the chance to demonstrate initiative and influence the outcome
 				of projects. I am enthusiastic about attending meetups, contributing to
 				open-source projects, and actively participating in the Flutter
 				community, web community and more.
 			</h2> */}
-
 			{/* <div className="flex flex-wrap items-center justify-center gap-4	 ">
 				<iframe
 					title="Spotify Embed: Recommendation Playlist "

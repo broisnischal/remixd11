@@ -252,12 +252,13 @@ const NavBar = () => {
 						<div className="flex gap-4 ">
 							<RouteLink to={'/'}>home</RouteLink>
 							<RouteLink to={'/blog'}>blog</RouteLink>
-							<RouteLink to={'/overview'}>more</RouteLink>
+							<RouteLink to={'/overview'}>info</RouteLink>
 							<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 							<RouteLink to={'/bookmarks'}>bmrks</RouteLink>
 							{/* <RouteLink to={'/hire'}>hireme</RouteLink> */}
 							<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 							<RouteLink to={'/talks'}>talks</RouteLink>
+							<RouteLink to={'/chat'}>chat</RouteLink>
 							<RouteLink to={'/links'}>links</RouteLink>
 							<React.Suspense>
 								<Await resolve={data.user}>
@@ -290,11 +291,12 @@ const NavBar = () => {
 					<div className="mt-6 flex flex-row flex-wrap items-center gap-2 ">
 						<RouteLink to={'/'}>home</RouteLink>
 						<RouteLink to={'/blog'}>blog</RouteLink>
-						<RouteLink to={'/main'}>overview</RouteLink>
+						<RouteLink to={'/main'}>info</RouteLink>
 						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 						<RouteLink to={'/bookmarks'}>bmrks</RouteLink>
 						{/* <RouteLink to={'/hire'}>hire</RouteLink> */}
 						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
+						<RouteLink to={'/chat'}>chat</RouteLink>
 						<RouteLink to={'/talks'}>talks</RouteLink>
 						<RouteLink to={'/links'}>links</RouteLink>
 
@@ -676,11 +678,11 @@ export function App() {
 				<Search />
 
 				<Layout children={<Outlet />} />
-				{/* <React.Suspense>
+				<React.Suspense>
 					<Await resolve={data.count}>
 						{count => <Clap count={count as number} />}
 					</Await>
-				</React.Suspense> */}
+				</React.Suspense>
 				<ScrollRestoration
 					getKey={location => {
 						return location.pathname;
@@ -847,7 +849,7 @@ function ScrollToTopButton() {
 					className="fixed bottom-4 right-4 z-10  p-1 text-[#6d6d6d]"
 					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
 				>
-					<ArrowUp />
+					<ArrowUp size={20} />
 				</button>
 			)}
 		</>

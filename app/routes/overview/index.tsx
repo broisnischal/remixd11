@@ -108,11 +108,11 @@ export default function Overview() {
 		<div className="m-auto flex flex-col gap-8  md:max-w-[70vw]">
 			<div>
 				<h1 className="mb-5 font-bricolage text-3xl font-bold">Projects</h1>
-				<div className="flex items-start gap-10 text-start">
+				<div className="flex items-start gap-2 text-start">
 					<div className="grid grid-cols-1 gap-2 *:border-[1px] lg:grid-cols-2 xl:grid-cols-3 ">
 						{projectdata.map((project, index) => (
-							<div key={index} className="single rounded-md px-6 py-2">
-								<Link className="font-bricolage text-lg" to={project.url}>
+							<div key={index} className="single w-full rounded-md px-6 py-2">
+								<Link className="font-bricolage" to={project.url}>
 									{project.name}
 								</Link>
 
@@ -160,7 +160,7 @@ export default function Overview() {
 			</div>
 			<br />
 
-			<div className=" github  hidden w-full flex-col  lg:flex lg:w-full">
+			{/* <div className=" github  hidden w-full flex-col  lg:flex lg:w-full">
 				<h1 className="mb-2 font-bricolage text-3xl font-bold">
 					Contributions
 				</h1>
@@ -183,7 +183,7 @@ export default function Overview() {
 						</div>
 					</ConnectButton>
 				</Link>
-			</div>
+			</div> */}
 
 			<br />
 		</div>

@@ -6,25 +6,12 @@ import { Badge } from './ui/badge';
 export const Post = ({ slug, frontmatter }: PostMeta) => {
 	return (
 		<Link prefetch="viewport" to={`/blog/${slug.split('/').pop()}`}>
-			<article className="flex w-full flex-col gap-2 rounded-md py-2">
-				{/* bg-[#eee] dark:bg-[#0f0f0f] */}
-				{/* {frontmatter.image && (
-					<div className="h-[180px] rounded-md border bg-white dark:bg-[#eee]">
-						<img
-							src={frontmatter.image}
-							className="h-full w-[100%] rounded-sm object-cover"
-							alt=""
-						/>
-					</div>
-				)} */}
-				{/* <time
-					className="block text-sm text-gray-600 dark:text-white/60"
-					dateTime={frontmatter.published}
-				>
-					Published {moment(frontmatter.published).format('MMMM Do YYYY')}
-				</time> */}
-				<h3 className="font-bricolage">{frontmatter.title}</h3>
-
+			<article className="flex w-full flex-col">
+				<h3 className="font-bricolage hover:underline">
+					{' '}
+					{/* {moment(frontmatter.published).format('MMM Do, YYYY')}{' '} */}
+					<span className="">{frontmatter.title}</span>
+				</h3>
 				<p className="secondary mb-2 text-sm">
 					{frontmatter.description.slice(0, 300) + ''}
 				</p>
@@ -33,7 +20,7 @@ export const Post = ({ slug, frontmatter }: PostMeta) => {
 					{frontmatter.tags?.map((item, i) => (
 						<Badge
 							key={i}
-							className="flex items-center justify-center rounded-full border bg-white dark:text-black"
+							className="flex items-center justify-center rounded-md border "
 							variant={'outline'}
 						>
 							{item}

@@ -8,16 +8,22 @@ import { twMerge } from 'tailwind-merge';
 import { getPosts } from '~/.server/posts';
 import { Post } from '~/components/post';
 import { MetaCreator } from '~/utils/meta';
+import { getServerTiming } from '~/utils/timing-server';
 
 export async function loader({ request }: LoaderFunctionArgs) {
-	const posts = await getPosts();
+	const { time, getServerTimingHeader } = getServerTiming();
+
+	const posts = await time('contentListData', () => getPosts());
 
 	const url = new URL(request.url);
 	const search = url.searchParams.get('q');
 
+	// if (search && search?.length <= 2)
+	// 	return json({ posts }, { headers: getServerTimingHeader() });
+
 	const fuse = new Fuse(posts, {
 		shouldSort: true,
-		threshold: 0.6,
+		threshold: 0.3,
 		keys: [
 			'title',
 			'extract',
@@ -29,13 +35,18 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	});
 
 	if (search && search?.length > 1) {
-		return json({
-			posts: fuse.search(search).map(({ item }) => item),
-			search,
-		});
+		return json(
+			{
+				posts: await time('data', () =>
+					fuse.search(search).map(({ item }) => item),
+				),
+				search,
+			},
+			{ headers: getServerTimingHeader() },
+		);
 	}
 
-	return json({ posts, search });
+	return json({ posts, search }, { headers: getServerTimingHeader() });
 }
 
 export const meta: MetaFunction<typeof loader> = ({
@@ -176,31 +187,23 @@ export default function Component() {
 				method="GET"
 				onChange={event => {
 					submit(event.currentTarget, {
-						// replace: true,
-						unstable_flushSync: true,
-						unstable_viewTransition: true,
+						replace: true,
 						preventScrollReset: true,
-						// navigate: true,
+						navigate: true,
 					});
 
 					setAllPosts(posts);
 					// setActiveTag(tousetag);
 				}}
 			>
-				{/* <input
-					id="search"
-					type="text"
+				<input
+					type="search"
 					name="q"
-					onChange={event => {
-						if (event.currentTarget.value === '') {
-							setAllPosts(posts);
-						}
-					}}
-					placeholder="Search "
 					defaultValue={search || ''}
-					className="w-min min-w-[300px] rounded-md border px-2 py-1 placeholder:text-sm"
-				/> */}
-				<div className="flex flex-col">
+					placeholder="Search"
+					className="w-1/2 rounded-lg border-[1px] bg-transparent px-4 py-1 focus:outline-none"
+				/>
+				{/* <div className="flex flex-col">
 					<div className=" flex h-full w-full items-center gap-4 rounded-full border px-5 py-2 lg:max-w-full">
 						<SearchIcon size={16} />
 						<input
@@ -217,17 +220,9 @@ export default function Component() {
 							className="w-full bg-transparent focus:outline-none"
 						/>
 					</div>
-					{/* {allposts.length > 0 && search ? (
-						<>
-							<p className="text-sm">{allposts.length} results</p>
-						</>
-					) : (
-						<>
-							<p className="text-sm"></p>
-						</>
-					)} */}
-				</div>
+				</div> */}
 			</Form>
+
 			<br />
 			<div className="tags m-auto flex flex-wrap gap-2">
 				{/* <input className="border" type="text" /> */}
@@ -284,7 +279,7 @@ export default function Component() {
 			</div>
 			<br />
 			<br />
-			<div className="flex flex-wrap gap-14">
+			<div className="flex flex-wrap gap-y-12">
 				{allposts.length <= 0 ? (
 					<>No posts found</>
 				) : (

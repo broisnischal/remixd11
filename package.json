@@ -76,6 +76,7 @@
     "remix-flat-routes": "^0.6.5",
     "remix-themes": "^1.4.0",
     "remix-utils": "^7.6.0",
+    "reutil": "^0.0.4",
     "satori": "^0.10.14",
     "spin-delay": "^2.0.0",
     "tailwind-merge": "^2.4.0",

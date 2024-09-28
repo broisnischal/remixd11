@@ -149,6 +149,9 @@ dependencies:
   remix-utils:
     specifier: ^7.6.0
     version: 7.6.0(@remix-run/cloudflare@2.12.0)(@remix-run/react@2.12.0)(react@18.3.1)(zod@3.23.8)
+  reutil:
+    specifier: ^0.0.4
+    version: 0.0.4(react@18.3.1)
   satori:
     specifier: ^0.10.14
     version: 0.10.14
@@ -9728,6 +9731,14 @@ packages:
   /reusify@1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+
+  /reutil@0.0.4(react@18.3.1):
+    resolution: {integrity: sha512-cgXrvM3WgUu2z9UVarID2ebmWU9tj7qu0VbfgKMutRvDMoSzq1v3SxB83E/wCLJmO2whnBfypYa2rflqJHBvRQ==}
+    peerDependencies:
+      react: 18.3.1
+    dependencies:
+      react: 18.3.1
+    dev: false
 
   /rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}

@@ -1,0 +1,696 @@
+---
+title: Using axios like a pro | Batching, Chunking, Retrying, and Optimizing API Performance
+description:
+  Learning to use axios batch, axios cancel token, axios interceptor, axios
+  timeout, axios retry, axios retry delay, axios retry delay exponential,
+  axiosCached, axiosBatchWithChunks
+published: 2024-09-12
+meta:
+  title: Using axios like a pro
+  author: Nischal Dahal
+  description:
+    Learning to use axios batch, axios cancel token, axios interceptor, axios
+    timeout, axios retry, axios retry delay, axios retry delay exponential,
+    axiosCached, axiosBatchWithChunks
+  image: https://nischal-dahal.com.np/resources/og-image?title=dockerize-remix-app&description=docker-remix
+  published: 2024-09-28
+featured: true
+image: https://nischal-dahal.com.np/resources/og-image?title=dockerize-remix-app&description=docker-remix
+tags:
+  [axios-batch, axiosBatchWithChunks, axiosCancelToken, axiosCached, axiosChunks]
+keywords:
+  [
+    axios,
+    batch,
+    cancel,
+    token,
+    interceptor,
+    timeout,
+    retry,
+    delay,
+    exponential,
+    cached,
+    chunks,
+    axios-batch,
+    axios-batch-with-chunks,
+    axios-cancel-token,
+    axios-interceptor,
+    axios-timeout,
+    axios-retry,
+    axios-retry-delay,
+    axios-retry-delay-exponential,
+    axios-cached,
+    axios-exponential,
+    axios-chunks,
+  ]
+readTime: 15
+author: Nischal Dahal
+---
+
+import { MetaCreator } from '../utils/meta.ts';
+import Hr from '../components/hr.tsx';
+
+export const meta = ({ attributes }) => {
+  const url = `https://nischal-dahal.com.np/blog/dockerize-remix-app`;
+
+    const metadata = MetaCreator({
+    	title: frontmatter.title,
+    	description: frontmatter.description,
+    	image: frontmatter.image,
+    	url: url,
+    	others: [
+    		{
+    			name: 'author',
+    			content: 'Nischal Dahal',
+    		},
+        {
+    			tagName: 'link',
+    			rel: 'canonical',
+    			href: url,
+    		},
+    	],
+    	keywords: frontmatter.keywords,
+    });
+
+
+    return [
+    	...metadata,
+    ];
+
+};
+
+import PostHeading from '../components/post-heading.tsx';
+
+<PostHeading
+	title={frontmatter.title}
+	readingTime={frontmatter.readTime}
+	tags={frontmatter.tags}
+	keywords={frontmatter.keywords}
+	date={frontmatter.published}
+	author={frontmatter.author}
+/>
+
+It’s 2024, and you're still making one API call at a time? C'mon, your API
+requests deserve better. We’re talking about some seriously pro-level batching
+for your frontend, where you knock out multiple requests in one go like a boss.
+
+Today, we’ll cover axios, useful utilities and usecase. Plus, we’ll throw in some extra custom Axios
+tools to make your life easier. It's the kind of blog post your code will thank
+you for in binary, of course.
+
+### Why Batch? Because You Can (and Should)
+
+Imagine this: you're building a blog dashboard and need to pull user data, post
+data, comments, and maybe a cheeky new cat fact API call — all in one go. What
+do you do? Send four separate Axios requests like it's 2019? No.
+
+You'd be a fool to make four separate requests. Instead, you'd batch them up
+like a boss.
+
+You batch them. Here’s why batching is cool:
+
+- Faster: Multiple requests can be sent simultaneously, cutting down on waiting
+  time like a pro.
+- Organized: You can manage all your responses in one place and stop polluting
+  your app logic with callbacks all over the place.
+- Satisfying: There’s something about seeing all those promises resolve together
+  that makes you feel... invincible.
+
+### Some ways to batch Axios Requests: The Pro Way
+
+<Hr />
+
+## axios batch
+
+Why call one API when you can call several at the same time? Enter axiosBatch,
+your new best friend. This guy takes in an array of requests and returns all the
+results in one fell swoop.
+
+You can also check the [axios-batch](https://github.com/DutchRican/axios-batch)
+library for more advanced features.
+
+Here's how it works:
+
+```tsx
+import axios from 'axios';
+
+async function axiosBatch(requests) {
+	try {
+		const results = await Promise.all(requests.map(req => axios(req)));
+		return results.map(result => result.data);
+	} catch (error) {
+		console.error('Batch request error', error);
+		throw error;
+	}
+}
+
+// Example usage
+const requests = [
+	{ method: 'GET', url: '/api/posts' },
+	{ method: 'GET', url: '/api/users' },
+	{ method: 'POST', url: '/api/comments', data: { text: 'Nice post!' } },
+];
+
+axiosBatch(requests)
+	.then(responses => console.log('Batch responses:', responses))
+	.catch(err => console.error('Batch error:', err));
+```
+Here is the another example with axios-batch library:
+
+```tsx
+// import axios from 'axios';
+// import axiosBatch from 'axios-batch';
+
+// const batch = [
+//   axios.get('/api/users'),
+//   axios.get('/api/products'),
+//   axios.get('/api/orders')
+// ];
+
+// axiosBatch(batch)
+//   .then(results => {
+//     const [userData, productData, orderData] = 
+//             results.map(response => response.data);
+//     // Process combined data
+//     processData(userData, productData, orderData);
+//   })
+//   .catch(error => {
+//     console.error('Batch request error', error);
+//     throw error;
+//   });
+
+import { AxiosBatch } from 'axios-batch';
+
+const ab = new AxiosBatch({ baseURL: 'https://yourEndPoint.com' });
+
+// urls can be an array of strings or objects {url: "/posts/1", id: "myposts" };  
+const requests = [{url: "/posts/1, id:"first-id"}, {url: "/posts/2", id:"other-id"}];  
+const res = await ab.axiosBatch({ urls: requests });
+
+```
+
+<br/>
+
+Now, Let's see the React Query Integration with axiosBatch, where you can use useQuery to fetch data from the API and isLoading state covers all requests, so it only resolves once all requests have completed or failed.
+
+
+```tsx
+import { useQuery } from 'react-query';
+import axios from 'axios';
+
+async function axiosBatch(requests) {
+  try {
+    const results = await Promise.all(requests.map(req => axios(req)));
+    return results.map(result => result.data);
+  } catch (error) {
+    console.error('Batch request error', error);
+    throw error;
+  }
+}
+
+// React Query usage
+const requests = [
+  { method: 'GET', url: '/api/posts' },
+  { method: 'GET', url: '/api/users' },
+  { method: 'POST', url: '/api/comments', data: { text: 'Nice post!' } },
+];
+
+export function useBatchData() {
+  return useQuery('batchData', () => axiosBatch(requests));
+}
+
+// Example Component
+function MyComponent() {
+  const { data, isLoading, error } = useBatchData();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading data</p>;
+
+  return (
+    <div>
+      <h1>Batch Responses:</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+}
+```
+
+
+Advantages:
+
+- Handles multiple requests with grace.
+- Combines all responses, so no need for endless .then chains.
+- Perfect for those "I need everything at once" moments.
+
+<br />
+
+## axios batch with chunks
+
+What if you have 50 requests? Or 500? Should you batch them all at once? Not
+unless you want your server admin to hunt you down. Here's where chunking comes
+in: break your requests into smaller, manageable pieces.
+Introducing...axiosBatchWithChunks.
+
+```tsx
+import axios from 'axios';
+
+async function axiosBatchWithChunks(requests, chunkSize = 10) {
+	const results = [];
+	for (let i = 0; i < requests.length; i += chunkSize) {
+		const chunk = requests.slice(i, i + chunkSize);
+		const responses = await axios.all(chunk.map(req => axios(req)));
+		results.push(...responses.map(res => res.data));
+	}
+	return results;
+}
+
+// Example usage
+const requests = Array.from({ length: 100 }, (_, i) => ({
+	method: 'GET',
+	url: `/api/posts/${i + 1}`,
+}));
+
+axiosBatchWithChunks(requests)
+	.then(responses => console.log('Chunked responses:', responses))
+	.catch(err => console.error('Chunked error:', err));
+```
+
+Advantages:
+
+- Avoids overwhelming your server with too many requests at once.
+- Keeps your app smooth and stable while still getting the job done.
+- You control the batch size. 5? 10? Go wild!
+- Keeps your app lean and mean.
+
+<br />
+## axios cancel token
+
+Ever started an Axios request only to realize you don’t need the result anymore?
+Maybe your user clicked “Cancel” halfway through a search, or switched tabs
+faster than they could blink? Enter the Cancel Token, your secret weapon to
+prevent those ghost requests from haunting your app.
+
+Here’s how you can summon it and banish unwanted API calls in a snap:
+
+```tsx
+import axios from 'axios';
+
+class AxiosCancel {
+	constructor() {
+		this.source = axios.CancelToken.source();
+	}
+
+	request(config) {
+		return new Promise((resolve, reject) => {
+			axios
+				.get(config.url, { cancelToken: this.source.token })
+				.then(response => {
+					console.log('Request successful:', response.data);
+					resolve(response.data);
+				})
+				.catch(error => {
+					if (axios.isCancel(error)) {
+						console.log('Request canceled:', error.message);
+					} else {
+						console.error('Request failed:', error.message);
+					}
+					reject(error);
+				});
+		});
+	}
+
+	cancel(message) {
+		this.source.cancel(message);
+	}
+}
+
+// Example Usage:
+const apiClient = new AxiosCancel();
+
+apiClient
+	.request({ url: '/api/posts' })
+	.then(data => {
+		console.log('Received data:', data);
+	})
+	.catch(error => {
+		console.error('Error handling request:', error);
+	});
+
+// To cancel the request:
+apiClient.cancel('Operation canceled by the user.');
+```
+
+Advantages:
+
+- Keeps your app lean and mean.
+- Prevents unnecessary API calls.
+- Keeps your user happy by not making them wait for nothing.
+
+<br />
+
+## axios interceptor
+
+Interceptors are like spies in the Axios world. They can intercept requests and
+responses to add custom behavior. Want to log every request? Add an interceptor:
+
+```tsx
+import axios from 'axios';
+
+const setupAxiosInterceptors = token => {
+	const axiosInstance = axios.create();
+
+	// Request Interceptor
+	axiosInstance.interceptors.request.use(
+		config => {
+			// Add authorization token to headers if available
+			if (token) {
+				config.headers.Authorization = `Bearer ${token}`;
+			}
+			return config;
+		},
+		error => {
+			return Promise.reject(error);
+		},
+	);
+
+	// Response Interceptor
+	axiosInstance.interceptors.response.use(
+		response => {
+			// Optionally transform response data
+			return response;
+		},
+		error => {
+			// Handle errors
+			console.error('Response error:', error);
+			return Promise.reject(error);
+		},
+	);
+
+	return axiosInstance;
+};
+
+// Example usage
+const token = 'your_auth_token'; // Replace with your actual token
+const apiClient = setupAxiosInterceptors(token);
+
+// Example API call
+apiClient
+	.get('/api/posts')
+	.then(response => {
+		console.log('Posts:', response.data);
+	})
+	.catch(error => {
+		console.error('Error fetching posts:', error.message);
+	});
+```
+
+<br />
+
+## axios retry
+
+Sometimes, things fail. But you’re no quitter. How about automatically retrying
+failed requests?
+
+```tsx
+import axios from 'axios';
+
+async function axiosRetry(requests, retries = 3, delay = 1000) {
+	for (let i = 0; i < retries; i++) {
+		try {
+			const response = await axios(requests);
+			return response.data;
+		} catch (error) {
+			if (i === retries - 1) {
+				throw error;
+			}
+			await new Promise(resolve => setTimeout(resolve, delay));
+		}
+	}
+}
+
+// Example usage
+const requests = [
+	{ method: 'GET', url: '/api/posts' },
+	{ method: 'GET', url: '/api/users' },
+	{ method: 'POST', url: '/api/comments', data: { text: 'Nice post!' } },
+];
+
+axiosRetry(requests)
+	.then(responses => console.log('Retried responses:', responses))
+	.catch(err => console.error('Retried error:', err));
+```
+
+Advantages:
+
+- Keeps your app running smoothly.
+- You don’t have to lift a finger (or a retry button).
+- Automatically tries again until it works or you give up.
+
+<br />
+
+
+## axios retry delay (exponential)
+
+Ever wondered how to retry a request with a delay? Exponential backoff is the
+way to go. Here’s how you can do it:
+
+```tsx
+import axios from 'axios';
+
+const createAxiosInstance = () => {
+	const axiosInstance = axios.create();
+
+	axiosInstance.interceptors.response.use(null, async error => {
+		const { config } = error;
+
+		if (!config || !config.retry) return Promise.reject(error);
+
+		// Set default values for retry attempts and delay
+		config.__retryCount = config.__retryCount || 0;
+		const maxRetryCount = config.retry || 3; // max retries
+		const retryDelay = config.retryDelay || 1000; // initial delay in ms
+
+		if (config.__retryCount >= maxRetryCount) {
+			return Promise.reject(error);
+		}
+
+		config.__retryCount += 1;
+
+		// Calculate exponential backoff delay
+		const delay = retryDelay * Math.pow(2, config.__retryCount);
+
+		// Wait for the calculated delay before retrying the request
+		await new Promise(resolve => setTimeout(resolve, delay));
+
+		return axiosInstance(config); // Retry the request
+	});
+
+	return axiosInstance;
+};
+
+// Create an instance
+const axiosRetry = createAxiosInstance();
+
+// Example usage
+axiosRetry
+	.get('/api/posts', { retry: 3, retryDelay: 1000 })
+	.then(response => {
+		console.log('Request successful:', response.data);
+	})
+	.catch(error => {
+		console.error('Request failed:', error.message);
+	});
+```
+
+<br />
+
+## axios cancel
+
+
+```tsx
+const controller = new AbortController();
+
+axios.get('/foo/bar', {
+   signal: controller.signal
+}).then(function(response) {
+   //...
+});
+// cancel the request
+controller.abort()
+
+```
+
+Example with a timeout using latest AbortSignal.timeout() API:
+
+
+
+```tsx
+axios.get('/foo/bar', {
+   signal: AbortSignal.timeout(5000) //Aborts request after 5 seconds
+}).then(function(response) {
+   //...
+});
+```
+<br/>
+
+## axios cached
+
+Caching responses is a neat trick to reduce the number of API hits and speed up
+your app. Here's how you could do it:
+
+```tsx
+const cache = {};
+
+async function axiosCached(request) {
+	const cacheKey = JSON.stringify(request);
+
+	if (cache[cacheKey]) {
+		return cache[cacheKey];
+	}
+
+	const response = await axios(request);
+	cache[cacheKey] = response.data;
+	return response.data;
+}
+```
+
+You can also use node-cache to cache the responses, here is the example:
+
+```tsx
+import axios from 'axios';
+import NodeCache from 'node-cache';
+
+const cache = new NodeCache({ stdTTL: 600 }); // Cache for 10 minutes
+
+async function axiosCached(requests) {
+	const cachedResponses = new Map();
+
+	for (const request of requests) {
+		const cacheKey = JSON.stringify(request);
+		const cachedResponse = cache.get(cacheKey);
+
+		if (cachedResponse) {
+			cachedResponses.set(request, cachedResponse);
+		} else {
+			const response = await axios(request);
+			cache.set(cacheKey, response.data);
+			cachedResponses.set(request, response.data);
+		}
+	}
+
+	return cachedResponses;
+}
+
+// Example usage
+const requests = [
+	{ method: 'GET', url: '/api/posts' },
+	{ method: 'GET', url: '/api/users' },
+	{ method: 'POST', url: '/api/comments', data: { text: 'Nice post!' } },
+];
+
+axiosCached(requests)
+	.then(responses => console.log('Cached responses:', responses))
+	.catch(err => console.error('Cached error:', err));
+```
+
+Advantages:
+
+- Reduces server load.
+- Speeds up your app.
+- Keeps your API responses fresh for a good long while.
+
+<br />
+
+## axios timeout
+
+Some APIs take forever, but you don't have time for that. Use Axios timeout like
+a pro:
+
+```tsx
+const axiosInstance = axios.create({
+	timeout: 3000, // Set timeout to 3 seconds
+});
+```
+
+<br />
+
+## axios download progress with chunks
+
+Sometimes you need to handle large amounts of data streaming from your server, and you want to update your UI as the data comes in. Here's how you can use Axios to achieve this:
+
+```tsx
+import axios from 'axios';
+
+function getDataFromStream(): Promise<any> {
+    return axios({
+        url: `http://your.api.url/endpoint`,
+        method: 'GET',
+        responseType: 'text',
+        onDownloadProgress: progressEvent => {
+           const dataChunk = progressEvent.currentTarget.response;
+           // dataChunk contains all the data received so far
+           // Process the chunk here (e.g., parse it and update your UI)
+           console.log('Received chunk:', dataChunk);
+        }
+    }).then(({ data }) => {
+        console.log('Download complete');
+        return data;
+    });
+}
+
+// Usage
+getDataFromStream()
+    .then(finalData => {
+        console.log('All data received:', finalData);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+```
+
+This approach allows you to process data as it's received, rather than waiting for the entire response. Here's what's happening:
+
+1. We set `responseType: 'text'` to ensure we get the raw text data.
+2. The `onDownloadProgress` callback is called multiple times as data is received.
+3. In the callback, `progressEvent.currentTarget.response` contains all data received so far.
+4. You can parse this data incrementally and update your UI accordingly.
+
+On the server side, ensure you're sending the data in chunks and setting the appropriate headers:
+
+```javascript
+function endpoint(req, res) {
+   res.writeHead(200, {
+        'Content-Type': 'text/plain',
+        'Transfer-Encoding': 'chunked'
+   });
+
+   for(let x = 0; x < 1000; x++){
+      res.write(some_string + '\n');
+      // Simulate delay for testing
+      await new Promise(resolve => setTimeout(resolve, 100));
+   }
+
+   res.end();
+}
+```
+ 
+This setup allows you to stream data from your server and process it incrementally on the client side, enabling real-time updates to your UI as data is received.
+
+<br />
+
+## Conclusion
+
+By now, you're probably thinking, "This guy is a total API ninja!" And you'd be
+right. With these tools in your arsenal, you're ready to take on the world of
+Axios like a boss.
+
+So, the next time you need to make a batch request, remember: you've got this.
+And if you ever need to make a request, well, you know the drill.
+
+
+<br />
+
+## Resources
+
+- [axios](https://axios-http.com/)
+- [axiosBatch](https://github.com/jaredwray/axios-batch)

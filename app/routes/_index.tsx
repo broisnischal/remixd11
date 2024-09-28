@@ -356,6 +356,7 @@ export default function Index() {
 							brief intro?
 						</Link>
 					</h3>
+
 					<div className="mt-4 flex flex-row flex-wrap gap-2">
 						<Link
 							target="_blank"
@@ -404,8 +405,9 @@ export default function Index() {
 					</div>
 				</div>
 			</div>
+
 			<div className="my-8 flex flex-col gap-3">
-				<p>18 y/0 doing cooking some cool stuffs!</p>
+				<p>18 y/0 kid cooking some cool stuff!</p>
 
 				<p>
 					Currently <b>focused</b> on :{' '}

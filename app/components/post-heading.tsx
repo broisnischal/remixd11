@@ -22,7 +22,7 @@ export default function PostHeading({
 }) {
 	return (
 		<>
-			<div className="flex flex-col gap-2  ">
+			<div className="flex flex-col gap-1 ">
 				<h2 className="font-bricolage text-2xl">{title}</h2>
 				{/* <div className=" 	asdfsafasd flex h-min items-center gap-3 ">
 					<img
@@ -38,15 +38,23 @@ export default function PostHeading({
 					</div>
 				</div> */}
 
-				<small className="mb-2 text-primary">
-					{moment(date).format('MMM Do YYYY')} | {readingTime} min | by {author}
-				</small>
-				<div className="flex flex-wrap items-center gap-3">
+				<div className="mb-4 flex flex-wrap items-center gap-3">
 					{tags?.map((item, i) => (
 						<Highlight className="font-bricolage lowercase">{item}</Highlight>
 					))}
 				</div>
-				<br />
+
+				<small className="mb-2 flex h-[40px] items-center gap-2 text-primary">
+					{moment(date).format('MMM Do YYYY')} | {readingTime} min | by{' '}
+					<img
+						src="https://avatars.githubusercontent.com/u/98168009?v=4"
+						className="aspect-square w-6 rounded-full"
+					/>{' '}
+					<a href="https://x.com/broisnees" target="_blank">
+						<span className="font-bricolage">{author}</span>
+					</a>
+				</small>
+
 				{/* <Link
 					className="items-center self-start font-avenir text-sm font-normal no-underline"
 					to={'/blog'}

@@ -8,7 +8,7 @@ import { HiDocumentText } from 'react-icons/hi';
 import { getPosts } from '~/.server/posts';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { MetaCreator } from '~/utils/meta';
-import { FaConnectdevelop } from 'react-icons/fa';
+import { FaConnectdevelop, FaHeart, FaKissWinkHeart } from 'react-icons/fa';
 
 // const slugs = [
 // 	'typescript',
@@ -350,8 +350,9 @@ export default function Index() {
 					</h1>
 
 					<h3 className="w-full text-xl">
-						I'm a full-stack engineer focusing on serverless architectures,
-						android development, user experience, and product development.{' '}
+						18 y/0 kid cooking some cool stuff !! I'm a full-stack engineer
+						focusing on serverless architectures, android development, user
+						experience, and product development.{' '}
 						<Link to={'/about'} className="underline underline-offset-2">
 							brief intro?
 						</Link>
@@ -362,10 +363,7 @@ export default function Index() {
 							target="_blank"
 							to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
 						>
-							<ConnectButton
-								className="rounded-md"
-								focuscolor="via-blue-400/90"
-							>
+							<ConnectButton className="" focuscolor="via-blue-400/90">
 								<div className="flex items-center justify-center gap-2">
 									<LinkedInLogoIcon /> Connect
 								</div>
@@ -373,7 +371,7 @@ export default function Index() {
 						</Link>
 
 						<Link target="_blank" to="https://github.com/broisnischal">
-							<ConnectButton className="rounded-md">
+							<ConnectButton className="">
 								<div className="flex items-center justify-center gap-2">
 									<GitHubLogoIcon /> Follow
 								</div>
@@ -385,43 +383,44 @@ export default function Index() {
 								'https://github.com/broisnischal/broisnischal/blob/main/resume.pdf'
 							}
 						>
-							<ConnectButton className="rounded-md" focuscolor="via-yellow-400">
+							<ConnectButton className="" focuscolor="via-yellow-400">
 								<div className="flex items-center justify-center gap-2">
-									<HiDocumentText /> MyResume
+									<HiDocumentText /> Resume
 								</div>
 							</ConnectButton>
 						</Link>
 						<Link target="_blank" to="https://dly.to/oYeNtLdx9va">
-							<ConnectButton
-								className="rounded-md"
-								focuscolor="via-blue-400/90"
-							>
+							<ConnectButton className="" focuscolor="via-blue-400/90">
 								<div className="flex items-center justify-center gap-2">
 									<FaConnectdevelop />
 									Join
 								</div>
 							</ConnectButton>
 						</Link>
+						{/* <Link target="_blank" to="https://ko-fi.com/Z8Z712ZDYP">
+							<ConnectButton
+								className="rounded-md"
+								focuscolor="via-blue-400/90"
+							>
+								<div className="flex items-center justify-center gap-2">
+									<FaHeart />
+									Sponsor
+								</div>
+							</ConnectButton>
+						</Link> */}
 					</div>
 				</div>
 			</div>
-
-			<div className="my-8 flex flex-col gap-3">
-				<p>18 y/0 kid cooking some cool stuff!</p>
+			<br />
+			{/* <div className="my-8 flex flex-col gap-3">
+				<p></p>
 
 				<p>
 					Currently <b>focused</b> on :{' '}
 					<b>rust | go | zig | typescript | dart</b>
 				</p>
-				<h3 className="font-bold">
-					Learn <span className="text-purple-500">together</span>, Grow
-					<span className="text-purple-500"> together</span>!
-				</h3>
-			</div>
+			</div> */}
 
-			<a href="https://ko-fi.com/Z8Z712ZDYP" target="_blank">
-				<img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="" />
-			</a>
 			{/* <div className="my-10 flex flex-col ">
 				<h2 className="text-3xl font-bold">Learn together, Grow Together</h2>
 			</div> */}

@@ -266,8 +266,8 @@ export default function NewsLetter() {
 	return (
 		<div>
 			<div className="flex flex-col ">
-				<h3 className="mb-4  text-3xl font-bold md:text-4xl"> Subscribe</h3>
-				<p className="secondary text-sm">
+				<h3 className="mb-4  text-3xl font-bold md:text-4xl"> Subscribe </h3>
+				<p className=" font-bricolage text-[1.2rem]">
 					Stay tuned and get notified when I publish something new and
 					unsubscribe at any time.
 				</p>

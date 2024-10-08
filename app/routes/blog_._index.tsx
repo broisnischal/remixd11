@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { getPosts } from '~/.server/posts';
+import Hr from '~/components/hr';
 import { Post } from '~/components/post';
 import { MetaCreator } from '~/utils/meta';
 import { getServerTiming } from '~/utils/timing-server';
@@ -278,6 +279,7 @@ export default function Component() {
 				</button> */}
 			</div>
 			<br />
+			<Hr />
 			<br />
 			<div className="flex flex-wrap gap-y-12">
 				{allposts.length <= 0 ? (

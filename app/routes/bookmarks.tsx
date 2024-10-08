@@ -90,8 +90,8 @@ export default function Page() {
 
 	return (
 		<div className="flex flex-col  ">
-			<h1 className="text-4xl font-bold">Bookmarks</h1>
-			<h2 className="">
+			<h1 className="text-3xl font-bold">Bookmarks</h1>
+			<h2 className="font-bricolage text-[1.2rem]">
 				Links to content I liked, sometimes with my commentary.
 				<br />
 				<a className="text-sm underline" href="">
@@ -125,7 +125,9 @@ export default function Page() {
 								className="flex flex-col text-start "
 								rel="noreferrer"
 							>
-								<span className="text-start font-avenir ">{data.title}</span>{' '}
+								<span className="text-start font-bricolage text-[1.2rem]">
+									{data.title}
+								</span>{' '}
 								{data.description && (
 									<small className="font-sans font-normal text-zinc-600 dark:text-zinc-400">
 										{data.description}

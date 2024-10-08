@@ -249,8 +249,10 @@ export default function Page() {
 
 	return (
 		<div className="">
-			<h1 className="text-3xl font-bold">Sign My Guestbook</h1>
-			<p className="m-auto mt-2 text-zinc-600 dark:text-zinc-400	">
+			<h1 className="text-3xl font-bold">
+				Sign My <span className="text-red-600">Guestbook</span>
+			</h1>
+			<p className="m-auto mt-2 font-bricolage text-[1.2rem] text-zinc-700 dark:text-zinc-100	">
 				Leave a comment below. It could be anything – appreciation, information,
 				wisdom, anything you can think of can be good or bad.
 			</p>

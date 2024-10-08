@@ -6,7 +6,7 @@ import { Badge } from './ui/badge';
 export const Post = ({ slug, frontmatter }: PostMeta) => {
 	return (
 		<Link prefetch="viewport" to={`/blog/${slug.split('/').pop()}`}>
-			<article className="flex w-full flex-col">
+			<article className=" flex w-full flex-col border p-4">
 				<h3 className="font-bricolage hover:underline">
 					{' '}
 					{/* {moment(frontmatter.published).format('MMM Do, YYYY')}{' '} */}

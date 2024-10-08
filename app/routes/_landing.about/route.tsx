@@ -50,21 +50,31 @@ export default function Page() {
 				</div>
 				<div>
 					<p className="text-[18px]">
-						Hello, my name is <Highlight className="">Nischal Dahal</Highlight>{' '}
-						. I was born on March 17, 2006. I am a versatile software engineer
-						with expertise in full stack development and experience leading
-						teams. My passions include programming, cutting-edge gadgets, and
-						adventuring adventures.
+						Hello, my name is Nischal Dahal. I was born on March 17, 2006. I am
+						a versatile software engineer with expertise in full stack
+						development and experience leading teams. My passions include
+						programming, cutting-edge gadgets, and adventuring adventures.
 					</p>
 					<br />
 					<p className=" text-[18px]">
 						As a firm believer in transhumanism, I envision a future where
 						technology alleviates human suffering and fosters a more harmonious
 						world. I maintain a healthy lifestyle, free of bad habits, and am
-						currently unmarried without children also single. In the long term,
-						I aspire to contribute to innovative projects and initiatives that
-						push the boundaries of technology, making a lasting impact on
-						society and the world at large.
+						currently unmarried and single. In the long term, I aspire to
+						contribute to innovative projects and initiatives that push the
+						boundaries of technology, making a lasting impact on society and the
+						world at large.
+					</p>
+
+					<br />
+					<h2 className="text-2xl font-bold">What defines me best?</h2>
+					<p className="text-[18px]">
+						I love to publish npm packages, jsr packages, create vscode
+						extension, flutter packages, make figma plugin, prisma extension,
+						loves to do type challanges, create ai stuffs, create content and
+						shorts videos, using aws for fun loves deployment and coolify, loves
+						creating and learn core concepts, with Rust, Go, zig! Learning AI
+						and ML in free time.
 					</p>
 				</div>
 			</div>
@@ -236,8 +246,8 @@ const experiences: Experience[] = [
 	},
 	{
 		company: 'Vrit Technologies',
-		// image:
-		// 	'https://rest.techbehemoths.com/storage/images/users/main/company-avatar-664d7a2f302be-x2.png',
+		image:
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSqvol4HRBHfwbi_hSF9AZWgA-xpiywKL8hg&s',
 		headline: 'July 2020 - May 2021 . Remote',
 		items: [
 			{

@@ -8,7 +8,12 @@ import { HiDocumentText } from 'react-icons/hi';
 import { getPosts } from '~/.server/posts';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
 import { MetaCreator } from '~/utils/meta';
-import { FaConnectdevelop, FaHeart, FaKissWinkHeart } from 'react-icons/fa';
+import {
+	FaConfluence,
+	FaConnectdevelop,
+	FaHeart,
+	FaKissWinkHeart,
+} from 'react-icons/fa';
 
 // const slugs = [
 // 	'typescript',
@@ -346,7 +351,7 @@ export default function Index() {
 				<div className="flex flex-col gap-2">
 					<h1 className=" mb-2 text-3xl font-bold dark:text-zinc-100">
 						Hey, I'm Nischal{' '}
-						<span className=" text-cyan-600 dark:text-cyan-400">Dahal</span>,
+						<span className=" text-red-600 dark:text-red-600">Dahal</span>,
 					</h1>
 
 					<h3 className="w-full text-xl">
@@ -356,9 +361,11 @@ export default function Index() {
 						<Link to={'/about'} className="underline underline-offset-2">
 							brief intro?
 						</Link>
+						<br />
+						<br />
 					</h3>
 
-					<div className="mt-4 flex flex-row flex-wrap gap-2">
+					<div className=" flex flex-row flex-wrap gap-2">
 						<Link
 							target="_blank"
 							to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
@@ -370,13 +377,13 @@ export default function Index() {
 							</ConnectButton>
 						</Link>
 
-						<Link target="_blank" to="https://github.com/broisnischal">
+						{/* <Link target="_blank" to="https://github.com/broisnischal">
 							<ConnectButton className="">
 								<div className="flex items-center justify-center gap-2">
 									<GitHubLogoIcon /> Follow
 								</div>
 							</ConnectButton>
-						</Link>
+						</Link> */}
 						<Link
 							target="_blank"
 							to={
@@ -392,8 +399,8 @@ export default function Index() {
 						<Link target="_blank" to="https://dly.to/oYeNtLdx9va">
 							<ConnectButton className="" focuscolor="via-blue-400/90">
 								<div className="flex items-center justify-center gap-2">
-									<FaConnectdevelop />
-									Join
+									<FaConfluence />
+									Daily Dev
 								</div>
 							</ConnectButton>
 						</Link>

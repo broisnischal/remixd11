@@ -111,12 +111,14 @@ export default function Overview() {
 				<div className="flex items-start gap-2 text-start">
 					<div className="grid grid-cols-1 gap-2 *:border-[1px] lg:grid-cols-2 xl:grid-cols-3 ">
 						{projectdata.map((project, index) => (
-							<div key={index} className="single w-full rounded-md px-6 py-2">
-								<Link className="font-bricolage" to={project.url}>
+							<div key={index} className="single w-full rounded-md px-6 py-4">
+								<Link className="font-bricolage text-xl" to={project.url}>
 									{project.name}
 								</Link>
 
-								<p className="mt-1 text-sm">{project.description}</p>
+								<p className="mt-1 font-bricolage text-sm">
+									{project.description}
+								</p>
 							</div>
 						))}
 					</div>
@@ -202,7 +204,7 @@ function MyConfig({ icon, title, link, description, subicon }: MyConfig) {
 	return (
 		<Link title={title} to={link} key={link} target="_blank">
 			<div className="flex aspect-square  flex-col border-[1px] p-3 ">
-				{icon({ size: 30 })}
+				{icon({ size: 60 })}
 			</div>
 		</Link>
 	);
@@ -251,13 +253,7 @@ let configData: MyConfig[] = [
 		description: 'BashRC where it helps to be fast.',
 		subicon: GitBranch,
 	},
-	{
-		icon: MdOutlineTerminal,
-		title: 'ZSH RC',
-		link: 'https://gist.github.com/broisnischal/e4976d57c5b37f05d3e88aa5a37a48f6',
-		description: 'ZSH where it helps to be fast.',
-		subicon: GitBranch,
-	},
+
 	{
 		icon: SiTmux,
 		title: 'TMUX',
@@ -284,6 +280,13 @@ let configData: MyConfig[] = [
 		title: 'Editorconfig',
 		link: 'https://gist.github.com/broisnischal/5d2b1d46bca9ae771cbb0627cec82623',
 		description: 'Editorconfig where it helps to be fast.',
+		subicon: GitBranch,
+	},
+	{
+		icon: MdOutlineTerminal,
+		title: 'ZSH RC',
+		link: 'https://gist.github.com/broisnischal/e4976d57c5b37f05d3e88aa5a37a48f6',
+		description: 'ZSH where it helps to be fast.',
 		subicon: GitBranch,
 	},
 	{

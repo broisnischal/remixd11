@@ -46,6 +46,7 @@ import { themeSessionResolver } from './session.server';
 import styles from './tailwind.css?url';
 import { MetaCreator } from './utils/meta';
 import { ModeToggle } from './components/toggle-mode';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -249,7 +250,7 @@ const NavBar = () => {
 			<nav className="mainwidth  top-0 z-[998] m-auto hidden py-12 md:flex">
 				<div className=" flex w-full items-center justify-between overflow-hidden py-1">
 					<div className=" flex items-center justify-between gap-4 ">
-						<div className="flex gap-4 ">
+						<div className="flex gap-5 ">
 							<RouteLink to={'/'}>home</RouteLink>
 							<RouteLink to={'/blog'}>blog</RouteLink>
 							<RouteLink to={'/overview'}>info</RouteLink>
@@ -259,12 +260,12 @@ const NavBar = () => {
 							<RouteLink to={'/newsletter'}>newsletter</RouteLink>
 							<RouteLink to={'/talks'}>talks</RouteLink>
 							<RouteLink to={'/chat'}>chat</RouteLink>
-							<RouteLink to={'/links'}>links</RouteLink>
+							{/* <RouteLink to={'/links'}>links</RouteLink> */}
 							<React.Suspense>
 								<Await resolve={data.user}>
 									{user => (
 										<>
-											{user?.type == 'nees' && (
+											{user?.type === 'nees' && (
 												<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
 											)}
 											{user?.id && <Link to="/auth/logout">Logout</Link>}
@@ -291,7 +292,7 @@ const NavBar = () => {
 					<div className="mt-6 flex flex-row flex-wrap items-center gap-2 ">
 						<RouteLink to={'/'}>home</RouteLink>
 						<RouteLink to={'/blog'}>blog</RouteLink>
-						<RouteLink to={'/main'}>info</RouteLink>
+						<RouteLink to={'/overview'}>info</RouteLink>
 						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
 						<RouteLink to={'/bookmarks'}>bmrks</RouteLink>
 						{/* <RouteLink to={'/hire'}>hire</RouteLink> */}
@@ -355,8 +356,8 @@ const Footer = () => {
 				broisnees © {new Date().getFullYear()}
 			</div>
 			<div className="flex flex-wrap gap-2 text-primary">
-				<RouteLink to={'/about'}>about</RouteLink>|
 				<RouteLink to={'/links'}>connect</RouteLink>|
+				<RouteLink to={'/about'}>about</RouteLink>|
 				<RouteLink to={'/setup'}>setup</RouteLink>|
 				<RouteLink to={'/stack'}>stacks</RouteLink>|
 				<RouteLink to={'/hire'}>hire</RouteLink>|
@@ -401,12 +402,12 @@ const Footer = () => {
 					</Link>
 				</div>
 			</div>
-			<small>
+			{/* <small>
 				Alternatively press Cmd + K to search...{' '}
 				<a href="mailto:ping@nischal.pro">
 					<p className="font-bricolage">ping@nischal.pro</p>
 				</a>
-			</small>
+			</small> */}
 		</div>
 		// <div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">
 		// 	<div className="flex flex-col ">
@@ -526,7 +527,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 			<ProgessBar />
 			<NavBar />
 			<div className="mainwidth mx-auto">
-				{/* {isClient ? (
+				{isClient ? (
 					<AnimatePresence mode="sync">
 						<motion.div
 							key={useLocation().pathname}
@@ -544,8 +545,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 					</AnimatePresence>
 				) : (
 					<>{children}</>
-				)} */}
-				<>{children}</>
+				)}
+				{/* {children} */}
 			</div>
 			<Footer />
 		</div>

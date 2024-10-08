@@ -37,8 +37,8 @@ export default function Page() {
 
 	return (
 		<div className="flex flex-col   gap-4">
-			<h1 className="text-3xl font-bold">🤝 Let's work together</h1>
-			<p className="secondary  md:max-w-2xl">
+			<h1 className="text-3xl font-bold">Let's work together 🤝</h1>
+			<p className=" font-bricolage md:max-w-2xl">
 				Passionate software engineer and full stack developer with expertise in
 				backend development and DevOps. Skilled in a wide array of technologies,
 				frameworks, databases, and tools. Experienced content creator and

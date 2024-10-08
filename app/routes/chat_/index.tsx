@@ -7,9 +7,10 @@ export default function Chat() {
 
 	return (
 		<div>
-			<h1 className="text-3xl font-bold">Start Chat!</h1>
-			<br />
-			<p className="mb-3">
+			<h1 className="text-4xl font-bold">
+				Start <span className="text-red-600">Chat</span>
+			</h1>
+			<p className="mb-3 mt-2 font-bricolage text-[1rem]">
 				I am very happy to start a conversation with you. I will be happy to
 				help you in tech, related to any of your query. I am very keen and
 				passonated about learning and sharing ideas.

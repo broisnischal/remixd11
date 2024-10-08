@@ -9,7 +9,9 @@ export default function Page() {
 	return (
 		<div className="flex flex-col  gap-2">
 			<h1 className="font-bricolage text-4xl font-bold">Links</h1>
-			<p className="mb-4 ">Quicklinks to my social platforms and contacts.</p>
+			<p className="mb-4 font-bricolage text-[1.2rem]">
+				Quicklinks to my social platforms and contacts.
+			</p>
 			<div className=" flex flex-wrap gap-3">
 				{socialLinks.map((link, index) => (
 					<Link
@@ -53,7 +55,8 @@ export default function Page() {
 				profile. */}
 			</p>
 			<p className="secondary">
-				Share a interesting project idea? Feel free to reach out!
+				Share a interesting project idea? Feel free to reach to
+				ping@nischal.pro!
 			</p>
 			{/* <small className="">
 				<br /> Made with{' '}

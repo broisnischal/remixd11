@@ -23,7 +23,7 @@ export default function PostHeading({
 	return (
 		<>
 			<div className="flex flex-col gap-1 ">
-				<h2 className="font-bricolage text-2xl">{title}</h2>
+				<h2 className="font-sans text-xl">{title}</h2>
 				{/* <div className=" 	asdfsafasd flex h-min items-center gap-3 ">
 					<img
 						className="w-[30px] rounded-full border "
@@ -40,18 +40,23 @@ export default function PostHeading({
 
 				<div className="mb-4 flex flex-wrap items-center gap-3">
 					{tags?.map((item, i) => (
-						<Highlight className="font-bricolage lowercase">{item}</Highlight>
+						<Highlight className="font-reader lowercase">{item}</Highlight>
 					))}
 				</div>
 
 				<small className="mb-2 flex h-[40px] items-center gap-2 text-primary">
-					{moment(date).format('MMM Do YYYY')} | {readingTime} min | by{' '}
+					{moment(date).format('MMM Do YYYY')} | {readingTime} min read |
+					Written by{' '}
 					<img
 						src="https://avatars.githubusercontent.com/u/98168009?v=4"
-						className="aspect-square w-6 rounded-full"
+						className="aspect-square w-5 rounded-full"
 					/>{' '}
-					<a href="https://x.com/broisnees" target="_blank">
-						<span className="font-bricolage">{author}</span>
+					<a
+						href="https://x.com/broisnees"
+						className="no-underline"
+						target="_blank"
+					>
+						<span className="font-mono">{author}</span>
 					</a>
 				</small>
 

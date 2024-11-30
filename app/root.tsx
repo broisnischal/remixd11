@@ -262,7 +262,9 @@ const NavBar = () => {
 			<nav className=" m-auto mb-10 flex items-center justify-between  py-4">
 				{/* <RouteLink to={'/'}	>Nischal Inc.</RouteLink> */}
 
-				<ProfileHeader isActive name="Nischal Dahal" username="broisnees" />
+				<Link to={'/'}>
+					<ProfileHeader isActive name="Nischal Dahal" username="broisnees" />
+				</Link>
 				<div className=" flex items-center justify-between">
 					<div className=" flex items-center justify-between gap-4 ">
 						<div className="flex gap-5 ">

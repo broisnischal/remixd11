@@ -8,19 +8,13 @@ export default function Chat() {
 	return (
 		<div>
 			<h1 className="text-4xl font-bold">
-				Start <span className="text-red-600">Chat</span>
+				Start <span className="text-green-500">Chat</span>
 			</h1>
-			<p className="mb-3 mt-2 font-bricolage text-[1rem]">
-				I am very happy to start a conversation with you. I will be happy to
-				help you in tech, related to any of your query. I am very keen and
-				passonated about learning and sharing ideas.
-				<br />
-				<br />
-				If you are interested in getting in touch with me, please feel free to
-				meet me, I would be more than happy to help, I deeply value my time, and
-				I’m sure you do too, so I would appreciate it if you come prepared with
-				some initial research and questions in mind. I am looking forward have a
-				short while meaningful chat with you!
+			<p className="mb-4 mt-2 font-mono">
+				I'm happy to chat with you about tech or answer any questions you may
+				have. If you'd like to schedule a call, please feel free to book a time
+				that works for you. I value our time and appreciate it if you come
+				prepared with some initial research and questions in mind.
 			</p>
 			<a target="_blank" href="https://cal.com/nischal-dahal/idea">
 				<Button variant={'outline'} size={'sm'}>

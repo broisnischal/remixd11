@@ -70,6 +70,9 @@ const config = {
 			},
 		},
 		fontFamily: {
+			sans: ['var(--font-geist-sans)'],
+			mono: ['var(--font-geist-mono)'],
+			reader: ['var(--font-reader)'],
 			poppins: ['Poppins', 'sans-serif'],
 			inter: ['Inter', 'sans-serif'],
 			nunito: ['Nunito', 'sans-serif'],

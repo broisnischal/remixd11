@@ -106,13 +106,17 @@ export default defineConfig({
 				},
 				minifyInternalExports: true,
 				compact: true,
-				// experimentalMinChunkSize: 5000000,
+				chunkFileNames: 'static/chunks/[name].js',
 			},
 		},
 		minify: 'esbuild',
 		cssMinify: true,
 		ssr: true,
-		chunkSizeWarningLimit: 600, // Adjust chunk size warning limit as needed
+		chunkSizeWarningLimit: 600,
+		target: 'esnext',
+		assetsInlineLimit: 4096,
+		sourcemap: false,
+		reportCompressedSize: false,
 	},
 });
 

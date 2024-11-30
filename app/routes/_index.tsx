@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
-import { Await, defer, Link, useLoaderData } from '@remix-run/react';
+import { Await, defer, json, Link, useLoaderData } from '@remix-run/react';
 import { Badge } from '~/components/ui/badge';
 
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
@@ -14,6 +14,9 @@ import {
 	FaHeart,
 	FaKissWinkHeart,
 } from 'react-icons/fa';
+import { configData, MyConfig } from './overview';
+import { Post } from '~/components/post';
+import moment from 'moment';
 
 // const slugs = [
 // 	'typescript',
@@ -127,245 +130,128 @@ export const meta: MetaFunction = ({ location }) => {
 	];
 };
 
-interface Artist {
-	name: string;
-}
+export async function loader() {
+	const blogs = await getPosts();
 
-interface Track {
-	name: string;
-	artists: Artist[];
-}
-
-interface SpotifyApiResponse {
-	items: Track[];
-}
-
-async function fetchWebApi<T>(
-	endpoint: string,
-	method: string,
-	token: string,
-	body?: any,
-): Promise<T> {
-	const res = await fetch(`https://api.spotify.com/${endpoint}`, {
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-		method,
-		body: body ? JSON.stringify(body) : undefined,
+	return json({
+		blogs,
 	});
-	return await res.json();
 }
-
-const client_id = 'b387058b297a40de99bbcce45a2b3e97';
-const client_secret = '552f9d1e44bf4a55b82a8f460e8ae9bf';
-
-const getAccessToken = async () => {
-	const tokenEndpoint = 'https://accounts.spotify.com/api/token';
-
-	const headers = {
-		Authorization: 'Basic ' + btoa(`${client_id}:${client_secret}`),
-		'Content-Type': 'application/x-www-form-urlencoded',
-	};
-
-	const body = new URLSearchParams({
-		client_id: client_id,
-		grant_type: 'client_credentials',
-		code: 'user-read-currently-playing',
-		redirect_uri: 'http://localhost:3000',
-	});
-	console.log(body.toString());
-
-	try {
-		const response = await fetch(tokenEndpoint, {
-			method: 'POST',
-			headers: headers,
-			body: body.toString(),
-		});
-		const data: any = await response.json();
-		if (response.ok) {
-			return data.access_token;
-		} else {
-			throw new Error(data.error_description || 'Failed to fetch access token');
-		}
-	} catch (error) {
-		console.error('Error fetching access token:', error);
-	}
-};
-
-export async function loader(args: LoaderFunctionArgs) {
-	// const NOW_PLAYING_ENDPOINT = 'v1/me/player/currently-playing';
-
-	// const token = await getAccessToken();
-
-	// console.log(token);
-
-	// const newplaying = await fetchWebApi<SpotifyApiResponse>(
-	// 	NOW_PLAYING_ENDPOINT,
-	// 	'GET',
-	// 	token,
-	// );
-
-	// console.log(newplaying);
-
-	// console.log(
-	// 	topTracks.map(
-	// 		({ name, artists }) =>
-	// 			`${name} by ${artists.map(artist => artist.name).join(', ')}`,
-	// 	),
-	// );
-
-	// Step 3: Return the track information as JSON
-	// if (nowPlayingResponse.status === 200 && nowPlayingResponse.data) {
-	// 	const track = nowPlayingResponse.data.item;
-	// 	return json({
-	// 		name: track.name,
-	// 		artists: track.artists.map((artist: any) => artist.name).join(', '),
-	// 		album: track.album.name,
-	// 		albumArt: track.album.images[0].url,
-	// 	});
-	// } else {
-	// 	return json({ message: 'No music is currently playing.' });
-	// }
-
-	// const kafka = new Kafka({
-	// 	url: args.context.env.UPSTASH_KAFKA_REST_URL,
-	// 	username: args.context.env.UPSTASH_KAFKA_REST_USERNAME,
-	// 	password: args.context.env.UPSTASH_KAFKA_REST_PASSWORD,
-	// });
-
-	// const p = kafka.producer();
-	// const message = { hello: 'world' }; // Objects will get serialized using `JSON.stringify`
-	// const response = await p.produce('TOPIC', message);
-	// console.log(response);
-	// const response2 = await p.produce('TOPIC', message, {
-	// 	partition: 1,
-	// 	timestamp: 4567,
-	// 	key: 'KEY',
-	// 	headers: [{ key: 'TRACE-ID', value: '32h67jk' }],
-	// });
-
-	// const ratelimit = new Ratelimit({
-	// 	redis: Redis.fromEnv(args.context.env),
-	// 	limiter: Ratelimit.fixedWindow(10, '60 s'),
-	// 	enableProtection: true,
-	// 	analytics: true,
-	// });
-
-	// const ip =
-	// 	args.request.headers.get('X-Forwarded-For') ??
-	// 	args.request.headers.get('x-real-ip');
-
-	// const identifier = ip ?? 'global';
-
-	// const { success, limit, remaining, reset } =
-	// 	await ratelimit.limit(identifier);
-
-	const posts = getPosts().then(posts =>
-		posts
-			.filter(post => post.frontmatter.featured === true)
-			.filter(post => post.frontmatter.published)
-			.sort(
-				(a, b) =>
-					new Date(b.frontmatter.published).getTime() -
-					new Date(a.frontmatter.published).getTime(),
-			)
-			.slice(0, 10),
-	);
-
-	// const featuredPosts = posts.filter(post => post.frontmatter.featured);
-
-	// return json(
-	// 	{
-	// 		posts,
-	// 		// success,
-	// 		// svgContent,
-	// 		// posts,
-	// 		// limit,
-	// 		// remaining,
-	// 		// reset,
-	// 		// identifier,
-	// 		// url: args.context.env.UPSTASH_REDIS_REST_URL,
-	// 		// token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
-	// 	},
-	// 	{
-	// 		headers: {
-	// 			// 'X-RateLimit-Limit': limit.toString(),
-	// 			// 'X-RateLimit-Remaining': remaining.toString(),
-	// 			// 'X-RateLimit-Reset': reset.toString(),
-	// 		},
-	// 	},
-	// );
-	return defer({ posts });
-}
-// return json({
-// 	url: args.context.env.UPSTASH_REDIS_REST_URL,
-// 	token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
-// });
-
-// const ratelimit = new Ratelimit({
-// 	redis: new Redis({
-// 		url: args.context.env.UPSTASH_REDIS_REST_URL,
-// 		token: args.context.env.UPSTASH_REDIS_REST_TOKEN,
-// 	}),
-// 	limiter: Ratelimit.fixedWindow(10, '60 s'),
-// 	analytics: true,
-// });
-
-// 	const markdown = `
-// 	# Learning about the code
-
-// Remix timte
-
-// \`\`\`ts
-
-// import { json } from '@remix-run/cloudflare';
-
-// export const loader = async () => {
-//     return json({ hello: 'world' });
-// };
-
-// export default function Index() {
-//     return <div>hello</div>;
-// }
-
-// \`\`\`
-// `;
-
-// 	return json({ content: parse(markdown) });
-// };
 
 export default function Index() {
-	const { posts } = useLoaderData<typeof loader>();
+	const { blogs } = useLoaderData<typeof loader>();
 
 	return (
-		<div className="m-auto w-full">
-			<br />
-			<div className="flex flex-col items-center md:flex-row">
-				<div>
-					<img
-						src="/qr.png"
-						className="hidden w-[150px] rounded-lg border bg-transparent shadow-sm saturate-0 filter md:w-[150px] xl:w-[160px]"
-						alt=""
-					/>
+		<div className="">
+			<div className="flex flex-col gap-8 font-sans">
+				<p className=" ">
+					I'm a <i className="font-atkinson">Senior Software Engineer </i>
+					focusing on serverless architecture, android development, user
+					experience, and product development. I am not Stack biased and am
+					always open to learning new technologies.
+				</p>
+
+				<p className="">
+					As a firm believer in transhumanism, I envision a future where
+					technology alleviates human suffering and fosters a more harmonious
+					world.
+				</p>
+
+				<div className="rounded border border-secondary bg-zinc-300/10 px-4 py-2 dark:bg-[#3d3d3d]/20">
+					<p className="font-avenir">
+						I am not interested in working for enforcement agencies, dictators,
+						or companies that contradict transhumanist values or cause harm to
+						people.
+					</p>
 				</div>
+
 				<div className="flex flex-col gap-2">
-					<h1 className=" mb-2 text-3xl font-bold dark:text-zinc-100">
-						Hey, I'm Nischal{' '}
-						<span className=" text-red-600 dark:text-red-600">Dahal</span>,
-					</h1>
-
-					<h3 className="w-full text-xl">
-						18 y/0 kid cooking some cool stuff !! I'm a full-stack engineer
-						focusing on serverless architectures, android development, user
-						experience, and product development.{' '}
-						<Link to={'/about'} className="underline underline-offset-2">
-							brief intro?
+					<span className="font-bold">QuickLinks</span>
+					<div>
+						<Link to={'/bookmarks'}>
+							<span className="font-mono capitalize italic">bookmarks </span> -
+							Links to content I liked, sometimes with my commentary.
 						</Link>
-						<br />
-						<br />
-					</h3>
+					</div>
+					<div>
+						<Link to={'/guestbook'}>
+							<span className="font-mono capitalize italic">guestbook </span> -
+							appreciation, information, wisdom, anything that is good or bad.
+						</Link>
+					</div>
+					<div>
+						<Link to={'/newsletter'}>
+							<span className="font-mono capitalize italic">newsletter</span> -
+							Subscribe to my newsletter.
+						</Link>
+					</div>
+					<div>
+						<Link to={'/talks'}>
+							<span className="font-mono capitalize italic">talks</span> -
+							Presentations and Talks I've given and attended in the past and
+							future.
+						</Link>
+					</div>
+					<div>
+						<Link to={'/chat'}>
+							<span className="font-mono capitalize italic">chat</span> - Chat
+							with me.
+						</Link>
+					</div>
+				</div>
 
-					<div className=" flex flex-row flex-wrap gap-2">
+				<div className="flex flex-col gap-2">
+					<h1>
+						As a developer, I use this as my general toolset, and
+						configurations.
+					</h1>
+					<div className="&>*:w-full flex gap-2">
+						{configData.map(config => {
+							return (
+								<MyConfig
+									key={config.title}
+									icon={config.icon}
+									title={config.title}
+									link={config.link}
+									description={config.description}
+									subicon={config.subicon}
+								/>
+							);
+						})}
+					</div>
+				</div>
+
+				<div className="flex flex-col gap-4">
+					<h1>
+						<span className="italic">Writing</span>
+					</h1>
+					<ul className="list-inside">
+						{blogs
+							.filter(b => b.frontmatter.featured)
+							.map(blog => {
+								return (
+									<li>
+										<Link
+											className="flex items-center gap-2"
+											to={`/blog/${blog.slug.split('/').pop()}`}
+											prefetch="intent"
+										>
+											-{' '}
+											<p className="font-reader text-sm">
+												{blog.frontmatter.title}
+											</p>
+										</Link>
+									</li>
+								);
+							})}
+					</ul>
+				</div>
+
+				{/* <Link to={'/about'} className="underline underline-offset-2">
+							brief intro?
+						</Link> */}
+
+				{/* <div className=" flex flex-row flex-wrap gap-2">
 						<Link
 							target="_blank"
 							to="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=neeswebservices"
@@ -377,13 +263,13 @@ export default function Index() {
 							</ConnectButton>
 						</Link>
 
-						{/* <Link target="_blank" to="https://github.com/broisnischal">
+						<Link target="_blank" to="https://github.com/broisnischal">
 							<ConnectButton className="">
 								<div className="flex items-center justify-center gap-2">
 									<GitHubLogoIcon /> Follow
 								</div>
 							</ConnectButton>
-						</Link> */}
+						</Link>
 						<Link
 							target="_blank"
 							to={
@@ -404,7 +290,7 @@ export default function Index() {
 								</div>
 							</ConnectButton>
 						</Link>
-						{/* <Link target="_blank" to="https://ko-fi.com/Z8Z712ZDYP">
+						<Link target="_blank" to="https://ko-fi.com/Z8Z712ZDYP">
 							<ConnectButton
 								className="rounded-md"
 								focuscolor="via-blue-400/90"
@@ -414,9 +300,8 @@ export default function Index() {
 									Sponsor
 								</div>
 							</ConnectButton>
-						</Link> */}
-					</div>
-				</div>
+						</Link>
+					</div> */}
 			</div>
 			<br />
 			{/* <div className="my-8 flex flex-col gap-3">

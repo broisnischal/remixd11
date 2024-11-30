@@ -1,6 +1,7 @@
-import { Link, Outlet, useLocation } from '@remix-run/react';
+import { json, Link, Outlet, useLocation } from '@remix-run/react';
 import { ArrowLeft, Mails } from 'lucide-react';
 import { ConnectButton } from '~/components/ui-library/tailwindbutton';
+import { Octokit as createOctokit, Octokit } from '@octokit/rest';
 
 import {
 	LinkedinIcon,
@@ -11,6 +12,15 @@ import {
 	XIcon,
 } from 'react-share';
 import { SiGithubsponsors } from 'react-icons/si';
+import { LoaderFunctionArgs } from '@remix-run/cloudflare';
+
+export async function loader({ context }: LoaderFunctionArgs) {
+	const octokit = new Octokit({
+		auth: context.env.GITHUB_CLIENT_SECRET,
+	});
+
+	return json({});
+}
 
 export default function Component() {
 	const location = useLocation();

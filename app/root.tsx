@@ -5,12 +5,13 @@ import type {
 	MetaFunction,
 } from '@remix-run/cloudflare';
 
-import { isRouteErrorResponse, useRouteError } from '@remix-run/react';
+// import { isRouteErrorResponse, useRouteError } from '@remix-run/react';
 
 import {
 	Await,
 	defer,
 	Form,
+	isRouteErrorResponse,
 	Link,
 	Links,
 	Meta,
@@ -22,13 +23,14 @@ import {
 	useActionData,
 	useLoaderData,
 	useLocation,
+	useRouteError,
 	useSubmit,
 } from '@remix-run/react';
 import clsx from 'clsx';
 import * as React from 'react';
 
 import { Redis } from '@upstash/redis/cloudflare';
-import { ArrowUp, Mails } from 'lucide-react';
+import { ArrowUp, Bell, GithubIcon, Mails, Star } from 'lucide-react';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import {
 	PreventFlashOnWrongTheme,
@@ -47,6 +49,13 @@ import styles from './tailwind.css?url';
 import { MetaCreator } from './utils/meta';
 import { ModeToggle } from './components/toggle-mode';
 import { AnimatePresence, motion } from 'framer-motion';
+import {
+	MdAnnouncement,
+	MdNotificationAdd,
+	MdNotificationImportant,
+	MdNotifications,
+} from 'react-icons/md';
+import { ProfileHeader } from './components/profile-header';
 
 export const links: LinksFunction = () => {
 	return [{ rel: 'stylesheet', href: styles }];
@@ -217,9 +226,11 @@ export const link: LinksFunction = () => {
 export const RouteLink = ({
 	to,
 	children,
+	blank,
 }: {
 	to: string;
 	children: React.ReactNode;
+	blank?: boolean;
 }) => {
 	return (
 		<NavLink
@@ -227,9 +238,10 @@ export const RouteLink = ({
 			className={({ isActive }) =>
 				isActive
 					? 'active font-bricolage md:text-[16px]'
-					: 'font-bricolage  md:text-[16px]'
+					: 'font-sans  md:text-[17px]'
 			}
 			to={to}
+			target={blank ? '_blank' : '_self'}
 		>
 			{children}
 		</NavLink>
@@ -247,21 +259,23 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className="mainwidth  top-0 z-[998] m-auto hidden py-12 md:flex">
-				<div className=" flex w-full items-center justify-between overflow-hidden py-1">
+			<nav className=" m-auto mb-10 flex items-center justify-between  py-4">
+				{/* <RouteLink to={'/'}	>Nischal Inc.</RouteLink> */}
+
+				<ProfileHeader isActive name="Nischal Dahal" username="broisnees" />
+				<div className=" flex items-center justify-between">
 					<div className=" flex items-center justify-between gap-4 ">
 						<div className="flex gap-5 ">
-							<RouteLink to={'/'}>home</RouteLink>
-							<RouteLink to={'/blog'}>blog</RouteLink>
-							<RouteLink to={'/overview'}>info</RouteLink>
-							<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-							<RouteLink to={'/bookmarks'}>bmrks</RouteLink>
+							{/* <RouteLink to={'/blog'}>blog</RouteLink> */}
+							{/* <RouteLink to={'/guestbook'}>guestbook</RouteLink> */}
+							{/* <RouteLink to={'/overview'}>info</RouteLink> */}
+							{/* <RouteLink to={'/bookmarks'}>bmrks</RouteLink> */}
+							{/* <RouteLink to={'/newsletter'}>newsletter</RouteLink> */}
+							{/* <RouteLink to={'/talks'}>talks</RouteLink> */}
+							{/* <RouteLink to={'/chat'}>chat</RouteLink> */}
 							{/* <RouteLink to={'/hire'}>hireme</RouteLink> */}
-							<RouteLink to={'/newsletter'}>newsletter</RouteLink>
-							<RouteLink to={'/talks'}>talks</RouteLink>
-							<RouteLink to={'/chat'}>chat</RouteLink>
 							{/* <RouteLink to={'/links'}>links</RouteLink> */}
-							<React.Suspense>
+							{/* <React.Suspense>
 								<Await resolve={data.user}>
 									{user => (
 										<>
@@ -272,233 +286,95 @@ const NavBar = () => {
 										</>
 									)}
 								</Await>
-							</React.Suspense>
+							</React.Suspense> */}
 						</div>
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
 						{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
 						{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
-
-						<ModeToggle />
 					</div>
 				</div>
-			</nav>
-			<nav className=" m-auto  mt-8 w-[90%] items-center gap-3 md:hidden">
-				<div className="fixed right-[24px] top-[24px] z-[999]">
+				<div className="flex items-center justify-center gap-4">
 					<ModeToggle />
-					<Search />
+					<Announcement />
+					<GithubStars />
 				</div>
-				<div className="flex w-full items-center">
-					<div className="mt-6 flex flex-row flex-wrap items-center gap-2 ">
-						<RouteLink to={'/'}>home</RouteLink>
-						<RouteLink to={'/blog'}>blog</RouteLink>
-						<RouteLink to={'/overview'}>info</RouteLink>
-						<RouteLink to={'/guestbook'}>guestbook</RouteLink>
-						<RouteLink to={'/bookmarks'}>bmrks</RouteLink>
-						{/* <RouteLink to={'/hire'}>hire</RouteLink> */}
-						<RouteLink to={'/newsletter'}>newsletter</RouteLink>
-						<RouteLink to={'/chat'}>chat</RouteLink>
-						<RouteLink to={'/talks'}>talks</RouteLink>
-						<RouteLink to={'/links'}>links</RouteLink>
-
-						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
-						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
-						{/* <RouteLink to={'/thought'}>thoughts</RouteLink> */}
-						{/* <RouteLink to={'/career'}>projects</RouteLink> */}
-						{/* <RouteLink to={'/canvas'}>canvas</RouteLink> */}
-						<React.Suspense>
-							<Await resolve={data.user}>
-								{user => (
-									<>
-										{user?.type == 'nees' && (
-											<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
-										)}
-										{user?.id && <Link to="/auth/logout">Logout</Link>}
-									</>
-								)}
-							</Await>
-						</React.Suspense>
-					</div>
-				</div>
-				<br />
 			</nav>
 		</>
 	);
 };
 
+export function GithubStars() {
+	return (
+		<Button variant="outline" size="icon" asChild className="gap-2">
+			<Link
+				to="https://github.com/broisnischal"
+				target="_blank"
+				className="flex items-center"
+			>
+				<Star size={16} />
+			</Link>
+		</Button>
+	);
+}
+
+export function Announcement() {
+	return (
+		<Button variant="outline" size="icon" asChild className="">
+			<Link to="/announcement" className="flex items-center">
+				<Bell size={16} />
+			</Link>
+		</Button>
+	);
+}
+
 const Footer = () => {
 	return (
-		<div className="mainwidth secondary m-auto flex min-h-[5vh] flex-col justify-center gap-2 pb-32 pt-10 text-sm">
-			{/* <div className="flex w-full items-center  justify-evenly">
-				<h2 className="font-bricolage text-xl font-bold text-primary ">
-					Nischal Dahal
-				</h2>
-				<Link to={'/newsletter'}>
-					<ConnectButton>
-						<div className="flex items-center justify-center gap-2 ">
-							<Mails size={18} /> Newsletter
-						</div>
-					</ConnectButton>
-				</Link>
-			</div> */}
-			<br />
-			{/* <Hr /> */}
-			<br />
-
-			{/* <div>
-				<a href="mailto:ping@nischal.pro">
-					<p className="font-bricolage text-xl text-primary">
-						ping@nischal.pro
-					</p>
-				</a>
-			</div> */}
-			<div className="top flex flex-col gap-2 md:flex-row ">
-				broisnees © {new Date().getFullYear()}
-			</div>
-			<div className="flex flex-wrap gap-2 text-primary">
-				<RouteLink to={'/links'}>connect</RouteLink>|
-				<RouteLink to={'/about'}>about</RouteLink>|
+		<div className="flex min-h-[5vh] flex-col gap-2 pt-20 text-sm">
+			<div className="flex flex-wrap gap-2">
+				<RouteLink to={'/links'}>links</RouteLink>|
+				{/* <RouteLink to={'/about'}>about</RouteLink>| */}
 				<RouteLink to={'/setup'}>setup</RouteLink>|
-				<RouteLink to={'/stack'}>stacks</RouteLink>|
+				{/* <RouteLink to={'/stack'}>stacks</RouteLink>| */}
 				<RouteLink to={'/hire'}>hire</RouteLink>|
 				<RouteLink to={'/timeline'}>timeline</RouteLink>|
-				<RouteLink to={'/sponsor'}>sponsor</RouteLink>
+				<RouteLink blank to={'https://ko-fi.com/nischaldahal'}>
+					donate
+				</RouteLink>
 			</div>
-			<div className="flex flex-col">
-				<h3 className="md:hidden">Other links</h3>
-				<div className="mb-3 flex w-[90%] flex-wrap gap-2 ">
-					<Link
-						className="text-sm underline underline-offset-2"
-						to="https://codeium.com/profile/broisnischal"
-						target="_blank"
-					>
-						codeium
-					</Link>
-					|
-					<Link
-						className="text-sm underline underline-offset-2"
-						to="https://dly.to/oYeNtLdx9va"
-						target="_blank"
-					>
-						daily dev
-					</Link>
-					|
-					<Link
-						className="text-sm underline underline-offset-2"
-						to={'https://nischal-dahal.com.np/blogs/rss'}
-					>
-						blog RSS
-					</Link>
-					|
-					<Link
-						className="text-sm underline underline-offset-2"
-						to={'https://nischal-dahal.com.np/sitemap.xml'}
-					>
-						sitemap
-					</Link>
-					|
-					<Link className="text-sm underline underline-offset-2" to="/terms">
-						terms & conditions
-					</Link>
-				</div>
+
+			<div className="secondary flex flex-wrap gap-2">
+				<Link
+					className="text-sm underline underline-offset-2"
+					to="https://codeium.com/profile/broisnischal"
+					target="_blank"
+				>
+					codeium
+				</Link>
+				<Link
+					className="text-sm underline underline-offset-2"
+					to="https://dly.to/oYeNtLdx9va"
+					target="_blank"
+				>
+					daily dev
+				</Link>
+				<Link
+					className="text-sm underline underline-offset-2"
+					to={'https://nischal-dahal.com.np/blogs/rss'}
+				>
+					blog RSS
+				</Link>
+				<Link
+					className="text-sm underline underline-offset-2"
+					to={'https://nischal-dahal.com.np/sitemap.xml'}
+				>
+					sitemap
+				</Link>
+				<Link className="text-sm underline underline-offset-2" to="/terms">
+					terms & conditions
+				</Link>
 			</div>
-			{/* <small>
-				Alternatively press Cmd + K to search...{' '}
-				<a href="mailto:ping@nischal.pro">
-					<p className="font-bricolage">ping@nischal.pro</p>
-				</a>
-			</small> */}
 		</div>
-		// <div className="m-auto mt-10 flex flex-col items-center justify-center gap-6">
-		// 	<div className="flex flex-col ">
-		// 		{/* <h2 className="text-center text-xl font-bold">Check me out</h2> */}
-		// 		<div className=" flex items-center justify-center gap-6">
-		// 			<Link
-		// 				aria-label="Github"
-		// 				target="_blank"
-		// 				to="https://github.com/broisnischal"
-		// 			>
-		// 				<GitHubLogoIcon width={30} height={30} />
-		// 			</Link>
-
-		// 			<Link
-		// 				aria-label="Discord"
-		// 				target="_blank"
-		// 				to="https://discord.gg/@broisnees"
-		// 			>
-		// 				<DiscordLogoIcon width={30} height={30} />
-		// 			</Link>
-
-		// 			<Link
-		// 				aria-label="Instagram"
-		// 				target="_blank"
-		// 				to="https://instagram.com/broisnees"
-		// 			>
-		// 				<InstagramLogoIcon width={30} height={30} />
-		// 			</Link>
-		// 			<Link
-		// 				aria-label="Twitter"
-		// 				target="_blank"
-		// 				to="https://twitter.com/broisnees"
-		// 			>
-		// 				<svg
-		// 					xmlns="http://www.w3.org/2000/svg"
-		// 					width="23"
-		// 					height="23"
-		// 					fill="none"
-		// 					viewBox="0 0 1200 1227"
-		// 				>
-		// 					<path
-		// 						// fill="#000 dark:#fff"
-		// 						className="fill-black dark:fill-white"
-		// 						d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
-		// 					/>
-		// 				</svg>
-		// 			</Link>
-		// 			<Link
-		// 				aria-label="LinkedIn"
-		// 				target="_blank"
-		// 				to="https://www.linkedin.com/in/neeswebservices/"
-		// 			>
-		// 				<LinkedInLogoIcon width={30} height={30} />
-		// 			</Link>
-		// 			<a href="/feed.json" aria-label="RSS" target="_blank">
-		// 				<RssIcon width={30} height={30} />
-		// 			</a>
-		// 		</div>
-		// 	</div>
-		// 	<div className="flex items-center justify-center gap-5">
-		// 		<Link
-		// 			to="mailto:info@nischal-dahal.com.np"
-		// 			className="flex items-center gap-2 font-normal"
-		// 		>
-		// 			<ArrowTopRightIcon /> Mail
-		// 		</Link>
-
-		// 		<Link to="/about" className="flex items-center  gap-2 font-normal">
-		// 			<ArrowTopRightIcon /> About
-		// 		</Link>
-		// 		<Link to="/chat" className="flex items-center  gap-2 font-normal">
-		// 			<ArrowTopRightIcon /> Chat
-		// 		</Link>
-		// 		<a href="/blogs/rss" className="flex items-center  gap-2 font-normal">
-		// 			<ArrowTopRightIcon /> Blog RSS
-		// 		</a>
-
-		// 		{/* <a href="/blogs/rss" className="flex items-center  gap-2">
-		// 				<ArrowTopRightIcon /> MyBookmarks RSS
-		// 			</a> */}
-		// 	</div>
-		// 	<small className="text-center">
-		// 		Alternatively press Ctrl/Cmd + K to search.. <br /> Nischal Dahal | Made
-		// 		with{' '}
-		// 		<Link target="_blank" className="text-primary text-sm " to="https://remix.run">
-		// 			Remix
-		// 		</Link>{' '}
-		// 		❤️
-		// 	</small>
-		// 	<br />
-		// </div>
 	);
 };
 
@@ -515,40 +391,14 @@ export function WebsiteBanner() {
 }
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-	const [isClient, setIsClient] = React.useState(false);
-
-	React.useEffect(() => {
-		// This will only run on the client side
-		setIsClient(true);
-	}, []);
-
 	return (
 		<div className="flex flex-col">
 			<ProgessBar />
-			<NavBar />
-			<div className="mainwidth mx-auto">
-				{isClient ? (
-					<AnimatePresence mode="sync">
-						<motion.div
-							key={useLocation().pathname}
-							variants={{
-								initial: { opacity: 0, y: -20 },
-								animate: { opacity: 1, y: 0 },
-								exit: { opacity: 1, y: 0 },
-							}}
-							transition={{ duration: 0.4, ease: 'anticipate' }}
-							initial="initial"
-							animate="animate"
-						>
-							{children}
-						</motion.div>
-					</AnimatePresence>
-				) : (
-					<>{children}</>
-				)}
-				{/* {children} */}
+			<div className="text-gray-1200 mx-auto my-12 !mt-6 max-w-[720px] px-4 antialiased sm:my-32 md:my-20 md:mb-40">
+				<NavBar />
+				{children}
+				<Footer />
 			</div>
-			<Footer />
 		</div>
 	);
 };
@@ -628,7 +478,7 @@ export function App() {
 					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6430477215422762"
 					crossOrigin="anonymous"
 				></script>
-				<link
+				{/* <link
 					href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible:regular,italic,700,700italic"
 					rel="stylesheet"
 				/>
@@ -636,11 +486,17 @@ export function App() {
 					href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque:200,300,regular,500,600,700,800"
 					rel="stylesheet"
 				/>
-
 				<link
 					href="https://fonts.googleapis.com/css?family=Inconsolata:200,300,regular,500,600,700,800,900"
 					rel="stylesheet"
-				/>
+				/> */}
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" />
+				<link
+					href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+					rel="stylesheet"
+				></link>
+
 				<Meta />
 				<Links />
 				<script
@@ -670,20 +526,19 @@ export function App() {
 			</head>
 			<body
 				style={{
-					fontFamily: 'system-ui, sans-serif',
 					lineHeight: '1.6',
 					margin: 0,
+					fontFamily: 'Geist',
 				}}
 			>
 				{/* <WebsiteBanner /> */}
 				<Search />
-
 				<Layout children={<Outlet />} />
-				<React.Suspense>
+				{/* <React.Suspense>
 					<Await resolve={data.count}>
 						{count => <Clap count={count as number} />}
 					</Await>
-				</React.Suspense>
+				</React.Suspense> */}
 				<ScrollRestoration
 					getKey={location => {
 						return location.pathname;

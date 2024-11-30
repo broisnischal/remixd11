@@ -200,17 +200,23 @@ type MyConfig = {
 	subicon: any;
 };
 
-function MyConfig({ icon, title, link, description, subicon }: MyConfig) {
+export function MyConfig({
+	icon,
+	title,
+	link,
+	description,
+	subicon,
+}: MyConfig) {
 	return (
 		<Link title={title} to={link} key={link} target="_blank">
-			<div className="flex aspect-square  flex-col border-[1px] p-3 ">
-				{icon({ size: 60 })}
+			<div className="aspect-square  flex-col border-[1px] p-3 ">
+				{icon({ size: 20 })}
 			</div>
 		</Link>
 	);
 }
 
-let configData: MyConfig[] = [
+export let configData: MyConfig[] = [
 	{
 		icon: SiNeovim,
 		title: 'Neovim',

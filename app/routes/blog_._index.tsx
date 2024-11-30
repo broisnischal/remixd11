@@ -183,119 +183,20 @@ export default function Component() {
 	};
 
 	return (
-		<div className="">
-			<Form
-				method="GET"
-				onChange={event => {
-					submit(event.currentTarget, {
-						replace: true,
-						preventScrollReset: true,
-						navigate: true,
-					});
-
-					setAllPosts(posts);
-					// setActiveTag(tousetag);
-				}}
-			>
-				<input
-					type="search"
-					name="q"
-					defaultValue={search || ''}
-					placeholder="Search"
-					className="w-1/2 rounded-lg border-[1px] bg-transparent px-4 py-1 focus:outline-none"
-				/>
-				{/* <div className="flex flex-col">
-					<div className=" flex h-full w-full items-center gap-4 rounded-full border px-5 py-2 lg:max-w-full">
-						<SearchIcon size={16} />
-						<input
-							id="search"
-							name="q"
-							type="text"
-							onChange={event => {
-								if (event.currentTarget.value === '') {
-									setAllPosts(posts);
-								}
-							}}
-							defaultValue={search || ''}
-							placeholder="Search for posts, problems or tags..."
-							className="w-full bg-transparent focus:outline-none"
-						/>
+		<div className="flex flex-wrap gap-y-12">
+			{allposts.length <= 0 ? (
+				<>No posts found</>
+			) : (
+				allposts.map((post, i) => (
+					<div
+						key={i}
+						className="min-w-full"
+						// rounded-lg  border  bg-zinc-50 p-2 dark:bg-transparent
+					>
+						<Post key={post.slug} {...post} />
 					</div>
-				</div> */}
-			</Form>
-
-			<br />
-			<div className="tags m-auto flex flex-wrap gap-2">
-				{/* <input className="border" type="text" /> */}
-				{activeTag &&
-					(activeTag.length <= 0 ? (
-						<>
-							<h2>No search matches the tags</h2>
-						</>
-					) : (
-						activeTag.map((tag, i) => (
-							<button
-								key={i}
-								className={twMerge(
-									'tag rounded-md border bg-secondary px-2 text-sm lowercase',
-									tag.active && 'border-white bg-black text-white',
-								)}
-								// disabled={search ? true : false}
-								onClick={() => {
-									!tag.active
-										? handleChange({
-												tag: tag.tag,
-												active: !tag.active,
-											})
-										: search
-											? null
-											: setAllPosts(posts);
-
-									setActiveTag(
-										activeTag.map(t => ({
-											...t,
-											// t.tag === tag.tag
-											active:
-												t.active == false
-													? t.tag == tag.tag
-														? true
-														: false
-													: false,
-										})),
-									);
-								}}
-							>
-								# {tag.tag}
-							</button>
-						))
-					))}
-				{/* <button
-					className={twMerge(
-						'tag rounded-md border bg-secondary px-2 text-sm font-medium lowercase',
-					)}
-					onClick={() => {}}
-				>
-					x
-				</button> */}
-			</div>
-			<br />
-			<Hr />
-			<br />
-			<div className="flex flex-wrap gap-y-12">
-				{allposts.length <= 0 ? (
-					<>No posts found</>
-				) : (
-					allposts.map((post, i) => (
-						<div
-							key={i}
-							className="min-w-full"
-							// rounded-lg  border  bg-zinc-50 p-2 dark:bg-transparent
-						>
-							<Post key={post.slug} {...post} />
-						</div>
-					))
-				)}
-			</div>
+				))
+			)}
 		</div>
 	);
 }

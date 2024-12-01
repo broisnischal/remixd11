@@ -32,7 +32,7 @@ export function ModeToggle() {
 		// <Button variant="secondary" size="icon">
 
 		// </Button>
-		<div className="grid cursor-pointer place-content-center">
+		<div className="mr-1 grid cursor-pointer place-content-center">
 			<Sun
 				onClick={() => {
 					setTheme(Theme.DARK);

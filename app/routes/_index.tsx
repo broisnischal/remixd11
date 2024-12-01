@@ -145,10 +145,14 @@ export default function Index() {
 		<div className="">
 			<div className="flex flex-col gap-8 font-sans">
 				<p className=" ">
-					I'm a <i className="font-atkinson">Senior Software Engineer </i>
+					I'm a{' '}
+					<i style={{ fontWeight: 'bold' }} className="mr-2">
+						Senior Software Engineer
+					</i>
 					focusing on serverless architecture, android development, user
 					experience, and product development. I am not Stack biased and am
-					always open to learning new technologies.
+					always open to learning new technologies. Enrolled in Content
+					Creation, Editing, Designing, and Innovating.
 				</p>
 
 				<p className="">
@@ -158,10 +162,20 @@ export default function Index() {
 				</p>
 
 				<div className="rounded border border-secondary bg-zinc-300/10 px-4 py-2 dark:bg-[#3d3d3d]/20">
-					<p className="font-avenir">
-						I am not interested in working for enforcement agencies, dictators,
-						or companies that contradict transhumanist values or cause harm to
-						people.
+					<p className="font-avenir ">
+						I am not interested in working for{' '}
+						<span className="font-bold text-red-600">enforcement</span>{' '}
+						agencies, dictators, or companies that contradict
+						<button className="group relative text-black hover:underline">
+							<span className="mx-1 font-bold text-red-600">transhumanist</span>
+							<div className="absolute -top-1/2 left-1/2 -mt-4 -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full opacity-0 transition-all duration-300 ease-out group-hover:scale-100 group-hover:opacity-100">
+								<div className=" min-w-[300px] text-balance rounded-md border	 bg-destructive-foreground px-2 py-1 text-sm">
+									Advocating for the ethical use of technology to improve the
+									human condition.
+								</div>
+							</div>
+						</button>{' '}
+						values or cause harm to people.
 					</p>
 				</div>
 
@@ -169,39 +183,49 @@ export default function Index() {
 					<span className="font-bold">QuickLinks</span>
 					<div>
 						<Link to={'/bookmarks'}>
-							<span className="font-mono capitalize italic">bookmarks </span> -
-							Links to content I liked, sometimes with my commentary.
+							<span className="font-mono capitalize italic underline underline-offset-2">
+								bookmarks{' '}
+							</span>{' '}
+							- Links to content I liked, sometimes with my commentary.
 						</Link>
 					</div>
 					<div>
 						<Link to={'/guestbook'}>
-							<span className="font-mono capitalize italic">guestbook </span> -
-							appreciation, information, wisdom, anything that is good or bad.
+							<span className="font-mono capitalize italic underline underline-offset-2">
+								guestbook{' '}
+							</span>{' '}
+							- appreciation, information, wisdom, anything that is good or bad.
 						</Link>
 					</div>
 					<div>
 						<Link to={'/newsletter'}>
-							<span className="font-mono capitalize italic">newsletter</span> -
-							Subscribe to my newsletter.
+							<span className="font-mono capitalize italic underline underline-offset-2">
+								newsletter
+							</span>{' '}
+							- Subscribe to my newsletter.
 						</Link>
 					</div>
 					<div>
 						<Link to={'/talks'}>
-							<span className="font-mono capitalize italic">talks</span> -
-							Presentations and Talks I've given and attended in the past and
+							<span className="font-mono capitalize italic underline underline-offset-2">
+								talks
+							</span>{' '}
+							- Presentations and Talks I've given and attended in the past and
 							future.
 						</Link>
 					</div>
 					<div>
 						<Link to={'/chat'}>
-							<span className="font-mono capitalize italic">chat</span> - Chat
-							with me.
+							<span className="font-mono capitalize italic underline underline-offset-2">
+								chat
+							</span>{' '}
+							- Chat with me.
 						</Link>
 					</div>
 				</div>
 
 				<div className="flex flex-col gap-2">
-					<h1>
+					<h1 className="mb-1 italic">
 						As a developer, I use this as my general toolset, and
 						configurations.
 					</h1>
@@ -221,7 +245,7 @@ export default function Index() {
 					</div>
 				</div>
 
-				<div className="flex flex-col gap-4">
+				<div className="flex flex-col gap-2">
 					<h1>
 						<span className="italic">Writing</span>
 					</h1>
@@ -230,13 +254,15 @@ export default function Index() {
 							.filter(b => b.frontmatter.featured)
 							.map(blog => {
 								return (
-									<li>
+									<li className="group">
 										<Link
 											className="flex items-center gap-2"
 											to={`/blog/${blog.slug.split('/').pop()}`}
 											prefetch="intent"
 										>
-											-{' '}
+											<span className="transition duration-100 ease-linear group-hover:scale-150 group-hover:text-red-600">
+												-
+											</span>{' '}
 											<p className="font-reader text-sm">
 												{blog.frontmatter.title}
 											</p>
@@ -244,6 +270,39 @@ export default function Index() {
 									</li>
 								);
 							})}
+					</ul>
+					<Link
+						to={'/blog'}
+						prefetch="viewport"
+						className="underline underline-offset-2"
+					>
+						View more
+					</Link>
+				</div>
+
+				<div>
+					<h1> I try publishing stuffs, that does something than nothing.</h1>
+					<ul className="flex flex-wrap gap-2 *:italic *:underline *:underline-offset-2">
+						<Link
+							target="_blank"
+							to={'https://pub.dev/publishers/nischal-dahal.com.np/packages'}
+						>
+							<li>pub.dev</li>
+						</Link>
+						<Link target="_blank" to={'https://www.npmjs.com/~neeswebservice'}>
+							<li>npmjs</li>
+						</Link>
+
+						<Link
+							target="_blank"
+							to={'https://marketplace.visualstudio.com/publishers/nischal'}
+						>
+							<li>vsext</li>
+						</Link>
+
+						<li className="secondary">tools</li>
+
+						<li className="secondary">others</li>
 					</ul>
 				</div>
 

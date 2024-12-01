@@ -10,10 +10,10 @@ export function ProfileHeader({
 	isActive,
 }: ProfileHeaderProps) {
 	return (
-		<header className="animate-slide-from-down-and-fade-1 top-0 z-50 w-full cursor-context-menu">
+		<header className="animate-slide-from-down-and-fade-2 top-0 z-50 w-full cursor-context-menu">
 			<div className="flex flex-col">
 				<div className="cursor-pointer">
-					<h1 className="transition-element font-mono text-[20px] font-medium">
+					<h1 className="transition-element font-sans text-[16px] font-medium">
 						<span className="sr-only">{name}</span>
 						<span
 							aria-hidden="true"

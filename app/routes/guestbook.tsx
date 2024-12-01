@@ -303,13 +303,18 @@ export default function Page() {
 				)}
 			</div>
 
-			<ul className="mt-4 flex flex-col items-start justify-start gap-3">
+			<div className="mt-8 flex flex-col items-start justify-start gap-1">
+				<p className="text-sm italic">Here is what people say about me,</p>
 				{guestbooks.map(i => (
-					<li className="text-start" key={i.id}>
-						<strong>{i.name} : </strong> {i.message}
-					</li>
+					<div className="text-start" key={i.id}>
+						{i.message}
+						<span className="font-reader text-[12px] italic">
+							{' '}
+							- {i.name?.split(' ')[0]}
+						</span>
+					</div>
 				))}
-			</ul>
+			</div>
 
 			{/* {JSON.stringify(lastResult, null, 2)} */}
 		</div>

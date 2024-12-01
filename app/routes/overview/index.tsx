@@ -209,7 +209,7 @@ export function MyConfig({
 }: MyConfig) {
 	return (
 		<Link title={title} to={link} key={link} target="_blank">
-			<div className="aspect-square  flex-col border-[1px] p-3 ">
+			<div className="aspect-square flex-col rounded-sm border border-secondary/40 p-2 transition-all hover:-translate-y-1 hover:scale-110 hover:border-secondary ">
 				{icon({ size: 20 })}
 			</div>
 		</Link>

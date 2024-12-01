@@ -5,15 +5,19 @@ import { Badge } from './ui/badge';
 
 export const Post = ({ slug, frontmatter }: PostMeta) => {
 	return (
-		<Link prefetch="viewport" to={`/blog/${slug.split('/').pop()}`}>
-			<article className=" flex w-full flex-col gap-2">
-				<h3 className="font-sans">
+		<Link
+			prefetch="viewport"
+			className=""
+			to={`/blog/${slug.split('/').pop()}`}
+		>
+			<article className=" group flex w-full flex-col">
+				<h3 className="font-sans underline-offset-4 group-[&:hover]:underline">
 					<span className="">{frontmatter.title}</span>
 				</h3>
 				<p className="secondary font-reader text-sm">
 					{frontmatter.description.slice(0, 300) + ''}
 				</p>
-				<div className="flex flex-wrap gap-2">
+				<div className="mt-2 flex flex-wrap gap-2">
 					{frontmatter.tags?.map((item, i) => (
 						<Badge
 							key={i}

@@ -23,6 +23,8 @@ export async function loader({
 	let q = new URL(request.url).searchParams.get('q');
 	if (!q) return [];
 
+	console.log(q);
+
 	q = `"${q.replace(/"/g, '""')}"`;
 
 	let allblogs = await getPosts();
@@ -153,7 +155,7 @@ export function Search() {
 				className="fixed left-0 top-0 z-[999] m-auto h-full w-full overflow-hidden bg-secondary-foreground/60 dark:bg-black/80"
 			>
 				<div
-					className="absolute left-1/2 top-[40vh] z-20  h-[40vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-md border bg-background  dark:bg-[#131313] md:w-[40vw]"
+					className="absolute left-1/2 top-[40vh] z-20  h-[40vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-md border bg-background  dark:bg-[#13131362] md:w-[40vw]"
 					onClick={event => {
 						event.stopPropagation();
 					}}
@@ -177,6 +179,15 @@ export function Search() {
 									setShow(false);
 								} else {
 									event.stopPropagation();
+								}
+
+								if (event.key === 'Enter') {
+									if (search.data && search.data.length === 1) {
+										setShow(false);
+										window.location.href = `/blog/${search.data[0].slug}`;
+									} else {
+										search.submit(event.currentTarget.form);
+									}
 								}
 							}}
 							{...{

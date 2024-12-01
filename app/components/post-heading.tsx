@@ -23,22 +23,8 @@ export default function PostHeading({
 	return (
 		<>
 			<div className="flex flex-col gap-1 ">
-				<h2 className="font-sans text-xl">{title}</h2>
-				{/* <div className=" 	asdfsafasd flex h-min items-center gap-3 ">
-					<img
-						className="w-[30px] rounded-full border "
-						src="https://avatars.githubusercontent.com/u/98168009?v=4"
-						alt=""
-					/>
-					<div className="flex items-start justify-center gap-3">
-						<h5 className="font-bricolage text-[15px]">{author}</h5>
-						<h5 className="text-[15px]">
-							{moment(date).format('MMM Do YYYY')}
-						</h5>
-					</div>
-				</div> */}
-
-				<div className="mb-4 flex flex-wrap items-center gap-3">
+				<h2 className="font-sans">{title}</h2>
+				<div className=" flex flex-wrap items-center gap-2">
 					{tags?.map((item, i) => (
 						<Highlight className="font-reader lowercase">{item}</Highlight>
 					))}

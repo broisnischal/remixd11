@@ -188,11 +188,7 @@ export default function Component() {
 				<>No posts found</>
 			) : (
 				allposts.map((post, i) => (
-					<div
-						key={i}
-						className="min-w-full"
-						// rounded-lg  border  bg-zinc-50 p-2 dark:bg-transparent
-					>
+					<div key={i} className="min-w-full">
 						<Post key={post.slug} {...post} />
 					</div>
 				))

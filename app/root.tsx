@@ -30,7 +30,15 @@ import clsx from 'clsx';
 import * as React from 'react';
 
 import { Redis } from '@upstash/redis/cloudflare';
-import { ArrowUp, Bell, GithubIcon, Mails, Star } from 'lucide-react';
+import {
+	ArrowUp,
+	Bell,
+	GithubIcon,
+	LayoutDashboard,
+	LogOut,
+	Mails,
+	Star,
+} from 'lucide-react';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 import {
 	PreventFlashOnWrongTheme,
@@ -263,7 +271,11 @@ const NavBar = () => {
 				{/* <RouteLink to={'/'}	>Nischal Inc.</RouteLink> */}
 
 				<Link to={'/'}>
-					<ProfileHeader isActive name="Nischal Dahal" username="broisnees" />
+					<ProfileHeader
+						isActive={true}
+						name="Nischal Dahal"
+						username="broisnees"
+					/>
 				</Link>
 				<div className=" flex items-center justify-between">
 					<div className=" flex items-center justify-between gap-4 ">
@@ -277,18 +289,6 @@ const NavBar = () => {
 							{/* <RouteLink to={'/chat'}>chat</RouteLink> */}
 							{/* <RouteLink to={'/hire'}>hireme</RouteLink> */}
 							{/* <RouteLink to={'/links'}>links</RouteLink> */}
-							{/* <React.Suspense>
-								<Await resolve={data.user}>
-									{user => (
-										<>
-											{user?.type === 'nees' && (
-												<RouteLink to={'/dashboard'}>Dashboard</RouteLink>
-											)}
-											{user?.id && <Link to="/auth/logout">Logout</Link>}
-										</>
-									)}
-								</Await>
-							</React.Suspense> */}
 						</div>
 						{/* <RouteLink to={'/cat/guides'}>guides</RouteLink> */}
 						{/* <RouteLink to={'/projects'}>projects</RouteLink> */}
@@ -298,8 +298,31 @@ const NavBar = () => {
 				</div>
 				<div className="flex items-center justify-center gap-4">
 					<ModeToggle />
+
 					<Announcement />
 					<GithubStars />
+					<React.Suspense>
+						<Await resolve={data.user}>
+							{user => (
+								<>
+									{user?.type === 'nees' && (
+										<RouteLink to={'/dashboard'}>
+											<Button variant="outline" size="icon">
+												<LayoutDashboard size={16} />
+											</Button>
+										</RouteLink>
+									)}
+									{user?.id && (
+										<Link to="/auth/logout">
+											<Button variant="outline" size="icon">
+												<LogOut size={16} />
+											</Button>
+										</Link>
+									)}
+								</>
+							)}
+						</Await>
+					</React.Suspense>
 				</div>
 			</nav>
 		</>
@@ -335,8 +358,9 @@ const Footer = () => {
 		<div className="flex min-h-[5vh] flex-col gap-2 pt-20 text-sm">
 			<div className="flex flex-wrap gap-2">
 				<RouteLink to={'/links'}>links</RouteLink>|
+				<RouteLink to={'/blog'}>blogs</RouteLink>|
 				{/* <RouteLink to={'/about'}>about</RouteLink>| */}
-				<RouteLink to={'/setup'}>setup</RouteLink>|
+				{/* <RouteLink to={'/setup'}>setup</Route	Link>| */}
 				{/* <RouteLink to={'/stack'}>stacks</RouteLink>| */}
 				<RouteLink to={'/hire'}>hire</RouteLink>|
 				<RouteLink to={'/timeline'}>timeline</RouteLink>|

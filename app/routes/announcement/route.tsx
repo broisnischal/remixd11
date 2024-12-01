@@ -2,11 +2,11 @@ import { Highlight } from '../_landing.about/route';
 
 export default function Page() {
 	return (
-		<div className="min-w-[70vh] font-sans">
+		<div className=" font-sans">
 			{/* <h1 className="font-mono italic">Announcements</h1> */}
 
-			<div className="flex gap-4">
-				<div className="flex flex-col items-start gap-4">
+			<div className="flex flex-col gap-4 md:flex-row">
+				<div className="flex flex-col flex-wrap items-start gap-4">
 					{announcements.map((data, index) => (
 						<AnnouncementCard key={index} {...data} />
 					))}

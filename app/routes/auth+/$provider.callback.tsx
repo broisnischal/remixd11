@@ -9,7 +9,9 @@ export async function loader({ request, params, context }: LoaderFunctionArgs) {
 	// location.searchParams.set('provider', params.provider);
 
 	let provider = params.provider as string;
+
 	let auth = new Auth(context);
+
 	let user = await auth.authenticate(provider, request, {
 		failureRedirect: '/auth/login',
 	});

@@ -58,7 +58,7 @@ export default function Component() {
 	// const vla = useOutlet();
 
 	return (
-		<div className="min-w-full">
+		<div className="w-[90vw] md:w-full ">
 			{progress > 0 && (
 				<div
 					style={{
@@ -69,7 +69,7 @@ export default function Component() {
 				></div>
 			)}
 			<div
-				className="prose-h5:text-md prose prose-zinc max-w-none dark:prose-invert lg:prose-xl prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-xl prose-h4:text-lg prose-h6:text-sm prose-p:font-reader prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold prose-code:rounded-md prose-code:border  prose-code:font-mono prose-code:text-sm prose-table:overflow-x-auto prose-img:scale-110 prose-img:rounded-md prose-img:border"
+				className="prose-h5:text-md prose prose-zinc max-w-none dark:prose-invert lg:prose-xl prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-xl prose-h4:text-lg prose-h6:text-sm prose-p:font-reader prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold prose-code:rounded-md prose-code:border  prose-code:font-mono prose-code:text-sm prose-table:overflow-x-auto prose-img:rounded-md prose-img:border md:prose-img:scale-110"
 				// 	className=" prose-code:font-inconsolata prose:w-[100%] prose prose-zinc dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold  prose-code:rounded-md prose-code:text-sm prose-table:overflow-x-auto
 				// prose-img:rounded-md"
 			>

@@ -229,7 +229,7 @@ export default function Index() {
 						As a developer, I use this as my general toolset, and
 						configurations.
 					</h1>
-					<div className="&>*:w-full flex gap-2">
+					<div className="&>*:w-full flex flex-wrap gap-2">
 						{configData.map(config => {
 							return (
 								<MyConfig

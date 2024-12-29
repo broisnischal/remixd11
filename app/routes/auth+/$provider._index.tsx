@@ -9,10 +9,6 @@ export async function loader() {
 export async function action({ request, params, context }: ActionFunctionArgs) {
 	let provider = params.provider as string;
 
-	console.log(provider);
-
-	// let redirectTo = (formData.get('redirectTo') as string) || '/';
-
 	let auth = new Auth(context);
 
 	return await auth.authenticate(provider, request, {

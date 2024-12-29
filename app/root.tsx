@@ -272,7 +272,7 @@ const NavBar = () => {
 
 				<Link to={'/'}>
 					<ProfileHeader
-						isActive={true}
+						isActive={false}
 						name="Nischal Dahal"
 						username="broisnees"
 					/>
@@ -683,7 +683,8 @@ export function ErrorBoundary() {
 			>
 				<h1>Error</h1>
 				<p>{error.message}</p>
-				<pre>{import.meta.env.DEV && error.stack}</pre>
+				<pre>{error.stack}</pre>
+				{/* import.meta.env.DEV && */}
 				<pre>{error.stack}</pre>
 			</div>
 		);

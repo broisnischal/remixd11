@@ -258,7 +258,7 @@ export default function Index() {
 										<Link
 											className="flex items-center gap-2"
 											to={`/blog/${blog.slug.split('/').pop()}`}
-											prefetch="intent"
+											// prefetch="intent"
 										>
 											<span className="transition duration-100 ease-linear group-hover:scale-150 group-hover:text-red-600">
 												-
@@ -273,7 +273,7 @@ export default function Index() {
 					</ul>
 					<Link
 						to={'/blog'}
-						prefetch="viewport"
+						// prefetch="viewport"
 						className="underline underline-offset-2"
 					>
 						View more

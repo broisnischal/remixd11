@@ -271,11 +271,11 @@ const NavBar = () => {
 				{/* <RouteLink to={'/'}	>Nischal Inc.</RouteLink> */}
 
 				<Link to={'/'}>
-					<ProfileHeader
+					{/* <ProfileHeader
 						isActive={false}
 						name="Nischal Dahal"
 						username="broisnees"
-					/>
+					/> */}
 				</Link>
 				<div className=" flex items-center justify-between">
 					<div className=" flex items-center justify-between gap-4 ">
@@ -558,7 +558,7 @@ export function App() {
 				}}
 			>
 				{/* <WebsiteBanner /> */}
-				<Search />
+				{/* <Search /> */}
 				<Layout children={<Outlet />} />
 				{/* <React.Suspense>
 					<Await resolve={data.count}>
@@ -570,7 +570,7 @@ export function App() {
 						return location.pathname;
 					}}
 				/>
-				<ScrollToTopButton />
+				{/* <ScrollToTopButton /> */}
 				<Scripts />
 			</body>
 		</html>

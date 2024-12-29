@@ -26,30 +26,12 @@ export async function loader({ context }: LoaderFunctionArgs) {
 export default function Component() {
 	const location = useLocation();
 
-	const [progress, setProgress] = React.useState(0);
-
 	// const [copied, setCopied] = React.useState(false);
 
 	// const handleCopy = () => {
 	// 	navigator.clipboard.writeText(shareurl);
 	// 	setCopied(true);
 	// };
-
-	React.useEffect(() => {
-		const handleScroll = () => {
-			const scrollPosition = window.scrollY;
-			const docHeight = document.body.offsetHeight;
-			const winHeight = window.innerHeight;
-			const progress = (scrollPosition / (docHeight - winHeight)) * 100;
-			setProgress(progress);
-		};
-
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
 
 	let shareurl = 'https://nischal-dahal.com.np' + location.pathname;
 	let title = 'Check out this article by Nischal Dahal.';
@@ -59,15 +41,6 @@ export default function Component() {
 
 	return (
 		<div className="w-[90vw] md:w-full ">
-			{progress > 0 && (
-				<div
-					style={{
-						width: `${progress}%`,
-						transition: 'width 0.2s ease-out',
-					}}
-					className="fixed left-0 top-0 z-[999] h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
-				></div>
-			)}
 			<div
 				className="prose-h5:text-md prose prose-zinc max-w-none dark:prose-invert lg:prose-xl prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-xl prose-h4:text-lg prose-h6:text-sm prose-p:font-reader prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold prose-code:rounded-md prose-code:border  prose-code:font-mono prose-code:text-sm prose-table:overflow-x-auto prose-img:rounded-md prose-img:border md:prose-img:scale-110"
 				// 	className=" prose-code:font-inconsolata prose:w-[100%] prose prose-zinc dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold  prose-code:rounded-md prose-code:text-sm prose-table:overflow-x-auto

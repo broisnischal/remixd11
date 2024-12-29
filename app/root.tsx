@@ -271,11 +271,11 @@ const NavBar = () => {
 				{/* <RouteLink to={'/'}	>Nischal Inc.</RouteLink> */}
 
 				<Link to={'/'}>
-					{/* <ProfileHeader
+					<ProfileHeader
 						isActive={false}
 						name="Nischal Dahal"
 						username="broisnees"
-					/> */}
+					/>
 				</Link>
 				<div className=" flex items-center justify-between">
 					<div className=" flex items-center justify-between gap-4 ">

@@ -301,7 +301,7 @@ export function Highlight({
 	return (
 		<span
 			className={twMerge(
-				'font-inconsolata w-fit rounded-md border-[1px] border-zinc-300 bg-zinc-200/40 px-2 text-sm text-sm dark:border-zinc-500 dark:bg-zinc-200/10',
+				'font-inconsolata w-fit rounded-md border-[1px] border-zinc-300 bg-zinc-200/40 px-2 text-sm dark:border-zinc-500 dark:bg-zinc-200/10',
 				className,
 			)}
 		>

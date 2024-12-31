@@ -32,7 +32,7 @@ const rehypeExpressiveCodeOptions = {
 			'bash,ps,sh': { preserveIndent: false },
 		},
 	},
-	themes: [theme, 'vitesse-light'],
+	themes: [theme],
 	frames: {
 		// Example: Hide the "Copy to clipboard" button
 		showCopyToClipboardButton: false,

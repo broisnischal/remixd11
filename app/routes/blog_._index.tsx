@@ -1,7 +1,6 @@
 import { json, LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
-import { Form, useLoaderData, useSubmit } from '@remix-run/react';
+import { Form, Link, useLoaderData, useSubmit } from '@remix-run/react';
 import Fuse from 'fuse.js';
-import { SearchIcon } from 'lucide-react';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -187,11 +186,35 @@ export default function Component() {
 			{allposts.length <= 0 ? (
 				<>No posts found</>
 			) : (
-				allposts.map((post, i) => (
-					<div key={i} className="min-w-full">
-						<Post key={post.slug} {...post} />
-					</div>
-				))
+				Object.entries(
+					allposts.reduce(
+						(acc, post) => {
+							const year = new Date(post.frontmatter.published).getFullYear();
+							return {
+								...acc,
+								[year]: [...(acc[year] || []), post],
+							};
+						},
+						{} as Record<number, typeof allposts>,
+					),
+				)
+					.sort(([a], [b]) => Number(b) - Number(a))
+					.map(([year, posts]) => (
+						<div key={year} className="min-w-full">
+							<h2 className="mb-4 font-poppins text-xl font-extrabold text-zinc-800 dark:text-gray-300">
+								{year}
+							</h2>
+							<div className="flex flex-col gap-4">
+								{posts.map(item => (
+									<Link className="" key={item.slug} to={item.slug}>
+										<h1 className="font-avenir font-bold text-blue-950 hover:underline dark:text-gray-300">
+											{item.frontmatter.title}
+										</h1>
+									</Link>
+								))}
+							</div>
+						</div>
+					))
 			)}
 		</div>
 	);

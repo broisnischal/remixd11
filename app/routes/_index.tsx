@@ -57,8 +57,7 @@ export const meta: MetaFunction = ({ location }) => {
 	const metadata = MetaCreator({
 		title:
 			'Nischal Dahal | Broisnees - Software Engineer & Full Stack Developer | Designer | Learner',
-		description:
-			'an 18-year-old Developer, Creator, and Designer from Nepal, mostly like RUST, Typescript, Go, I love Crafting enchanting web experiences that seamlessly blend form and function. Best developer in Nepal.',
+		description: `an ${new Date().getFullYear() - 2006}-year-old Developer, Creator, and Designer from Nepal, mostly like RUST, Typescript, Go, I love Crafting enchanting web experiences that seamlessly blend form and function. Best developer in Nepal.`,
 		image: '/ogimg.png',
 		url: `${url.origin}${location.pathname}`,
 		others: [
@@ -142,20 +141,23 @@ export default function Index() {
 	const { blogs } = useLoaderData<typeof loader>();
 
 	return (
-		<div className="">
+		<div className="	font-bricolage">
 			<div className="flex flex-col gap-8 font-sans">
-				<p className=" ">
+				<p className="tracking-wide">
 					I'm a{' '}
 					<i style={{ fontWeight: 'bold' }} className="mr-2">
 						Senior Software Engineer
 					</i>
 					focusing on serverless architecture, android development, user
 					experience, and product development. I am not Stack biased and am
-					always open to learning new technologies. Enrolled in Content
-					Creation, Editing, Designing, and Innovating.
+					always open to learning new technologies.
 				</p>
 
-				<p className="">
+				{/* <Link to={'https://l.nischal.pro/cv'} target="_blank">
+					<HiDocumentText className="mr-2 h-5 w-5" />
+				</Link> */}
+
+				{/* <p className="">
 					As a firm believer in transhumanism, I envision a future where
 					technology alleviates human suffering and fosters a more harmonious
 					world.
@@ -177,112 +179,14 @@ export default function Index() {
 						</button>{' '}
 						values or cause harm to people.
 					</p>
-				</div>
-
-				<div className="flex flex-col gap-2">
-					<span className="font-bold">QuickLinks</span>
-					<div>
-						<Link to={'/bookmarks'}>
-							<span className="font-mono capitalize italic underline underline-offset-2">
-								bookmarks{' '}
-							</span>{' '}
-							- Links to content I liked, sometimes with my commentary.
-						</Link>
-					</div>
-					<div>
-						<Link to={'/guestbook'}>
-							<span className="font-mono capitalize italic underline underline-offset-2">
-								guestbook{' '}
-							</span>{' '}
-							- appreciation, information, wisdom, anything that is good or bad.
-						</Link>
-					</div>
-					<div>
-						<Link to={'/newsletter'}>
-							<span className="font-mono capitalize italic underline underline-offset-2">
-								newsletter
-							</span>{' '}
-							- Subscribe to my newsletter.
-						</Link>
-					</div>
-					<div>
-						<Link to={'/talks'}>
-							<span className="font-mono capitalize italic underline underline-offset-2">
-								talks
-							</span>{' '}
-							- Presentations and Talks I've given and attended in the past and
-							future.
-						</Link>
-					</div>
-					<div>
-						<Link to={'/chat'}>
-							<span className="font-mono capitalize italic underline underline-offset-2">
-								chat
-							</span>{' '}
-							- Chat with me.
-						</Link>
-					</div>
-				</div>
-
-				<div className="flex flex-col gap-2">
-					<h1 className="mb-1 italic">
-						As a developer, I use this as my general toolset, and
-						configurations.
-					</h1>
-					<div className="&>*:w-full flex flex-wrap gap-2">
-						{configData.map(config => {
-							return (
-								<MyConfig
-									key={config.title}
-									icon={config.icon}
-									title={config.title}
-									link={config.link}
-									description={config.description}
-									subicon={config.subicon}
-								/>
-							);
-						})}
-					</div>
-				</div>
-
-				<div className="flex flex-col gap-2">
-					<h1>
-						<span className="italic">Writing</span>
-					</h1>
-					<ul className="list-inside">
-						{blogs
-							.filter(b => b.frontmatter.featured)
-							.map(blog => {
-								return (
-									<li className="group">
-										<Link
-											className="flex items-center gap-2"
-											to={`/blog/${blog.slug.split('/').pop()}`}
-											// prefetch="intent"
-										>
-											<span className="transition duration-100 ease-linear group-hover:scale-150 group-hover:text-red-600">
-												-
-											</span>{' '}
-											<p className="font-reader text-sm">
-												{blog.frontmatter.title}
-											</p>
-										</Link>
-									</li>
-								);
-							})}
-					</ul>
-					<Link
-						to={'/blog'}
-						// prefetch="viewport"
-						className="underline underline-offset-2"
-					>
-						View more
-					</Link>
-				</div>
+				</div> */}
 
 				<div>
-					<h1> I try publishing stuffs, that does something than nothing.</h1>
-					<ul className="flex flex-wrap gap-2 *:italic *:underline *:underline-offset-2">
+					<h1 className="font-avenir font-bold">
+						{' '}
+						I try publishing stuffs, that does something than nothing.
+					</h1>
+					<ul className="flex flex-wrap gap-2 text-sm *:underline *:underline-offset-2">
 						<Link
 							target="_blank"
 							to={'https://pub.dev/publishers/nischal-dahal.com.np/packages'}
@@ -300,9 +204,9 @@ export default function Index() {
 							<li>vsext</li>
 						</Link>
 
-						<li className="secondary">tools</li>
+						{/* <li className="secondary">tools</li> */}
 
-						<li className="secondary">others</li>
+						{/* <li className="secondary">others</li> */}
 					</ul>
 				</div>
 
@@ -468,6 +372,71 @@ export function SoftwareTools() {
 					</Badge>
 				),
 			)}
+		</div>
+	);
+}
+
+function QuickLinks() {
+	return (
+		<div className="flex flex-col gap-2">
+			<span className="font-bold">QuickLinks</span>
+			<div>
+				<Link to={'/bookmarks'}>
+					<span className="font-mono capitalize italic underline underline-offset-2">
+						bookmarks{' '}
+					</span>{' '}
+					- Links to content I liked, sometimes with my commentary.
+				</Link>
+			</div>
+			<div>
+				<Link to={'/guestbook'}>
+					<span className="font-mono capitalize italic underline underline-offset-2">
+						guestbook{' '}
+					</span>{' '}
+					- appreciation, information, wisdom, anything that is good or bad.
+				</Link>
+			</div>
+			<div>
+				<Link to={'/newsletter'}>
+					<span className="font-mono capitalize italic underline underline-offset-2">
+						newsletter
+					</span>{' '}
+					- Subscribe to my newsletter.
+				</Link>
+			</div>
+
+			<div>
+				<Link to={'/chat'}>
+					<span className="font-mono capitalize italic underline underline-offset-2">
+						chat
+					</span>{' '}
+					- Chat with me.
+				</Link>
+			</div>
+		</div>
+	);
+}
+
+export function Tools() {
+	return (
+		<div className="flex flex-col gap-2">
+			<h1 className="mb-1 italic">
+				As a developer, I use this as my general toolset, and configurations.
+			</h1>
+			<div className="&>*:w-full flex flex-wrap gap-2">
+				{configData.map(config => {
+					return (
+						<MyConfig
+							key={config.title}
+							icon={config.icon}
+							title={config.title}
+							link={config.link}
+							description={config.description}
+							subicon={config.subicon}
+						/>
+					);
+				})}
+			</div>
 		</div>
 	);
 }

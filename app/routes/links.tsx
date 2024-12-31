@@ -54,10 +54,10 @@ export default function Page() {
 				</a>{' '}
 				profile. */}
 			</p>
-			<p className="secondary">
+			{/* <p className="secondary">
 				Share a interesting project idea? Feel free to reach to
-				ping@nischal.pro!
-			</p>
+				ping@nischal.pro! */}
+			{/* </p> */}
 			{/* <small className="">
 				<br /> Made with{' '}
 				<Link target="_blank" className="underline" to="https://remix.run">

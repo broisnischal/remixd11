@@ -23,14 +23,14 @@ export default function PostHeading({
 	return (
 		<>
 			<div className="flex flex-col gap-1 ">
-				<h2 className="font-sans">{title}</h2>
+				<h2 className="font-avenir">{title}</h2>
 				<div className=" flex flex-wrap items-center gap-2">
 					{tags?.map((item, i) => (
 						<Highlight className="font-reader lowercase">{item}</Highlight>
 					))}
 				</div>
 
-				<small className="mb-2 flex h-[40px] items-center gap-2 text-primary">
+				{/* <small className="mb-2 flex h-[40px] items-center gap-2 text-primary">
 					{moment(date).format('MMM Do YYYY')} | {readingTime} min read |
 					Written by{' '}
 					<img
@@ -44,7 +44,7 @@ export default function PostHeading({
 					>
 						<span className="font-mono">{author}</span>
 					</a>
-				</small>
+				</small> */}
 
 				{/* <Link
 					className="items-center self-start font-avenir text-sm font-normal no-underline"

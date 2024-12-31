@@ -62,7 +62,8 @@ html {
 
 	.dark,
 	:root[class~='dark'] {
-		--background: 240 10% 3.9%;
+		/* --background: 240 10% 3.9%; */
+		--background: #131418;
 		--foreground: 0 0% 98%;
 		--card: 240 10% 3.9%;
 		--card-foreground: 0 0% 98%;

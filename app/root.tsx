@@ -244,9 +244,7 @@ export const RouteLink = ({
 		<NavLink
 			prefetch="intent"
 			className={({ isActive }) =>
-				isActive
-					? 'active font-bricolage md:text-[16px]'
-					: 'font-sans  md:text-[17px]'
+				isActive ? 'active md:text-[16px]' : 'md:text-[17px]'
 			}
 			to={to}
 			target={blank ? '_blank' : '_self'}
@@ -259,23 +257,13 @@ export const RouteLink = ({
 const NavBar = () => {
 	const data = useLoaderData<typeof loader>();
 
-	const [isOpen, setIsOpen] = React.useState(false);
-
-	const toggleMenu = () => {
-		setIsOpen(!isOpen);
-	};
-
 	return (
 		<>
 			<nav className=" m-auto mb-10 flex items-center justify-between  py-4">
 				{/* <RouteLink to={'/'}	>Nischal Inc.</RouteLink> */}
 
 				<Link to={'/'}>
-					<ProfileHeader
-						isActive={false}
-						name="Nischal Dahal"
-						username="broisnees"
-					/>
+					<h1 className="text-xl font-bold">broisnees</h1>
 				</Link>
 				<div className=" flex items-center justify-between">
 					<div className=" flex items-center justify-between gap-4 ">
@@ -299,8 +287,8 @@ const NavBar = () => {
 				<div className="flex items-center justify-center gap-4">
 					<ModeToggle />
 
-					<Announcement />
-					<GithubStars />
+					{/* <Announcement /> */}
+					{/* <GithubStars /> */}
 					<React.Suspense>
 						<Await resolve={data.user}>
 							{user => (
@@ -355,28 +343,29 @@ export function Announcement() {
 
 const Footer = () => {
 	return (
-		<div className="flex min-h-[5vh] flex-col gap-2 pt-20 text-sm">
-			<div className="flex flex-wrap gap-2">
+		<div className="flex min-h-[5vh] flex-col gap-2 pt-20">
+			<hr />
+			<br />
+			<div className="flex flex-wrap gap-2 font-poppins">
 				<RouteLink to={'/links'}>links</RouteLink>|
 				<RouteLink to={'/blog'}>blogs</RouteLink>|
 				{/* <RouteLink to={'/about'}>about</RouteLink>| */}
-				{/* <RouteLink to={'/setup'}>setup</Route	Link>| */}
+				{/* <RouteLink to={'/setup'}>setup</RouteLink>| */}
 				{/* <RouteLink to={'/stack'}>stacks</RouteLink>| */}
-				<RouteLink to={'/hire'}>hire</RouteLink>|
-				<RouteLink to={'/timeline'}>timeline</RouteLink>|
+				{/* <RouteLink to={'/hire'}>hire</RouteLink>| */}
+				{/* <RouteLink to={'/timeline'}>timeline</RouteLink>| */}
 				<RouteLink blank to={'https://ko-fi.com/nischaldahal'}>
 					donate
 				</RouteLink>
 			</div>
-
-			<div className="secondary flex flex-wrap gap-2">
-				<Link
+			<div className="secondary flex flex-wrap gap-3 font-nunito">
+				{/* <Link
 					className="text-sm underline underline-offset-2"
 					to="https://codeium.com/profile/broisnischal"
 					target="_blank"
 				>
 					codeium
-				</Link>
+				</Link> */}
 				<Link
 					className="text-sm underline underline-offset-2"
 					to="https://dly.to/oYeNtLdx9va"
@@ -388,14 +377,14 @@ const Footer = () => {
 					className="text-sm underline underline-offset-2"
 					to={'https://nischal-dahal.com.np/blogs/rss'}
 				>
-					blog RSS
+					RSS
 				</Link>
-				<Link
+				{/* <Link
 					className="text-sm underline underline-offset-2"
 					to={'https://nischal-dahal.com.np/sitemap.xml'}
 				>
 					sitemap
-				</Link>
+				</Link> */}
 				<Link className="text-sm underline underline-offset-2" to="/terms">
 					terms & conditions
 				</Link>
@@ -420,7 +409,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div className="flex flex-col">
 			<ProgessBar />
-			<div className="text-gray-1200 mx-auto my-12 !mt-6 max-w-[720px] px-4 antialiased sm:my-32 md:my-20 md:mb-40">
+			<div className=" mx-auto my-12 !mt-6 max-w-[600px] px-4 antialiased">
 				<NavBar />
 				{children}
 				<Footer />
@@ -504,7 +493,7 @@ export function App() {
 					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6430477215422762"
 					crossOrigin="anonymous"
 				></script>
-				{/* <link
+				<link
 					href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible:regular,italic,700,700italic"
 					rel="stylesheet"
 				/>
@@ -515,7 +504,7 @@ export function App() {
 				<link
 					href="https://fonts.googleapis.com/css?family=Inconsolata:200,300,regular,500,600,700,800,900"
 					rel="stylesheet"
-				/> */}
+				/>
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" />
 				<link
@@ -554,7 +543,7 @@ export function App() {
 				style={{
 					lineHeight: '1.6',
 					margin: 0,
-					fontFamily: 'Geist',
+					// fontFamily: 'Geist',
 				}}
 			>
 				{/* <WebsiteBanner /> */}

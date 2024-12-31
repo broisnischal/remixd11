@@ -40,9 +40,9 @@ export default function Component() {
 	// const vla = useOutlet();
 
 	return (
-		<div className="w-[90vw] md:w-full ">
+		<div className="w-[90vw] font-avenir md:w-full">
 			<div
-				className="prose-h5:text-md prose prose-zinc max-w-none dark:prose-invert lg:prose-xl prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-xl prose-h4:text-lg prose-h6:text-sm prose-p:font-reader prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold prose-code:rounded-md prose-code:border  prose-code:font-mono prose-code:text-sm prose-table:overflow-x-auto prose-img:rounded-md prose-img:border md:prose-img:scale-110"
+				className="prose-h5:text-md prose prose-zinc max-w-none dark:prose-invert lg:prose-xl prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-xl prose-h4:text-lg prose-h6:text-sm prose-p:font-reader prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold prose-code:rounded-md prose-code:border prose-code:border-white  prose-code:font-mono prose-code:text-sm prose-table:overflow-x-auto prose-img:rounded-md prose-img:border md:prose-img:scale-110"
 				// 	className=" prose-code:font-inconsolata prose:w-[100%] prose prose-zinc dark:prose-invert lg:prose-xl prose-p:font-atkinson prose-strong:rounded-md prose-strong:border prose-strong:px-2 prose-strong:py-1 prose-strong:text-sm prose-strong:font-semibold  prose-code:rounded-md prose-code:text-sm prose-table:overflow-x-auto
 				// prose-img:rounded-md"
 			>
@@ -54,8 +54,8 @@ export default function Component() {
 			<br />
 
 			<br />
-			<div className="share flex flex-col justify-center gap-3">
-				<p className="mr-1 font-mono text-2xl font-bold">Share this article!</p>
+			<div className="share flex flex-col justify-center gap-3 ">
+				<p className="mr-1 text-2xl font-bold">Share this article!</p>
 				<div className="share flex flex-wrap gap-5">
 					<TwitterShareButton
 						url={shareurl}
@@ -64,7 +64,7 @@ export default function Component() {
 					>
 						<XIcon
 							className="rounded-full border-[1px] border-zinc-500/50"
-							size={52}
+							size={32}
 							round
 						/>
 					</TwitterShareButton>
@@ -74,7 +74,7 @@ export default function Component() {
 						about={title}
 						className="Demo__some-network__share-button"
 					>
-						<LinkedinIcon size={52} round />
+						<LinkedinIcon size={32} round />
 					</LinkedinShareButton>
 
 					<RedditShareButton
@@ -84,45 +84,44 @@ export default function Component() {
 						windowHeight={460}
 						className="Demo__some-network__share-button"
 					>
-						<RedditIcon size={52} round />
+						<RedditIcon size={32} round />
 					</RedditShareButton>
 				</div>
 			</div>
 			<br />
 			<div>
-				<h4 className="flex flex-wrap gap-2  font-bricolage  text-xl">
+				<h4 className="flex flex-wrap gap-2">
 					Did this help? Consider{' '}
 					<Link className="flex items-center gap-2 underline " to={'/sponsor'}>
-						<SiGithubsponsors /> sponsoring me!{' '}
+						<SiGithubsponsors /> sponsoring me !{' '}
 					</Link>{' '}
-					Anything you wanna say/recommend?
 					<Link
 						className="flex items-center gap-2 underline underline-offset-2 "
 						to={'/guestbook'}
 					>
-						<MailIcon /> leave a guestbook.{' '}
+						<MailIcon size={14} /> leave a guestbook.{' '}
 					</Link>{' '}
 				</h4>
 			</div>
 			<br />
 			<div className=" prose dark:prose-invert lg:prose-xl prose-p:font-mono prose-img:rounded-md ">
 				<div className="flex flex-col  justify-center">
-					<h2 className=" text-2xl font-bold">Thanks for reading!</h2>
-					<p className=" font-poppins text-[15px]">
+					{/* <h2 className="  font-bold">Thanks for reading!</h2>
+					<p className=" ">
 						If you found this useful, check out my{' '}
 						<Link to={'/blog'}>other articles</Link> and my YouTube Channel
 						where I cover a lot of the same topics but in video format. & If you
 						don't want to miss future article and updates similar to this do
 						subscribe to my newsletter.
-					</p>
-					<Link to={'/newsletter'}>
+					</p> */}
+					{/* <Link to={'/newsletter'}>
 						<ConnectButton>
 							<div className="flex items-center justify-center gap-2 p-2 text-[14px]">
 								<Mails size={18} /> Subscribe my newsletter?
 							</div>
 						</ConnectButton>
-					</Link>{' '}
-					<br />
+					</Link>{' '} */}
+					{/* <br /> */}
 				</div>
 			</div>
 		</div>

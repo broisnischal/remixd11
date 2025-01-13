@@ -301,7 +301,7 @@ export function Highlight({
 	return (
 		<span
 			className={twMerge(
-				'font-inconsolata w-fit rounded-md border-[1px] border-zinc-300 bg-zinc-200/40 px-2 text-sm dark:border-zinc-500 dark:bg-zinc-200/10',
+				'w-fit rounded-md border-[1px] border-zinc-300 bg-zinc-200/40 px-2 font-inconsolataπ text-sm dark:border-zinc-500 dark:bg-zinc-200/10',
 				className,
 			)}
 		>
@@ -314,20 +314,19 @@ export function MySetup() {
 	return (
 		<div>
 			<h1 className="mb-2 font-bricolage text-3xl font-bold">🧰 My Setup</h1>
-
 			<br />
-			<p>
-				As a developer and tech lover in general, I use a lot of physical and
-				digital stuff on a daily basis. These things serve many purposes. They
-				bring me enjoyment, connect me to other people, and serve as tools that
-				help me create software.
+			<p className="font-bricolage text-[1.2rem]">
+				As a developer and tech enthusiasts in general, I use a lot of physical
+				and digital stuff on a daily basis. These things serve many purposes.
+				They bring me enjoyment, connect me to other people, and serve as tools
+				that help me create software, and content.
 			</p>
 
 			<br />
 
 			<div className="flex flex-col gap-10">
 				<div className="item flex flex-col gap-3">
-					<h2 className="font-atkinson text-xl">Development</h2>
+					<h2 className="font-atkinson text-xl font-bold">Development</h2>
 					<ul className="flex flex-col gap-3">
 						<li className="flex items-center gap-3">
 							ESP32 : <Highlight>ESP32-C3 DevKitC V2 | NodeMCU</Highlight>
@@ -344,37 +343,104 @@ export function MySetup() {
 						</li>
 					</ul>
 				</div>
-				<div className="item flex flex-col gap-3">
-					<h2 className="font-atkinson text-xl font-bold">Parts</h2>
-					<ul className="flex flex-col gap-3">
-						<li className="flex items-center gap-3">
-							SSD : <Highlight>Samsung 980 PRO SSD 2TB</Highlight>
-						</li>
-						<li className="flex items-center gap-3">
-							FAN : <Highlight>Arctic Liquid Freezer II 360</Highlight>
-						</li>
-					</ul>
-				</div>
-				<div className="item flex flex-col gap-3">
+				<div className="item flex  flex-col gap-3">
 					<h2 className="font-atkinson text-xl font-bold">Periphery</h2>
-					<ul className="flex flex-col gap-3">
+					<ul className="flex flex-col gap-2 font-sans [&>li>span>a]:underline [&>li]:font-avenir">
 						<li className="flex items-center gap-3">
-							Earbud : <Highlight>Nothing Ear 2</Highlight>
+							Earbud :{' '}
+							<Highlight>
+								<Link
+									className="underline"
+									to={'https://intl.nothing.tech/products/ear-2'}
+								>
+									Nothing Ear 2
+								</Link>
+							</Highlight>
 						</li>
 						<li className="flex items-center gap-3">
-							Keyboard : <Highlight>Reddragon K810</Highlight>
+							Keyboard :{' '}
+							<Highlight>
+								<Link
+									to={
+										'https://www.amazon.com/Redragon-Keyboard-Mechanical-Software-Supported/dp/B09BVCVTBC'
+									}
+								>
+									Reddragon K617
+								</Link>{' '}
+							</Highlight>
 						</li>
 						<li className="flex items-center gap-3">
-							Microphone : <Highlight>N/A</Highlight>
+							Microphone :{' '}
+							<Highlight>
+								<Link
+									to={
+										'https://samsontech.com/products/microphones/usb-microphones/c01upro/'
+									}
+								>
+									Samsontech C01U Pro
+								</Link>
+							</Highlight>
 						</li>
 						<li className="flex items-center gap-3">
-							Mouse : <Highlight>Razer Mouse Basilisk V3 Pro</Highlight>
+							Headset :{' '}
+							<Highlight>
+								<Link
+									to={
+										'https://www.redragonzone.com/collections/headset/products/h510-zeus-x-rgb-wireless-gaming-headset'
+									}
+								>
+									Redragon H510
+								</Link>
+							</Highlight>
 						</li>
 						<li className="flex items-center gap-3">
-							Chair : <Highlight>Noblechair Hero Black</Highlight>
+							Mouse :{' '}
+							<Highlight>
+								<Link
+									to={
+										'https://www.razer.com/gaming-mice/razer-deathadder-v2-x-hyperspeed'
+									}
+								>
+									Razer Deathadder V2
+								</Link>
+							</Highlight>
 						</li>
 						<li className="flex items-center gap-3">
-							Webcam : <Highlight> Logitech C922 Pro</Highlight>
+							Chair :{' '}
+							<Highlight>
+								<Link
+									to={
+										'https://www.avinyastore.com/product/ergonomics-office-chair-s121'
+									}
+								>
+									Ergonomic S121T
+								</Link>
+							</Highlight>
+						</li>
+						<li className="flex items-center gap-3">
+							Webcam : <Highlight> N/A</Highlight>
+						</li>
+						<li className="flex items-center gap-3">
+							Desk :{' '}
+							<Highlight>
+								{' '}
+								<Link to={'https://www.instagram.com/p/C2JjnddNqPc/?hl=en'}>
+									Pirka
+								</Link>{' '}
+							</Highlight>
+						</li>
+						<li className="flex items-center gap-3">
+							Polishing Cloth :{' '}
+							<Highlight>
+								{' '}
+								<Link
+									to={
+										'https://www.apple.com/in/shop/product/MW693ZM/A/polishing-cloth'
+									}
+								>
+									Apple Polishing Cloth
+								</Link>{' '}
+							</Highlight>
 						</li>
 					</ul>
 				</div>
@@ -382,10 +448,30 @@ export function MySetup() {
 					<h2 className="font-atkinson text-xl font-bold">Portable</h2>
 					<ul className="flex flex-col gap-3">
 						<li className="flex items-center gap-3">
-							Laptop : <Highlight>Macbook Pro M3 18GB 14" 512GB</Highlight>
+							Laptop :{' '}
+							<Highlight>
+								<Link to={'https://www.apple.com/shop/buy-mac/macbook-pro'}>
+									Macbook Pro M3 18GB 14" 512GB
+								</Link>
+							</Highlight>
 						</li>
 						<li className="flex items-center gap-3">
-							Phone : <Highlight>Nothing Phone 1 256GB/8GB</Highlight>
+							Phone : <Highlight>Nothing Phone 1 256GB/12GB</Highlight>
+						</li>
+						<li className="flex items-center gap-3">
+							Phone 2: <Highlight>Poco X6 5G</Highlight>
+						</li>
+						<li className="flex items-center gap-3">
+							Phone Cover :{' '}
+							<Highlight>
+								<Link
+									to={
+										'https://www.flipkart.com/spigen-ultra-hybrid-back-cover-nothing-phone-1/p/itm37b7af96c7029?pid=ACCGHYGPQA7FPG8S&lid=LSTACCGHYGPQA7FPG8S3POHVU&marketplace=FLIPKART&q=spigen+nothing&store=tyy&srno=s_1_8&otracker=search&otracker1=search&fm=organic&iid=6ea97bd4-9180-495a-9de1-6577c4fbc6d6.ACCGHYGPQA7FPG8S.SEARCH&ppt=hp&ppn=homepage&ssid=n3ljfmyy2o0000001730883510300&qH=26b381f6e5fda5d6'
+									}
+								>
+									Spigen Ultra Hybrid
+								</Link>
+							</Highlight>
 						</li>
 						<li className="flex items-center gap-3">
 							Watch : <Highlight>Watch Pro 2</Highlight>

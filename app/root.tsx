@@ -244,7 +244,9 @@ export const RouteLink = ({
 		<NavLink
 			prefetch="intent"
 			className={({ isActive }) =>
-				isActive ? 'active md:text-[16px]' : 'md:text-[17px]'
+				isActive
+					? 'active font-poppins md:text-[16px]'
+					: 'font-poppins md:text-[17px]'
 			}
 			to={to}
 			target={blank ? '_blank' : '_self'}
@@ -350,7 +352,7 @@ const Footer = () => {
 				<RouteLink to={'/links'}>links</RouteLink>|
 				<RouteLink to={'/blog'}>blogs</RouteLink>|
 				{/* <RouteLink to={'/about'}>about</RouteLink>| */}
-				{/* <RouteLink to={'/setup'}>setup</RouteLink>| */}
+				<RouteLink to={'/setup'}>setup</RouteLink>|
 				{/* <RouteLink to={'/stack'}>stacks</RouteLink>| */}
 				{/* <RouteLink to={'/hire'}>hire</RouteLink>| */}
 				{/* <RouteLink to={'/timeline'}>timeline</RouteLink>| */}
